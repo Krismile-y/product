@@ -1,0 +1,41 @@
+<template>
+	<view class="shopDetail">
+		<view style="background-color: #fff; padding-bottom: 30upx;">
+			<image src="https://img0.baidu.com/it/u=528833255,3463981408&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800"></image>
+			<view class="biaoti">
+				<view class="left dis">绿色商品</view>
+				<text>绿色中国冬日暖心水壶</text>
+			</view>
+			<view class="tishi">
+				温馨提示：冬季暖心必备，家用小型电水壶
+			</view>
+			
+			<view class="buy dis">
+				您可以使用能量兑换商品
+			</view>
+		</view>
+		
+		<view class="de">
+			冬季暖心必备，家用小型电水壶
+		</view>
+		
+		<view class="btn dis">
+			兑换
+		</view>
+		
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			};
+		}
+	}
+</script>
+
+<style lang="less" src='./shopDetail.less'>
+
+</style>

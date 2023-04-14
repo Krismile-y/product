@@ -1,0 +1,278 @@
+{
+		"easycom": {
+			"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+		},
+	"pages": [{
+		"path": "pages/index/index",
+		"style": {
+			"navigationBarTitleText": "",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	}    ,{
+            "path" : "pages/my/my",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": false
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/login/login",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"app-plus":{
+					"titleNView":false
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/invest/invest",
+            "style" :                                                                                    
+            {
+               "navigationBarTitleText": "",
+               "enablePullDownRefresh": false,
+               "app-plus": {
+               	"titleNView": false
+               }
+            }
+            
+        }
+        ,{
+            "path" : "pages/safe/safe",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "账户安全",
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"autoBackButton": true	
+					}
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/revisePassword/revisePassword",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "账户安全",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/ensure/ensure",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "安全保障",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/help/help",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "反馈与帮助",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/about/about",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "关于我们",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/group/group",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "团队津贴",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/record/record",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "记录",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/withdrawal/withdrawal",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "提现申请",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/invite/invite",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "邀请好友",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/msg/msg",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "消息中心",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/msgCenter/msgCenter",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "消息中心",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/myGroup/myGroup",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的团队",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/terrace/terrace",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "平台攻略",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mySafe/mySafe",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "安全保障",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/myShop/myShop",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的商品",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/shop/shop",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "商城",
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": false
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/shopDetail/shopDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "绿色中国商城",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/investDetail/investDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "项目详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/environmental/environmental",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "全民环保",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/news/news",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "新闻",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/newsList/newsList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "新闻列表",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/business/business",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "交易",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/logon/logon",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"app-plus":{
+					"titleNView":false
+				}
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationStyle": "default",
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	}
+}
