@@ -1,0 +1,39 @@
+// 去掉边框
+border-none()
+  &::before
+    display none
+  &::after
+    display none
+// flex 行布局
+flex-box-row($align-items = flex-start, $justify-content = flex-start)
+  display flex
+  align-items $align-items
+  justify-content $justify-content
+// flex 列布局
+flex-box-col($align-items = flex-start, $justify-content = flex-start)
+  display flex
+  flex-direction column
+  align-items $align-items
+  justify-content $justify-content
+// 背景图片
+bg-image($url)
+  background-image url($url + '@2x.png')
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3)
+    background-image url($url + '@3x.png')
+// 垂直居中
+vertical-center()
+  position absolute
+  top 50%
+  transform translateY(-50%)
+// 单行文本溢出
+ellipsis()
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+// 多行文本溢出
+mult_line_ellipsis($num = 2)
+  overflow hidden
+  text-overflow ellipsis
+  display -webkit-box
+  -webkit-line-clamp $num
+  -webkit-box-orient vertical

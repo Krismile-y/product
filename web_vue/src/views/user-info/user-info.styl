@@ -1,0 +1,121 @@
+.default-bg
+  height 100%
+  width 100%
+  display flex
+  flex-direction column
+  overflow-y hidden
+.cell-group-box
+  flex 1
+  overflow-y scroll
+  padding-bottom 50px
+.cell-group
+  .cell-item
+    position relative
+    display flex
+    align-items center
+    justify-content space-between
+    height 70px
+    font-size 14px
+    padding 0 15px
+    background-color #fff
+    &:not(:last-child)::after
+      width auto
+      left 16px
+      right 0
+      @media (min-resolution: 2dppx)
+        transform scale(1, 0.5)
+      @media (min-resolution: 3dppx)
+        transform scale(1, 0.333)
+  .zui-upload
+    position relative
+    display flex
+    align-items center
+    justify-content space-between
+    width 100%
+    height 100%
+    border none
+  .cell__label
+    flex 1
+  .cell__value
+    color rgba(0, 0, 0, 0.6)
+  .cubeic-arrow
+    color rgba(0, 0, 0, 0.6)
+    padding-left 10px
+  img
+    width 36px
+    height 36px
+    border-radius 50%
+.popup-container
+  padding-bottom 44PX
+.popup-title
+  font-size 18PX
+  padding-top 30PX
+  text-align center
+.popup-sub-title
+  text-align center
+  color rgba(0, 0, 0, 0.6)
+  margin-top 8PX
+.popup-input
+  padding 24PX 15PX 20PX
+  & >>>
+    .cube-input
+      background-color #F7F7F7
+      border-radius 8PX
+      &::after
+        border-radius 16PX
+    .cube-input-field
+      padding 0 10PX
+      height 36PX
+      line-height 36PX
+      border-radius 8PX
+.popup-btns
+  display flex
+  position absolute
+  left 0
+  bottom 0
+  width 100%
+  .btn
+    flex 1
+    font-size 16PX
+    height 44PX
+    line-height 44PX
+    text-align center
+    &:first-child
+      color rgba(0, 0, 0, 0.6)
+.out-login
+  height: 50px
+  background #ffffff
+  display flex
+  align-items center
+  justify-content center
+  padding 0 15px
+.out-login-btn
+  width 100%
+  height 40px
+  border-radius 5px
+  display flex
+  align-items center
+  justify-content center
+  color #ffffff
+  font-size 16px
+  background #DF5959
+.bankCard
+  width: 100%;
+  height: 70px;
+  line-height: 70px;
+  background-color: #fff;
+  padding: 0 15px;
+  box-sizing border-box;
+  display: flex;
+  justify-content: space-between;
+
+
+
+
+
+
+
+
+
+
+

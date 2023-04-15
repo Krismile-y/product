@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>复制</title>
+</head>
+<style>
+ 
+</style>
+ 
+<body>
+    <div>
+        <div id="copybox" class="copybox">
+            <div id="widget">
+                <img id="canvasimg" src="" alt="">
+            </div>
+        </div>
+        <button>复制</button>
+    </div>
+    <script src="copy.js"></script> 
+    <script>
+        var copybox = document.getElementById('copybox'); //复制该dom里的图片和文字
+        //获取必要dom元素进行传值 赋值
+        var widget = document.getElementById('widget');
+        var canvasimg = document.getElementById('canvasimg');
+        var makeimg = "" //定义一个变量来接收传入的值
+        var clipboard = new ClipboardJS(copybox, { // 初始化ClipboardJS
+            target: function() {
+                return document.querySelector('.copybox')
+            }
+        });
+        //成功回调
+        console.log(clipboard)
+        clipboard.on('success', function(e) {
+            console.info('复制成功');
+            e.clearSelection();
+        });
+        //失败回调
+        clipboard.on('error', function(e) {
+            console.error('复制失败', e.action);
+        });
+        //定义一个函数来触发复制
+        function domakeimg() {
+            // writing.style.display='none' //该行是另一个需要复制的盒子 这里不复制它 所以隐藏
+            canvasimg.src = makeimg //在这里 主页面已经给makeimg 赋值了
+            copybox.click() //触发复制
+        }
+    </script>
+</body>
+ 
+</html>

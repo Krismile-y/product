@@ -1,0 +1,96 @@
+// ------- 覆盖框架的样式 ----------
+
+// 表单
+.cube-input-field
+  padding 0
+// 多选框
+.cube-checkbox
+  padding 0
+  .cube-checkbox-wrap
+    padding 0
+  .cube-checkbox-ui
+    font-size 22PX
+  &.not-text
+    .cube-checkbox-ui
+      margin-right 0
+    .cube-checkbox-label
+      display none
+.cube-checkbox-ui i
+  transform scale(0.6)
+// button 按钮
+.cube-btn
+  font-size 16px
+  padding 12px 20px
+// 框架弹层
+.cube-dialog-confirm
+  .cube-dialog-title-def
+    margin 30PX auto 0
+  .cube-dialog-content
+    margin 12PX 0 16PX
+  .cube-dialog-btn
+    height 50PX
+    padding 0
+    line-height 50PX
+// actionSheet
+.actionSheet__custom
+  .cube-popup-content
+    padding 10px
+  .cube-action-sheet-content
+    border-radius 10px
+  .cube-action-sheet-panel
+    background-color transparent
+  .cube-action-sheet-space
+    display none
+  .cube-action-sheet-cancel
+    margin-top 10px
+    border-radius 10px
+    overflow hidden
+.actionSheet__title
+  .cube-action-sheet-content
+    border-radius 0 0 10px 10px
+  .cube-action-sheet-title
+    font-size 12px
+    color #D89E63
+    border-radius 10px 10px 0 0
+// tab bar
+.tab-bar__custom
+  background-color #fff
+  .cube-tab
+    line-height 22px
+    padding 12px 0 10px
+  .iconfont
+    margin-right 4PX
+  .cube-tab_active .zui-tab
+    font-size 16px
+    color #DC0000
+    font-weight 700
+// scroll-nav-bar
+.cube-scroll-nav-bar-items
+  border 1PX solid rgba(7, 17, 27, 0.1)
+.cube-scroll-nav-bar-item
+  color #666
+  padding-top 20px
+  padding-bottom 10px
+  border-bottom 2PX solid transparent
+.cube-scroll-nav-bar-item_active
+  color #3AD4BE
+  border-color #3AD4BE
+  span
+    font-weight 700
+// mescroll 下拉刷新样式
+.mescroll
+  .mescroll-downwarp .downwarp-progress, .mescroll-upwarp .upwarp-progress
+    width 15PX
+    height 15PX
+    border-radius 50%
+    border 1PX solid gray
+    border-bottom-color transparent
+  .down-success
+    display none
+    color gray
+    font-size 12px
+    line-height 18px
+  .mescroll-downwarp .downwarp-content
+    padding 14px 0 6px
+  .mescroll-empty .empty-btn
+    background-color transparent

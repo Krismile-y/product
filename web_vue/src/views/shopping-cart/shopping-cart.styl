@@ -1,0 +1,105 @@
+.shopping-cart-page
+  display flex
+  flex-direction column
+  & >>> .mescroll-totop
+    bottom 110px
+.order-list
+  overflow hidden
+  //padding 10px 0
+  .order-item
+    position relative
+    z-index 9
+    border-radius 5px
+    background-color #fff
+    overflow hidden
+    &:not(:last-child)
+      margin-bottom 15px
+
+  .swipe-item-content
+    display flex
+    padding 10px 15px
+    .checkbox-wrap
+      align-self center
+  .order-pic
+    width 80px
+    height 80px
+    border-radius 5px
+    margin 0 10px 0 15px
+  .order-right
+    flex 1
+    display flex
+    flex-direction column
+    justify-content space-between
+    padding-top 4PX
+    .order-name
+      line-height 20px
+      mult_line_ellipsis()
+  .not-sale
+    padding-bottom 10px
+    color #f01414
+  .order-footer
+    display flex
+    align-items center
+    justify-content space-between
+    margin-bottom -5PX
+.number-contrl
+  display flex
+  align-items center
+  margin-right -5PX
+  .num
+    font-size 0.426667rem
+    font-weight 700
+    min-width 30px
+    text-align center
+  .iconfont
+    font-size 26px
+    color #ccc
+  .reduce, .add
+    padding 5PX
+  .active .iconfont
+    color rgba(232, 146, 34, 1)
+.cube-button
+  background:rgba(223, 89, 89, 1);
+// 底部
+.footer-wrapper
+  display flex
+  align-items center
+  justify-content space-between
+  height 48px
+  padding 0 15px 0 30px
+  background-color #fff
+  .total
+    display flex
+    align-items center
+    color #D89E63
+    font-size 12px
+    .money-d
+      font-size 0.40rem
+      text-decoration none
+.cube-swipe-btn
+  border-radius 0 5px 5px 0
+.tip
+  position absolute
+  top 5px
+  left 0
+.tip div
+  width 40px
+  height 20px
+  font-size 10px
+  display flex
+  align-items center
+  justify-content center
+  color #d89e63
+.guigeStyle
+  width: 100px;
+  height: 10px;
+  line-height: 10px;
+  margin-top: 5px;
+  padding: 5px 0;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 12px;
+  border: 1px solid #ff7847;
+  color: rgb(255, 108, 55)
+
+

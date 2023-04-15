@@ -1,0 +1,300 @@
+.product-detail-page
+  display flex
+  flex-direction column
+  height 100%
+  background-color #fff
+  & >>>
+    .zui-popup__container
+      padding-bottom 52px
+.main-content
+  flex 1
+  overflow hidden
+  overflow-y auto
+.slide-wrapper
+  height 375px
+.product-banner
+  width 100%
+  min-height 375px
+.product-name
+  font-size 16px
+  line-height 22px
+  padding 15px 15px 10px
+  font-weight 700
+.money-codes
+  position relative
+  color #d89e63
+  font-size 19px
+  font-weight 700
+  margin-bottom 10px
+.member
+  border-top 1px solid #E5E5E5
+  height 50px
+  line-height 50px
+  padding 0 15px 0 15px
+.member-title
+  margin-left 20px
+  margin-right 7px
+  border 1px solid #ff0000
+  color #ff0000
+  padding 0 5px
+  //font-weight 700
+  border-radius 3px
+  font-size 12px
+.member-price
+  color #ff0000
+.space-box
+  padding 10px 0
+  background-color #F4F4F4
+.product-row
+  display flex
+  align-items center
+  justify-content space-between
+  background-color #fff
+.cube-button
+  background #DF5959
+.product-price
+  padding 0 15px 8px 15px
+  .date
+    color #999
+    font-size 12px
+.product-spec
+  height 40px
+  padding 0 15px
+  .label
+    color #000000
+    font-size 16px
+  .number-control
+    margin-right -5PX
+.cube-tab-bar__custom
+  .cube-tab
+    color #999
+    font-size 16px
+    padding 15px 0 12px
+  .cube-tab_active
+    color #4d4225
+    font-weight 700
+.product-info >>>
+  display: flex;
+  flex-wrap: wrap;
+  img, table
+    width 100%
+    display: flex;
+// 评论
+.conment-list
+  padding 10px 15px 0
+  .comment-item
+    padding 10px 0
+  .comment-user
+    display flex
+    margin-bottom 10px
+  .user-avatar
+    width 40px
+    height 40px
+    border-radius 50%
+    margin-right 6px
+  .user-right
+    display flex
+    flex-direction column
+    justify-content space-between
+    padding 5px 0
+    .name
+      font-weight 700
+    .time
+      color #999
+      font-size 12px
+  .comment-content
+    line-height 20px
+// 底部按钮
+.footer-bar
+  display flex
+  align-items center
+  justify-content space-between
+  height 50px
+  padding 0 15px
+  border-top 1PX solid rgba(7, 17, 27, 0.1)
+  transition transform 0.3s
+  &.hidden
+    transform translateY(100%)
+  .button-lists
+    display flex
+    align-items center
+    background-image url("../../assets/images/buy.png")
+    background-size 100% 100%
+  .button
+    display flex
+    align-items center
+    height 40px
+    width 120px
+    justify-content center
+    .iconfont
+      font-size 23px
+      margin-right 8px
+      color rgba(255, 255, 255, 0.8)
+    .button-title
+      color rgba(255, 255, 255, 0.8)
+      font-size 14px
+.buy-btn
+  background #E89222
+  display flex
+  align-items center
+  width 240px
+  height 39px
+  border-radius 5px
+  justify-content center
+  color #ffffff
+  font-size 14px
+.footer-bar-item
+  display flex
+  flex-direction column
+  align-items center
+.iconshouyemianxing, .iconkefu
+  color #000
+  font-size 20px
+.footer-bar-title
+  font-size 10px
+  color #000
+  margin-top 6px
+// 弹出层
+.popup-product
+  display flex
+  padding 0 15px
+  margin-top -30px
+  margin-bottom 10px
+  .product-cover
+    position relative
+    width 120px
+    height 120px
+    margin-right 10px
+    img
+      width 120px
+      height 120px
+      border-radius 10PX
+    .select-goods
+      position absolute
+      top 0
+      left 0
+      transition all 0.4s cubic-bezier(0.34, 1.17, 0.88, 1.18)
+      .inner
+        transition all 0.4s linear
+  .product-right
+    padding-top 40px
+    .price-code
+      line-height 22px
+    .p-text
+      color #999
+      line-height 20px
+      &.select
+        color #000
+    .spec:not(:last-child)::after
+      content ', '
+    .select-spec:not(:last-child)::after
+      content '+ '
+    p
+      margin-bottom 4px
+.popup-body
+  max-height 400px
+  display flex
+  flex-direction column
+.popup-content
+  flex 1
+  overflow auto
+  padding 25px 0 35px
+  -webkit-overflow-scrolling touch
+.popup-spec, .popup-number
+  padding-left 24px
+  .title
+    font-size 16px
+    line-height 22px
+    margin-bottom 12px
+.spec-list
+  display flex
+  flex-wrap wrap
+  margin-bottom 14px
+  .spec-item
+    padding 0 12px
+    height 30px
+    line-height 32px
+    color #999
+    border-radius 4PX
+    margin-right 15px
+    margin-bottom 15px
+    box-sizing border-box
+    border 1PX solid rgba(7, 17, 27, 0.1)
+    &.active
+      color #fff
+      background-color #E89222
+      //border-color #4D4225
+.popup-footer
+  position absolute
+  bottom 0
+  left 0
+  width 100%
+  box-sizing border-box
+.no-comment
+  text-align center
+  margin 30px 0
+  color #999
+// 分享
+.share-dialog
+  position absolute
+  z-index 9999
+  top 0
+  left 0
+  right 0
+  bottom 0
+  text-align center
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
+  padding-bottom 100px
+  color #fff
+  background-color rgba(0, 0, 0, 0.7)
+  img
+    width 180px
+    border-radius 4px
+  p
+    font-size 16px
+    margin-top 20px
+.sold-out
+  font-size 12px
+  color #666666
+.cube-tab-bar-list
+  display flex
+  align-items center
+  margin-top 15px
+  padding-left 10px
+  margin-bottom 20px
+.cube-tab-item img
+  width 126px
+  height 24px
+.comment-icon
+  margin-left -25px
+.comment-img-list
+  display flex
+  align-items center
+  flex-wrap wrap
+.img-item img
+  width 110px
+  height: 110px
+  border-radius 5px
+.img-item
+  padding-right calc((100% - 110px * 3) / 3)
+  margin-top 10px
+.arrow-left
+  background: none
+  position: absolute
+  top: 30px
+  left: 20px
+  z-index: 99
+  background-color: rgba(0,0,0,0.4);
+  color: rgba(255,255,255,0.8)
+  width: 50px
+  height 50px
+  border-radius: 50%
+  display: flex
+  align-items: center
+  justify-content: center
+  font-size: 24px
+.money-codes-active
+  text-decoration line-through

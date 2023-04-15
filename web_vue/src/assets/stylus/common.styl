@@ -1,0 +1,105 @@
+// ---------- 网站公共样式 ---------
+
+// 背景
+.default-bg
+  background-color #F4F4F4 !important
+// 轮播图
+.cube-slide-dots
+  bottom 8px
+  &>span
+    width 10px
+    height 10px
+    border-radius 50%
+    margin 0 4px
+    //background-color rgba(0, 0, 0, 0.2)
+    background #fff
+    opacity .5
+    &.active
+      background-color #fff
+      opacity 1
+.slide-img
+  width 100%
+  height 100%
+/* 金额符号 */
+.money-code-new
+  position relative
+  color #d89e63
+  font-size 0.426667rem
+  font-weight 700
+  padding-left 0.266667rem
+.money-code
+  position relative
+  color #d89e63
+  font-size 0.426667rem
+  font-weight 700
+  padding-left 0.266667rem
+  margin-left 7px
+
+.money-code::after
+  content '₫'
+  font-weight 700
+  position absolute
+  left 0px
+  top 71%
+  transform translateY(-35%)
+  font-size 0.48rem
+  text-decoration none
+// 多选框点击层
+.checkbox-wrap
+  position relative
+  .checkbox-mask
+    position absolute
+    z-index 10
+    width 100%
+    height 100%
+// 右箭头
+.iconiconfontplatformentrance
+  color #666
+// 底部按钮
+.footer-btn
+  padding 5px 15px
+  border-top 1PX solid rgba(7, 17, 27, 0.1)
+  .cube-btn
+    width 100%
+// tab 盒子布局
+.flex-column
+  display flex
+  flex-direction column
+  height 100%
+.flex-scroll
+  flex 1
+  overflow hidden
+// 注意
+.describe
+  padding 0 15px
+  .title
+    line-height 1.4
+    font-size 16px
+    font-weight 700
+    padding-bottom 5px
+  p
+    line-height 20px
+    margin-top 10px
+// 角标数字
+.badge
+  position absolute
+  font-size 20PX
+  transform scale(0.5)
+  color #fff
+  font-weight 700
+  padding 6PX
+  min-width 20PX
+  border-radius 20PX
+  text-align center
+  background #f01414
+  box-shadow 0 8PX 16PX 0 rgba(0, 0, 0, 0.4)
+// 右箭头
+.cubeic-arrow
+  color #999
+  padding-left 4PX
+// 商品详情
+.desc-lazyload-container
+  width 100%
+  max-width 100%
+.flex-column .cube-tab-bar-slider
+    background #DC0000

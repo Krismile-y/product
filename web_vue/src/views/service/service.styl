@@ -1,0 +1,165 @@
+.tab-bar__custom
+  border-bottom 1PX solid rgba(7, 17, 27, 0.1)
+button
+  min-width 70px
+  padding 2px 14px
+  text-align center
+  box-sizing border-box
+  border-radius 26px
+  border 1PX solid #ccc
+  &:not(:first-child)
+    margin-left 10px
+  &.disabled
+    color #ccc
+  &.outline
+    color #D89E63
+    border-color #D89E63
+  &.primary
+    color #fff
+    background-color #D89E63
+    border-color #D89E63
+  &.error
+    color #D53833
+    border-color #D53833
+.tab-panel
+  background-color #F4F4F4
+.panel-list
+  overflow hidden
+  padding-bottom 15px
+.postage_money
+  color #666
+  padding-top 10px
+  //margin-left 70px
+.postage_money_active
+  padding-left 15px
+  color #666
+
+.panel-item
+  //border-radius 10px
+  //margin 15px 15px 0
+  margin-bottom 15px
+  padding-bottom 15px
+  background-color #fff
+// 头部
+.panel-item__hd
+  display flex
+  align-items center
+  height 42PX
+  padding 0 15px
+  line-height 1.2
+  color #666666
+  .left
+    ellipsis()
+    flex 1
+    //font-weight 700
+// 内容
+.panel-item__bd
+  margin 0 15px
+// 内容 - 产品列表
+.product-item
+  margin-top 15px
+  padding-top 15px
+  &:first-child::after
+    display none
+.item-body
+  display flex
+.product-item__left
+  width 60px
+  height 60px
+  margin-right 10px
+  .picture
+    width 100%
+    height 100%
+    border-radius 5px
+.product-item__right
+  position relative
+  flex 1
+  display flex
+  flex-direction column
+  justify-content space-between
+  color #000
+  font-size 12px
+  padding 4PX 0
+  overflow hidden
+  color #666
+  .name
+    font-size 14px
+    color #000
+    ellipsis()
+// 内容 - 底部
+.panel-bd__ft
+  display flex
+  align-items center
+  justify-content flex-end
+  padding-top 15px
+// 底部
+.panel-item__ft
+  line-height 1.5
+  color rgba(0, 0, 0, 0.6)
+  .cubeic-select
+    color #666
+    font-size 14px
+    margin-left 6px
+.detail-hd
+  display flex
+  align-items center
+  padding-top 15px
+  .label
+    flex 1
+    ellipsis()
+  .value
+    color #666666
+    font-size 12px
+    padding-left 8px
+.detail-bd
+  padding-top 15px
+.detail__item
+  display flex
+  margin-bottom 10px
+.detail__value
+  flex 1
+.detail__close
+  display flex
+  justify-content flex-end
+  align-items center
+  //justify-content center
+  color #666666
+  font-size 12px
+  .cubeic-select
+    transform rotate(180deg)
+// 评价弹出层
+.o-dialog__header
+  display flex
+  align-items center
+  justify-content space-between
+  padding 10PX 15PX
+.o-dialog__order
+  padding 15PX
+  color rgba(0, 0, 0, 0.6)
+  overflow hidden
+.o-dialog__order img
+  float left
+  width 40PX
+  height 40PX
+  border-radius 2PX
+.o-dialog__order p
+  font-size 12PX
+  text-align left
+  padding 4PX 10PX
+  overflow hidden
+.cube-textarea-wrapper
+  height 124PX
+  background-color #F4F4F4
+  &::after
+    display none
+.o-dialog__submit
+  font-size 16PX
+  height 44PX
+  line-height 44PX
+  text-align center
+.time
+  font-size 10px
+  color #666666
+.cancel
+  color:rgba(0,0,0,1);
+  opacity:0.6;

@@ -1,0 +1,303 @@
+.tab-bar__custom
+  border-bottom 1PX solid rgba(7, 17, 27, 0.1)
+button
+  min-width 70px
+  padding 5px 14px
+  text-align center
+  box-sizing border-box
+  border-radius 26px
+  &:last-child
+    margin-left 10px
+  &.outline
+    color #CCCCCC
+    border 1PX solid #ccc
+  &.primary
+    color #fff
+    background-color #DC0000
+    border 1PX solid #D89E63
+.tab-panel
+  background-color #F4F4F4
+//.panel-list
+//  overflow hidden
+//  padding-bottom 15px
+.panel-item
+  //border-radius 10px
+  margin 15px 0
+  background-color #fff
+// 头部
+.panel-item__hd
+  display flex
+  align-items center
+  height 42PX
+  padding 0 15px
+  line-height 1.2
+  .left
+    ellipsis()
+    flex 1
+    font-weight 700
+  .right
+    color rgba(0, 0, 0, 0.6)
+    font-size 12px
+// 内容
+.panel-item__bd
+  margin 0 15px
+// 内容 - 产品列表
+.product-item
+  display flex
+  margin-top 15px
+.product-item__left
+  width 60px
+  height 60px
+  margin-right 10px
+  .picture
+    width 100%
+    height 100%
+    border-radius 5px
+.product-item__right
+  position relative
+  flex 1
+  display flex
+  flex-direction column
+  justify-content space-between
+  color #000
+  font-size 12px
+  padding 4PX 0
+  overflow hidden
+  color #666
+  .name
+    color #000
+    ellipsis()
+    height 17px
+    line-height 17px
+  .comment-btn
+    position absolute
+    right 0
+    bottom 4PX
+    padding 4px 14px
+    background #E89222
+    color #ffffff
+.logistics
+    min-width 70px
+    padding 5px 14px !important
+    color #E89222 !important
+    border 1px solid #E89222
+    background #ffffff !important
+// 内容 - 底部
+.panel-bd__ft
+  display flex
+  align-items center
+  justify-content space-between
+  padding 15px 0
+  .left
+    color #D89E63
+    font-size 12px
+  .total
+    display flex
+    align-items center
+    color #000
+  .money-code
+    color #000
+  .postage_money
+     margin-bottom 10px
+  .postage_money_active
+    font-size 14px
+// 底部
+.panel-item__ft
+  color rgba(0, 0, 0, 0.6)
+  font-size 12px
+  padding 0 15px
+  .cubeic-select
+    color #666
+    font-size 14px
+    margin-left 8px
+.detail-hd
+  display flex
+  align-items center
+  height 48px
+  .label
+    flex 1
+    ellipsis()
+    height 17px
+    line-height 17px
+  .value
+    color #000
+    padding-left 8px
+.detail-bd
+  padding-top 15px
+.detail__item
+  display flex
+  margin-bottom 10px
+.detail__label
+  //width 52PX
+  height 13PX
+  overflow hidden
+  text-align justify
+.detail__label::after
+  content ''
+  width 100%
+  display inline-block
+.detail__value
+  flex 1
+.detail__close
+  display flex
+  align-items center
+  justify-content flex-end
+  color #666666
+  padding 10px 0 20px
+  .cubeic-select
+    transform rotate(180deg)
+.already
+  color #CCCCCC !important
+  background #ffffff !important
+  font-size 14px
+  border 1px solid #CCCCCC
+.harvest
+  background #E89222 !important
+.pingjiaBgc
+  color: #fff;
+  border: none !important;
+  background-color: skyblue !important;
+// 评价弹出层
+.o-dialog__header
+  display flex
+  align-items center
+  justify-content space-between
+  padding 10PX 15PX
+.o-dialog__order
+  padding 15PX
+  color rgba(0, 0, 0, 0.6)
+  overflow hidden
+.o-dialog__order img
+  float left
+  width 40PX
+  height 40PX
+  border-radius 2PX
+.o-dialog__order p
+  font-size 12PX
+  text-align left
+  padding 4PX 10PX
+  overflow hidden
+.cube-textarea-wrapper
+  height 124PX
+  background-color #F4F4F4
+  &::after
+    display none
+.o-dialog__submit
+  font-size 16PX
+  height 44PX
+  line-height 44PX
+  text-align center
+.apply
+  color #ff0000
+  font-size 12px
+.panel-list
+  width: 100%;
+  height: 100vh
+  padding: 10px 10px;
+  box-sizing border-box
+.panel-list ul
+  width: 100%
+.item
+  width:100%
+  height 140px
+  background-color: #fff
+  border-radius: 10px;
+  display: flex;
+  flex-wrap wrap
+  //align-items: center;
+  padding: 10px 10px;
+  box-sizing border-box;
+  img
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+  .itemInfo
+    flex: 1;
+    height: 100px;
+    padding-left: 10px;
+    margin-top: -10px;
+    box-sizing border-box
+    .topInfo
+      height: 65px;
+      display: flex;
+      justify-content space-between;
+      align-items: center;
+      position: relative;
+      h2,span
+        font-weight: 700;
+      .number
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        font-style: normal;
+      .itemTime
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        font-style: normal;
+    .bottomInfo
+      width: 100%;
+      height: 25px;
+      position: relative;
+      .bianhao
+        position: absolute;
+        left: 0;
+        top: 0;
+      .totalPrice
+        position: absolute;
+        right: 0;
+        bottom: -10px;
+        font-weight: 700;
+  .btnClass
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content right;
+    align-items: center;
+    button
+      width: 100px;
+      height: 30px;
+      border: 1px solid #ccc;
+.popup-container {
+  width: 100%;
+  height: 130px;
+  background-color: #fff;
+  font-size: 16px;
+  text-align: center;
+  /*padding: 10px 10px;*/
+  /*box-sizing: border-box;*/
+  position: relative;
+}
+.popup-title {
+  font-size: 20px;
+  margin-top: 10px;
+}
+.popup-sub-title {
+  margin-top: 30px;
+  color: red;
+}
+.popup-btns {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.popup-btns div {
+  flex: 1;
+  height: 28px;
+  line-height: 28px;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-bottom: none;
+}
+.popup-btns div:nth-of-type(1) {
+  border-right: 0;
+  color: #ccc;
+}
+.popup-btns div:nth-of-type(2) {
+  color: #000;
+}

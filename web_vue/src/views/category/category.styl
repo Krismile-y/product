@@ -1,0 +1,79 @@
+.category-page
+  display flex
+  flex-direction column
+  height 100%
+.top-search
+  border-bottom 1PX solid rgba(7, 17, 27, 0.1)
+.scroll-nav-bar
+  min-height 46px
+  & >>>
+    .cube-scroll-wrapper
+      text-align left
+    .cube-scroll-nav-bar-items
+      border none
+      border-bottom 1px solid #E5E5E5
+.main-container
+  flex 1
+  display flex
+  overflow hidden
+.nav-bar
+  width 80px
+  text-align center
+  background-color #F7F7F7
+.nav-bar__item
+  position relative
+  //height 58PX
+  line-height 58PX
+  color rgba(0, 0, 0, 0.6)
+  white-space nowrap
+  overflow hidden
+  &.active
+    color rgba(255,255,255,1)
+    font-size 16px
+    font-weight 700
+    background-color rgba(223, 89, 89, 1)
+// 右边列表
+.nav-panel
+  flex 1
+  overflow hidden
+  background-color #fff
+.product-list
+  overflow hidden
+  display flex
+  flex-wrap wrap
+  align-items center
+  margin-top 10px
+  .product-item
+    display flex
+    flex-direction column
+    align-items center
+    height 210px
+    height auto
+    background-color #fff
+    margin-bottom 10px
+    width 133px
+    box-shadow:3px 7px 12px rgba(0,0,0,0.1);
+    border-radius 5px
+    margin-left 10px
+    .order-pic
+      width 86%
+      border-radius 5px
+      object-fit cover
+      height:auto;
+      image-rendering: pixelated;
+    .order-right
+      flex 1
+      display flex
+      flex-direction column
+      margin-bottom 10px
+      width 100%
+      .order-name
+        line-height 20px
+        margin-bottom 5px
+        overflow hidden
+        white-space nowrap
+        text-overflow ellipsis
+        padding 4px 10px 0 10px
+      .money-code
+        margin-left 10px
+        margin-bottom 5px

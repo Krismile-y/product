@@ -1,0 +1,67 @@
+// --- 基础样式 ---
+button, input, textarea
+  border 0
+  padding 0
+  outline none
+  color inherit
+  font-family inherit
+  font-size inherit
+  line-height normal
+  /* 消除输入框和按钮的原生外观 */
+  -webkit-appearance none
+  background-color transparent
+/* 去除圆角 */
+input[type=search]
+  -webkit-appearance none
+/* 隐藏Hủy bỏ按钮 */
+::-webkit-search-cancel-button
+  -webkit-appearance none
+/* 隐藏放大镜 */
+::-webkit-search-results-button
+  -webkit-appearance none
+textarea::-webkit-input-placeholder, input::-webkit-input-placeholder
+  color rgba(0, 0, 0, 0.4) !important
+input[disabled]
+  color rgba(0, 0, 0, 0.4) !important
+  -webkit-text-fill-color rgba(0, 0, 0, 0.4) !important
+img
+  vertical-align top
+body, html, #app, .root-router
+  height 100%
+.root-router
+  color #000
+  font-size 14px
+  line-height 1
+  overflow hidden
+  background-color #fff
+  font-family 'pingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', 'arial'
+  -webkit-overflow-scrolling touch
+  /* 1PX 边框 */
+[class*='border-1px']
+  position relative
+[class*='border-1px']::after
+  content ''
+  position absolute
+  top 0
+  left 0
+  width 200%
+  height 200%
+  -webkit-transform scale(0.5)
+  transform scale(0.5)
+  -webkit-transform-origin 0 0
+  transform-origin 0 0
+  pointer-events none
+  box-sizing border-box
+  border 0 solid #e5e5e5
+.border-1px--top::after
+  border-top-width 1PX
+.border-1px--left::after
+  border-left-width 1PX
+.border-1px--right::after
+  border-right-width 1PX
+.border-1px--bottom::after
+  border-bottom-width 1PX
+.border-1px--top-bottom::after
+  border-width 1PX 0
+.border-1px--surround::after
+  border-width 1PX

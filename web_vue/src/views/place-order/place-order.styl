@@ -1,0 +1,138 @@
+.number-control
+  margin-right -5PX
+  position: relative;
+.layer
+  margin-bottom 10px
+  background-color #fff
+.user-box
+  display flex
+  align-items center
+  padding 20px 15px
+  .user-container
+    flex 1
+    overflow hidden
+  .user-info
+    display flex
+    align-items center
+    .name, .phone
+      font-size 16px
+      font-weight 700
+      line-height 22px
+    .name
+      ellipsis()
+      margin-right 10px
+      max-width 96px
+    .phone
+      flex 1
+    .text
+      color #999
+  .add-address
+    flex 1
+    display flex
+    align-items center
+    color #1e5357
+    .cubeic-add
+      font-size 30px
+      margin-right 10px
+    span
+      font-size 18px
+  .user-address
+    padding-top 10px
+    line-height 20px
+.cell-box
+  .cell
+    display flex
+    align-items center
+    height 62px
+    padding 0 15px
+    font-size 16px
+  .label
+    flex 1
+  .value
+    color #666
+  .money
+    color #D89E63
+  .integral-cell
+    span
+      color #D89E63
+      font-size 12px
+      vertical-align middle
+.goods-box
+  .title
+    display flex
+    align-items center
+    height 50px
+    padding 0 15px
+    div:nth-child(1)
+      flex 1.5
+    div:nth-child(2)
+      flex 1
+      text-align center
+    div:nth-child(3)
+      flex 1
+      text-align right
+  .goods-list
+    padding 15px
+  .goods-item
+    display flex
+    font-size 16px
+    line-height 22px
+    color rgba(0, 0, 0, 0.6)
+    margin-bottom 8px
+    .name
+      flex 1.5
+      ellipsis()
+    .number
+      flex 1
+      text-align center
+    .price
+      flex 1
+      text-align right
+.footer-bar
+  display flex
+  align-items center
+  justify-content space-between
+  height 50px
+  padding 0 15px
+  background-color #fff
+  transition transform 0.3s
+  border-top 1PX solid rgba(7, 17, 27, 0.1)
+  &.hidden
+    transform translateY(100%)
+  .total
+    display flex
+    align-items center
+    color #D89E63
+    font-size 12px
+.cube-button
+  background rgba(223, 89, 89, 1)
+.jishouAgree
+  position absolute
+  width 100%
+  height 100%
+  top 0
+  left 0
+  background rgba(0,0,0,0.4)
+  display flex
+  align-items center
+  justify-content center
+  z-index: 99
+.jishouAgreeContent
+  background rgba(255,255,255,1)
+  padding: 5%
+  border-radius 10px
+  width 80%
+  overflow scroll
+  height 80%
+.agree
+  background: rgba(255,255,255,1)
+  display: flex
+  justify-content: space-between
+  padding: 2%
+  align-items: center
+.left
+  display: flex
+  justify-content: flex-start
+  color: black
+  align-items: center
+  width: 100%
