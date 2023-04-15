@@ -33,18 +33,37 @@
 				我的
 			</view>
 		</view>
+		
+		<!-- 按钮 -->
+		<view class="four" v-show="show">
+			<view class="list">
+				<view class="items dis"  @tap="four(0)">按钮1</view>
+				<view class="items dis">按钮2</view>
+				<view class="items dis">按钮3</view>
+				<view class="items dis">按钮4</view>
+			</view>
+		</view>
+		
 	</view>
 </template>
 
 <script>
+import { vShow } from "vue";
 	export default {
 		name: "bottom",
 		data() {
 			return {
-
+                show:false
 			};
 		},
 		methods: {
+			four(index){
+				if(index==0){
+					uni.navigateTo({
+						url: '/pages/invest/invest'
+					})
+				}
+			},
 			go(index) {
 				if (index == 0) {
 					uni.navigateTo({
@@ -55,9 +74,10 @@
 						url: '/pages/my/my'
 					})
 				} else if (index == 2) {
-					uni.navigateTo({
-						url: '/pages/invest/invest'
-					})
+					// uni.navigateTo({
+					// 	url: '/pages/invest/invest'
+					// })
+					this.show=!this.show
 				} else if (index == 3) {
 					uni.navigateTo({
 						url: '/pages/shop/shop'
@@ -69,13 +89,36 @@
 </script>
 
 <style lang="less" scoped>
+	.four{
+		width: 100%;
+		height: 90upx;
+		display: flex;
+		position: fixed;
+		bottom: 200upx;
+		left: 0;
+		.list{
+			width: 70%;
+			height: 100%;
+			margin: 0 auto;
+			
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			.items{
+				width: 100upx;
+				height: 100upx;
+				border-radius: 50%;
+				background-color: #54d27e;
+				color: #fff;
+			}
+		}
+	}
 	.bottom {
 		width: 100%;
 		height: 90upx;
 		display: flex;
 		background-color: #fff;
 		padding: 10upx 0;
-
 		.item {
 			position: relative;
 			z-index: 999999;

@@ -6,6 +6,8 @@ import uView from "uview-ui";
 import bottom from './components/bottom/bottom.vue'
 import tops from './components/tops/tops.vue'
 import navs from './components/navs/navs.vue'
+import request from './service/request.js'
+Vue.prototype.$request =request
 Vue.component('bottom',bottom)
 Vue.component('tops',tops)
 Vue.component('navs',navs)

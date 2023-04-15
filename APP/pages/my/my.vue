@@ -13,7 +13,7 @@
 					<view class="two">推荐ID:199875</view>
 				</view>
 				<view class="right">
-					<image src="https://img2.baidu.com/it/u=2020520018,1139302565&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800" mode=""></image>
+					<image   @click="show = true" src="https://img2.baidu.com/it/u=2020520018,1139302565&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800" mode=""></image>
 				</view>
 			</view>
 			<view class="xia">
@@ -50,19 +50,19 @@
 				</view>
 			<view class="msg">
 				<view class="item disc" @tap="go('record')">
-					<image src="../../static/my/touzi.png" mode=""></image>
+					<image src="../../static/myimg/touxi.png" mode=""></image>
 					投资记录
 				</view>
-				<view class="item disc">
-					<image src="../../static/my/shouyi.png" mode=""></image>
+				<view class="item disc"  @tap="go('income')">
+					<image src="../../static/myimg/shouyi.png" mode=""></image>
 					收益记录
 				</view>
-				<view class="item disc">
-					<image src="../../static/my/jilu.png" mode=""></image>
+				<view class="item disc" @tap="go('twithdrawal')">
+					<image src="../../static/myimg/tixian.png" mode=""></image>
 					提现记录
 				</view>
 				<view class="item disc"  @tap="go('withdrawal')">
-					<image src="../../static/my/shenqing.png" mode=""></image>
+					<image src="../../static/myimg/shenqing.png" mode=""></image>
 					提现申请
 				</view>
 				
@@ -76,35 +76,35 @@
 				</view>
 			<view class="msg">
 				<view class="item disc" @tap="go('invite')">
-					<image src="../../static/index/pingtai.png"></image>
+					<image src="../../static/myimg/fenxiang.png"></image>
 					分享邀请
 				</view>
 				<view class="item disc" @tap="go('msg')">
-					<image src="../../static/index/shijie.png"></image>
+					<image src="../../static/myimg/xiaoxi.png"></image>
 					消息中心
 				</view>
 				<view class="item disc" @tap="go('myGroup')">
-					<image src="../../static/index/lin.png"></image>
+					<image src="../../static/myimg/wode.png"></image>
 					我的团队
 				</view>
 				<view class="item disc">
-					<image src="../../static/index/fenxiang.png"></image>
+				<image src="../../static/myimg/jinru.png"></image>
 					进入官网
 				</view>
 				<view class="item disc" >
-					<image src="../../static/index/tuandui.png"></image>
-					待定
+					<image src="../../static/myimg/jinrong.png"></image>
+					金融
 				</view>
 				<view class="item disc" @tap="go('terrace')">
-					<image src="../../static/index/shouyui.png"></image>
+					<image src="../../static/myimg/pingtai.png"></image>
 					平台攻略
 				</view>
 				<view class="item disc" @tap="go('mySafe')">
-					<image src="../../static/index/xiazia.png"></image>
+					<image src="../../static/myimg/anquan.png"></image>
 					安全保障
 				</view>
 				<view class="item disc"  @tap="go('myShop')">
-					<image src="../../static/index/guanwang.png"></image>
+					<image src="../../static/myimg/shangpin.png"></image>
 					我的商品
 				</view>
 				
@@ -118,31 +118,42 @@
 				</view>
 			<view class="msg">
 				<view class="item disc" @tap="go('safe')">
-					<image src="../../static/my/touzi.png" mode=""></image>
+					<image src="../../static/myimg/zhanghu.png" mode=""></image>
 					账户安全
 				</view>
 				<view class="item disc" @tap="go('ensure')">
-					<image src="../../static/my/shouyi.png" mode=""></image>
+					<image src="../../static/myimg/baozhang.png" mode=""></image>
 					安全保障
 				</view>
 				<view class="item disc">
-					<image src="../../static/my/jilu.png" mode=""></image>
+					<image src="../../static/myimg/kefu.png" mode=""></image>
 					我的客服
 				</view>
 				<view class="item disc" @tap="go('help')">
-					<image src="../../static/my/shenqing.png" mode=""></image>
+					<image src="../../static/myimg/fankui.png" mode=""></image>
 					反馈与帮助
 				</view>
 				<view class="item disc">
-					<image src="../../static/my/shenqing.png" mode=""></image>
+					<image src="../../static/myimg/jiancha.png" mode=""></image>
 					检查更新
 				</view>
 				<view class="item disc" @tap="go('about')">
-					<image src="../../static/my/shenqing.png" mode=""></image>
+					<image src="../../static/myimg/guanyu.png" mode=""></image>
 					关于我们
 				</view>
 			</view>
 		</view>
+		
+		<!-- 遮罩层 -->
+		<u-overlay :show="show" @click="show = false">
+				<view class="warp">
+					<view class="rect" @tap.stop>
+						
+						<image   @click="show = true" src="https://img2.baidu.com/it/u=2020520018,1139302565&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800" mode=""></image>
+						
+					</view>
+				</view>
+			</u-overlay>
 		
 		<bottom></bottom>
 	</view>
@@ -152,8 +163,11 @@
 	export default {
 		data() {
 			return {
-				
+				show:false
 			};
+		},
+		onShow() {
+			
 		},
 		methods:{
 			go(name){
@@ -161,6 +175,9 @@
 				uni.navigateTo({
 					url:`/pages/${name}/${name}`
 				})
+			},
+			queding(){
+				this.show=false
 			}
 		}
 	}

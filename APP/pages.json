@@ -109,7 +109,7 @@
             "path" : "pages/record/record",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "记录",
+                "navigationBarTitleText": "投资记录",
                 "enablePullDownRefresh": false
             }
             
@@ -261,6 +261,24 @@
 				"app-plus":{
 					"titleNView":false
 				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/income/income",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "收益记录",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/twithdrawal/twithdrawal",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "提现记录",
+                "enablePullDownRefresh": false
             }
             
         }

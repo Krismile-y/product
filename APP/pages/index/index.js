@@ -16,6 +16,24 @@ export default {
 				 }
 			}
 		},
+		onLoad(){
+			
+		 // uni.request({	 
+		 // 	url:'http://www.api.com/api/banner',
+			// data:{
+			// 	type:1
+			// },
+			// header:{
+			// 	token:'123321123'
+			// },
+			// method:"GET",
+			// success: (res) => {
+			// 	console.log(res)
+			// },
+			
+		 // })
+			
+		},
 		methods: {
             huanbao(){
 				uni.navigateTo({
