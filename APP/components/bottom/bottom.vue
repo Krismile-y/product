@@ -74,10 +74,10 @@ import { vShow } from "vue";
 						url: '/pages/my/my'
 					})
 				} else if (index == 2) {
-					// uni.navigateTo({
-					// 	url: '/pages/invest/invest'
-					// })
-					this.show=!this.show
+					uni.navigateTo({
+						url: '/pages/invest/invest'
+					})
+					// this.show=!this.show
 				} else if (index == 3) {
 					uni.navigateTo({
 						url: '/pages/shop/shop'

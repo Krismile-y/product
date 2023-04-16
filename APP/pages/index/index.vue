@@ -1,23 +1,27 @@
 <template>
 	<view class="content" style="padding-top: 70upx;z-index: 99;">
 		<navs></navs>
+		
+		<view class="tops" style="background-color: #54d27e;height: 300upx;">
+			<view style="width: 100%;height: 100%;" class="disc">
+				
+				<swiper  :autoplay="true" :interval="3000" :duration="1000"
+				style="width: 80%;height: 300upx; position: absolute;top: 300upx;margin: 0 auto;">
+					<swiper-item style="width: 100%;height: 300upx;" v-for="item in 3">
+						<image   src="https://img0.baidu.com/it/u=2616180438,3555003891&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500" mode="" style="width: 100%;height: 100%;border-radius: 20upx;"></image>
+					</swiper-item>
+					
+				</swiper>
+				
+			</view>
+		</view>
+		
 		<!-- 轮播 -->
-		<swiper  :autoplay="true" :interval="3000" :duration="1000"
-		style="width: 100%;height: 500upx;">
-			<swiper-item style="width: 100%;height: 500upx;">
-				<image src="https://img0.baidu.com/it/u=2616180438,3555003891&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500" mode="" style="width: 100%;height: 100%;"></image>
-			</swiper-item>
-			<swiper-item style="width: 100%;height: 500upx;">
-				<image src="https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471" mode="" style="width: 100%;height: 100%;"></image>
-			</swiper-item>
-			<swiper-item style="width: 100%;height: 500upx;">
-				<image src="https://qqpublic.qpic.cn/qq_public/0/0-3212253731-C467FDEB2CECD0A53CFA1BB0503F1D43/0?fmt=jpg&size=107&h=571&w=900&ppv=1.jpg" mode="" style="width: 100%;height: 100%;"></image>
-			</swiper-item>
-		</swiper>
+		
 		
 		
 		<!-- 八个标题 -->
-		<view class="eight">
+		<view class="eight" style="margin-top: 200upx;">
 			<view class="item disc">
 				<image src="../../static/index/pingtai.png"></image>
 				<view class="title">平台攻略</view>

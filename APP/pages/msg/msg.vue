@@ -78,7 +78,7 @@
 	height: 200upx;
 	width: 95%;
 	margin: 30upx auto;
-	background-color: #dedede;
+	background-color: #eeeeee;
 	border-radius: 30upx;
 	display: flex;
 	.left{
@@ -99,7 +99,7 @@
 		flex-direction: column;
 		font-size: 32upx;
 		.tit{
-			color: white;
+			color: #bfbfbf;
 		}
 		.de{
 			margin-top: 20upx;
