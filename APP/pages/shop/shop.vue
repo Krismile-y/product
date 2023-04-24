@@ -28,7 +28,7 @@
 								冬季暖心必备，家用小型电水壶
 							</view>
 
-							<view class="btn dis">
+							<view class="btn dis" @tap='duihuan'>
 								兑换
 							</view>
 
@@ -101,6 +101,7 @@
 	export default {
 		data() {
 			return {
+				item:{},//商品对象
 				show: false,
 				list:[],//商品列表
 			};
@@ -141,6 +142,27 @@
 					url: '/pages/sign/sign'
 				})
 			},
+			duihuan(){
+				// 积分下单
+				console.log(uni.getStorageSync('address'))
+				let data={
+					wid:this.item.id,
+					aid:uni.getStorageSync('address').id,
+				}
+				this.$fn.request('wares/order',"POST",data).then(res=>{
+					console.log(res,'积分兑换商品接口')
+					if(res.data.code==1){
+						uni.showToast({
+							duration:1000,
+							title:'兑换成功'
+						})
+					}
+				})
+							
+			},
+			power(){//能量兑换商品
+				
+			},
 			go(item) {
 
 				uni.pageScrollTo({
@@ -148,16 +170,8 @@
 					scrollTop: 0,
 				})
 				console.log(item)
+				this.item=item
 				
-				// 积分下单
-				let data={
-					wid:item.id,
-					aid:item.wares_spec,
-				}
-				this.$fn.request('wares/order',"POST",data).then(res=>{
-					console.log(res,'积分兑换商品接口')
-					
-				})
 			},
 			open() {
 				// console.log('open');

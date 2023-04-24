@@ -25,11 +25,9 @@
 			
 			<view class="yanzheng">
 				<view class="left">
-					<input type="text" placeholder="请输入验证码">
+					<input type="text" placeholder="请输入验证码" v-model="captcha">
 				</view>	
-				<view class="right">
-					
-				</view>
+				<image :src="$url+'verify'" mode="" style="width: 50%;height: 100%;"></image>
 			</view>		
 			
 			<view class="xuanxiang" style="margin-top: 110upx;">

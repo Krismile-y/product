@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="logon">
 		<view class="tops" style="background-color: #54d27e;height: 400upx;">
 			<view class="fanhui dis" >
 				<image src="../../static/common/fanhui.png" mode="" @tap="fanhui"></image>
@@ -12,56 +12,45 @@
 		</view>
 		
 		<!-- input -->
-		<view class="inputBox">
+		<view class="inputBox" >
 			<view class="inputs">
-				<view class="title">Email</view>
-				<input type="text" placeholder="please enter email">
+				<view class="title">电话</view>
+				<input type="text" placeholder="please enter phone" v-model="phone">
 			</view>
 			
 			<view class="inputs">
-				<view class="title">Password</view>
-				<input type="password" placeholder="please enter password">
+				<view class="title">密码</view>
+				<input type="password" placeholder="密码最少八位" v-model="pwd">
 			</view>
 			
 			<view class="inputs">
 				<view class="title">确认密码</view>
-				<input type="password" placeholder="please enter password">
+				<input type="password" placeholder="确认密码" v-model="upwd">
 			</view>
 			
 			<view class="inputs">
+				<view class="title">身份证</view>
+				<input type="password" placeholder="" v-model="sfz">
+			</view>
+			
+			<view class="inputs">
+				<view class="title">用户昵称</view>
+				<input type="password" placeholder="" v-model="username">
+			</view>
+			
+			
+			
+			<view class="inputs">
 				<view class="title">邀请码</view>
-				<input type="password" placeholder="please enter password">
+				<input type="password" placeholder="please enter password" v-model="agent_id">
 			</view>
+				
 			
-			<view class="yanzheng" v-show="false">
-				<view class="left">
-					<input type="text" placeholder="请输入验证码">
-				</view>	
-				<view class="right">
-					
-				</view>
-			</view>		
-			
-			<!-- 两个选项 -->
-			<view class="xuanxiang" v-show="false">
-				<view class="left">
-					
-				</view>
-				<view class="right ">forget password?</view>
-			</view>
-			
-			<!-- 登录 -->
-			<view class="in dis" @tap="logon">
-				注册
-			</view>
-			
-			<!-- 下载 -->
-			<!-- <view class="down dis">
-				APP下载
-			</view> -->
 			
 		</view>
-		
+		<view class="in dis" @tap="logon" style="margin: 30upx auto;">
+			注册
+		</view>
 	</view>
 </template>
 
@@ -69,6 +58,12 @@
 	export default {
 		data() {
 			return {
+				phone:"",
+				pwd:"",
+				agent_id:"",
+				upwd:'',
+				sfz:'',
+				username:"",
 				res:{
 					name:"type1",
 					title:"登录",
@@ -85,30 +80,29 @@
 			logon(){
 				let data={
 					
-						'phone':'19584332559',
-						'pwd':'12345678',
+						'phone':this.phone,
+						'pwd':this.pwd,
 						'captcha':'12312',
-						'captcha':'12312',
-						'upwd':'12345678',
-						'sfz':'513902199901052546',
-						'user_name':'xx',
+						'upwd':this.upwd,
+						'sfz':this.sfz,
+						'user_name':this.username,
 						'agent_id':"10006"
 					
 				}
-				uni.request({
-					url:"http://api.tzhreefvg.top/api/register",
-					method:'POST',
-					data:data,
-					Header:{
-								'Content-Type':'multipart/form-data'
-							},
-					success: (res) => {
-						console.log(res)
-					},
-					err: (res) => {
-						console.log(res)
-					},
+				this.$fn.request('register','POST',data).then(res=>{
+					console.log(res)
+					if(res.data.code == 1){
+						uni.showToast({
+							title:'注册成功',
+							duration:1000,
+							icon:'success'
+						})
+						uni.navigateTo({
+							url:'/pages/login/login'
+						})
+					}
 				})
+				
 			}
 		}
 	}

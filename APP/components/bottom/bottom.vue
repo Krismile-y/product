@@ -99,7 +99,7 @@ import { vShow } from "vue";
 				
 				if(index<4){
 					uni.navigateTo({
-						url: '/pages/invest/invest?id='+index
+						url: '/pages/invest/invest?id=' + index
 					})
 				}
 				

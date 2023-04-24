@@ -7,25 +7,42 @@ export default {
 				},
 				phone:'',//账号
 				pwd:"",//密码
+				captcha:'',//验证码
 				value:false,//记住密码
 			};
 		},
 		onLoad() {
 			
+			this.$fn.request('verify',"GET",{}).then(res=>{
+				// console.log(res.data,'验证码')
+			})
 		},
 		onShow(){
+			this.value=uni.getStorageSync('remember')
 			if(uni.getStorageSync('pwd') && uni.getStorageSync('phone')){
 				this.pwd=uni.getStorageSync('pwd')
+				// console.log(this.pwd)
+				
+			}
+			
+			if(uni.getStorageSync('remember') == true){
+				this.value==true
+			}else if(uni.getStorageSync('remember') == false){
+				this.value==false
 			}
 		},
 		methods:{
 			// 记住密码
 			change(e) {
 				console.log('change', e);
+				uni.setStorageSync('remember',e)
 				this.value=e
 				if(e == true){
 					uni.setStorageSync('pwd',this.pwd)
 					uni.setStorageSync('phome',this.phone)
+				}else{
+					uni.removeStorageSync('pwd');
+					uni.removeStorageSync('phone');
 				}
 			},
 			go(){//跳转到注册
@@ -39,16 +56,22 @@ export default {
 				})
 			},
 			login(){
+				// let data={
+				// 	'phone':'18060989007',
+				// 	'pwd':'12345678',
+				// 	'captcha':'12312'
+				// }	
 				let data={
-					'phone':'18060989007',
-					'pwd':'12345678',
+					'phone':this.phone,
+					'pwd':this.pwd,
 					'captcha':'12312'
-				}	
+				}
 				this.$fn.request('login','POST',data).then(res=>{
 					if(res.data.code == 1){					
 						uni.setStorageSync('token',res.data.data.token)
 						uni.setStorageSync('name','index')
 						if(this.value == true){
+							console.log(this.pwd)
 							uni.setStorageSync('pwd',this.pwd)
 							uni.setStorageSync('phone',this.phone)
 						}

@@ -370,6 +370,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/newAddredd/newAddredd",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "新增地址",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationStyle": "default",

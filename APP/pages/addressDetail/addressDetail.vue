@@ -22,9 +22,11 @@
 			<view class="left dis">
 				所在地区
 			</view>
-			<view class="right dis">
-				<pickerAddress @change="change"
-					style="background-color: #f0f0f0;width: 100%;height: 60%;border-radius: 20upx;" />
+			<view class="right dis" style="position: relative;">
+				
+				<pickerAddress @change="change"style="background-color: #f0f0f0;width: 50%;height: 60%;border-radius: 20upx;" class="dis">
+				选择地点
+				</pickerAddress>
 			</view>
 		</view>
 
@@ -74,9 +76,11 @@
 				user_info:{}
 			};
 		},
-		onLoad() {
-			this.address()
+		onLoad(options) {
+			// 携带过来的修改地址
+			console.log(uni.getStorageSync('exit'))
 			
+			// this.address()
 			this.user_info=uni.getStorageSync('user_info')
 		},
 		methods: {
