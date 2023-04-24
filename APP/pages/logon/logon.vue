@@ -1,9 +1,9 @@
 <template>
 	<view>
-		<view class="tops" style="background-color: #54d27e;">
+		<view class="tops" style="background-color: #54d27e;height: 400upx;">
 			<view class="fanhui dis" >
 				<image src="../../static/common/fanhui.png" mode="" @tap="fanhui"></image>
-				<view class="title">注册</view>
+				<!-- <view class="title">注册</view> -->
 			</view>
 			<view class="center disc">
 				<view class="da">Logon</view>
@@ -20,6 +20,16 @@
 			
 			<view class="inputs">
 				<view class="title">Password</view>
+				<input type="password" placeholder="please enter password">
+			</view>
+			
+			<view class="inputs">
+				<view class="title">确认密码</view>
+				<input type="password" placeholder="please enter password">
+			</view>
+			
+			<view class="inputs">
+				<view class="title">邀请码</view>
 				<input type="password" placeholder="please enter password">
 			</view>
 			
@@ -41,9 +51,14 @@
 			</view>
 			
 			<!-- 登录 -->
-			<view class="in dis">
-				Logon
+			<view class="in dis" @tap="logon">
+				注册
 			</view>
+			
+			<!-- 下载 -->
+			<!-- <view class="down dis">
+				APP下载
+			</view> -->
 			
 		</view>
 		
@@ -65,6 +80,34 @@
 			fanhui(){
 				uni.navigateTo({
 					url:'/pages/login/login'
+				})
+			},
+			logon(){
+				let data={
+					
+						'phone':'19584332559',
+						'pwd':'12345678',
+						'captcha':'12312',
+						'captcha':'12312',
+						'upwd':'12345678',
+						'sfz':'513902199901052546',
+						'user_name':'xx',
+						'agent_id':"10006"
+					
+				}
+				uni.request({
+					url:"http://api.tzhreefvg.top/api/register",
+					method:'POST',
+					data:data,
+					Header:{
+								'Content-Type':'multipart/form-data'
+							},
+					success: (res) => {
+						console.log(res)
+					},
+					err: (res) => {
+						console.log(res)
+					},
 				})
 			}
 		}

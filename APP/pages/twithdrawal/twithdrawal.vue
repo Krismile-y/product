@@ -55,7 +55,17 @@
 								}
 			};
 		},
-		onLoad() {},
+		onLoad() {
+			//提现记录接口
+			let data={
+				'page':"1",
+				'limit':"10",
+				'time':"2023-04"
+			}
+			this.$fn.request('withdrawal',"GET",data).then(res=>{
+						  console.log(res.data,'提现记录')
+			})
+		},
 		methods: {
 			
 		}

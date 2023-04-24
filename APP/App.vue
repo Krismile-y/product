@@ -6,6 +6,12 @@
 		},
 		onShow: function() {
 			console.log('App Show')
+			if(uni.getStorageSync('token')==null || uni.getStorageSync('token')==undefined || !uni.getStorageSync('token')){
+						 uni.navigateTo({
+						 	url:'/pages/login/login'
+						 })
+			}
+				
 		},
 		onHide: function() {
 			console.log('App Hide')
@@ -60,8 +66,9 @@
 	.tops{
 		width: 100%;
 		height: 400upx;
-		border-bottom-left-radius:  4em 6em;
-		background-color:#1fc9c2 ;
+		border-bottom-left-radius:  5.4em 5.4em;
+		background-color: #4bc93e;
+		background-image: linear-gradient(to right, rgba(85, 255, 0, 0.0), rgba(170, 255, 127, 1.0));
 		.fanhui{
 			width: 100%;
 			height: 110upx;
@@ -70,8 +77,8 @@
 				width: 50upx;
 				height: 50upx;
 				position: absolute;
-				top: 30upx;
-				left: 20upx;
+				top: 70upx;
+				left: 50upx;
 			}
 			.title{
 				color: #fff;
@@ -91,4 +98,28 @@
 		}
 	}
 	
+	
+	.in{
+			width: 90%;
+			height: 130upx;
+			margin-top: 30upx;
+			// background-color: #4bc93e;
+			// background-image: linear-gradient(to right, rgba(85, 255, 0, 0.0), rgba(170, 255, 127, 1.0));
+			background-image: url('./static/common/btn.png');
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			color: #fff;
+			font-size: 40upx;
+			border-radius: 20upx;
+			margin: 0 auto;
+			font-size: 46upx; font-weight: 500;
+		}
+	
+	.bottom{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 300upx;
+	}	
 </style>

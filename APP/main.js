@@ -6,8 +6,14 @@ import uView from "uview-ui";
 import bottom from './components/bottom/bottom.vue'
 import tops from './components/tops/tops.vue'
 import navs from './components/navs/navs.vue'
-import request from './service/request.js'
-Vue.prototype.$request =request
+// import request from './common/http.js'
+import fn from './common/fn.js'
+import store from './store/index.js'
+import dragButton from "@/components/drag-button/drag-button.vue"; //拖动按钮
+Vue.component('dragButton',dragButton)
+Vue.prototype.$store = store
+// Vue.prototype.$request =request
+Vue.prototype.$fn =fn
 Vue.component('bottom',bottom)
 Vue.component('tops',tops)
 Vue.component('navs',navs)
@@ -17,7 +23,8 @@ Vue.config.productionTip = false
 App.mpType = 'app'
 
 const app = new Vue({
-    ...App
+    ...App,
+	store,
 })
 app.$mount()
 // #endif

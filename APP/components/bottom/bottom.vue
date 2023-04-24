@@ -2,15 +2,17 @@
 	<view>
 		<view class="bottom fix">
 			<view class="item disc" @tap="go(0)">
-				<image src="../../static/common/shouye.png" mode=""></image>
+				<image :src="list[0].src" mode="" v-show="$store.state.one"></image>
+				<image src="../../static/common/one.png" mode="" v-show="!$store.state.one"></image>
 				首页
 			</view>
-			<view class="item disc">
-				<image src="../../static/common/jinrong.png" mode=""></image>
+			<view class="item disc" @tap="go(1)">
+				<image :src="list[1].src" mode="" v-show="$store.state.two"></image>
+				<image src="../../static/common/two.png" mode="" v-show="!$store.state.two"></image>
 				社区
 			</view>
 
-			<view class="item disc" @tap="go(2)">
+			<view class="item disc" @tap="go(99)">
 
 				<view class="disc yuan">
 					<!-- <image src="../../static/common/renminbi.png" mode=""></image>
@@ -20,16 +22,19 @@
 						投资
 					</view> -->
 					<view class="y">
-						<image src="../../static/common/btn.jpg" mode=""></image>
+						<image src="../../static/common/lvse.jpg" mode=""></image>
 					</view>
 				</view>
 			</view>
-			<view class="item disc">
-				<image src="../../static/common/zichan.png" mode="" @tap="go(3)"></image>
+			<view class="item disc" @tap="go(2)">
+				
+				<image :src="list[2].src" mode="" v-show="$store.state.three"></image>
+				<image src="../../static/common/three.png" mode="" v-show="!$store.state.three"></image>
 				商城
 			</view>
-			<view class="item disc" @tap="go(4)">
-				<image src="../../static/common/wode.png" mode=""></image>
+			<view class="item disc" @tap="go(3)">
+				<image :src="list[3].src" mode="" v-show="$store.state.four"></image>
+				<image src="../../static/common/four.png" mode="" v-show="!$store.state.four"></image>
 				我的
 			</view>
 		</view>
@@ -38,9 +43,10 @@
 		<view class="four" v-show="show">
 			<view class="list">
 				<view class="items dis"  @tap="four(0)">按钮1</view>
-				<view class="items dis">按钮2</view>
-				<view class="items dis">按钮3</view>
-				<view class="items dis">按钮4</view>
+				<view class="items dis" @tap="four(1)">按钮2</view>
+				<view class="items dis" @tap="four(2)">按钮3</view>
+				<view class="items dis" @tap="four(3)">按钮4</view>
+				<view class="items dis" @tap="four(4)">金融</view>
 			</view>
 		</view>
 		
@@ -51,36 +57,107 @@
 import { vShow } from "vue";
 	export default {
 		name: "bottom",
+		props:{
+			now:{
+				type:Object,
+			}
+		},
 		data() {
 			return {
-                show:false
+                show:false,
+				one:true,
+				list:[
+					{
+						title:'首页',
+						src:'../../static/common/yi.png'
+					},
+					{
+						title:'社区',
+						src:'../../static/common/er.png'
+					},
+					{
+						title:'商城',
+						src:'../../static/common/san.png'
+					},
+					{
+						title:'我的',
+						src:'../../static/common/si.png'
+					},
+				],
+				
+				
+				active:[
+					'../../static/common/one.png',
+					'../../static/common/two.png',
+					'../../static/common/three.png',
+					'../../static/common/four.png',
+				]
 			};
 		},
 		methods: {
 			four(index){
-				if(index==0){
+				
+				if(index<4){
 					uni.navigateTo({
-						url: '/pages/invest/invest'
+						url: '/pages/invest/invest?id='+index
 					})
 				}
+				
+				// else if(index==4){
+				// 	uni.navigateTo({
+				// 		url: '/pages/finance/finance'
+				// 	})
+				// }
 			},
 			go(index) {
+				console.log(index)
+				
+				// this.list[index].src=this.active[index]
+				
+				
 				if (index == 0) {
+					uni.setStorageSync('name','index')
+					this.$store.state.one=false
+					this.$store.state.two=true
+					this.$store.state.three=true
+					this.$store.state.four=true
+					
 					uni.navigateTo({
 						url: '/pages/index/index'
 					})
-				} else if (index == 4) {
+				} else if (index == 1) {
+					uni.setStorageSync('name','community')
+					this.$store.state.one=true
+					this.$store.state.two=false
+					this.$store.state.three=true
+					this.$store.state.four=true
+					
 					uni.navigateTo({
-						url: '/pages/my/my'
+						url: '/pages/community/community'
 					})
+				} else if (index == 99) {
+					// uni.navigateTo({
+					// 	url: '/pages/invest/invest'
+					// })
+					this.show=!this.show
+					
 				} else if (index == 2) {
-					uni.navigateTo({
-						url: '/pages/invest/invest'
-					})
-					// this.show=!this.show
-				} else if (index == 3) {
+					uni.setStorageSync('name','shop')
+				    this.$store.state.one=true
+				    this.$store.state.two=true
+				    this.$store.state.three=false
+				    this.$store.state.four=true
 					uni.navigateTo({
 						url: '/pages/shop/shop'
+					})
+				}else if (index == 3) {
+					uni.setStorageSync('name','my')
+					this.$store.state.one=true
+					this.$store.state.two=true
+					this.$store.state.three=true
+					this.$store.state.four=false
+					uni.navigateTo({
+						url: '/pages/my/my'
 					})
 				}
 			},

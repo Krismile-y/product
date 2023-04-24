@@ -3,7 +3,7 @@
 	height: 400upx;
 	background-color: #4bc93e;
 	background-image: linear-gradient(to right, rgba(85, 255, 0, 0.0), rgba(170, 255, 127, 1.0));
-	border-bottom-left-radius:  4em 6em;
+	border-bottom-left-radius:  5.4em 5.4em;
 	// background-repeat: no-repeat;
 	// background-size: 100% 100%;
 	// background-image: url('https://bpic.51yuansu.com/backgd/cover/00/30/07/5bc4aaaaedc5d.jpg?x-oss-process=image/resize,w_780');
@@ -13,20 +13,23 @@
 		height: 200upx;
 		padding-top: 10upx;
 		display: flex;
+		padding-top: 30upx;
 		.left{
 			width: 30%;
 			height: 100%;
 			
 			image{
-				width: 90%;
-				height: 90%;
-				border-radius: 50%;
+				width: 70%;
+				height: 70%;
+				border-radius: 20upx;
 			}
 		}
 		.center{
-			width: 40%;
+			width: 60%;
 			height: 100%;
 			color: #fff;
+			font-size: 36upx;
+			font-weight: 600;
 			.one{
 				margin-top: 20px;
 				margin-bottom: 10px;
@@ -52,26 +55,41 @@
 	.xia{
 		width: 90%;
 		margin: 0upx auto;
-		height: 180upx;
-		padding-top: 10upx;
-		display: flex;
-
-		.item{
-			height: 100%;
-			flex: 1;
-			.tit{
-				color: #fff;
-			}
-			.de{
-				color: #fff;
+		height: 412upx;		
+        background-color: #fff;
+		border-radius: 20upx;
+		background-image: url('../../static/myimg/bg.png');
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		// background-position: -0upx 0;
+		.boxs{
+			display: flex;
+			flex-wrap: wrap;
+			margin-top: 0;
+			height: 206upx;
+			.item{
+				height: 100%;
+				width: 33%;
+				.tit{
+					color: #000;
+					font-weight: 600;
+					font-size: 40upx;
+				}
+				.de{
+					margin-top: 16upx;
+					color: #000;
+					font-weight: 6800;
+					font-family: SimHei;
+					font-size: 36upx;
+				}
 			}
 		}
+		
 	}
 }
 .box{
 	width: 95%;
 	margin: 30upx auto;
-	background-color: #fff;
 	.title{
 		width: 100%;
 		height: 40upx;
@@ -131,3 +149,39 @@
 			height: 460upx;
 		}
 	}
+
+.list{
+	width: 98%;
+	margin: 0 auto;
+	.item{
+	height: 90upx;
+	width: 100%;
+	display: flex;
+	box-sizing: border-box;
+	// border-bottom: 1upx solid #cccccc;
+	position: relative;
+	.left{
+		width: 50%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		padding-left: 20upx;
+	}
+	.right{
+		width: 10%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	}
+}	
+.shiming{
+	width: 120upx;
+	height: 70upx;
+	background-color: #fff;
+	border-radius: 24upx;
+}

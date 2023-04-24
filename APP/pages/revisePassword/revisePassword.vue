@@ -51,6 +51,17 @@
 		onLoad(options) {
 			console.log(options.type)
 			this.type=options.type
+			
+			// 修改密码接口
+			let pwd={
+				'past_pwd':"",
+				'pwd':"",
+				'uppwd':''
+			}
+			// this.$fn.request('goods/pwd', 'GET',pwd).then(res => {
+			// 	console.log(res.data.data.data,'产品详情')
+				
+			// }) 
 		},
 		data() {
 			return {

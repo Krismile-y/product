@@ -1,38 +1,48 @@
 <template>
-	<view class="content" style="padding-top: 70upx;z-index: 99;">
-		<navs></navs>
-		
-		<view class="tops" style="background-color: #54d27e;height: 300upx;">
+	<view class="content" >
+		<!-- 	<navs></navs>	 -->
+        
+		<view class="tops disc" style="background-color: #54d27e;height: 400upx;">
+			<view style="padding-top: 106upx;color: #ffffff;letter-spacing: 8upx;font-size: 46upx;font-weight: 600;">绿色中国
+			</view>
+
 			<view style="width: 100%;height: 100%;" class="disc">
-				
-				<swiper  :autoplay="true" :interval="3000" :duration="1000"
-				style="width: 80%;height: 300upx; position: absolute;top: 300upx;margin: 0 auto;">
-					<swiper-item style="width: 100%;height: 300upx;" v-for="item in 3">
-						<image   src="https://img0.baidu.com/it/u=2616180438,3555003891&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500" mode="" style="width: 100%;height: 100%;border-radius: 20upx;"></image>
+
+				<swiper :autoplay="true" :interval="3000" :duration="1000"
+					style="width: 82%;height: 240upx; position: absolute;top: 200upx;margin: 0 auto;">
+					<!-- <swiper-item style="width: 100%;height: 200upx;" v-for="(item,index) in banner" :key="index">
+						<image   :src="item.img" mode="" style="width: 100%;height: 100%;border-radius: 20upx;"></image>
+					</swiper-item>	 -->
+					<swiper-item style="width: 100%;height: 200upx;">
+						<image src="../../static/index/swiper.png" mode=""
+							style="width: 100%;height: 100%;border-radius: 20upx;"></image>
 					</swiper-item>
-					
+					<swiper-item style="width: 100%;height: 200upx;">
+						<image src="../../static/index/swiper2.png" mode=""
+							style="width: 100%;height: 100%;border-radius: 20upx;"></image>
+					</swiper-item>
 				</swiper>
-				
+
 			</view>
 		</view>
-		
+
 		<!-- 轮播 -->
-		
-		
-		
+
+
+
 		<!-- 八个标题 -->
-		<view class="eight" style="margin-top: 200upx;">
+		<view class="eight" style="margin-top: 100upx;">
 			<view class="item disc">
 				<image src="../../static/index/pingtai.png"></image>
 				<view class="title">平台攻略</view>
 			</view>
 			<view class="item disc">
 				<image src="../../static/index/shijie.png"></image>
-				<view class="title">安全保障</view>
+				<view class="title">签到</view>
 			</view>
 			<view class="item disc">
 				<image src="../../static/index/lin.png"></image>
-				<view class="title">待定</view>
+				<view class="title">绿色金融</view>
 			</view>
 			<view class="item disc">
 				<image src="../../static/index/fenxiang.png"></image>
@@ -54,28 +64,44 @@
 				<image src="../../static/index/guanwang.png"></image>
 				<view class="title">进入官网</view>
 			</view>
+			<!-- 加个签到  + 得积分 -->
 		</view>
-		
+
 		<!-- 滚动通知 -->
 		<view>
-		      <u-notice-bar :text="text1" bgColor='#54d27e' color='#fff'></u-notice-bar>
+			<u-notice-bar :text="text1" bgColor='#54d27e' color='#fff'></u-notice-bar>
 		</view>
-		
+
+		<!-- 视屏 -->
+		<!-- 	<view class="video dis" style="width: 98%;margin: 30upx auto;">
+			<video src="" style="width: 100%;"></video>
+		</view> -->
+
+		<!-- 新手 -->
+		<view class="new dis">新手体验</view>
+
 		<!-- 快捷 -->
 		<view class="kuaijie">
 			<view class="shu"></view>
 			快捷选择专区
 		</view>
-		<view class="zhuanqu" @tap="huanbao()">
-			<image src="https://p7.itc.cn/q_70/images01/20210705/0d6cce1353d7486591420067518b1a36.jpeg" mode=""></image>
-			<image src="https://img2.baidu.com/it/u=1308583920,2982159146&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=667" mode=""></image>
+		<view class="zhuanqu disc" @tap="huanbao()">
+			<view style="width: 100%; margin: 0 auto; display: flex;justify-content: space-between;">
+				<image src="https://p7.itc.cn/q_70/images01/20210705/0d6cce1353d7486591420067518b1a36.jpeg" mode="">
+				</image>
+				<image
+					src="https://img2.baidu.com/it/u=1308583920,2982159146&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=667"
+					mode="" style="margin-left: 0upx;"></image>
+			</view>
 		</view>
-		
+
 		<!-- 轮播 -->
-		<swiper  :autoplay="true" :interval="3000" :duration="1000" class="swiper">
+		<swiper :autoplay="true" :interval="3000" :duration="1000" class="swiper">
 			<swiper-item class="swiperItem">
 				<view class="item dis">
-					<image src="https://img2.baidu.com/it/u=2468362699,2612376962&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" mode=""></image>
+					<image
+						src="https://img2.baidu.com/it/u=2468362699,2612376962&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"
+						mode=""></image>
 				</view>
 				<view class="item disc" style="width: 40%;">
 					<view class="tit">Overlay 遮罩层</view>
@@ -85,24 +111,24 @@
 					<view class="btn dis" @tap="business">查看详情</view>
 				</view>
 			</swiper-item>
-			
+
 		</swiper>
-		
+
 		<!-- xinwen -->
 		<view class="kuaijie">
 			<view class="shu"></view>
 			热门新闻
 		</view>
-		<view class="xinwen" @tap="xinwen">
+		<view class="xinwen" @tap="xinwen" v-for="(item,index) in article" :key="index">
 			<view class="left">
 				骆歆不主持LPL季后赛有两种可能，第一种就是在赛前的主持排序中没有骆歆，既然没有骆歆那她不上场就很正常，不过这种可能性不大
 			</view>
 			<view class="right dis">
-			<image src="../../static/my/jilu.png" mode=""></image>
+				<image src="../../static/my/jilu.png" mode=""></image>
 			</view>
 		</view>
-		
-		<!--  -->	
+
+		<!--  -->
 		<view class="kuaijie">
 			<view class="shu"></view>
 			新闻阅读专区
@@ -111,26 +137,29 @@
 			<image src="../../static/index/zhengce.jpg" mode=""></image>
 		</view>
 		<!--  -->
-		
+
 		<!-- 海报 -->
-		<view class=" dis" v-for="(value,key,i) in posterList":class="{poster:posterList.one.length==nowNum?false:true}"  >
-			<view class="box disc" >	
-				<view style="width: 100%;height: 100%;" class="disc"   v-for="(item,index) in value"  v-show="index==nowNum?true:false">
+		<view class=" dis" v-for="(value,key,i) in posterList"
+			:class="{poster:posterList.one.length==nowNum?false:true}" v-show="">
+			<view class="box disc">
+				<view style="width: 100%;height: 100%;" class="disc" v-for="(item,index) in value"
+					v-show="index==nowNum?true:false">
 					<image :src="item.src" mode="" style="width: 100%;height: 700upx;border-radius: 20upx;"></image>
-					<image src="../../static/index/close.png" mode="" style="width: 60upx;height: 60upx;margin-top: 30upx;"@tap='close'></image>
+					<image src="../../static/index/close.png" mode=""
+						style="width: 60upx;height: 60upx;margin-top: 30upx;" @tap='close'></image>
 				</view>
 			</view>
 		</view>
-		
-		<bottom ></bottom>
+
+		<bottom :num='obj'></bottom>
 	</view>
 </template>
 
 <script src='./index.js'>
-	
-	
+
+
 </script>
 
 <style lang="less" scoped src='./index.less'>
-	
+
 </style>

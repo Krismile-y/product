@@ -21,7 +21,7 @@
 		</view>
 		
 		<!--  -->
-		<view class="titleCenter dis">我的推荐人:某某某</view>
+		<view class="titleCenter dis">我的推荐人:{{agent_info.user_name}}</view>
 		<view class="tits">
 			<view class="title dis" @tap="bian(0)" :class="{color:currentIndex==0?true:false}">
 				团队详细
@@ -51,12 +51,29 @@
 
 <script>
 	export default {
+		onLoad() {
+			// 我的团队信息
+			let data={
+				"lv":'1',
+				"page":"1",
+				"limit":"10"
+			}
+			this.$fn.request('user_team',"GET",data).then(res=>{
+				console.log(res.data.data,'我的团队信息')
+				this.agent_info=res.data.data.agent_info,
+				this.below_agent_info=res.data.data.below_agent_info
+			})
+				
+		},
 		data() {
 			return {
 				currentIndex:0,
 				candidates: ['北京', '南京', '东京', '武汉', '天津', '上海', '海口'],
+				agent_info:[],//我的推荐人
+                below_agent_info:[],//我自己的信息，或者我下级的信息
 			};
 		},
+		
 		methods:{
 			bian(index){
 				this.currentIndex=index

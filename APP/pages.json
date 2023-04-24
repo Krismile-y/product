@@ -282,6 +282,94 @@
             }
             
         }
+        ,{
+            "path" : "pages/setting/setting",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "设置",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/community/community",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "社区",
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView":false
+				}
+            }
+            
+        },
+		{
+		    "path" : "pages/finance/finance",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "绿色金融",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		
+      
+        ,{
+            "path" : "pages/forgetPwd/forgetPwd",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "忘记密码",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/sign/sign",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "签到",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/address/address",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的地址",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        
+        ,{
+            "path" : "pages/addressDetail/addressDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑地址",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/certificate/certificate",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "股权证书",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+       
+        ,{
+            "path" : "pages/test/test",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationStyle": "default",
@@ -293,4 +381,8 @@
 			"background": "#efeff4"
 		}
 	}
+	// 配置tabbar导航栏
+
+	
+
 }
