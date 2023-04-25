@@ -1,8 +1,6 @@
 <template>
 	<view>
 		<view class="calendar-content" v-if="showCalendar">
-			<text class="example-info">日历组件可以查看日期，选择任意范围内的日期，打点操作。常用场景如：酒店日期预订、火车机票选择购买日期、上下班打卡等。</text>
-			<uni-section title="插入模式" type="line"></uni-section>
 			<view>
 				<!-- 插入模式 -->
 				<uni-calendar class="uni-calendar--hook" :selected="info.selected" :showMonth="false" @change="change" @monthSwitch="monthSwitch" />
@@ -17,8 +15,8 @@
 		
 		
 		<view class="bottom dis">
-			<view class="in dis" >
-				确定
+			<view class="in dis" @click="signSubmit">
+				立即签到
 			</view>
 		</view>
 		
@@ -56,6 +54,9 @@
 		data() {
 			return {
 				showCalendar: false,
+        dateObj: null, //日历点击获取的事件对象
+        nowDate: null,
+        dateList: [], //已签到日期列表
 				info: {
 					lunar: true,
 					range: true,
@@ -69,30 +70,37 @@
 				this.showCalendar = true
 			})
 			// TODO 模拟请求异步同步数据
-			setTimeout(() => {
-				this.info.date = getDate(new Date(),-30).fullDate
-				this.info.startDate = getDate(new Date(),-60).fullDate
-				this.info.endDate =  getDate(new Date(),30).fullDate
-				this.info.selected = [{
-						date: getDate(new Date(),-3).fullDate,
-						info: '打卡'
-					},
-					{
-						date: getDate(new Date(),-2).fullDate,
-						info: '签到',
-						data: {
-							custom: '自定义信息',
-							name: '自定义消息头'
-						}
-					},
-					{
-						date: getDate(new Date(),-1).fullDate,
-						info: '已打卡'
-					}
-				]
-			}, 2000)
 		},
+    onLoad() {
+      this.getDateList()
+      this.initNowDay()
+    },
 		methods: {
+      initNowDay() {
+        // 获取当天日期
+        let date = new Date()
+        let year = date.getFullYear()
+        let month = date.getMonth() + 1
+        let day = date.getDate()
+        console.log(day);
+        this.nowDate = year + '-' + month + '-' + day
+      },
+      getDateList() {
+        // 获取签到列表
+        const that = this;
+        this.$fn.request('/my_sign',"GET").then((res)=> {
+          console.log(res,'签到列表');
+          if(res.data.data.length > 0) {
+            let data = res.data.data
+            data.forEach((item,index) => {
+              that.info.selected.push({
+              	date: item,
+              	info: '已签到'
+              })
+            })
+          }
+        })
+      },
 			open() {
 				this.$refs.calendar.open()
 			},
@@ -100,20 +108,46 @@
 				console.log('弹窗关闭');
 			},
 			change(e) {
-				console.log('change 返回:', e)
 				// 模拟动态打卡
-				if (this.info.selected.length > 5) return
-				this.info.selected.push({
-					date: e.fulldate,
-					info: '打卡'
-				})
+        this.dateObj = e
 			},
 			confirm(e) {
 				console.log('confirm 返回:', e)
 			},
 			monthSwitch(e) {
 				console.log('monthSwitchs 返回:', e)
-			}
+			},
+      signSubmit() {
+        console.log(this.dateObj);
+        if(this.dateObj) {
+          this.info.selected.push({
+          	date: this.nowDate,
+          	info: '已签到'
+          })
+        }else {
+          this.$fn.request('/sign',"GET").then((res)=> {
+            if(res.data.code == 1) {
+              // 接口成功
+              uni.showToast({
+                icon: 'success',
+                title: '签到成功',
+                success: ()=> {
+                  this.info.selected.push({
+                  	date: this.nowDate,
+                  	info: '已签到'
+                  })
+                }
+              })
+            } else {
+              uni.showToast({
+                icon:'error',
+                title: res.data.msg
+              })
+            }
+          })
+          
+        }
+      }
 		}
 	}
 </script>

@@ -9,12 +9,9 @@
       <view class="picker-view" @click="changeYear">
         {{dateText}}
       </view>
-			<<!-- view class="three">
-				<view class="threeItem dis">操作/时间</view>
-				<view class="threeItem dis">投资金额</view>
-			</view> -->
+			
       
-			<view class="" style="margin-top: -30upx;">
+			<view class="" style="margin-top: 10upx;">
         <uni-table ref="table" border stripe emptyText="暂无更多数据" >
         	<!-- 表头行 -->
         	<uni-tr>
