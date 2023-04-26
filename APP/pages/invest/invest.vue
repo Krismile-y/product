@@ -97,7 +97,7 @@
 		<!-- 标题栏 -->
 		<scroll-view scroll-x="true" style="width: 100%;height: 90upx;white-space: nowrap;margin-top: 100upx;">
 			<view class="item " v-for="(item,index) in list" :key="index" @tap="bian(index,item.id)">
-				<view class="box disc">
+				<view class="boxs disc">
 					<view class="title" :class="{color:currentIndex==index?true:false}">{{item.type_name}}</view>
 					<view class="line" v-show="currentIndex==index?true:false"></view>
 				</view>
@@ -117,49 +117,49 @@
 		</view>
 
 		<view>
-			<u-popup :show="zhifu" @close="zhifuclose" @open="zhifuopen">
-				<view class="box">
-
-					<!-- 支付框框 -->
-					<view class="zhifu" v-show="showIndex==2?true:false">
-						<view class="zhifuItem ">
-							<u-radio-group v-model="value" placement='column' iconPlacement="right">
-								<view class="radioBox ">
-									<view class="left">微信</view>
-									<view class="right">
-										<u-radio activeColor="red" label="" @change='danxuan'></u-radio>
-									</view>
-
-								</view>
-								<view class="radioBox ">
-									<view class="left">支付宝{{value}}</view>
-									<view class="right">
-										<u-radio activeColor="red" label="" style="" @change='danxuan'></u-radio>
-									</view>
-								</view>
-							</u-radio-group>
+			
+			<!-- 立即认购拉起框 -->
+			<u-popup :show="zhifu" @close="zhifuclose" @open="zhifuopen" round='60'>
+				
+				
+				<view class="box" >
+					<view class="shuliang" >
+						<view style="padding-bottom: 50upx;padding-left: 30upx;">数量</view>
+						<view class="jia">
+							<view class="zuo dis" @tap="jian" :class="{baise:xiadan==0?true:false}">-</view>
+							<view class="zhong dis">{{xiadan}}</view>
+							<view class="zuo dis" @tap="jia">+</view>
 						</view>
 					</view>
-
-
-					<view class="day" v-show="showIndex==1?true:false">
-						<uni-section title="天数" type="line" padding>
-							<uni-number-box @change="changeDay" />
-						</uni-section>
+					<!--  -->
+					<view class="tianshuBox">
+						<scroll-view scroll-x="true"  style="width: 100vw;height: 200upx;white-space: nowrap">
+							<view class="tianshuItem" v-for="(item,index) in dayID" @tap="rightClick(index,item)" :class="{d:currentDay==index?true:false}">
+								<view class="info">
+									<view>项目名：{{item.goods_name}}</view>						
+									<view>项目对应天数：{{item.project_day}}</view>
+									<view>项目每日收益：{{item.income}}</view>								
+									<view>项目总收益{{item.total_red_money}}</view>
+									
+								</view>
+							</view>
+						</scroll-view>
 					</view>
-
-					<view class="number" v-show="showIndex==0?true:false">
-						<uni-section title="数量" type="line" padding>
-							<uni-number-box @change="changeNumber" />
-						</uni-section>
+					
+					<view class="typeItem dis" v-for="(item,index) in type"
+					@tap="typeClick(index)"
+					:class="{typeColor:typeIndex==index?true:false}">
+						{{item}}
 					</view>
-
-					<view class="next dis" v-show="showIndex>=3?false:true">
-						<view class="shangyibu" @tap='shang'>上一步</view>
-						<view class="xiayibu " style="margin-left: 30upx;" @tap="next">下一步</view>
-						<view class="queding"  style="margin-left: 30upx;" @tap="pay" >确定</view>
+					<view class="bottom dis">
+						<view class="in dis" @tap="pay">
+							支付
+						</view>
 					</view>
+					
 				</view>
+				
+
 			</u-popup>
 			<!-- <u-button @click="zhifu = true">打开</u-button> -->
 		</view>

@@ -1,12 +1,15 @@
 export default {
 		data() {
 			return {
-				xiadan:0,//下单数量
+				typeIndex:0,
+				xiadan:1,//下单数量
 				currentDay:0,//目前天数
 				showIndex:0,//下单的三个弹出框
+				dayInfo:[],//产品天数信息
 				dayID:[],
 				show: false,
 				currentIndex: 0,
+				type:['余额支付','微信支付'],
 				zhifu:false,
 				value:'',
 				list: [
@@ -47,7 +50,7 @@ export default {
 			// 支付方式
 			let type={}
 			this.$fn.request('/pay/list', 'GET',type).then(res => {
-				console.log(res,'支付方式')
+				console.log(res.data.data,'支付方式')
 				
 			})
 			
@@ -62,6 +65,8 @@ export default {
 				this.list=res.data.data
 			})
 			
+			
+			
 	
 		},
 		onShow() {
@@ -75,17 +80,39 @@ export default {
 			this.$store.state.four=true
 		},
 		methods: {
-			shang(){//上一步
-			    if(this.showIndex==0){
+			jia(){
+				this.xiadan++
+			},
+			jian(){
+				if(this.xiadan==0){
 					return
 				}
+				this.xiadan--
+			},
+			typeClick(index){//支付方式
+				this.typeIndex=index
+				console.log(index)
+			},
+			danxuan(e){
+				console.log(e)
+			},
+			rightClick(index,item){//天数
+			
+				this.currentDay=index
+				console.log(item.id)
+			},
+			shang(){//上一步
+			console.log(this.showIndex)
+			 //    if(this.showIndex==0){
+				// 	return
+				// }
 				this.showIndex--
 			},
 			next(){//下一步
 				this.showIndex++
-				if(this.showIndex>2){
-					return
-				}
+				// if(this.showIndex>3){
+				// 	return
+				// }
 				
 				if(this.showIndex==1){
 					//产品天数接口
@@ -93,8 +120,9 @@ export default {
 						'gid':this.detail.id
 					}
 					this.$fn.request('goods/goods_day', 'GET',goods_day).then(res => {
-						console.log(res,'产品天数接口')
+						// console.log(res,'产品天数接口')
 						this.dayID=res.data.data.data
+						console.log(this.dayID,'产品天数接口')
 					})
 				}
 				
@@ -106,18 +134,31 @@ export default {
 				let data={
 					'gid':this.detail.id.toString(),
 					'num':this.xiadan.toString(),
-					'did':this.dayID[0].id.toString(),
-					'pid':'1',
+					'did':this.dayID[this.currentDay].id.toString(),
+					'pid':(this.typeIndex+1).toString(),
 					'cid':'0'
 				}
 				this.$fn.request('/pay/order', 'POST',data).then(res => {
-					console.log(res,'产品下单')
+					console.log(res.data,)
 					// this.goods_list=res.data.data.data
+					if(res.data.code == 1){
+						uni.showToast({
+							title:'购买成功',
+							duration:1000,
+							icon:"success"
+						})
+					}else{
+						uni.showToast({
+							title:res.data.msg,
+							duration:1000,
+							icon:"error"
+						})
+					}
 				})
 			},
 			// -----------
 			changeDay(e){
-				this.currentDay=e
+				// this.currentDay=e
 			},
 			changeNumber(e){//数量
 				this.xiadan=e
@@ -127,6 +168,16 @@ export default {
 			lijirengou(item){//立即认购
 				this.zhifu=true
 				this.showIndex=0
+				
+				// 页面天数
+				let goods_day={
+					'gid':this.detail.id
+				}
+				this.$fn.request('goods/goods_day', 'GET',goods_day).then(res => {
+					// console.log(res,'产品天数接口')
+					this.dayID=res.data.data.data
+					console.log(this.dayID,'产品天数接口')
+				})
 			},
 			bian(index,id) {//切换产品列表接口
 				this.currentIndex = index

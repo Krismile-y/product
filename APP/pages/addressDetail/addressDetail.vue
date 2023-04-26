@@ -5,16 +5,16 @@
 				收货人
 			</view>
 			<view class="right dis">
-				<input type="text">
+				<input type="text" v-model="user_name">
 			</view>
 		</view>
 
 		<view class="item">
-			<view class="left dis">
+			<view class="left dis" >
 				手机号码
 			</view>
 			<view class="right dis">
-				<input type="text">
+				<input type="text" v-model="phone">
 			</view>
 		</view>
 
@@ -24,9 +24,18 @@
 			</view>
 			<view class="right dis" style="position: relative;">
 				
-				<pickerAddress @change="change"style="background-color: #f0f0f0;width: 50%;height: 60%;border-radius: 20upx;" class="dis">
+				<pickerAddress @change="change"style="background-color: #f0f0f0;width: 100%;height: 60%;border-radius: 20upx;" class="dis">
 				选择地点
 				</pickerAddress>
+			</view>
+		</view>
+		
+		<view class="item" v-show="diqu==''?false:true">
+			<view class="left dis">
+				
+			</view>
+			<view class="right dis" style="position: relative;">
+				{{diqu}}
 			</view>
 		</view>
 
@@ -35,12 +44,14 @@
 				详细地址
 			</view>
 			<view class="right dis">
-				<u--textarea v-model="wenben" placeholder="请输入内容" style="border-radius: 20upx;"></u--textarea>
+				<view class="uni-textarea" style="width: 100%;height: 200upx;background-color: #f0f0f0;border-radius: 20upx;overflow: hidden;">
+				<textarea placeholder-style="color:#F76260" placeholder=""  v-model="address" />
+				</view>
 
 			</view>
 		</view>
 
-		<view class="item">
+		<!-- <view class="item">
 			<view class="left dis" style="width: 50%;">
 				设为默认收货地址
 			</view>
@@ -49,10 +60,10 @@
 					<u-switch v-model="value1" activeColor="#5ac725"></u-switch>
 				</view>
 			</view>
-		</view>
+		</view> -->
 
 		<view class="bottom dis">
-			<view class="in dis" @tap="add" style="">
+			<view class="in dis" @tap="Addaddress" style="">
 				确认
 			</view>
 		</view>
@@ -73,13 +84,23 @@
 				formatter: {},
 				candidates: ['北京', '南京', '东京', '武汉', '天津', '上海', '海口'],
 				suozaidiqu: '555',
-				user_info:{}
+				user_info:{},
+				exit:{},
+				phone:'',
+				user_name:'',
+				address:'',
+				diqu:'',
+				res:'',
 			};
 		},
 		onLoad(options) {
 			// 携带过来的修改地址
 			console.log(uni.getStorageSync('exit'))
-			
+			let res=uni.getStorageSync('exit')
+			this.phone=res.phone
+			this.address=res.address
+			this.user_name=res.username
+			this.diqu=res.province+res.county+res.city
 			// this.address()
 			this.user_info=uni.getStorageSync('user_info')
 		},
@@ -87,20 +108,23 @@
 			change(e) {
 				console.log(e.data)
 				let res = e.data
-				this.wenben = res[0] + res[1] + res[2]
+				this.res=e.data
+				 this.diqu = res[0] + res[1] + res[2]
 
 			},
 			
-			address(){
+			Addaddress(){
 				// console.log(uni.getStorageSync('user_info'))
-				let data = {
-					'address': "成华大道",
-					'province': "四川省",
-					'city': "成都市",
-					'county': "成华区",
-					'user_name': uni.getStorageSync('user_info').user_name,
-					'phone': uni.getStorageSync('user_info').phone,
-				}
+				
+					let data = {
+						'address': this.wenben,
+						'province': this.res[0],
+						'city': this.res[1],
+						'county': this.res[2],
+						'user_name':this.user_name,
+						'phone': this.phone,
+					}
+				
 				this.$fn.request('address', "POST", data).then(res => {
 					console.log(res, '地址')
 				})

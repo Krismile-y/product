@@ -4,7 +4,7 @@
 			<image src="../../static/common/phone.png" mode=""></image>
 			手机号
 			<view class="right dis">
-				18581993887
+				{{info.phone}}
 			</view>
 		</view>
 		
@@ -31,8 +31,17 @@
 	export default {
 		data() {
 			return {
-			
+			  info:{},
+			  shiming:""
 			};
+		},
+		onLoad() {
+			this.info=uni.getStorageSync('user_info')
+			if(this.info.is_real_name==0){
+				this.shiming='未实名'
+			}else{
+				this.shiming='已实名'
+			} 
 		},
 		methods:{
 			go(index){

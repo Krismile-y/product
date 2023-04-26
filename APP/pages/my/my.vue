@@ -9,7 +9,7 @@
 					<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465" mode=""></image>
 				</view>
 				<view class="center">
-					<view class="one">用户名：mr.Li</view>
+					<view class="one">用户名：{{info.user_name}}</view>
 					<view class="two">我的推荐码:199875</view>
 				</view>
 				<view class="right dis" style="color: #000;">
@@ -38,7 +38,7 @@
 				
 				<view class="boxs">
 					<view class="item disc">
-						<view class="tit">0.00</view>
+						<view class="tit">{{info.money_green}}</view>
 						<view class="de">绿币</view>
 					</view>
 					<view class="item disc">
@@ -46,7 +46,7 @@
 						<view class="de">碳票</view>
 					</view>
 					<view class="item disc">
-						<view class="tit">0.00</view>
+						<view class="tit">{{info.money_integral}}</view>
 						<view class="de">积分</view>
 					</view>
 				</view>
@@ -88,10 +88,7 @@
 					<image src="../../static/myimg/pingtai.png"></image>
 					平台攻略
 				</view>
-				<!-- <view class="item disc" @tap="go('mySafe')">
-					<image src="../../static/myimg/anquan.png"></image>
-					安全保障
-				</view> -->
+				
 				<view class="item disc"  @tap="go('myShop')">
 					<image src="../../static/myimg/shangpin.png"></image>
 					我的商品
@@ -108,25 +105,6 @@
 				<view class="shu"></view>
 				资金管理
 				</view>
-			<!-- <view class="msg">
-				<view class="item disc" @tap="go('record')">
-					<image src="../../static/myimg/touxi.png" mode=""></image>
-					投资记录
-				</view>
-				<view class="item disc"  @tap="go('income')">
-					<image src="../../static/myimg/shouyi.png" mode=""></image>
-					收益记录
-				</view>
-				<view class="item disc" @tap="go('twithdrawal')">
-					<image src="../../static/myimg/tixian.png" mode=""></image>
-					提现记录
-				</view>
-				<view class="item disc"  @tap="go('withdrawal')">
-					<image src="../../static/myimg/shenqing.png" mode=""></image>
-					提现申请
-				</view>
-				
-			</view> -->
 			<view class="list" >
 				<view class="item" @tap="go('record')">
 					<view class="left">投资记录</view>
@@ -178,11 +156,11 @@
 	export default {
 		data() {
 			return {
-				show:false
+				show:false,
+				info:{}
 			};
 		},
 		onShow() {
-			console.log(uni.getStorageSync('name'))
 			if(uni.getStorageSync('name') == 'my'){
 				this.$store.state.one=true
 				this.$store.state.two=true
@@ -191,6 +169,8 @@
 			}
 		},
 		onLoad() {
+		  console.log(uni.getStorageSync('user_info'))	
+		 this.info=	uni.getStorageSync('user_info')
 		  //用户今日收益	
 		  let data={
 			  "is_whole":"1"

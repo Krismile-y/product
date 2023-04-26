@@ -39,50 +39,26 @@
 
 		</view>
 
-		<view class="top " v-show="false">
-			<view class="list">
-				<view class="left">积分</view>
 
+        <view class="av">
+			<view class="left">
+				<view>我的 推荐人：mr:li</view>
+				<view>我的积分：2222</view>
 			</view>
-
-
+			<view class="right dis">
+				<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465" mode=""></image>
+			</view>
+		</view>
+		<view class="newTop ">
+			<view>可提现：0.00</view>
+            <view>每日收益：0.00</view>
+			<view>总收益：0.00</view>
+			<view>绿币：0.00</view>
+			<view>碳票：0.00</view>
+			<view>积分：0.00</view>
 		</view>
 
-		<view class="top">
-			<view class="shang" v-show="false">
-				<!-- <view class="left dis">
-					<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465" mode=""></image>
-				</view> -->
-				<view class="center">
-					<view class="one">地址：address</view>
-					<view class="two">积分:199875</view>
-				</view>
-				<view class="right dis" style="color: #000;" @tap="sign">
-					<view class="shiming dis">立即签到</view>
-					<!-- <image   @click="show = true" src="https://img2.baidu.com/it/u=2020520018,1139302565&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800" mode=""></image> -->
-				</view>
-			</view>
-
-			<view style="width: 100%;height: 100%;display: flex;align-items: flex-end;">
-				<view class="xia " style="">
-					<view class="boxs ">
-
-						<view class="address disc">
-							<view class="zuo">我的积分</view>
-							<view class="you " style="margin-top: 20upx;">1888 </view>
-						</view>
-
-						<view class="address disc">
-							<image src="../../static/common/weizhi.png" mode="" @tap="address"></image>
-						</view>
-
-					</view>
-				</view>
-			</view>
-
-		</view>
-
-
+        <!-- ********** -->
 		<view class="box" style="margin-top: 60upx;">
 			<view class="shop disc" v-for="item in list" @tap="go(item)">
 				<image @tap="show=true"
@@ -91,6 +67,7 @@
 				<view class="title">{{item.wares_name}}</view>
 				<view class="detail">{{item.wares_money}}元</view>
 			</view>
+			
 		</view>
 
 		<bottom></bottom>

@@ -41,12 +41,12 @@
 		
 		<!-- 按钮 -->
 		<view class="four" v-show="show">
-			<view class="list">
+			<view class="list ">
 				<view class="items dis"  @tap="four(0)">按钮1</view>
 				<view class="items dis" @tap="four(1)">按钮2</view>
-				<view class="items dis" @tap="four(2)">按钮3</view>
+				<!-- <view class="items dis" @tap="four(2)">按钮3</view>
 				<view class="items dis" @tap="four(3)">按钮4</view>
-				<view class="items dis" @tap="four(4)">金融</view>
+				<view class="items dis" @tap="four(4)">金融</view> -->
 			</view>
 		</view>
 		
@@ -177,16 +177,17 @@ import { vShow } from "vue";
 			width: 70%;
 			height: 100%;
 			margin: 0 auto;
-			
 			display: flex;
 			align-items: center;
-			justify-content: space-around;
+			justify-content: center;
+			// justify-content: space-around;
 			.items{
 				width: 100upx;
 				height: 100upx;
 				border-radius: 50%;
 				background-color: #54d27e;
 				color: #fff;
+				margin-left: 20upx;
 			}
 		}
 	}

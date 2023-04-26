@@ -68,6 +68,10 @@
 				this.$fn.request('del_address',"POST",data).then(r=>{
 					console.log(r,'删除地址')	
 					// this.list=r.data.data
+					this.$fn.request('my_address',"POST",{}).then(r=>{
+						// console.log(r.data.data,'地址')	
+						this.list=r.data.data
+					})
 				})
 			},
 			exit(item){//修改地址

@@ -16,16 +16,16 @@
 					旧密码
 				</view>
 				<view class="right">
-					<input type="text" placeholder="旧密码">
+					<input type="text" placeholder="旧密码" v-model="jiu">
 				</view>
 			</view>
 			
 			<view class="item">
 				<view class="left ">
-					密码
+					新密码
 				</view>
 				<view class="right">
-					<input type="text" placeholder="密码">
+					<input type="text" placeholder="新密码" v-model="xin">
 				</view>
 			</view>
 			
@@ -34,11 +34,11 @@
 					确认密码
 				</view>
 				<view class="right">
-					<input type="text" placeholder="确认密码">
+					<input type="text" placeholder="确认密码" v-model="quren">
 				</view>
 			</view>
 			
-			<view class="btn dis">
+			<view class="btn dis" @tap="change">
 				提交
 			</view>
 		</view>
@@ -52,21 +52,26 @@
 			console.log(options.type)
 			this.type=options.type
 			
-			// 修改密码接口
-			let pwd={
-				'past_pwd':"",
-				'pwd':"",
-				'uppwd':''
-			}
-			// this.$fn.request('goods/pwd', 'GET',pwd).then(res => {
-			// 	console.log(res.data.data.data,'产品详情')
-				
-			// }) 
+			
 		},
 		data() {
 			return {
 				  type:''	
 			};
+		},
+		methods:{
+			change(){
+				// 修改密码接口
+				let pwd={
+					'past_pwd':this.jiu,
+					'pwd':this.xin,
+					'uppwd':this.quren
+				}
+				this.$fn.request('pwd', 'POST',pwd).then(res => {
+					
+					
+				}) 
+			}
 		}
 	}
 </script>
