@@ -119,9 +119,9 @@
 			<view class="shu"></view>
 			热门新闻
 		</view>
-		<view class="xinwen" @tap="xinwen" v-for="(item,index) in article" :key="index">
+		<view class="xinwen" @tap="xinwen(index)" v-for="(item,index) in article" :key="index">
 			<view class="left">
-				骆歆不主持LPL季后赛有两种可能，第一种就是在赛前的主持排序中没有骆歆，既然没有骆歆那她不上场就很正常，不过这种可能性不大
+				{{item.content}}
 			</view>
 			<view class="right dis">
 				<image src="../../static/my/jilu.png" mode=""></image>

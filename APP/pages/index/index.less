@@ -53,10 +53,21 @@
 	
 	.left{
 		width: 70%;
+		max-width: 70%;
 		height: 100%;
 		padding-left: 20upx;
 		text-indent: 40upx;
 		font-size: 28upx;
+    letter-spacing: 0;  
+    line-height: 48upx;  
+    overflow-y:hidden;  
+    text-overflow:ellipsis;  
+    white-space: normal;  
+    word-break:break-all;
+    word-wrap:break-word;
+    display:-webkit-box;  
+    -webkit-box-orient:vertical;  
+    -webkit-line-clamp:4;/*规定最多显示两行*/
 	}
 	.right{
 	   width: 30%;

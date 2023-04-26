@@ -48,7 +48,7 @@ export default {
 		
 		// 新闻接口
 		this.$fn.request('article',"GET",{}).then(res=>{
-			console.log(res.data.data)
+			console.log(res.data.data,'新闻')
 			this.article=res.data.data
 		})
 		
@@ -74,9 +74,9 @@ export default {
 					url:'/pages/environmental/environmental'
 				})
 			},
-			xinwen(){
+			xinwen(index){
 				uni.navigateTo({
-					url:'/pages/news/news'
+					url:`/pages/news/news?id=${index}`
 				})
 			},
 			newsList(){

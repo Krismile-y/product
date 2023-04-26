@@ -1,29 +1,13 @@
 <template>
 	<view>
 		<view class="title">
-			OL：官方主持骆歆倒了，小号发文吐槽被排挤了，LPL解说真团结
+			{{article.title}}
 		</view>
+    <view class="author">
+    	{{article.author}}
+    </view>
 		<view class="detail">
-			LPL季后赛只剩下BLG和JDG两队的决赛了，不过决赛还没开始所以很多观众都开始回味之前的比赛，
-			有细心的网友发现了一个问题，那就是LPL官方主持骆歆在季后赛一次都没上场，乍一看可能没什么，
-			不过骆歆是所有主持中最会整活的，赛前摆Pose这个操作就是她想出来的，本次季后赛余霜、
-			小钰和希然都上过场，唯有骆歆没上场，所以大家都比较好奇为什么LPL官方不让骆歆当季后赛主持了，
-			下面就和大家好好说一下这件事
-			LPL季后赛只剩下BLG和JDG两队的决赛了，不过决赛还没开始所以很多观众都开始回味之前的比赛，
-			有细心的网友发现了一个问题，那就是LPL官方主持骆歆在季后赛一次都没上场，乍一看可能没什么，
-			不过骆歆是所有主持中最会整活的，赛前摆Pose这个操作就是她想出来的，本次季后赛余霜、
-			小钰和希然都上过场，唯有骆歆没上场，所以大家都比较好奇为什么LPL官方不让骆歆当季后赛主持了，
-			下面就和大家好好说一下这件事
-			LPL季后赛只剩下BLG和JDG两队的决赛了，不过决赛还没开始所以很多观众都开始回味之前的比赛，
-			有细心的网友发现了一个问题，那就是LPL官方主持骆歆在季后赛一次都没上场，乍一看可能没什么，
-			不过骆歆是所有主持中最会整活的，赛前摆Pose这个操作就是她想出来的，本次季后赛余霜、
-			小钰和希然都上过场，唯有骆歆没上场，所以大家都比较好奇为什么LPL官方不让骆歆当季后赛主持了，
-			下面就和大家好好说一下这件事
-			LPL季后赛只剩下BLG和JDG两队的决赛了，不过决赛还没开始所以很多观众都开始回味之前的比赛，
-			有细心的网友发现了一个问题，那就是LPL官方主持骆歆在季后赛一次都没上场，乍一看可能没什么，
-			不过骆歆是所有主持中最会整活的，赛前摆Pose这个操作就是她想出来的，本次季后赛余霜、
-			小钰和希然都上过场，唯有骆歆没上场，所以大家都比较好奇为什么LPL官方不让骆歆当季后赛主持了，
-			下面就和大家好好说一下这件事
+			{{article.content}}
 		</view>
 	</view>
 </template>
@@ -32,9 +16,19 @@
 	export default {
 		data() {
 			return {
-				
+				index: '', 
+        article: null,
 			};
-		}
+		},
+    onLoad(option) {
+      this.index = option.id
+      // 新闻接口
+      this.$fn.request('article',"GET",{}).then(res=>{
+      	console.log(res.data.data,'新闻')
+      	this.article=res.data.data[this.index]
+        console.log(this.article);
+      })
+    }
 	}
 </script>
 
@@ -46,6 +40,13 @@
 	text-align: center;
 	font-size: 34upx;
 	color: #000;
+}
+.author {
+  margin-top: 30upx;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  color: #000;
 }
 .detail{
 	margin-top: 30upx;
