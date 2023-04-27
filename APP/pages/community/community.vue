@@ -23,7 +23,7 @@
 		
 		
 		<!--  -->
-		<view class="three" style="margin-top: 60upx;">
+		<!-- <view class="three" style="margin-top: 60upx;">
 			
 			 <view class="one disc">
 				 <view class="title">共计获得团队津贴</view>
@@ -41,11 +41,11 @@
 				 </view>
 			 </view>
 			 
-		</view>
+		</view> -->
 		
 		<!--  -->
 		<!-- <view class="titleCenter dis">我的推荐人:某某某</view> -->
-		<view class="tits">
+		<!-- <view class="tits">
 			<view class="title dis" @tap="bian(0)" :class="{color:currentIndex==0?true:false}">
 				团队详细
 			</view>
@@ -67,7 +67,7 @@
 					</view>
 				</uni-section>
 			</view>
-		</view>
+		</view> -->
 		
 		<bottom num='1'></bottom>
 	</view>

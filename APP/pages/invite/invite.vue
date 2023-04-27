@@ -1,8 +1,8 @@
 <template>
 	<view class="invite disc">
-		<view class="id dis">我的推荐ID:135845</view>
+		<view class="id dis">我的推荐ID:{{info.id}}</view>
 		<image src="https://img2.baidu.com/it/u=2020520018,1139302565&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800"></image>
-		<view class="btn dis">立即分享</view>
+		<view class="btn dis" @tap="fenxiang">立即分享</view>
 	</view>
 </template>
 
@@ -10,8 +10,22 @@
 	export default {
 		data() {
 			return {
-				
+				info:{}
 			};
+		},
+		onLoad() {
+			this.info=uni.getStorageSync('user_info')
+		},
+		methods:{
+			
+			fenxiang(){
+				// #ifdef APP-PLUS || H5
+				console.log(666)
+				  uni.share({
+				  	
+				  })
+				//#endif
+			}
 		}
 	}
 </script>

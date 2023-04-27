@@ -94,7 +94,7 @@
 					我的商品
 				</view>
 				<view class="item disc"  @tap="go('setting')">
-					<image src="../../static/myimg/shangpin.png"></image>
+					<image src="../../static/myimg/shezhi2.png"></image>
 					设置
 				</view>
 			</view>

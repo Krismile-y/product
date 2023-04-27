@@ -33,11 +33,11 @@
 		<!-- 八个标题 -->
 		<view class="eight" style="margin-top: 100upx;">
 			<view class="item disc">
-				<image src="../../static/index/pingtai.png"></image>
+				<image src="../../static/newIndex/pingtai.png"></image>
 				<view class="title">平台攻略</view>
 			</view>
 			<view class="item disc">
-				<image src="../../static/index/shijie.png" @tap="goHome('sign')"></image>
+				<image src="../../static/newIndex/qiandao.png" @tap="goHome('sign')"></image>
 				<view class="title">签到</view>
 			</view>
 			<view class="item disc">
@@ -45,23 +45,23 @@
 				<view class="title">绿色金融</view>
 			</view>
 			<view class="item disc">
-				<image src="../../static/index/fenxiang.png"></image>
+				<image src="../../static/newIndex/fenxiang.png"></image>
 				<view class="title">分享赚钱</view>
 			</view>
 			<view class="item disc">
-				<image src="../../static/index/tuandui.png"></image>
+				<image src="../../static/myimg/wode.png"></image>
 				<view class="title">我的团队</view>
 			</view>
 			<view class="item disc">
-				<image src="../../static/index/shouyui.png"></image>
+				<image src="../../static/newIndex/shouyi.png"></image>
 				<view class="title">我的收益</view>
 			</view>
 			<view class="item disc">
-				<image src="../../static/index/xiazia.png"></image>
+				<image src="../../static/newIndex/xiazia.png"></image>
 				<view class="title">APP下载</view>
 			</view>
 			<view class="item disc">
-				<image src="../../static/index/guanwang.png"></image>
+				<image src="../../static/newIndex/guanwang.png"></image>
 				<view class="title">进入官网</view>
 			</view>
 			<!-- 加个签到  + 得积分 -->

@@ -33,7 +33,7 @@
 					<view class="level-box">
 						会员等级：1级代理
 					</view>
-					<view class="screen-btn" @tap='chakan(item)'>
+					<view class="screen-btn dis" @tap='chakan(item)'>
 						查看
 					</view>
 				</view>
@@ -153,14 +153,15 @@
 					"limit": "10"
 				}
 				this.$fn.request('user_list_team', "GET", data).then(res => {
-					console.log(res.data.data, '我的团队信息')
+					// console.log(res.data.data, '我的团队信息')
 					
-					console.log(res.data.data)
+					// console.log(res.data.data)
 					this.last=res.data.data.data
-					if(this.last.total==0){
+					console.log(this.last.length,'目标')
+					if(this.last.length == 0){
 						this.fanyongShow=false
 						 // this.last=res.data.data.data
-						console.log(res.data.data.data)
+						// console.log(res.data.data.data)
 						
 					}
 				})
@@ -249,170 +250,6 @@
 	};
 </script>
 
-<style lang="less">
-	.box {
-		width: 90%;
-		margin: 30upx auto;
+<style lang="less" src='./myGroup.less'>
 
-		.daiding {
-			width: 100%;
-			height: 90upx;
-			border: 1upx solid #cccccc;
-			margin-top: 10upx;
-		}
-
-		.show {
-			border: 1upx solid #cccccc;
-			width: 100%;
-			height: 180upx;
-			font-size: 36upx;
-
-			.title {
-				margin-top: 10upx;
-			}
-		}
-
-		.three {
-			width: 100%;
-			margin-top: 10upx;
-			height: 40upx;
-			display: flex;
-
-			.threeItem {
-				height: 100%;
-				flex: 1;
-				color: #999;
-			}
-		}
-
-		.inputs {
-			width: 100%;
-			height: 60upx;
-			position: relative;
-			border: 1upx solid #cccccc;
-
-			input {
-				width: 80%;
-				height: 100%;
-				margin: 0 auto;
-			}
-
-			.pos {
-				width: 100upx;
-				height: 100%;
-				position: absolute;
-				right: 0;
-				top: 0;
-
-				image {
-					width: 20upx;
-					height: 20upx;
-				}
-			}
-		}
-
-		.picker-view {
-			width: 100%;
-			height: 60upx;
-			box-sizing: border-box;
-			margin-top: 20upx;
-			padding: 0 0 0 20upx;
-			border: 1upx solid #cccccc;
-			line-height: 60upx;
-			color: #0c0c0c;
-		}
-	}
-
-	.tits {
-		width: 80%;
-		height: 55upx;
-		display: flex;
-		color: red;
-		margin: 0 auto;
-		border-radius: 10upx;
-		border: 1upx solid red;
-		margin-top: 20upx;
-
-		.title {
-			width: 50%;
-			height: 100%;
-		}
-	}
-
-	.color {
-		background-color: red;
-		color: #fff;
-	}
-
-	.box {
-		width: 90%;
-		margin: auto;
-
-		.team-card {
-			width: 100%;
-			height: 260upx;
-			box-sizing: border-box;
-			padding: 16upx;
-			background-image: url('https://img2.baidu.com/it/u=2153006192,2110258112&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500');
-			background-size: 100% 100%;
-			background-repeat: no-repeat;
-			margin: 20upx 0;
-			border-radius: 25upx;
-			display: flex;
-			flex-direction: column;
-			position: relative;
-
-			.image-box {
-				width: 100%;
-				height: 140upx;
-				display: flex;
-
-				.img {
-					width: 140upx;
-					height: 140upx;
-					padding: 0;
-					margin: 0;
-					background-image: url('https://tanzhonghefazhan.liuguofei.cn/static/avatar.png');
-					background-repeat: no-repeat;
-					background-size: 100% 100%;
-				}
-
-				.message {
-					flex: 1;
-					display: flex;
-					flex-direction: column;
-					justify-content: space-evenly;
-					box-sizing: border-box;
-					padding: 0 0 0 10upx;
-
-					.people-name {
-						color: #fff;
-						font-size: 20px;
-					}
-
-					.people-phone {
-						color: #fff;
-					}
-				}
-			}
-
-			.level-box {
-				flex: 1;
-				line-height: 88upx;
-				font-size: 20px;
-				color: #fff;
-			}
-
-			.screen-btn {
-				position: absolute;
-				bottom: 24upx;
-				right: 18upx;
-				box-sizing: border-box;
-				padding: 6upx;
-				color: #fff;
-				background-color: red;
-				border-radius: 5px;
-			}
-		}
-	}
 </style>
