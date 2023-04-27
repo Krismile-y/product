@@ -12,7 +12,7 @@
 			<image src="../../static/common/shimingzhi.png" mode=""></image>
 			实名制
 			<view class="right dis">
-				未实名
+				{{shiming}}
 			</view>
 		</view>
 		<view class="item" style="margin-top: 0upx;" @tap="go(2)">

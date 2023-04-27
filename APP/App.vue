@@ -8,9 +8,9 @@
 			console.log('App Show')
 			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
 					'token')) {
-				// uni.navigateTo({
-				// 	url:'/pages/login/login'
-				// })
+				uni.navigateTo({
+					url:'/pages/login/login'
+				})
 			}
 
 		},

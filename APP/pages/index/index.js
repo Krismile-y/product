@@ -69,6 +69,11 @@ export default {
 		})			
 		},
 		methods: {
+			goHome(name){
+				uni.navigateTo({
+					url:`/pages/${name}/${name}`
+				})
+			},
             huanbao(){
 				uni.navigateTo({
 					url:'/pages/environmental/environmental'

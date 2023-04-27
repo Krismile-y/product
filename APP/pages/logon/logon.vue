@@ -15,7 +15,7 @@
 		<view class="inputBox" >
 			<view class="inputs">
 				<view class="title">电话</view>
-				<input type="text" placeholder="please enter phone" v-model="phone">
+				<input type="text" placeholder="请输入电话" v-model="phone">
 			</view>
 			
 			<view class="inputs">
@@ -30,19 +30,19 @@
 			
 			<view class="inputs">
 				<view class="title">身份证</view>
-				<input type="password" placeholder="" v-model="sfz">
+				<input type="" placeholder="请输入身份证号" v-model="sfz">
 			</view>
 			
 			<view class="inputs">
-				<view class="title">用户昵称</view>
-				<input type="password" placeholder="" v-model="username">
+				<view class="title">用户姓名</view>
+				<input type="" placeholder="请输入昵称" v-model="username">
 			</view>
 			
 			
 			
 			<view class="inputs">
 				<view class="title">邀请码</view>
-				<input type="password" placeholder="please enter password" v-model="agent_id">
+				<input type="" placeholder="请输入邀请码" v-model="agent_id">
 			</view>
 				
 			
@@ -90,7 +90,7 @@
 					
 				}
 				this.$fn.request('register','POST',data).then(res=>{
-					console.log(res)
+					console.log(res.data.msg)
 					if(res.data.code == 1){
 						uni.showToast({
 							title:'注册成功',
@@ -99,6 +99,12 @@
 						})
 						uni.navigateTo({
 							url:'/pages/login/login'
+						})
+					}else{
+						uni.showToast({
+							title:res.data.msg,
+							duration:1000,
+							icon:'error'
 						})
 					}
 				})

@@ -1,6 +1,7 @@
 export default {
 		data() {
 			return {
+				
 				typeIndex:0,
 				xiadan:1,//下单数量
 				currentDay:0,//目前天数
@@ -224,6 +225,7 @@ export default {
 			zhifuclose(){
 				this.zhifu=false
 			},
+			
 			 groupChange(n) {
 			        console.log('groupChange', n);
 			      },

@@ -40,13 +40,23 @@
 		</view>
 	
 	 <view>
-	        <drag-button
-			    style="margin-bottom: 100upx;"
-	            :isDock="true"
-	            :existTabBar="true"
-	            @btnClick="btnClick"
-	            @btnTouchstart="btnTouchstart"
-	            @btnTouchend="btnTouchend" />
+	     
+			   <drag-button
+			       style="margin-bottom: 100upx;"
+			       :isDock="true"
+			       :existTabBar="true"
+			       @btnClick="btnClick"
+			       @btnTouchstart="btnTouchstart"
+			       @btnTouchend="btnTouchend" />
+		 
+		<!-- <a href="">
+			 <drag-button
+			     style="margin-bottom: 100upx;"
+			     :isDock="true"
+			     :existTabBar="true"
+			      />
+		 </a> -->
+		   
 	    </view>
 	</view>
 </template>
@@ -61,6 +71,17 @@
 			};
 		},
 		methods:{
+			btnClick(){
+				console.log('btnClick')
+				window.location = ('https://www.baidu.com')
+			},
+			btnTouchstart(){
+				console.log('btnTouchstart')
+			},
+			btnTouchend(){
+				console.log('btnTouchend')
+				
+			},
 			go(name){
 				console.log(name)
 				uni.navigateTo({

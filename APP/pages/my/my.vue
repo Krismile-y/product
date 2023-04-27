@@ -10,10 +10,10 @@
 				</view>
 				<view class="center">
 					<view class="one">用户名：{{info.user_name}}</view>
-					<view class="two">我的推荐码:199875</view>
+					<view class="two">我的推荐码:{{info.id}}</view>
 				</view>
 				<view class="right dis" style="color: #000;">
-					<view class="shiming dis" >未实名</view>
+					<view class="shiming dis" >{{info.is_real_name==0?'未实名':'已实名'}}</view>
 					<!-- <image   @click="show = true" src="https://img2.baidu.com/it/u=2020520018,1139302565&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800" mode=""></image> -->
 				</view>
 			</view>
@@ -21,17 +21,17 @@
 				
 				<view class="boxs">
 					<view class="item disc">
-						<view class="tit">0.00￥</view>
+						<view class="tit">￥{{info.money_approve}}</view>
 						<view class="de">可提现</view>
 						
 						
 					</view>
 					<view class="item disc">
-						<view class="tit">0.00￥</view>
+						<view class="tit">￥{{today}}</view>
 						<view class="de">每日收益</view>
 					</view>
 					<view class="item disc">
-						<view class="tit">0.00￥</view>
+						<view class="tit">￥{{info.money_balance}}</view>
 						<view class="de">总收益</view>
 					</view>
 				</view>
@@ -80,7 +80,7 @@
 				<image src="../../static/myimg/jinru.png"></image>
 					进入官网
 				</view>
-				<view class="item disc" >
+				<view class="item disc"  @tap="go('test')">
 					<image src="../../static/myimg/jinrong.png"></image>
 					充值
 				</view>
@@ -157,7 +157,8 @@
 		data() {
 			return {
 				show:false,
-				info:{}
+				info:{},
+				today:"",
 			};
 		},
 		onShow() {
@@ -176,7 +177,8 @@
 			  "is_whole":"1"
 		  }
 		  this.$fn.request('income',"GET",data).then(res=>{
-			  console.log(res,'用户今日收益')
+			  console.log(res.data.data.today,'用户今日收益')
+			  this.today=res.data.data.today
 		  })
 				
 		 //用户二维码

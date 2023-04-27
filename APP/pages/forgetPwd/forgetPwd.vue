@@ -3,34 +3,36 @@
 		<view class="item">
 			<view class="left dis" >手机号</view>
 			<view class="right dis">
-				<input type="text" placeholder="请输入手机号">
+				<input type="text" placeholder="请输入手机号" v-model="phone">
 			</view>
 		</view>
 		
 		<view class="item">
-			<view class="left dis" >身份证号</view>
+			<view class="left dis">身份证号</view>
 			<view class="right dis">
-				<input type="text" placeholder="请输入身份证号">
+				<input type="text" placeholder="请输入身份证号"  v-model="sfz">
 			</view>
 		</view>
 		
 		<view class="item">
 			<view class="left dis" >新密码</view>
 			<view class="right dis">
-				<input type="text" placeholder="新密码">
+				<input type="text" placeholder="新密码" v-model="pwd">
 			</view>
 		</view>
 		
 		<view class="item">
 			<view class="left dis" >验证码</view>
 			<view class="right dis">
-				<input type="text" placeholder="请输入验证码">
+				<input type="text" placeholder="请输入验证码" v-model="captcha">
 			</view>
-			<view class="yanzheng"></view>
+			<view class="yanzheng">
+				<image :src="$url+'verify'" mode="" style="width: 100%;height: 100%;"></image>
+			</view>
 		</view>
 		
 		<view style="width: 100%;position: fixed;left: 0;bottom: 80upx;" class="dis">
-			<view class="in dis">
+			<view class="in dis" @tap="xiugai">
 				确认
 			</view>
 		</view>
@@ -42,7 +44,10 @@
 	export default {
 		data() {
 			return {
-			
+			captcha:'',
+			pwd:'',
+			phone:"",
+			sfz:""
 			};
 		},
 		methods:{
@@ -52,6 +57,33 @@
 						url:'/pages/revisePassword/revisePassword?type='+index
 					})
 				
+			},
+			xiugai(){
+				let data={
+					'phone':this.phone,
+					'pwd':this.pwd,
+					'captcha':this.captcha,
+					'sfz':this.sfz
+				}
+				this.$fn.request('forget','POST',data).then(res=>{
+					console.log(res.data.msg)
+					if(res.data.code == 1){
+						uni.showToast({
+							title:res.data.msg,
+							icon:'success',
+							duration:1000
+						})
+						uni.navigateTo({
+							url:'/pages/login/login'
+						})
+					}else{
+						uni.showToast({
+							title:res.data.msg,
+							icon:'error',
+							duration:1000
+						})
+					}
+				})
 			}
 		}
 	}
@@ -97,6 +129,10 @@
 			position: absolute;
 			right: 0;
 			top: 0;
+			image{
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 }

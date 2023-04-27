@@ -1,9 +1,11 @@
 <template>
 	<view class="content">
+       <!-- 手写拉起框 -->
+     <!-- <view class="myBox"></view> -->
 
 		<!-- 弹出层 -->
 		<view>
-			<u-popup :show="show" @close="close" @open="open" round='60'>
+			<u-popup :show="show" @close="close" @open="open" round='60' style="z-index: 9999;">
 				<view class="popup">
 					<scroll-view scroll-y="true" style="width: 100%;height: 100%;overflow: hidden;">
 						<view class="investDetail">
@@ -19,19 +21,19 @@
 							<view class="li" style=" font-weight: 580;">
 								项目规模：
 								<view class="pos dis">
-									<text style="color: red;">{{detail.goods_agent_1}}</text>万元
+									<text style="color: red;">{{detail.goods_money}}</text>万元
 								</view>
 							</view>
 							<view class="li" style=" font-weight: 580;">
 								每日分红：
 								<view class="pos dis">
-									<text style="color: red;">{{detail.goods_agent_2}}</text>万元
+									<text style="color: red;">{{detail.day_red}}</text>元
 								</view>
 							</view>
 							<view class="li" style=" font-weight: 580;">
 								投资周期：
 								<view class="pos dis">
-									<text style="color: red;">{{detail.goods_agent_3}}</text>万元
+									<text style="color: red;">{{detail.period}}</text>天
 								</view>
 							</view>
 							<view class="li" style="font-weight: 600;">
@@ -83,11 +85,6 @@
 		</view>
 		<!--  -->
 
-
-
-
-
-
 		<view class="top">
 			<view class="xia " style="">
 
@@ -119,7 +116,7 @@
 		<view>
 			
 			<!-- 立即认购拉起框 -->
-			<u-popup :show="zhifu" @close="zhifuclose" @open="zhifuopen" round='60'>
+			<u-popup :show="zhifu" @close="zhifuclose" @open="zhifuopen" round='60' style="z-index: 33;">
 				
 				
 				<view class="box" >
@@ -131,8 +128,17 @@
 							<view class="zuo dis" @tap="jia">+</view>
 						</view>
 					</view>
+					
+					<!-- 选择天数 -->
+					<!-- <view class="shuliang" @tap='tianshushow=true'>
+						<view class="shuliangItem" style="padding-left: 30upx;">选择天数</view>
+						<view class="shuliangItem xiangyou" >
+							<image src="../../static/common/xuanze.png" mode=""></image>
+						</view>
+						
+					</view> -->
 					<!--  -->
-					<view class="tianshuBox">
+					<view class="tianshuBox" v-show="!false">
 						<scroll-view scroll-x="true"  style="width: 100vw;height: 200upx;white-space: nowrap">
 							<view class="tianshuItem" v-for="(item,index) in dayID" @tap="rightClick(index,item)" :class="{d:currentDay==index?true:false}">
 								<view class="info">

@@ -39,26 +39,39 @@
 
 		</view>
 
-
-        <view class="av">
-			<view class="left">
-				<view>我的 推荐人：mr:li</view>
-				<view>我的积分：2222</view>
+		<view class="top" style="position: relative;">
+        <view class="toAddress">
+			<view class="item disc">
+				<view>我的积分</view>
+				<view>{{info.money_integral}}</view>
 			</view>
-			<view class="right dis">
-				<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465" mode=""></image>
+			<view class="item dis">
+				<image src="../../static/common/weizhi.png" mode="" @tap='address'></image>
 			</view>
 		</view>
-		<view class="newTop ">
+		</view>
+		
+		<view class="av" v-show="false">
+			
+			<view class="left">
+				<view>我的 推荐人：mr:li</view>
+				<view>我的积分：{{info.money_integral}}</view>
+			</view>
+			<view class="right dis">
+				<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465"
+					mode=""></image>
+			</view>
+		</view>
+		<view class="newTop " v-show="false">
 			<view>可提现：0.00</view>
-            <view>每日收益：0.00</view>
+			<view>每日收益：0.00</view>
 			<view>总收益：0.00</view>
 			<view>绿币：0.00</view>
 			<view>碳票：0.00</view>
 			<view>积分：0.00</view>
 		</view>
 
-        <!-- ********** -->
+		<!-- ********** -->
 		<view class="box" style="margin-top: 60upx;">
 			<view class="shop disc" v-for="item in list" @tap="go(item)">
 				<image @tap="show=true"
@@ -67,7 +80,7 @@
 				<view class="title">{{item.wares_name}}</view>
 				<view class="detail">{{item.wares_money}}元</view>
 			</view>
-			
+
 		</view>
 
 		<bottom></bottom>
@@ -78,9 +91,10 @@
 	export default {
 		data() {
 			return {
-				item:{},//商品对象
+				item: {}, //商品对象
 				show: false,
-				list:[],//商品列表
+				list: [], //商品列表
+				info:{},//用户信息
 			};
 		},
 		onShow() {
@@ -88,6 +102,8 @@
 				duration: 100,
 				scrollTop: 120,
 			})
+			
+			this.info=uni.getStorageSync('user_info')
 			if (uni.getStorageSync('name') == 'shop') {
 				this.$store.state.one = true
 				this.$store.state.two = true
@@ -97,21 +113,21 @@
 		},
 		onLoad() {
 			// 积分兑换商品列表
-			let wares={}
-			this.$fn.request('wares/list',"GET",wares).then(res=>{
-				console.log(res.data.data.data,'积分兑换商品列表')
-				this.list=res.data.data.data
+			let wares = {}
+			this.$fn.request('wares/list', "GET", wares).then(res => {
+				console.log(res.data.data.data, '积分兑换商品列表')
+				this.list = res.data.data.data
 			})
-			
-			
+
+
 			// 积分兑换商品下单
 			// let order={}
 			// this.$fn.request('wares/order',"POST",order).then(res=>{
 			// 	console.log(res,'积分兑换商品下单')
 			// })
-			
-			
-			
+
+
+
 		},
 		methods: {
 			sign() {
@@ -119,26 +135,27 @@
 					url: '/pages/sign/sign'
 				})
 			},
-			duihuan(){
+			duihuan() {
 				// 积分下单
 				console.log(uni.getStorageSync('address'))
-				let data={
-					wid:this.item.id,
-					aid:uni.getStorageSync('address').id,
+				let data = {
+					wid: this.item.id,
+					aid: uni.getStorageSync('address').id,
 				}
-				this.$fn.request('wares/order',"POST",data).then(res=>{
-					console.log(res,'积分兑换商品接口')
-					if(res.data.code==1){
+				this.$fn.request('wares/order', "POST", data).then(res => {
+					console.log(res, '积分兑换商品接口')
+					if (res.data.code == 1) {
 						uni.showToast({
-							duration:1000,
-							title:'兑换成功'
+							duration: 1000,
+							title: '兑换成功'
 						})
+						this.show=false	
 					}
 				})
-							
+
 			},
-			power(){//能量兑换商品
-				
+			power() { //能量兑换商品
+
 			},
 			go(item) {
 
@@ -147,8 +164,8 @@
 					scrollTop: 0,
 				})
 				console.log(item)
-				this.item=item
-				
+				this.item = item
+
 			},
 			open() {
 				// console.log('open');
@@ -163,9 +180,9 @@
 				})
 			},
 			// 我的地址
-			address(){
+			address() {
 				uni.navigateTo({
-					url:'/pages/address/address'
+					url: '/pages/address/address'
 				})
 			}
 		}

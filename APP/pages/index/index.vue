@@ -37,7 +37,7 @@
 				<view class="title">平台攻略</view>
 			</view>
 			<view class="item disc">
-				<image src="../../static/index/shijie.png"></image>
+				<image src="../../static/index/shijie.png" @tap="goHome('sign')"></image>
 				<view class="title">签到</view>
 			</view>
 			<view class="item disc">

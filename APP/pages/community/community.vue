@@ -1,75 +1,29 @@
 <template>
 	<view style="padding-bottom: 220upx;">
 		
-		<!-- <view class="tops">
-			<view class="center">
-				<view class="x dis" @tap="go('group')">
-					
-				</view>
-			</view>
-		</view> -->
+
 		
-		<view class="top">
-			<view class="shang">
-				<view class="left dis">
-					<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465" mode=""></image>
-				</view>
-				<view class="center">
-					<view class="one">我的推荐人:mmm	</view>
-					<view class="two">	我的推荐码：mr.Li</view>
-				</view>
-				
+		<view class="av">
+			<view class="left">
+				<view>我的 推荐人：mr:li</view>
+				<view >我的积分：2222</view>
 			</view>
-			<view class="xia " style="">
-				
-				<view class="boxsss">
-					<view class="item disc">
-						<view class="tit">0.00￥</view>
-						<view class="de">可提现</view>
-						
-						
-					</view>
-					<view class="item disc">
-						<view class="tit">0.00￥</view>
-						<view class="de">每日收益</view>
-					</view>
-					<view class="item disc">
-						<view class="tit">0.00￥</view>
-						<view class="de">总收益</view>
-					</view>
-				</view>
-				
-				<view class="boxsss">
-					<view class="item disc">
-						<view class="tit">0.00</view>
-						<view class="de">绿币</view>
-					</view>
-					<view class="item disc">
-						<view class="tit">0.00</view>
-						<view class="de">碳票</view>
-					</view>
-					<view class="item disc">
-						<view class="tit">0.00</view>
-						<view class="de">积分</view>
-					</view>
-				</view>
-				
+			<view class="right dis">
+				<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465" mode=""></image>
 			</view>
+		</view>
+		<view class="newTop ">
+			<view>可提现：0.00</view>
+		    <view>每日收益：0.00</view>
+			<view>总收益：0.00</view>
+			<view>绿币：0.00</view>
+			<view>碳票：0.00</view>
+			<view>积分：0.00</view>
 		</view>
 		
 		
-		<!-- <view class="boxs"  @tap="go('group')"  style="0upx;">
-			<view class="title">
-				<view class="shu"></view>
-				团队津贴
-				</view>
-			<view class="msg">
-				<image src="../../static/my/test.png" mode="" style="width: 95%;height: 260upx;margin: 0 auto;"></image>
-			</view>
-		</view> -->
-		
 		<!--  -->
-		<view class="three" style="margin-top: 370upx;">
+		<view class="three" style="margin-top: 60upx;">
 			
 			 <view class="one disc">
 				 <view class="title">共计获得团队津贴</view>

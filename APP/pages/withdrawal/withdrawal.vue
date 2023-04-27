@@ -57,8 +57,8 @@
 				</view>
 				
 				<view class="btns">
-					<view class="btn dis" @click="sendBtn">申请提现</view>
-					<view class="btn dis">产品复投</view>
+					<view class="btn dis" @click="sendBtn" style="background-color: #aaff7f;">申请提现</view>
+					<!-- <view class="btn dis">产品复投</view> -->
 				</view>
 			</view>
 			

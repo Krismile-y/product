@@ -34,7 +34,7 @@
 					确认密码
 				</view>
 				<view class="right">
-					<input type="text" placeholder="确认密码" v-model="quren">
+					<input type="text" placeholder="确认密码" v-model="queren">
 				</view>
 			</view>
 			
@@ -56,7 +56,10 @@
 		},
 		data() {
 			return {
-				  type:''	
+				  type:'',
+				  xin:'',
+				  jiu:"",
+				  queren:''	  
 			};
 		},
 		methods:{
@@ -65,11 +68,26 @@
 				let pwd={
 					'past_pwd':this.jiu,
 					'pwd':this.xin,
-					'uppwd':this.quren
+					'upwd':this.queren
 				}
 				this.$fn.request('pwd', 'POST',pwd).then(res => {
-					
-					
+					console.log(res.data.code)
+					if(res.data.code == 1){
+						uni.showToast({
+							duration:1000,
+							title:res.data.msg,
+							icon:'success'
+						})
+						uni.navigateTo({
+							url:'/pages/login/login'
+						})
+					}else{
+						uni.showToast({
+							duration:1000,
+							title:res.data.msg,
+							icon:'error'
+						})
+					}
 				}) 
 			}
 		}
