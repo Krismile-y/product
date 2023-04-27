@@ -130,27 +130,32 @@
 					</view>
 					
 					<!-- 选择天数 -->
-					<!-- <view class="shuliang" @tap='tianshushow=true'>
+					<view class="shuliang" @tap='tianshushow=true'>
 						<view class="shuliangItem" style="padding-left: 30upx;">选择天数</view>
-						<view class="shuliangItem xiangyou" >
+						<view class="shuliangItem xiangyou" @tap="dayChange = true">
 							<image src="../../static/common/xuanze.png" mode=""></image>
 						</view>
-						
-					</view> -->
-					<!--  -->
-					<view class="tianshuBox" v-show="!false">
-						<scroll-view scroll-x="true"  style="width: 100vw;height: 200upx;white-space: nowrap">
-							<view class="tianshuItem" v-for="(item,index) in dayID" @tap="rightClick(index,item)" :class="{d:currentDay==index?true:false}">
-								<view class="info">
-									<view>项目名：{{item.goods_name}}</view>						
-									<view>项目对应天数：{{item.project_day}}</view>
-									<view>项目每日收益：{{item.income}}</view>								
-									<view>项目总收益{{item.total_red_money}}</view>
-									
-								</view>
-							</view>
-						</scroll-view>
 					</view>
+					<!--  -->
+          <u-popup :show="dayChange" @close="dayChangeClose" @open="dayChangeOpen" round='60' style="z-index: 44;">
+            <view class="tianshuBox" v-show="!false">
+              <scroll-view scroll-y="true" style="width: 100%;height: 600upx;">
+                <view class="dayChange-title">
+                  天数选择
+                </view>
+                <view class="tianshuItem" v-for="(item,index) in dayID" @tap="rightClick(index,item)" :class="{d:currentDay==index?true:false}">
+                  <view class="info">
+                    <view>项目名：{{item.goods_name}}</view>						
+                    <view>项目对应天数：{{item.project_day}}</view>
+                    <view>项目每日收益：{{item.income}}</view>								
+                    <view>项目总收益{{item.total_red_money}}</view>
+                    
+                  </view>
+                </view>
+              </scroll-view>
+              
+            </view>
+          </u-popup>
 					
 					<view class="typeItem dis" v-for="(item,index) in type"
 					@tap="typeClick(index)"
@@ -180,5 +185,5 @@
 </script>
 
 <style lang="less" src='./invest.less' scoped>
-
+  
 </style>

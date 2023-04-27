@@ -12,6 +12,7 @@ export default {
 				currentIndex: 0,
 				type:['余额支付','微信支付'],
 				zhifu:false,
+        dayChange: false, //控制天数选择的弹出框
 				value:'',
 				list: [
 					'生态修复重大工程', '中国绿色发展基金', 'title3', 'title4',
@@ -100,6 +101,7 @@ export default {
 			rightClick(index,item){//天数
 			
 				this.currentDay=index
+        this.dayChangeClose()
 				console.log(item.id)
 			},
 			shang(){//上一步
@@ -225,6 +227,12 @@ export default {
 			zhifuclose(){
 				this.zhifu=false
 			},
+      dayChangeOpen(){
+      	
+      },
+      dayChangeClose(){
+      	this.dayChange=false
+      },
 			
 			 groupChange(n) {
 			        console.log('groupChange', n);

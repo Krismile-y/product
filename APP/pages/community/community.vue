@@ -21,6 +21,10 @@
 			<view>积分：0.00</view>
 		</view>
 		
+    <view class="team-box">
+      <myGroup />
+      
+    </view>
 		
 		<!--  -->
 		<!-- <view class="three" style="margin-top: 60upx;">
@@ -74,7 +78,9 @@
 </template>
 
 <script>
+  import myGroup from "../myGroup/myGroup.vue"
 	export default {
+    components: {myGroup},
 		data() {
 			return {
 				currentIndex:0,
