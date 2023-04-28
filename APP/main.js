@@ -20,7 +20,8 @@ Vue.component('tops',tops)
 Vue.component('navs',navs)
 Vue.use(uView);
 Vue.config.productionTip = false
-
+import md5 from 'js-md5';
+Vue.prototype.$md5 = md5;
 App.mpType = 'app'
 
 const app = new Vue({

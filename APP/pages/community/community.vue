@@ -4,22 +4,32 @@
 
 		
 		<view class="av">
-			<view class="left">
-				<view>我的 推荐人：mr:li</view>
-				<view >我的积分：2222</view>
-			</view>
-			<view class="right dis">
-				<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465" mode=""></image>
-			</view>
-		</view>
-		<view class="newTop ">
+					<view class="left">
+						<view style="font-weight: 700;font-family: inherit;font-size: 42upx;">{{info.user_name}}</view>
+						<view >我的积分：{{info.money_integral}}  加按钮然后跳商城</view>
+					</view>
+					<view class="right dis">
+						<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465" mode=""></image>
+					</view>
+				</view>
+				<view class="newTop ">
+					<view style="font-weight: 700;font-size: 40upx;margin-bottom: 20upx;">团队收益</view>
+				    <view style="font-size: 50upx;font-family: inherit;font-weight: 700;letter-spacing: 0upx;">￥1,000.20</view>
+					
+					
+					<view style="margin-top: 60upx;font-size: 30upx;font-weight: 700;">我的推荐码</view>
+					<view style="font-weight: 700;">{{info.id}}</view>
+					
+					<!--   -->
+				</view>
+		<!-- <view class="newTop ">
 			<view>可提现：0.00</view>
 		    <view>每日收益：0.00</view>
 			<view>总收益：0.00</view>
 			<view>绿币：0.00</view>
 			<view>碳票：0.00</view>
 			<view>积分：0.00</view>
-		</view>
+		</view> -->
 		
     <view class="team-box">
       <myGroup />
@@ -85,9 +95,11 @@
 			return {
 				currentIndex:0,
 				candidates: ['北京', '南京', '东京', '武汉', '天津', '上海', '海口'],
+				info:{}
 			};
 		},
 		onShow() {
+			this.info=uni.getStorageSync('user_info')
 			if(uni.getStorageSync('name') == 'community'){
 				this.$store.state.one=true
 				this.$store.state.two=false

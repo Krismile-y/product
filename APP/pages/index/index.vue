@@ -41,8 +41,8 @@
 				<view class="title">签到</view>
 			</view>
 			<view class="item disc">
-				<image src="../../static/index/lin.png"></image>
-				<view class="title">绿色金融</view>
+				<image src="../../static/myimg/xiaoxi.png"></image>
+				<view class="title">官方消息</view>
 			</view>
 			<view class="item disc">
 				<image src="../../static/newIndex/fenxiang.png"></image>

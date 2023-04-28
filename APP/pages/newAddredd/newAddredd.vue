@@ -116,7 +116,25 @@
 					'phone': this.phone,
 				}
 				this.$fn.request('address', "POST", data).then(res => {
-					console.log(res, '地址')
+					console.log(res.data, '地址')
+					if(res.data.code == 1){
+						uni.showToast({
+							title:'新增地址成功',
+							duration:1000,
+							icon:'success'
+						})
+						setTimeout(()=>{
+							uni.navigateTo({
+								url:'/pages/shop/shop'
+							})
+						},1000)
+					}else{
+						uni.showToast({
+							title:res.data.msg,
+							duration:1000,
+							icon:'error'
+						})
+					}
 				})
 			}
 		}

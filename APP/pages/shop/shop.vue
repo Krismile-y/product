@@ -3,13 +3,13 @@
 
 		<!-- 弹出层 -->
 		<view>
-			<u-popup :show="show" @close="close" @open="open" round='40'>
-				<view class="popup">
-					<scroll-view scroll-y="true" style="width: 100%;height: 100%;">
+			<u-popup :show="show" @close="close" @open="open" round="60">
+				<view class="popup " style="margin-top: 50px;">
+					<scroll-view scroll-y="true" style="width: 100%;height: 100%; ">
 						<view class="shopDetail">
 							<view style="background-color: #fff; padding-bottom: 30upx;">
 								<image
-									src="https://img0.baidu.com/it/u=528833255,3463981408&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800">
+									:src="item.head_img">
 								</image>
 								<view class="biaoti">
 									<view class="left dis">绿色商品</view>
@@ -75,7 +75,7 @@
 		<view class="box" style="margin-top: 60upx;">
 			<view class="shop disc" v-for="item in list" @tap="go(item)">
 				<image @tap="show=true"
-					src="https://img0.baidu.com/it/u=3098099923,3369715583&fm=253&fmt=auto&app=120&f=JPEG?w=889&h=500"
+					:src="item.head_img"
 					mode=""></image>
 				<view class="title">{{item.wares_name}}</view>
 				<view class="detail">{{item.wares_money}}元</view>
@@ -143,13 +143,19 @@
 					aid: uni.getStorageSync('address').id,
 				}
 				this.$fn.request('wares/order', "POST", data).then(res => {
-					console.log(res, '积分兑换商品接口')
+					// console.log(res.data.msg, '积分兑换商品接口')
 					if (res.data.code == 1) {
 						uni.showToast({
 							duration: 1000,
 							title: '兑换成功'
 						})
 						this.show=false	
+					}else{
+						uni.showToast({
+							duration: 1000,
+							title: res.data.msg,
+							icon:'error'
+						})
 					}
 				})
 

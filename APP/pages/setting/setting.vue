@@ -90,6 +90,7 @@
 			},
 			tuichu(){
 				uni.removeStorageSync('token');
+				// uni.removeStorageSync('address');
 				uni.navigateTo({
 					url:'/pages/login/login'
 				})

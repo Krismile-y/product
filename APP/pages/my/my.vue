@@ -42,7 +42,7 @@
 						<view class="de">绿币</view>
 					</view>
 					<view class="item disc">
-						<view class="tit">0.00</view>
+						<view class="tit">{{info.money_vote}}</view>
 						<view class="de">碳票</view>
 					</view>
 					<view class="item disc">
@@ -58,7 +58,7 @@
 		
 		
 		
-		<view class="box" style="margin-top: 340upx;">
+		<view class="box" style="margin-top: 280upx;">
 			<view class="title">
 				<view class="shu"></view>
 				活动内容

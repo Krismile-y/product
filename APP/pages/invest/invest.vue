@@ -12,7 +12,7 @@
 
 							<view class="tops">
 								<image
-									src="https://img0.baidu.com/it/u=528833255,3463981408&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800"
+									:src="detail.head_img"
 									mode=""></image>
 							</view>
 
@@ -58,7 +58,7 @@
 
 							<view class="li" style="color: #484848;font-weight: 510;">
 
-								<image src="../../static/logo.png" mode=""></image>
+								<text>￥</text>
 								<text style="font-size: 68upx; color: #000;">
 
 									{{detail.goods_money}}
@@ -73,7 +73,7 @@
 
 							<view class="tops">
 								<image
-									src="https://img0.baidu.com/it/u=528833255,3463981408&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800"
+									:src="detail.head_img"
 									mode=""></image>
 							</view>
 
@@ -103,7 +103,7 @@
 
 		<!-- 单个产品 -->
 		<view class="items" v-for="(item,index) in goods_list">
-			<image src="../../static/index/swiper.png"></image>
+			<image :src="item.head_img"></image>
 			<view class="tit">{{item.goods_name}}</view>
 			<view class="buy">
 				<view class="left">最低投资：{{item.goods_money}}元</view>

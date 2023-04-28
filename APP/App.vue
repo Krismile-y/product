@@ -6,6 +6,7 @@
 		},
 		onShow: function() {
 			console.log('App Show')
+
 			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
 					'token')) {
 				uni.navigateTo({
