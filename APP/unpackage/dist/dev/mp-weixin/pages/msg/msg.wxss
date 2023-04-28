@@ -1,0 +1,32 @@
+.item {
+  height: 200rpx;
+  width: 95%;
+  margin: 30rpx auto;
+  background-color: #eeeeee;
+  border-radius: 30rpx;
+  display: flex;
+}
+.item .left {
+  width: 30%;
+  height: 100%;
+}
+.item .left image {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+.item .right {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 32rpx;
+}
+.item .right .tit {
+  color: #bfbfbf;
+}
+.item .right .de {
+  margin-top: 20rpx;
+}
+

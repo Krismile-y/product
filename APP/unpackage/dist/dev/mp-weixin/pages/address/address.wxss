@@ -1,0 +1,70 @@
+.address {
+  width: 100%;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+.item {
+  width: 100%;
+  height: 160rpx;
+  display: flex;
+  position: relative;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.item .pos {
+  width: 60rpx;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.item .pos image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: 10rpx;
+}
+.item .left {
+  width: 30%;
+  height: 100%;
+}
+.item .left image {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+.item .right {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.item .right .title {
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+}
+.item .right .title .phone {
+  margin-left: 20rpx;
+}
+.item .right .title .moren {
+  color: #4bc93e;
+  border: 1rpx solid #4bc93e;
+  width: 70rpx;
+  font-size: 28rpx;
+  height: 30rpx;
+  margin-left: 20rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  border-radius: 10rpx;
+}
+.item .right .detail {
+  color: #999;
+  margin-top: 5rpx;
+  width: 88%;
+  font-size: 28rpx;
+}
+.color {
+  background-color: #FFF;
+}
+

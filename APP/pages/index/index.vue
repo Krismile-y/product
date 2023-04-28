@@ -13,14 +13,14 @@
 					<!-- <swiper-item style="width: 100%;height: 200upx;" v-for="(item,index) in banner" :key="index">
 						<image   :src="item.img" mode="" style="width: 100%;height: 100%;border-radius: 20upx;"></image>
 					</swiper-item>	 -->
-					<swiper-item style="width: 100%;height: 200upx;">
-						<image src="../../static/index/swiper.png" mode=""
+					<swiper-item style="width: 100%;height: 200upx;" v-for="(item,index) in banner">
+						<image :src="item.img" mode=""
 							style="width: 100%;height: 100%;border-radius: 20upx;"></image>
 					</swiper-item>
-					<swiper-item style="width: 100%;height: 200upx;">
+					<!-- <swiper-item style="width: 100%;height: 200upx;">
 						<image src="../../static/index/swiper2.png" mode=""
 							style="width: 100%;height: 100%;border-radius: 20upx;"></image>
-					</swiper-item>
+					</swiper-item> -->
 				</swiper>
 
 			</view>
@@ -120,8 +120,8 @@
 			热门新闻
 		</view>
 		<view class="xinwen" @tap="xinwen(index)" v-for="(item,index) in article" :key="index">
-			<view class="left">
-				{{item.content}}
+			<view class="left" v-html="item.content">
+				<!-- {{item.content}} -->
 			</view>
 			<view class="right dis">
 				<image src="../../static/my/jilu.png" mode=""></image>

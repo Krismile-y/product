@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "社区",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "bottom": "/components/bottom/bottom",
+    "my-group": "/pages/myGroup/myGroup"
+  }
+}

@@ -6,8 +6,8 @@
     <view class="author">
     	{{article.author}}
     </view>
-		<view class="detail">
-			{{article.content}}
+		<view class="detail" v-html="article.content">
+			<!-- {{article.content}} -->
 		</view>
 	</view>
 </template>

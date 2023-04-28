@@ -13,6 +13,7 @@ import dragButton from "@/components/drag-button/drag-button.vue"; //拖动按�
 Vue.component('dragButton',dragButton)
 Vue.prototype.$store = store
 Vue.prototype.$url ='http://api.tzhreefvg.top/api/'
+Vue.prototype.$url1 ='http://www.api.com/api/' 
 // Vue.prototype.$request =request
 Vue.prototype.$fn =fn
 Vue.component('bottom',bottom)

@@ -1,0 +1,64 @@
+.four.data-v-eee96c38 {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  position: fixed;
+  bottom: 200rpx;
+  left: 0;
+}
+.four .list.data-v-eee96c38 {
+  width: 70%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.four .list .items.data-v-eee96c38 {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #54d27e;
+  color: #fff;
+  margin-left: 20rpx;
+}
+.bottom.data-v-eee96c38 {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  background-color: #fff;
+  padding: 10rpx 0;
+}
+.bottom .item.data-v-eee96c38 {
+  position: relative;
+  z-index: 999999;
+  flex: 1;
+  height: 100%;
+  font-size: 28rpx;
+}
+.bottom .item .yuan.data-v-eee96c38 {
+  width: 80%;
+  height: 250px;
+  border-radius: 50%;
+}
+.bottom .item image.data-v-eee96c38 {
+  width: 30%;
+  height: 50%;
+  margin-bottom: 5rpx;
+}
+.bottom .y.data-v-eee96c38 {
+  width: 170rpx;
+  height: 170rpx;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0rpx;
+  z-index: 1;
+}
+.bottom .y image.data-v-eee96c38 {
+  width: 170rpx;
+  height: 170rpx;
+  border-radius: 50%;
+}
+

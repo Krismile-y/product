@@ -1,0 +1,62 @@
+.shopDetail {
+  background-color: #f3f3f3;
+  width: 100%;
+  height: 100vh;
+}
+.shopDetail image {
+  width: 100%;
+  height: 500rpx;
+}
+.shopDetail .biaoti {
+  width: 100%;
+  height: 70rpx;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  padding-left: 20rpx;
+  margin-top: 20rpx;
+}
+.shopDetail .biaoti .left {
+  width: 140rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  color: #fff;
+  background-color: red;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+.shopDetail .biaoti text {
+  font-weight: 600;
+}
+.shopDetail .tishi {
+  color: red;
+  font-size: 28rpx;
+  padding-left: 20rpx;
+}
+.shopDetail .buy {
+  width: 520rpx;
+  height: 70rpx;
+  margin: 30rpx auto;
+  background-color: #e6e6e6;
+  font-weight: 600;
+}
+.shopDetail .de {
+  width: 100%;
+  margin-top: 20rpx;
+  height: 120rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+}
+.shopDetail .btn {
+  width: 520rpx;
+  height: 70rpx;
+  margin: 30rpx auto;
+  background-image: linear-gradient(to right, rgba(85, 255, 0, 0), #aaff7f);
+  background-color: #54d27e;
+  font-weight: 600;
+  color: #fff;
+}
+

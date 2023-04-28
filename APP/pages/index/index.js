@@ -7,7 +7,7 @@ export default {
 				},
 				 banner:[],//轮播图
 				 article:[],//新闻
-				 text1: 'uView UI众多组件覆盖开发过程的各个需求，组件功能丰富，多端兼容。让您快速集成，开箱即用',
+				 text1: '',
 				 nowNum:0,//控制海报显示,
 				 posterShow:true,	 
 				 posterList:{
@@ -43,7 +43,13 @@ export default {
 			"type":"1",		
 		}
 		this.$fn.request('banner',"GET",data).then(res=>{
-			this.banner=res.data.data
+			let arr=res.data.data
+      arr.forEach((item,index)=> {
+        let strArr = item.img.split('\\')
+        let img = strArr.join('//')
+        this.banner.push({img:img})
+      })
+      console.log(this.banner,'轮播图');
 		})
 		
 		// 新闻接口
@@ -53,12 +59,23 @@ export default {
 		})
 		
 		// 公告接口
-		// let info={
-		// 	"type":"1"
-		// }
-		// this.$fn.request('notice',"GET",info).then(res=>{
-		// 	// console.log(res.data.data,'公告')
-		// })
+		let info={
+			"type":"1"
+		}
+		this.$fn.request('notice',"GET",info).then(res=>{
+			console.log(res.data.data,'公告')
+      let data = res.data.data;
+      let i = 0;
+      setInterval(()=> {
+        if(i<data.length) {
+          this.text1 = data[i].content
+          i++;
+        }else {
+          i=0
+        }
+        
+      },3000)
+		})
 		
 		// 客服接口
 		let kefu={

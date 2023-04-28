@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.drag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4bc93e;
+  box-shadow: 0 0 6rpx rgba(0, 0, 0, 0.4);
+  color: #fff;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  font-size: 24rpx;
+  position: fixed;
+  z-index: 999999;
+  color: #fff;
+}
+.drag.transition {
+  transition: left .3s ease,top .3s ease;
+}
+
