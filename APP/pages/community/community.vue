@@ -1,12 +1,13 @@
 <template>
-	<view style="padding-bottom: 220upx;">
-		
-
+	<view style="padding-bottom: 220upx;padding-top: 70upx;">
 		
 		<view class="av">
-					<view class="left">
+					<view class="left" style="">
 						<view style="font-weight: 700;font-family: inherit;font-size: 42upx;">{{info.user_name}}</view>
-						<view >我的积分：{{info.money_integral}}  加按钮然后跳商城</view>
+						<view style="font-size: 42upx; font-weight: 600;display: flex;align-items: center;">我的积分：{{info.money_integral}} 
+
+						 <view class="chakan" @tap="chakan"  style="padding: 10upx; background-color: greenyellow;color: #fff; font-size: 36upx;border-radius: 20upx;">查看</view>
+						 </view>
 					</view>
 					<view class="right dis">
 						<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465" mode=""></image>
@@ -15,8 +16,6 @@
 				<view class="newTop ">
 					<view style="font-weight: 700;font-size: 40upx;margin-bottom: 20upx;">团队收益</view>
 				    <view style="font-size: 50upx;font-family: inherit;font-weight: 700;letter-spacing: 0upx;">￥1,000.20</view>
-					
-					
 					<view style="margin-top: 60upx;font-size: 30upx;font-weight: 700;">我的推荐码</view>
 					<view style="font-weight: 700;">{{info.id}}</view>
 					
@@ -110,6 +109,11 @@
 		methods:{
 			bian(index){
 				this.currentIndex=index
+			},
+			chakan(){
+				uni.navigateTo({
+					url:'/pages/shop/shop'
+				})
 			}
 		}
 	}

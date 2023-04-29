@@ -22,7 +22,7 @@
 						投资
 					</view> -->
 					<view class="y">
-						<image src="../../static/common/lvse.jpg" mode=""></image>
+						<image src="../../static/common/jinrong.jpg" mode=""></image>
 					</view>
 				</view>
 			</view>

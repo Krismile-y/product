@@ -17,6 +17,14 @@
 		},
 		onHide: function() {
 			console.log('App Hide')
+			// #ifdef H5
+			// uni.removeStorageSync('token')
+			// #endif
+			
+			// #ifdef APP
+			// uni.removeStorageSync('token')
+			// #endif
+			
 		}
 	}
 </script>

@@ -77,8 +77,13 @@
 			<video src="" style="width: 100%;"></video>
 		</view> -->
 
+       
+
 		<!-- 新手 -->
-		<view class="new dis">新手体验</view>
+		<view class="news dis" >
+			新手体验
+			<!-- <image src="../../static/index/xinshou.png" mode=""></image> -->
+		</view>
 
 		<!-- 快捷 -->
 		<view class="kuaijie">
@@ -96,7 +101,7 @@
 		</view>
 
 		<!-- 轮播 -->
-		<swiper :autoplay="true" :interval="3000" :duration="1000" class="swiper">
+		<swiper :autoplay="true" :interval="3000" :duration="1000" class="swiper" :circular='true'>
 			<swiper-item class="swiperItem">
 				<view class="item dis">
 					<image

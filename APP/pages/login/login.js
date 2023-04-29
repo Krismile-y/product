@@ -90,9 +90,11 @@ export default {
 							uni.setStorageSync('user_info',res.data.data)
 						})
 					}else if(res.data.code !==1){
+						console.log(res.data.msg)
 						uni.showToast({
 							duration:1000,
-							title:'账号或者密码错误',
+							icon:"error",
+							title:res.data.msg,
 							success() {
 								this.pwd=''
 								this.phone=''
