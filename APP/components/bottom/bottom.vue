@@ -64,8 +64,11 @@ import { vShow } from "vue";
 		},
 		data() {
 			return {
+				num:0,
                 show:false,
 				one:true,
+				indexNum:true,
+				communityNum:true,
 				list:[
 					{
 						title:'首页',
@@ -109,56 +112,91 @@ import { vShow } from "vue";
 				// 	})
 				// }
 			},
+			bibao(){
+				let zhuangtai=0
+				return function(){
+					return zhuangtai++
+					console.log(zhuangtai)
+				}
+			},
 			go(index) {
-				console.log(index)
-				
-				// this.list[index].src=this.active[index]
 				
 				
 				if (index == 0) {
-					uni.setStorageSync('name','index')
-					this.$store.state.one=false
-					this.$store.state.two=true
-					this.$store.state.three=true
-					this.$store.state.four=true
+					if(uni.getStorageSync('name')=='index'){
+						return
+					}else{
+						uni.setStorageSync('name','index')
+						this.$store.state.one=false
+						this.$store.state.two=true
+						this.$store.state.three=true
+						this.$store.state.four=true
+						this.indexNum==false
+						uni.navigateTo({
+							url: '/pages/index/index'
+						})
+					}
 					
-					uni.navigateTo({
-						url: '/pages/index/index'
-					})
+					
+					
 				} else if (index == 1) {
-					uni.setStorageSync('name','community')
-					this.$store.state.one=true
-					this.$store.state.two=false
-					this.$store.state.three=true
-					this.$store.state.four=true
+					   
+						if(uni.getStorageSync('name')=='community'){
+							
+							return
+						}else{
+							uni.setStorageSync('name','community')
+							console.log(uni.getStorageSync('name'))
+							this.$store.state.one=true
+							this.$store.state.two=false
+							this.$store.state.three=true
+							this.$store.state.four=true
+							
+							uni.navigateTo({
+								url: '/pages/community/community'
+							})
+						}
 					
-					uni.navigateTo({
-						url: '/pages/community/community'
-					})
+					
 				} else if (index == 99) {
+					
 					// uni.navigateTo({
 					// 	url: '/pages/invest/invest'
 					// })
 					this.show=!this.show
 					
 				} else if (index == 2) {
-					uni.setStorageSync('name','shop')
-				    this.$store.state.one=true
-				    this.$store.state.two=true
-				    this.$store.state.three=false
-				    this.$store.state.four=true
-					uni.navigateTo({
-						url: '/pages/shop/shop'
-					})
+					
+					if(uni.getStorageSync('name')=='shop'){
+						
+						return
+					}else{
+						uni.setStorageSync('name','shop')
+						this.$store.state.one=true
+						this.$store.state.two=true
+						this.$store.state.three=false
+						this.$store.state.four=true
+						uni.navigateTo({
+							url: '/pages/shop/shop'
+						})
+					}
+					
+					
 				}else if (index == 3) {
-					uni.setStorageSync('name','my')
-					this.$store.state.one=true
-					this.$store.state.two=true
-					this.$store.state.three=true
-					this.$store.state.four=false
-					uni.navigateTo({
-						url: '/pages/my/my'
-					})
+					if(uni.getStorageSync('name')=='my'){
+						return
+					}else{
+						uni.setStorageSync('name','my')
+						this.$store.state.one=true
+						this.$store.state.two=true
+						this.$store.state.three=true
+						this.$store.state.four=false
+						uni.navigateTo({
+							url: '/pages/my/my'
+						})
+					}
+					
+					
 				}
 			},
 		}

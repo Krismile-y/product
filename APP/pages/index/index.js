@@ -38,6 +38,7 @@ export default {
 			
 		},
 		onLoad(){
+			 console.log(uni.getStorageSync('name'))
 		// 轮播图接口
 		let data={
 			"type":"1",		
