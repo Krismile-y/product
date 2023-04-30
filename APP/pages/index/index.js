@@ -1,6 +1,7 @@
 export default {
 		data() {
 			return {
+				out:0,
 				obj:{
 					type:'index',
 					index:0,
@@ -38,11 +39,28 @@ export default {
 			
 		},
 		onBackPress(event) {
+			if(this.out == 0){
+				this.out++
+				uni.showToast({
+					duration:1000,
+					title:'再按一次退出程序',
+					icon:"none"
+				})
+			}else if(this.out>=1){
+				if (plus.os.name.toLowerCase() === 'android') {
+					 plus.runtime.quit();
+				}
+				uni.removeStorageSync('token')
+			}
+			
 		    if (event.from === 'backbutton') {
 		          this.overlayShow = true;
+				
 		            return true;
-		        }
-		        return false;
+		        }else{		
+					// return false
+				}
+		        
 		  },
 		onLoad(){
 			 

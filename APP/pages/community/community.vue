@@ -94,15 +94,33 @@
 			return {
 				currentIndex:0,
 				candidates: ['北京', '南京', '东京', '武汉', '天津', '上海', '海口'],
-				info:{}
+				info:{},
+				out:0,
 			};
 		},
 		onBackPress(event) {
+			if(this.out == 0){
+				this.out++
+				uni.showToast({
+					duration:1000,
+					title:'再按一次退出程序',
+					icon:"none"
+				})
+			}else if(this.out>=1){
+				if (plus.os.name.toLowerCase() === 'android') {
+					 plus.runtime.quit();
+				}
+				uni.removeStorageSync('token')
+			}
+			
 		    if (event.from === 'backbutton') {
 		          this.overlayShow = true;
+				
 		            return true;
-		        }
-		        return false;
+		        }else{		
+					// return false
+				}
+		        
 		  },
 		onShow() {
 			this.info=uni.getStorageSync('user_info')

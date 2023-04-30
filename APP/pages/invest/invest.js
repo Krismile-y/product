@@ -1,7 +1,7 @@
 export default {
 		data() {
 			return {
-				
+				out:0,//退出参数
 				typeIndex:0,
 				xiadan:1,//下单数量
 				currentDay:0,//目前天数
@@ -72,11 +72,28 @@ export default {
 	
 		},
 		onBackPress(event) {
+			if(this.out == 0){
+				this.out++
+				uni.showToast({
+					duration:1000,
+					title:'再按一次退出程序',
+					icon:"none"
+				})
+			}else if(this.out>=1){
+				if (plus.os.name.toLowerCase() === 'android') {
+					 plus.runtime.quit();
+				}
+				uni.removeStorageSync('token')
+			}
+			
 		    if (event.from === 'backbutton') {
 		          this.overlayShow = true;
+				
 		            return true;
-		        }
-		        return false;
+		        }else{		
+					// return false
+				}
+		        
 		  },
 		onShow() {
 			uni.pageScrollTo({
