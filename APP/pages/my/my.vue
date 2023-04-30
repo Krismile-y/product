@@ -197,6 +197,7 @@
 	     },
 	   
 		onShow() {
+			this.out=0
 			if(uni.getStorageSync('name') == 'my'){
 				this.$store.state.one=true
 				this.$store.state.two=true

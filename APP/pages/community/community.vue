@@ -123,6 +123,7 @@
 		        
 		  },
 		onShow() {
+			this.out=0
 			this.info=uni.getStorageSync('user_info')
 			if(uni.getStorageSync('name') == 'community'){
 				this.$store.state.one=true

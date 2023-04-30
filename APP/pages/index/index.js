@@ -27,6 +27,7 @@ export default {
 			}
 		},
 		onShow(){
+			this.out=0
 			uni.setStorageSync('name','index')
 			if(uni.getStorageSync('name') == 'index'){
 				this.$store.state.one=false

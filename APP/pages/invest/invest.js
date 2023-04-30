@@ -96,6 +96,7 @@ export default {
 		        
 		  },
 		onShow() {
+			this.out=0
 			uni.pageScrollTo({
 				duration:100,
 				scrollTop:120,
