@@ -24,6 +24,7 @@
 				link:""
 			};
 		},
+		
 		onLoad() {
 			this.$fn.request('thigh_image','GET',{}).then(res=>{
 				this.name=res.data.data.name

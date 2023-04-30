@@ -97,6 +97,13 @@
 				info:{}
 			};
 		},
+		onBackPress(event) {
+		    if (event.from === 'backbutton') {
+		          this.overlayShow = true;
+		            return true;
+		        }
+		        return false;
+		  },
 		onShow() {
 			this.info=uni.getStorageSync('user_info')
 			if(uni.getStorageSync('name') == 'community'){

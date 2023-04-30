@@ -37,8 +37,15 @@ export default {
 			
 			
 		},
+		onBackPress(event) {
+		    if (event.from === 'backbutton') {
+		          this.overlayShow = true;
+		            return true;
+		        }
+		        return false;
+		  },
 		onLoad(){
-			 console.log(uni.getStorageSync('name'))
+			 
 		// 轮播图接口
 		let data={
 			"type":"1",		

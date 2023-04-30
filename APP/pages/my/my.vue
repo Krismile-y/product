@@ -161,6 +161,23 @@
 				today:"",
 			};
 		},
+		onBackPress(){
+			console.log('上一级返回')
+		},
+		// mounted(){
+		//   // #ifdef APP-PLUS
+		// let currentWebview = this.$mp.page.$getAppWebview(); //获取当前页面的webview对象
+		//    currentWebview.setStyle({ popGesture: 'none' });
+		// // #endif
+		// },
+	    onBackPress(event) {
+	        if (event.from === 'backbutton') {
+	              this.overlayShow = true;
+	                return true;
+	            }
+	            return false;
+	      },
+	   
 		onShow() {
 			if(uni.getStorageSync('name') == 'my'){
 				this.$store.state.one=true

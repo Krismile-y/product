@@ -71,6 +71,13 @@ export default {
 			
 	
 		},
+		onBackPress(event) {
+		    if (event.from === 'backbutton') {
+		          this.overlayShow = true;
+		            return true;
+		        }
+		        return false;
+		  },
 		onShow() {
 			uni.pageScrollTo({
 				duration:100,
