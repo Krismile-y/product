@@ -612,9 +612,19 @@ var render = function () {
         [_c("u-notice-bar", { attrs: { _i: 33 } })],
         1
       ),
-      _c("uni-view", { staticClass: _vm._$g(34, "sc"), attrs: { _i: 34 } }, [
-        _vm._v("新手体验"),
-      ]),
+      _c(
+        "uni-view",
+        {
+          staticClass: _vm._$g(34, "sc"),
+          attrs: { _i: 34 },
+          on: {
+            click: function ($event) {
+              return _vm.$handleViewEvent($event)
+            },
+          },
+        },
+        [_vm._v("新手体验")]
+      ),
       _c(
         "uni-view",
         { staticClass: _vm._$g(35, "sc"), attrs: { _i: 35 } },

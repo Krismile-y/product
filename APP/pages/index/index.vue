@@ -80,7 +80,7 @@
        
 
 		<!-- 新手 -->
-		<view class="news dis" >
+		<view class="news dis" @tap='xinshou'>
 			新手体验
 			<!-- <image src="../../static/index/xinshou.png" mode=""></image> -->
 		</view>

@@ -112,6 +112,11 @@ export default {
 		})			
 		},
 		methods: {
+			xinshou(){
+				uni.navigateTo({
+					url: '/pages/invest/invest?id=' + 1
+				})
+			},
 			goHome(name){
 				uni.navigateTo({
 					url:`/pages/${name}/${name}`
