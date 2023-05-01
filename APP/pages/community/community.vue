@@ -6,7 +6,7 @@
 						<view style="font-weight: 700;font-family: inherit;font-size: 42upx;">{{info.user_name}}</view>
 						<view style="font-size: 42upx; font-weight: 600;display: flex;align-items: center;">我的积分：{{info.money_integral}} 
 
-						 <view class="chakan" @tap="chakan"  style="padding: 10upx; background-color: greenyellow;color: #fff; font-size: 36upx;border-radius: 20upx;">查看</view>
+						 <view class="chakan" @tap="chakan"  style="padding: 10upx; background-color: greenyellow;color: #fff; font-size: 36upx;border-radius: 20upx;margin-left: 15upx;">查看</view>
 						 </view>
 					</view>
 					<view class="right dis">
@@ -145,6 +145,6 @@
 	}
 </script>
 
-<style lang="less" src='./community.less'>
+<style lang="less" src='./community.less' scoped>
 
 </style>

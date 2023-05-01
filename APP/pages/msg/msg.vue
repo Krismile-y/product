@@ -2,9 +2,9 @@
 	<view class="msg">
 		
 		<view class="item"  @tap="go(0)">
-			<view class="left dis">
+			<!-- <view class="left dis">
 				<image src="../../static/my/xitongtongtongzhi.png" mode=""></image>
-			</view>
+			</view> -->
 			<view class="right ">
 				<view class="tit">系统通知</view>
 				<view class="de">
@@ -14,9 +14,9 @@
 		</view>
 		
 		<view class="item" @tap="go(1)">
-			<view class="left dis"  >
+			<!-- <view class="left dis"  >
 				<image src="../../static/my/zuixinhuodong.png" mode=""></image>
-			</view>
+			</view> -->
 			<view class="right ">
 				<view class="tit">最新活动</view>
 				<view class="de">
@@ -26,9 +26,9 @@
 		</view>
 		
 		<view class="item" @tap="go(2)">
-			<view class="left dis"  >
+			<!-- <view class="left dis"  >
 				<image src="../../static/my/pingtaigonggao.png" mode=""></image>
-			</view>
+			</view> -->
 			<view class="right ">
 				<view class="tit">平台公告</view>
 				<view class="de">
@@ -38,9 +38,9 @@
 		</view>
 		
 		<view class="item"  @tap="go(3)">
-			<view class="left dis">
+			<!-- <view class="left dis">
 				<image src="../../static/my/zhanneixin.png" mode=""></image>
-			</view>
+			</view> -->
 			<view class="right ">
 				<view class="tit">站内信</view>
 				<view class="de">
@@ -78,8 +78,9 @@
 	height: 200upx;
 	width: 95%;
 	margin: 30upx auto;
-	background-color: #eeeeee;
-	border-radius: 30upx;
+	border: 1upx solid #cccccc;
+	border-radius: 20upx;
+	box-shadow:4px 4px 15px #cccccc;
 	display: flex;
 	.left{
 		width: 30%;
@@ -92,6 +93,7 @@
 		}
 	}
 	.right{
+		padding-left: 60upx;
 		width: 70%;
 		height: 100%;
 		display: flex;
