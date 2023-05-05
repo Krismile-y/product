@@ -1,5 +1,5 @@
 <template>
-	<view class="content" style="">
+	<view class="content" style="height: 1500upx; padding-bottom: 100upx;">
 
 		<!-- 弹出层 -->
 		<view>
@@ -39,49 +39,52 @@
 
 		</view>
 
-		<view class="top" style="position: relative;">
-        <view class="toAddress">
-			<view class="item disc">
-				<view>我的积分</view>
-				<view>{{info.money_integral}}</view>
-			</view>
-			<view class="item dis">
-				<image src="../../static/common/weizhi.png" mode="" @tap='address'></image>
-			</view>
-		</view>
-		</view>
+        <!-- 滑动 -->
 		
-		<view class="av" v-show="false">
+			<view class="top" style="position: relative;">
+			<view class="toAddress">
+				<view class="item disc">
+					<view>我的积分</view>
+					<view>{{info.money_integral}}</view>
+				</view>
+				<view class="item dis">
+					<image src="../../static/common/weizhi.png" mode="" @tap='address'></image>
+				</view>
+			</view>
+			</view>
 			
-			<view class="left">
-				<view>我的 推荐人：mr:li</view>
-				<view>我的积分：{{info.money_integral}}</view>
+			<view class="av" v-show="false">
+				
+				<view class="left">
+					<view>我的 推荐人：mr:li</view>
+					<view>我的积分：{{info.money_integral}}</view>
+				</view>
+				<view class="right dis">
+					<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465"
+						mode=""></image>
+				</view>
 			</view>
-			<view class="right dis">
-				<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465"
-					mode=""></image>
+			<view class="newTop " v-show="false">
+				<view>可提现：0.00</view>
+				<view>每日收益：0.00</view>
+				<view>总收益：0.00</view>
+				<view>绿币：0.00</view>
+				<view>碳票：0.00</view>
+				<view>积分：0.00</view>
 			</view>
-		</view>
-		<view class="newTop " v-show="false">
-			<view>可提现：0.00</view>
-			<view>每日收益：0.00</view>
-			<view>总收益：0.00</view>
-			<view>绿币：0.00</view>
-			<view>碳票：0.00</view>
-			<view>积分：0.00</view>
-		</view>
-
-		<!-- ********** -->
-		<view class="box" style="margin-top: 60upx;">
-			<view class="shop disc" v-for="item in list" @tap="go(item)">
-				<image @tap="show=true"
-					:src="item.head_img"
-					mode=""></image>
-				<view class="title">{{item.wares_name}}</view>
-				<view class="detail">{{item.wares_money}}元</view>
+			
+			<!-- ********** -->
+			<view class="box" style="margin-top: 60upx;">
+				<view class="shop disc" v-for="item in list" @tap="go(item)">
+					<image @tap="show=true"
+						:src="item.head_img"
+						mode=""></image>
+					<view class="title">{{item.wares_name}}</view>
+					<view class="detail">{{item.wares_money}}元</view>
+				</view>
+			
 			</view>
-
-		</view>
+		
 
 		<bottom></bottom>
 	</view>
@@ -96,6 +99,7 @@
 				show: false,
 				list: [], //商品列表
 				info:{},//用户信息
+				top:"",
 			};
 		},
 		onBackPress(event) {
@@ -123,11 +127,9 @@
 		        
 		  },
 		onShow() {
+			
 			this.out=0
-			uni.pageScrollTo({
-				duration: 100,
-				scrollTop: 120,
-			})
+			
 			
 			this.info=uni.getStorageSync('user_info')
 			if (uni.getStorageSync('name') == 'shop') {
@@ -136,6 +138,12 @@
 				this.$store.state.three = false
 				this.$store.state.four = true
 			}
+		},
+		mounted() {
+			uni.pageScrollTo({
+				duration: 100,
+				scrollTop: 120,
+			})
 		},
 		onLoad() {
 			// 积分兑换商品列表
@@ -175,7 +183,11 @@
 							duration: 1000,
 							title: '兑换成功'
 						})
-						this.show=false	
+						this.show=false
+							uni.pageScrollTo({
+								duration: 100,
+								scrollTop: 0,
+							})
 					}else{
 						uni.showToast({
 							duration: 1000,

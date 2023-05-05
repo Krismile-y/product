@@ -36,6 +36,12 @@ export default {
 				          radiovalue1: '苹果',
 			};
 		},
+		mounted() {
+			uni.pageScrollTo({
+				duration: 100,
+				scrollTop: 120,
+			})
+		},
 		onLoad(options) {
 			//  初始页面渲染
 			this.currentIndex = options.id
@@ -97,10 +103,7 @@ export default {
 		  },
 		onShow() {
 			this.out=0
-			uni.pageScrollTo({
-				duration:100,
-				scrollTop:120,
-			})
+			
 			this.$store.state.one=true
 			this.$store.state.two=true
 			this.$store.state.three=true

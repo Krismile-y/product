@@ -140,6 +140,7 @@
 				uni.navigateTo({
 					url:'/pages/shop/shop'
 				})
+				uni.setStorageSync('name','shop')
 			}
 		}
 	}

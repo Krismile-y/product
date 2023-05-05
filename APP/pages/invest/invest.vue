@@ -1,5 +1,5 @@
 <template>
-	<view class="content">
+	<view class="content" style="height: 1500upx; padding-bottom: 100upx;">
        <!-- 手写拉起框 -->
      <!-- <view class="myBox"></view> -->
 
