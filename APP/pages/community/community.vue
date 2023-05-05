@@ -31,71 +31,69 @@
 		</view> -->
 		
     <view class="team-box">
-      <myGroup />
-      
+      <!-- <myGroup ref="myGroup" /> -->
+      <view class="list" >
+      	<view class="item" @tap="go('myGroup',0)">
+      		<view class="left">团队详情</view>
+      		<view class="right">></view>
+      	</view>
+      </view>
+      <view class="list" >
+      	<view class="item" @tap="go('myGroup',1)">
+      		<view class="left">返佣记录</view>
+      		<view class="right">></view>
+      	</view>
+      </view>
+      <view class="overview">
+        返佣记录概览
+      </view>
+      <view class="" style="margin-top: 10upx;">
+      	<view class="item-box" v-for="(item,index) in tableData" :key="index">
+          <!-- 图标 -->
+      	  <view class="item-icon">
+      	    <image :src="moneyColor? payImg: paymentImg" mode="widthFix"></image>
+      	  </view>
+          <!-- 中间内容 -->
+          <view class="item-content">
+            <view class="item-source">
+              {{item.money_type_text}}
+            </view>
+            <view class="item-time">
+              {{item.create_time}}
+            </view>
+          </view>
+          <!-- 金额 -->
+          <view class="item-money" :style="moneyColor? {color:'#54C869'}: {color:'#EF8080'}">
+            {{item.money_amount}}
+          </view>
+      	</view>
+      </view>
     </view>
-		
-		<!--  -->
-		<!-- <view class="three" style="margin-top: 60upx;">
-			
-			 <view class="one disc">
-				 <view class="title">共计获得团队津贴</view>
-				 <view class="num">0.00￥</view>
-			 </view>
-			 
-			 <view class="two">
-				 <view class="item disc">
-					 <view class="title">共计直推人数</view>
-					 <view class="num">0人</view>
-				 </view>
-				 <view class="item disc">
-					 <view class="title">共计完成任务</view>
-					 <view class="num">0个</view>
-				 </view>
-			 </view>
-			 
-		</view> -->
-		
-		<!--  -->
-		<!-- <view class="titleCenter dis">我的推荐人:某某某</view> -->
-		<!-- <view class="tits">
-			<view class="title dis" @tap="bian(0)" :class="{color:currentIndex==0?true:false}">
-				团队详细
-			</view>
-			<view class="title dis"@tap="bian(1)" :class="{color:currentIndex==1?true:false}">
-				收益记录
-			</view>
-		</view>
-		
-		<view class="box">
-			<view class="threes">
-				<view class="threeItem dis">操作/时间</view>
-				<view class="threeItem dis">投资金额</view>
-				<view class="threeItem dis">2023记录</view>
-			</view>
-			<view class="" style="margin-top: -30upx;width: 100%;">
-				<uni-section title=""  >
-					<view class="example-body">
-						<uni-combox :border="true" :candidates="candidates" placeholder="请选择日期"></uni-combox>
-					</view>
-				</uni-section>
-			</view>
-		</view> -->
 		
 		<bottom num='1'></bottom>
 	</view>
 </template>
 
 <script>
-  import myGroup from "../myGroup/myGroup.vue"
+  import payImg from '../../static/common/pay.png';
+  import paymentImg from '../../static/common/payment.png';
 	export default {
-    components: {myGroup},
 		data() {
 			return {
 				currentIndex:0,
-				candidates: ['北京', '南京', '东京', '武汉', '天津', '上海', '海口'],
+        tableData: [], //表格数据
+        showPagination: false, //总数据小于单页展示数据，不显示分页条
+        // 每页数据量
+        pageSize: 3,
+        // 当前页
+        pageCurrent: 1,
+        // 数据总量
+        total: 0,
 				info:{},
 				out:0,
+        moneyColor: null,
+        payImg,
+        paymentImg,
 			};
 		},
 		onBackPress(event) {
@@ -132,6 +130,9 @@
 				this.$store.state.four=true
 			}
 		},
+    onLoad() {
+      this.getData()
+    },
 		methods:{
 			bian(index){
 				this.currentIndex=index
@@ -141,7 +142,52 @@
 					url:'/pages/shop/shop'
 				})
 				uni.setStorageSync('name','shop')
-			}
+			},
+      getData(page, time) {
+      	let params = {
+      		'page': '1',
+      		'limit': "3",
+      		// 'time':"2023-04"
+      	}
+      	// params.time = time
+      	params.page = page
+      	params.limit = this.pageSize
+      	const that = this
+      	this.$fn.request('/log/rebate', "GET", params).then(res => {
+      		let data = res.data.data
+      		that.priceTotal = data.count_money
+      		that.tableData = data.data
+      		console.log(data);
+          that.tableData.forEach((item)=> {
+            if(item.money_amount>=0){
+              item.money_amount = `+￥${item.money_amount}`
+              that.moneyColor = true
+            }else {
+              item.money_amount = `-￥${Math.abs(item.money_amount)}`
+              that.moneyColor = false
+            }
+          })
+      		that.total = data.total
+      		// 判断分页条是否展示
+      		if (that.total <= that.pageSize) {
+      			that.showPagination = false
+      		} else {
+      			that.showPagination = true
+      		}
+      	})
+      },
+      // 分页触发
+      change(e) {
+      	// this.selectedIndexs.length = 0
+      	this.$refs.table.clearSelection()
+      	this.getData(e.current, this.dateText)
+      },
+      go(name,currentIndex){
+      	console.log(name)
+      	uni.navigateTo({
+      		url:`/pages/${name}/${name}?index=${currentIndex}`
+      	})
+      },
 		}
 	}
 </script>

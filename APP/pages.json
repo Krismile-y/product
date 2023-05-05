@@ -83,7 +83,12 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "反馈与帮助",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+                "navigationStyle":"custom",
+                "app-plus":{
+                  "titleView":false
+                }
+
             }
             
         }
@@ -92,7 +97,11 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "关于我们",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+                "navigationStyle":"custom",
+                "app-plus":{
+                  "titleView":false
+                }
             }
             
         }
@@ -128,7 +137,11 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "邀请好友",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+                "navigationStyle":"custom",
+                "app-plus":{
+                  "titleView":false
+                }
             }
             
         }

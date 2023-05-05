@@ -10,10 +10,6 @@
 					<image src="../../static/myimg/zhanghu.png" mode=""></image>
 					账户安全
 				</view>
-				<view class="item disc" @tap="go('ensure')">
-					<image src="../../static/myimg/baozhang.png" mode=""></image>
-					安全保障
-				</view>
 				<view class="item disc">
 					<image src="../../static/myimg/kefu.png" mode=""></image>
 					我的客服

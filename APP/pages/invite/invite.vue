@@ -1,17 +1,31 @@
 <template>
 	<view class="invite disc">
-		<view class="id dis">我的推荐ID:{{info.id}}</view>
-		<image :src="code"></image>
-		<view class="btn dis" @tap="fenxiang">立即分享</view>
+    <backgroundPage :title="title">
+      <view class="invite-content">
+        <view class="code-img">
+          <image :src="code"></image>
+        </view>
+        <!-- <view class="btn dis" @tap="fenxiang">立即分享</view> -->
+        <view class="bottom dis zbottom">
+        	<view class="in dis" @tap="fenxiang">
+        		立即分享
+        	</view>
+        </view>
+      </view>
+    </backgroundPage>
+		
 	</view>
 </template>
 
 <script>
+  import backgroundPage from "../../components/background-page/background.vue";
 	export default {
+    components: {backgroundPage},
 		data() {
 			return {
 				info:{},
-				code:""
+				code:"",
+        title: '',
 			};
 		},
 		onLoad() {
@@ -19,6 +33,8 @@
 			this.$fn.request('qrcode',"GET",{}).then(res=>{
 				console.log(res.data.data.qrcode,'用户二维码')
 				this.code=res.data.data.qrcode
+        this.title = `<view class="wdtjm">我的推荐码:</view><br />
+            <view class="numberCode">${this.info.id}</view>`
 			})
 		},
 		methods:{
@@ -39,7 +55,6 @@
 <style lang="less">
 .invite{
 	width: 100%;
-	height:100vh;
 	// // background-image:url('https://pic.616pic.com/bg_w1180/00/20/57/zkoqzSOdaL.jpg') ;
 	// background-repeat: no-repeat;
 	// background-size: 100% 100%;
@@ -48,11 +63,31 @@
 		// color: #fff;
 		font-size: 36upx;
 	}
-	image{
-		width: 50%;
-		height:360upx;
-		margin-top: 30upx;
-	}
+  /deep/ .help-title {
+    top: 5%;
+    line-height: 80upx;
+    text-align: center;
+    .wdtjm {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+  .invite-content {
+    width: 100%;
+    height: 100%;
+    .code-img {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      image{
+      	width: 50%;
+      	height:360upx;
+      	margin: 120upx auto 40upx;
+      }
+    }
+    
+  }
+	
 	.btn{
 		color: #fff;
 		width: 80%;

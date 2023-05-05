@@ -12,9 +12,9 @@
 
 		<!--团队  -->
     <view class="u-page" v-show="currentIndex==0?true:false && fanyongShow">
-      <view class="team-ps">
+      <!-- <view class="team-ps">
         --点击下方人员可查看他的下级--
-      </view>
+      </view> -->
       <u-list>
         <u-list-item
           v-for="(item, index) in last"
@@ -124,24 +124,13 @@
         ],
 			};
 		},
-		onLoad() {
-			// 我的团队查询下一级信息
-			let info=uni.getStorageSync('user_info')
-			
-			let data = {
-				"uid": info.id,
-				"page": this.lv,
-				"limit": "10"
-			}
-			this.$fn.request('user_list_team', "GET", data).then(res => {
-				console.log(res.data.data.data, '我的团队信息')
-				this.last=res.data.data.data
-        this.last.forEach((item)=> {
-          item.url = this.urls[uni.$u.random(0, this.urls.length - 1)]
-        })
-				this.agent_info = res.data.data.agent_info,
-					this.below_agent_info = res.data.data.below_agent_info
-			})
+		onLoad(option) {
+			this.myGroup()
+      if(option.index) {
+        this.currentIndex = option.index
+      } else {
+        console.log(option.index,' console.log(option.index);');
+      }
 		},
 		watch: {
 			dateText(newVal, oldVal) {
@@ -177,24 +166,23 @@
 				// this.myGroup(item.id)
 				// console.log(item.id,'id')
 			},
-			myGroup(id){
+			myGroup(){
+				// 我的团队查询下一级信息
+				let info=uni.getStorageSync('user_info')
+				
 				let data = {
-					"uid": id,
-					"page": '1',
+					"uid": info.id,
+					"page": this.lv,
 					"limit": "10"
 				}
 				this.$fn.request('user_list_team', "GET", data).then(res => {
-					console.log(res.data.data, '我的团队信息')
+					console.log(res.data.data.data, '我的团队信息')
+					this.last=res.data.data.data
+				  this.last.forEach((item)=> {
+				    item.url = this.urls[uni.$u.random(0, this.urls.length - 1)]
+				  })
 					this.agent_info = res.data.data.agent_info,
-					this.below_agent_info = res.data.data.below_agent_info
-					console.log(res.data.data)
-					this.last=res.data.data
-					if(this.last.total==0){
-						this.fanyongShow=false
-						 // this.last=res.data.data.data
-						console.log(res.data.data.data)
-						
-					}
+						this.below_agent_info = res.data.data.below_agent_info
 				})
 			},
 			bian(index) {
