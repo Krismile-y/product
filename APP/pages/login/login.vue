@@ -6,7 +6,7 @@
 				<view class="title"></view>
 			</view>
 			<view class="center disc">
-				<image src="../../static/common/lvse.png" mode="" style="width: 220upx;height: 220upx;border-radius: 50%;"></image>
+				<image src="../../static/common/logo.png" mode="" style="width: 220upx;height: 220upx;border-radius: 50%;"></image>
 				<!-- <view class="da">Login</view>
 				<view class="xiao">hellow</view> -->
 			</view>

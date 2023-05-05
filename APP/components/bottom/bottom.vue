@@ -22,7 +22,7 @@
 						投资
 					</view> -->
 					<view class="y">
-						<image src="../../static/common/logo.png" mode=""></image>
+						<image src="../../static/common/jinrong.jpg" mode=""></image>
 					</view>
 				</view>
 			</view>
@@ -164,7 +164,7 @@ import { vShow } from "vue";
 					// 	url: '/pages/invest/invest'
 					// })
 					this.show=!this.show
-					
+					uni.removeStorageSync('name')
 				} else if (index == 2) {
 					
 					if(uni.getStorageSync('name')=='shop'){
@@ -223,9 +223,13 @@ import { vShow } from "vue";
 				width: 100upx;
 				height: 100upx;
 				border-radius: 50%;
-				background-color: #54d27e;
+				// background-color: #54d27e;
 				color: #fff;
 				margin-left: 20upx;
+				background-image: url('../../static/common/xiaoanniu.jpg');
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				
 			}
 		}
 	}

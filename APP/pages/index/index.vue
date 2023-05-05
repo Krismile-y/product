@@ -1,7 +1,7 @@
 <template>
 	<view class="content" >
 		<!-- 	<navs></navs>	 -->
-        
+      
 		<view class="tops disc" style="background-color: #54d27e;height: 400upx;">
 			<view style="padding-top: 106upx;color: #ffffff;letter-spacing: 8upx;font-size: 46upx;font-weight: 600;">绿色中国
 			</view>

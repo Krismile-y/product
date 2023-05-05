@@ -35,8 +35,7 @@ export default {
 				this.$store.state.three=true
 				this.$store.state.four=true
 			}
-			console.log(uni.getStorageSync('token'),'')
-			
+			// console.log(uni.getStorageSync('token'),'')
 			
 		},
 		onBackPress(event) {
@@ -76,12 +75,12 @@ export default {
         let img = strArr.join('//')
         this.banner.push({img:img})
       })
-      console.log(this.banner,'轮播图');
+      // console.log(this.banner,'轮播图');
 		})
 		
 		// 新闻接口
 		this.$fn.request('article',"GET",{}).then(res=>{
-			console.log(res.data.data,'新闻')
+			// console.log(res.data.data,'新闻')
 			this.article=res.data.data
 		})
 		
@@ -90,7 +89,7 @@ export default {
 			"type":"1"
 		}
 		this.$fn.request('notice',"GET",info).then(res=>{
-			console.log(res.data.data,'公告')
+			// console.log(res.data.data,'公告')
       let data = res.data.data;
       let i = 0;
       setInterval(()=> {
@@ -109,7 +108,7 @@ export default {
 			"sid":"1"
 		}
 		this.$fn.request('customer',"GET",kefu,).then(res=>{
-			console.log(res,'客服')
+			// console.log(res,'客服')
 		})			
 		},
 		methods: {
