@@ -11,34 +11,27 @@
 		</view>
 
 		<!--团队  -->
-		<view class="box" v-show="currentIndex==0?true:false && fanyongShow">
-			<view class="team-list" v-for="(item,index) in last" :key="index">
-				<view class="team-card">
-					<view class="image-box">
-						<view class="img">
-
-						</view>
-						<!-- 人员信息 -->
-						<view class="message">
-							<view class="people-name">
-								<!-- {{below_agent_info.user_name}} -->
-								{{item.user_name}}
-							</view>
-							<view class="people-phone">
-								<!-- {{below_agent_info.phone}} -->
-								{{item.phone}}
-							</view>
-						</view>
-					</view>
-					<view class="level-box">
-						会员等级：1级代理
-					</view>
-					<view class="screen-btn dis" @tap='chakan(item)'>
-						查看
-					</view>
-				</view>
-			</view>
-		</view>
+    <view class="u-page" v-show="currentIndex==0?true:false && fanyongShow">
+      <view class="team-ps">
+        --点击下方人员可查看他的下级--
+      </view>
+      <u-list>
+        <u-list-item
+          v-for="(item, index) in last"
+          :key="index"
+        >
+          <u-cell :title="`${item.user_name} ${item.phone}\n一级代理`" @tap='chakan(item)'>
+            <u-avatar
+              slot="icon"
+              shape="square"
+              size="35"
+              :src="item.url"
+              customStyle="margin: -3px 5px -3px 0"
+            ></u-avatar>
+          </u-cell>
+        </u-list-item>
+      </u-list>
+    </view>
 
 
 		<view class="box" v-show="currentIndex==1?true:false">
@@ -117,6 +110,18 @@
 				showPagination: false, //总数据小于单页展示数据，不显示分页条
                 last:[],//第一层
 				fanyongShow:true,
+        urls: [
+          'https://cdn.uviewui.com/uview/album/1.jpg',
+          'https://cdn.uviewui.com/uview/album/2.jpg',
+          'https://cdn.uviewui.com/uview/album/3.jpg',
+          'https://cdn.uviewui.com/uview/album/4.jpg',
+          'https://cdn.uviewui.com/uview/album/5.jpg',
+          'https://cdn.uviewui.com/uview/album/6.jpg',
+          'https://cdn.uviewui.com/uview/album/7.jpg',
+          'https://cdn.uviewui.com/uview/album/8.jpg',
+          'https://cdn.uviewui.com/uview/album/9.jpg',
+          'https://cdn.uviewui.com/uview/album/10.jpg',
+        ],
 			};
 		},
 		onLoad() {
@@ -131,6 +136,9 @@
 			this.$fn.request('user_list_team', "GET", data).then(res => {
 				console.log(res.data.data.data, '我的团队信息')
 				this.last=res.data.data.data
+        this.last.forEach((item)=> {
+          item.url = this.urls[uni.$u.random(0, this.urls.length - 1)]
+        })
 				this.agent_info = res.data.data.agent_info,
 					this.below_agent_info = res.data.data.below_agent_info
 			})
