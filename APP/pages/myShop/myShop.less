@@ -1,38 +1,92 @@
 .box{
 	font-size: 30upx;
-	width: 98%;
-	margin: 0upx auto;
-	display: flex;
-	align-items: center;
-	// justify-content: space-around;
-	flex-wrap: wrap;
+  width: 100%;
+  margin: 40upx 0 0;
+  box-sizing: border-box;
+  padding: 0 40upx;
+  .change-address {
+    margin: 40upx 0;
+    height: 80upx;
+    width: 100%;
+    background-color: #33353a;
+    box-sizing: border-box;
+    border-radius: 30upx;
+    display: flex;
+    .add-box {
+      width: 30%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      image {
+        width: 50upx;
+        height: 50upx;
+      }
+    }
+    .add-txt {
+      flex: 1;
+      color: #b8b9bb;
+      line-height: 80upx;
+    }
+  }
 	.shop{
-		height: 500upx;
-		width: 48.5%;
-		image{
-			border-radius: 25upx;
-			width: 100%;
-			height: 300upx;
-		}
-		.title{
-			font-weight: 600;
-		}
-		.detail{
-			font-size: 30upx;
-		}
-		.font{
-			display: flex;
-			width: 100%;
-			height: 50upx;
-			.info{
-				width: 50%;
-				height: 100%;
-			}
-			.youbian{
-				// display: flex;
-				// align-items: center;
-				// justify-content: right;
-			}
-		}
+		height: 160upx;
+		width: 100%;
+    margin-bottom: 30upx;
+    border-radius: 30upx;
+    background-color: #eff1f3;
+    display: flex;
+    .image-box {
+      width: 160upx;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      image{
+      	border-radius: 25upx;
+      	width: 100upx;
+      	height: 100upx;
+      }
+    }
+		.msg-connect {
+      flex: 1;
+      max-width: calc(100% - 320upx);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      .msg-no {
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+      }
+      .msg-address {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+      }
+    }
+    .money-status {
+      width: 160upx;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      text-align: center;
+      .shop-money {
+        font-weight: 600;
+        color: green;
+      }
+    }
 	}
+}
+.myShop-page {
+  /deep/ .help-title {
+    top: 5%;
+    line-height: 80upx;
+    text-align: center;
+    .wdtjm {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
 }

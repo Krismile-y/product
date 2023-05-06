@@ -16,7 +16,7 @@
 		data() {
 			return {
 				aboutBg:aboutBg,
-        title: '关于我们'
+        title: '关于我们',
 			};
 		}
 	}

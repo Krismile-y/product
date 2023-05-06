@@ -1,27 +1,39 @@
 <template>
   <view class="container">
-    <view class="title">充值</view>
-    <view class="input-box">
-      <view class="input-title">充值金额：</view>
-      <input class="input" type="number" placeholder="请输入充值金额" v-model="amount" />
-    </view>
-    <view class="input-box">
-      <view class="input-title">支付方式：</view>
-      <radio-group class="radio-group" v-model="paymentMethod">
-        <radio class="radio" value="alipay">支付宝</radio>
-        <radio class="radio" value="wechat">微信</radio>
-      </radio-group>
-    </view>
-    <view class="btn" @click="submit">确认充值</view>
+    <backgroundPage :title="title" :imgUrl="forestBg">
+      <view class="chongzhi">
+        <view class="input-box">
+          <view class="input-title">充值金额：</view>
+          <input class="input" type="number" placeholder="请输入充值金额" v-model="amount" />
+        </view>
+        <view class="input-box">
+          <view class="input-title">支付方式：</view>
+          <radio-group class="radio-group" v-model="paymentMethod">
+            <radio class="radio" value="alipay">支付宝</radio>
+            <radio class="radio" value="wechat">微信</radio>
+          </radio-group>
+        </view>
+        <view class="bottom dis zbottom">
+        	<view class="in dis" @tap="submit">
+        		确认充值
+        	</view>
+        </view>
+      </view>
+    </backgroundPage>
   </view>
 </template>
 
 <script>
+import forestBg from "../../static/common/forest.jpg"
+import backgroundPage from "../../components/background-page/background.vue";
 export default {
+  components: {backgroundPage},
   data() {
     return {
       amount: '',
       paymentMethod: 'alipay',
+      title: '充值',
+      forestBg,
     };
   },
   methods: {
@@ -36,9 +48,15 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less">
+.chongzhi {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 60upx 40upx 40upx;
+}
 .container {
-  padding: 20px;
+  // padding: 20px;
 }
 .title {
   font-size: 24px;

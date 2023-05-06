@@ -128,7 +128,11 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "提现申请",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+                "navigationStyle":"custom",
+                "app-plus":{
+                  "titleView":false
+                }
             }
             
         }
@@ -168,7 +172,11 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "我的团队",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+                "navigationStyle":"custom",
+                "app-plus":{
+                  "titleView":false
+                }
             }
             
         }
@@ -195,7 +203,11 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "我的商品",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+                "navigationStyle":"custom",
+                "app-plus":{
+                  "titleView":false
+                }
             }
             
         }
@@ -251,7 +263,7 @@
             "path" : "pages/newsList/newsList",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "新闻列表",
+                "navigationBarTitleText": "相关内容",
                 "enablePullDownRefresh": false
             }
             
@@ -310,9 +322,9 @@
             {
                 "navigationBarTitleText": "社区",
                 "enablePullDownRefresh": false,
-				"app-plus": {
-					"titleNView":false
-				}
+                "app-plus": {
+                  "titleNView":false
+                }
             }
             
         },
@@ -378,8 +390,12 @@
             "path" : "pages/test/test",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "充值",
+                "enablePullDownRefresh": false,
+                "navigationStyle":"custom",
+                "app-plus":{
+                  "titleView":false
+                }
             }
             
         }

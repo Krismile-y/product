@@ -98,6 +98,7 @@
     .help-img {
       border-radius: 50upx 50upx 0 0;
       max-height: 400upx;
+      min-height: 400upx;
     }
     /deep/ uni-textarea {
       width: 100%;

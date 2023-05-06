@@ -136,10 +136,13 @@
 		<!--  -->
 		<view class="kuaijie">
 			<view class="shu"></view>
-			新闻阅读专区
+			相关内容
 		</view>
 		<view class="zhengce" @tap="newsList">
-			<image src="../../static/index/zhengce.jpg" mode=""></image>
+			<image src="../../static/common/ocean.jpg"></image>
+      <view class="zhengce-txt">
+        政策解读
+      </view>
 		</view>
 		<!--  -->
 

@@ -1,7 +1,12 @@
 <template>
 	<view>
 		
-		<image src="../../static/index/zhengce.jpg" mode="" style="width: 100%;height: 200upx; margin: 0 auto;border-radius: 20upx;"></image>
+		<view class="zhengce">
+			<image src="../../static/common/ocean.jpg"></image>
+		  <view class="zhengce-txt">
+		    政策解读
+		  </view>
+		</view>
 		
 		<view class="xinwen" v-for="item in 6">
 			<view class="left">
@@ -51,5 +56,35 @@
 		   height: 140upx;
 	   }
 	}
+}
+.zhengce{
+	width: 98%;
+	margin: 0 auto;
+	height: 200upx;
+	position: relative;
+	image{
+		width: 100%;
+		height: 100%;
+		border-radius: 20upx;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    z-index: 0;
+	}
+  .zhengce-txt {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0%;
+    height: 0%;
+    z-index: 10;
+    text-align: center;
+    line-height: 200upx;
+    font-size: 44px;
+    color: #fff;
+    letter-spacing: 25px;
+    text-indent: 25px;
+    font-weight: 700;
+  }
 }
 </style>

@@ -1,96 +1,97 @@
 <template>
-	<view>
+	<view class="myGroup-page-box">
+    <backgroundPage :title="title">
+      <view class="myGroup-page">
+        <view class="tits">
+          <view class="title dis" @tap="bian(0)" :class="{color:currentIndex==0?true:false}">
+            团队详细
+          </view>
+          <view class="title dis" @tap="bian(1)" :class="{color:currentIndex==1?true:false}" v-show="fanyongShow">
+            返佣记录
+          </view>
+        </view>
 
-		<view class="tits">
-			<view class="title dis" @tap="bian(0)" :class="{color:currentIndex==0?true:false}">
-				团队详细
-			</view>
-			<view class="title dis" @tap="bian(1)" :class="{color:currentIndex==1?true:false}" v-show="fanyongShow">
-				返佣记录
-			</view>
-		</view>
-
-		<!--团队  -->
-    <view class="u-page" v-show="currentIndex==0?true:false && fanyongShow">
-      <!-- <view class="team-ps">
-        --点击下方人员可查看他的下级--
-      </view> -->
-      <u-list>
-        <u-list-item
-          v-for="(item, index) in last"
-          :key="index"
-        >
-          <u-cell :title="`${item.user_name} ${item.phone}\n一级代理`" @tap='chakan(item)'>
-            <u-avatar
-              slot="icon"
-              shape="square"
-              size="35"
-              :src="item.url"
-              customStyle="margin: -3px 5px -3px 0"
-            ></u-avatar>
-          </u-cell>
-        </u-list-item>
-      </u-list>
-    </view>
-
-
-		<view class="box" v-show="currentIndex==1?true:false">
-			<view class="show disc">
-				<view class="price">{{priceTotal}}￥</view>
-				<view class="title">返佣记录</view>
-			</view>
-
-			<view class="picker-view" @click="changeYear">
-				{{dateText}}
-			</view>
-
-			<view class="" style="margin-top: 10upx;">
-				<uni-table ref="table" border stripe emptyText="暂无更多数据">
-					<!-- 表头行 -->
-					<uni-tr>
-						<uni-th align="center">来源</uni-th>
-						<uni-th align="center">获得金额</uni-th>
-						<uni-th align="center">操作/时间</uni-th>
-					</uni-tr>
-					<!-- 表格数据行 -->
-					<uni-tr v-for="(item,index) in tableData" :key="index">
-						<uni-td align="center">{{item.money_type_text}}</uni-td>
-						<uni-td align="center">{{item.money_amount}}</uni-td>
-						<uni-td align="center">{{item.create_time}}</uni-td>
-
-					</uni-tr>
-				</uni-table>
-				<view class="uni-pagination-box" v-if="showPagination"><uni-pagination show-icon :page-size="pageSize"
-						:current="pageCurrent" :total="total" @change="change" /></view>
-			</view>
-
-			<!-- 	<view class="daiding dis">
-				<uni-load-more status="more" :content-text="contentText" />
-			</view> -->
-			<!-- 年月选择弹框 -->
-			<template>
-				<view>
-					<u-datetime-picker :show="show" v-model="value1" mode="year-month" @confirm="pickerConfirm"
-						@close="pickerClose" @cancel="pickerCancel"></u-datetime-picker>
-				</view>
-			</template>
+        <!--团队  -->
+        <view class="u-page" v-show="currentIndex==0?true:false && fanyongShow">
+          <!-- <view class="team-ps">
+            --点击下方人员可查看他的下级--
+          </view> -->
+          <u-list>
+            <u-list-item
+              v-for="(item, index) in last"
+              :key="index"
+            >
+              <u-cell :title="`${item.user_name} ${item.phone}\n一级代理`" @tap='chakan(item)'>
+                <u-avatar
+                  slot="icon"
+                  shape="square"
+                  size="35"
+                  :src="item.url"
+                  customStyle="margin: -3px 5px -3px 0"
+                ></u-avatar>
+              </u-cell>
+            </u-list-item>
+          </u-list>
+        </view>
 
 
+        <view class="box" v-show="currentIndex==1?true:false">
+          <view class="show disc">
+            <view class="price">{{priceTotal}}￥</view>
+            <view class="title">返佣记录</view>
+          </view>
 
+          <view class="picker-view" @click="changeYear">
+            {{dateText}}
+          </view>
 
+          <view class="" style="margin-top: 10upx;">
+            <uni-table ref="table" border stripe emptyText="暂无更多数据">
+              <!-- 表头行 -->
+              <uni-tr>
+                <uni-th align="center">来源</uni-th>
+                <uni-th align="center">获得金额</uni-th>
+                <uni-th align="center">操作/时间</uni-th>
+              </uni-tr>
+              <!-- 表格数据行 -->
+              <uni-tr v-for="(item,index) in tableData" :key="index">
+                <uni-td align="center">{{item.money_type_text}}</uni-td>
+                <uni-td align="center">{{item.money_amount}}</uni-td>
+                <uni-td align="center">{{item.create_time}}</uni-td>
 
-		</view>
+              </uni-tr>
+            </uni-table>
+            <view class="uni-pagination-box" v-if="showPagination"><uni-pagination show-icon :page-size="pageSize"
+                :current="pageCurrent" :total="total" @change="change" /></view>
+          </view>
 
-	</view>
+        <!-- 	<view class="daiding dis">
+          <uni-load-more status="more" :content-text="contentText" />
+        </view> -->
+        <!-- 年月选择弹框 -->
+          <template>
+            <view>
+              <u-datetime-picker :show="show" v-model="value1" mode="year-month" @confirm="pickerConfirm"
+                @close="pickerClose" @cancel="pickerCancel"></u-datetime-picker>
+            </view>
+          </template>
+        </view>
+      </view>
+    </backgroundPage>
+  </view>
 </template>
 
 <script>
+  import backgroundPage from "../../components/background-page/background.vue";
 	export default {
+    components: {backgroundPage},
 		data() {
 			return {
 				lv:1,//当前等级
+        title: '我的团队',
 				agent_info: [], //我的推荐人
 				below_agent_info: [],
+        userInfo: {},
 				currentIndex: 0,
 				nowShow: true,
 				res: '2023年3月投资小计',
@@ -126,6 +127,10 @@
 		},
 		onLoad(option) {
 			this.myGroup()
+      this.userInfo =uni.getStorageSync('user_info')
+      this.title = `<view class="wdtjm">我的团队</view><br />
+          <view class="numberCode">${this.userInfo.user_name}</view>`
+      console.log(this.userInfo,'userInfo');
       if(option.index) {
         this.currentIndex = option.index
       } else {
@@ -247,5 +252,10 @@
 </script>
 
 <style lang="less" src='./myGroup.less'>
+.myGroup-page {
+  width: 100%;
+  height: 100%;
+}
+
 
 </style>

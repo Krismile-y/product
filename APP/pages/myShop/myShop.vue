@@ -1,31 +1,69 @@
 <template>
-	<view>
-		<view class="box" style="margin-top: 0upx;">
-			<view class="shop " v-for="item in list" @tap="go(item)">
-				<image @tap="show=true"
-					src="https://img0.baidu.com/it/u=3098099923,3369715583&fm=253&fmt=auto&app=120&f=JPEG?w=889&h=500"
-					mode=""></image>
-				<view class="font">
-					<view class="info">{{item.wares_money}}元</view>
-					<view class="info youbian">{{item.status_text}}</view>
-				</view>
-				<view class="de">{{item.address}}</view>
-				
-				
-			</view>
-		
-		</view>
+	<view class="myShop-page">
+    <backgroundPage :title="title">
+      <view class="box">
+        <view class="change-address"  @tap="go">
+          <view class="add-box">
+            <image src="../../static/common/addition.png" mode=""></image>
+          </view>
+          <view class="add-txt">
+            新增或选择收货地址
+          </view>
+        </view>
+        <view class="shop" v-for="item in list" >
+          <view class="image-box">
+            <image @tap="show=true" src="../../static/uni.png" mode=""></image>
+            <!-- :src="item.head_img" -->
+          </view>
+          <!-- 商品信息 -->
+          <view class="msg-connect">
+            <view class="msg-no">
+              {{item.wares_no}}
+            </view>
+            <view class="msg-address">
+              {{item.address}}
+            </view>
+          </view>
+          <!-- 金额以及下单状态 -->
+          <view class="money-status">
+            <view class="shop-money">
+              {{item.wares_money}}
+            </view>
+            <view class="shop-status">
+              {{item.status_text}}
+            </view>
+          </view>
+          
+          <!-- <view class="font">
+            <view class="info"></view>
+            <view class="info youbian"></view>
+          </view>
+          <view class="de"></view> -->
+          
+          
+        </view>
+      
+      </view>
+    </backgroundPage>
 	</view>
 </template>
 
 <script>
+  import backgroundPage from "../../components/background-page/background.vue";
 	export default {
+    components: {backgroundPage},
 		data() {
 			return {
-				list:[]
+				list:[],
+        title:'',
+        info: {},
 			};
 		},
 		onLoad() {
+      this.info=uni.getStorageSync('user_info')
+      console.log(this.info,'this.info');
+      this.title = `<view class="wdtjm">我的积分</view><br />
+          <view class="numberCode">${this.info.money_integral}</view>`
 			let data={
 				
 			}
@@ -33,7 +71,14 @@
 				console.log(res.data.data.data)
 				this.list=res.data.data.data
 			})
-		}
+		},
+    methods: {
+      go() {
+        uni.navigateTo({
+          url:`/pages/address/address`
+        })
+      }
+    }
 	}
 </script>
 
