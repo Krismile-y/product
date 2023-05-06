@@ -1,5 +1,5 @@
 <template>
-	<view class="content" style="height: 1500upx; padding-bottom: 100upx;">
+	<view class="content" style="min-height: 200vh; padding-bottom: 100upx;">
        <!-- 手写拉起框 -->
      <!-- <view class="myBox"></view> -->
 
@@ -85,33 +85,39 @@
 		</view>
 		<!--  -->
 
-		<view class="top">
-			<view class="xia " style="">
-
-			</view>
-		</view>
-
-		<!-- 标题栏 -->
-		<scroll-view scroll-x="true" style="width: 100%;height: 90upx;white-space: nowrap;margin-top: 100upx;">
-			<view class="item " v-for="(item,index) in list" :key="index" @tap="bian(index,item.id)">
-				<view class="boxs disc">
-					<view class="title" :class="{color:currentIndex==index?true:false}">{{item.type_name}}</view>
-					<view class="line" v-show="currentIndex==index?true:false"></view>
+		
+			
+				<view class="top">
+					<view class="xia " style="">
+				
+					</view>
 				</view>
-			</view>
-		</scroll-view>
+				
+				<!-- 标题栏 -->
+				<scroll-view scroll-x="true" style="width: 100%;height: 90upx;white-space: nowrap;margin-top: 100upx;">
+					<view class="item " v-for="(item,index) in list" :key="index" @tap="bian(index,item.id)">
+						<view class="boxs disc">
+							<view class="title" :class="{color:currentIndex==index?true:false}">{{item.type_name}}</view>
+							<view class="line" v-show="currentIndex==index?true:false"></view>
+						</view>
+					</view>
+				</scroll-view>
+				
+				<view class="items" v-for="(item,index) in goods_list">
+					<image :src="item.head_img"></image>
+					<view class="tit">{{item.goods_name}}</view>
+					<view class="buy">
+						<view class="left">最低投资：{{item.goods_money}}元</view>
+						<view class="right">
+							<view class="pay dis" @tap="go(item.id)">认购</view>
+						</view>
+					</view>
+				</view>
+			
+		
 
 		<!-- 单个产品 -->
-		<view class="items" v-for="(item,index) in goods_list">
-			<image :src="item.head_img"></image>
-			<view class="tit">{{item.goods_name}}</view>
-			<view class="buy">
-				<view class="left">最低投资：{{item.goods_money}}元</view>
-				<view class="right">
-					<view class="pay dis" @tap="go(item.id)">认购</view>
-				</view>
-			</view>
-		</view>
+		
 
 		<view>
 			

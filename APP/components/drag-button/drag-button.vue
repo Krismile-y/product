@@ -11,7 +11,7 @@
 			:class="{transition: isDock && !isMove }"
 		>
 		
-			<text>{{ text }}</text>
+			<!-- <text>{{ text }}</text> -->
 		</view>
 	</view>
 </template>
@@ -125,17 +125,18 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-color: #4bc93e;
-		box-shadow: 0 0 6upx rgba(0, 0, 0, 0.4);
+		// background-color: #4bc93e;
+		// box-shadow: 0 0 6upx rgba(0, 0, 0, 0.4);
 		color: $uni-text-color-inverse;
-		width: 80upx;
-		height: 80upx;
+		width: 120upx;
+		height: 120upx;
 		border-radius: 50%;
 		font-size: $uni-font-size-sm;
 		position: fixed;
 		z-index: 999999;
 		color: #fff;
-		
+		background-image: url('../../static/myimg/kefu.png');
+		background-size: 100% 100%;
 		&.transition {
 			transition: left .3s ease,top .3s ease;
 		}

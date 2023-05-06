@@ -1,5 +1,5 @@
 <template>
-	<view class="content" style="height: 1500upx; padding-bottom: 100upx;">
+	<view class="content" style="min-height: 200vh; padding-bottom: 100upx;">
 
 		<!-- 弹出层 -->
 		<view>
@@ -40,6 +40,10 @@
 		</view>
 
         <!-- 滑动 -->
+		
+		    <!-- <scroll-view scroll-y="true" style="width: 100%;height: calc(100vh - 96upx);">
+		    	<view></view>
+		    </scroll-view> -->
 		
 			<view class="top" style="position: relative;">
 			<view class="toAddress">

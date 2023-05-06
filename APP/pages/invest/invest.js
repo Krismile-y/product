@@ -42,7 +42,11 @@ export default {
 				scrollTop: 120,
 			})
 		},
+		onShow(){
+			
+		},
 		onLoad(options) {
+			
 			//  初始页面渲染
 			this.currentIndex = options.id
 			let xx= Number(options.id)+1

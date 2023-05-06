@@ -8,14 +8,18 @@
 		},
 		onShow(){
 			
-			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
-								'token')) {
+			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync('token')) {
 							uni.navigateTo({
 								url:'/pages/login/login'
 							})
 			}
 		},
 		onLaunch: function() {
+			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync('token')) {
+							uni.navigateTo({
+								url:'/pages/login/login'
+							})
+			}
 			// #ifdef APP
 			plus.runtime.getProperty(plus.runtime.appid, (appInfo) => {
 			    // appInfo为当前应用程序的所有信息
@@ -23,23 +27,25 @@
 			    // this.globalData.versionCode = appInfo.versionCode
 			    console.log(JSON.stringify(appInfo));
 			    // 获取版本名称
-			    console.log(appInfo.version,'版本名称');
+			    console.log(appInfo.version,'版本名称e');
 				this.version=appInfo.version
 			    // 获取版本号
 			    console.log(appInfo.versionCode);
 			    // 获取当前应用id
 			    console.log(appInfo.appid);
 			   });
-			// #endif
-			uni.getSystemInfo({
+			   
+			   uni.getSystemInfo({
 				success: (res) => {
 					console.log(res.platform);
 					//检测当前平台，如果是安卓则启动安卓更新  
-					if (res.platform == "android") {
+					// if (res.platform == "android") {
 						this.AndroidCheckUpdate();
-					}
+					// }
 				}
 			})
+			// #endif
+			
 		},
 		methods: {
 			AndroidCheckUpdate: function() {
