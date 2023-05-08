@@ -103,13 +103,7 @@ export default {
       },3000)
 		})
 		
-		// 客服接口
-		let kefu={
-			"sid":"1"
-		}
-		this.$fn.request('customer',"GET",kefu,).then(res=>{
-			// console.log(res,'客服')
-		})			
+				
 		},
 		methods: {
 			xinshou(){

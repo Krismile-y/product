@@ -1,58 +1,82 @@
-
 <script>
 	export default {
 		data: function() {
 			return {
-				version: "1.5.4"//版本号
+				version: "1.5.4" //版本号
 			}
 		},
-		onShow(){
+		onShow() {
 			
-			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync('token')) {
-							uni.navigateTo({
-								url:'/pages/login/login'
-							})
+			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
+					'token')) {
+				uni.navigateTo({
+					url: '/pages/login/login'
+				})
 			}
 		},
 		onLaunch: function() {
-			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync('token')) {
-							uni.navigateTo({
-								url:'/pages/login/login'
-							})
+			// 客服接口
+			let kefu={
+				"sid":"1"
+			}
+			this.$fn.request('customer',"GET",kefu,).then(res=>{
+				console.log(res.data.data[0].url,'客服')
+				uni.setStorageSync('kefu',res.data.data[0].url)
+				this.$store.commit('kefu',res.data.data[0].url)
+			})
+				
+			// 获取设备信息
+			uni.getSystemInfo({
+				success: (res) => {
+					this.systemInfo = res
+					// console.log(res.safeArea)
+					uni.setStorageSync('x',res.safeArea.width - 70)
+					uni.setStorageSync('y',res.safeArea.bottom/2 -25)
+					this.$store.commit('x',uni.getStorageSync('x'))
+					this.$store.commit('y',uni.getStorageSync('y'))
+					// console.log(this.$store.state.y,'yy')
+				}
+			})
+			
+			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
+					'token')) {
+				uni.navigateTo({
+					url: '/pages/login/login'
+				})
 			}
 			// #ifdef APP
 			plus.runtime.getProperty(plus.runtime.appid, (appInfo) => {
-			    // appInfo为当前应用程序的所有信息
-			    // this.globalData.version = appInfo.version
-			    // this.globalData.versionCode = appInfo.versionCode
-			    console.log(JSON.stringify(appInfo));
-			    // 获取版本名称
-			    console.log(appInfo.version,'版本名称e');
-				this.version=appInfo.version
-			    // 获取版本号
-			    console.log(appInfo.versionCode);
-			    // 获取当前应用id
-			    console.log(appInfo.appid);
-			   });
-			   
-			   uni.getSystemInfo({
+				// appInfo为当前应用程序的所有信息
+				// this.globalData.version = appInfo.version
+				// this.globalData.versionCode = appInfo.versionCode
+				console.log(JSON.stringify(appInfo));
+				// 获取版本名称
+				console.log(appInfo.version, '版本名称e');
+				this.version = appInfo.version
+				// 获取版本号
+				console.log(appInfo.versionCode);
+				// 获取当前应用id
+				console.log(appInfo.appid);
+			});
+
+			uni.getSystemInfo({
 				success: (res) => {
 					console.log(res.platform);
 					//检测当前平台，如果是安卓则启动安卓更新  
 					// if (res.platform == "android") {
-						this.AndroidCheckUpdate();
+					this.AndroidCheckUpdate();
 					// }
 				}
 			})
 			// #endif
-			
+
 		},
 		methods: {
 			AndroidCheckUpdate: function() {
 				var _this = this;
 				uni.request({
-				//version.txt中内容为版本号，如果版本号大于客户端的版本号，客户端就自动更新
-					url: this.$url+'v',
+					//version.txt中内容为版本号，如果版本号大于客户端的版本号，客户端就自动更新
+					url: this.$url + 'v',
 					method: 'GET',
 					data: {},
 					success: res => {
@@ -76,7 +100,7 @@
 												title: '安装失败',
 												mask: false,
 												duration: 1500,
-												icon:'error'
+												icon: 'error'
 											});
 										})
 									} else {
@@ -139,7 +163,7 @@
 			console.log('App Show')
 		},
 		onHide: function() {
-			console.log('App Hide') 
+			console.log('App Hide')
 		}
 	}
 </script>

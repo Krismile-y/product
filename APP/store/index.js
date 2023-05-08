@@ -10,10 +10,22 @@ const store = new Vuex.Store({
 		one:true,
 		two:false,
 		three:false,
-		four:false
+		four:false,
+		x:"",
+		y:"",
+		kefu:""
 	},
     mutations: {
 		//相当于同步的操作
+		x(state,data){
+			state.x=data
+		},
+		y(state,data){
+			state.y=data
+		},
+		kefu(state,data){
+			state.kefu=data
+		},
 	},
     actions: {
 		//相当于异步的操作,不能直接改变state的值，只能通过触发mutations的方法才能改变

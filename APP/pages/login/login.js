@@ -1,6 +1,7 @@
 export default {
 		data() {
 			return {
+				out:0,
 				res:{
 					name:"type1",
 					title:"登录",					
@@ -11,6 +12,30 @@ export default {
 				value:false,//记住密码
 			};
 		},
+		onBackPress(event) {
+			if(this.out == 0){
+				this.out++
+				uni.showToast({
+					duration:1000,
+					title:'再按一次退出程序',
+					icon:"none"
+				})
+			}else if(this.out>=1){
+				if (plus.os.name.toLowerCase() === 'android') {
+					 plus.runtime.quit();
+				}
+				uni.removeStorageSync('token')
+			}
+			
+		    if (event.from === 'backbutton') {
+		          this.overlayShow = true;
+				
+		            return true;
+		        }else{		
+					// return false
+				}
+		        
+		  },
 		onLoad() {
 			
 			this.$fn.request('verify',"GET",{}).then(res=>{

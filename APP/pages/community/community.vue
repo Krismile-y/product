@@ -2,12 +2,15 @@
 	<view style="padding-bottom: 220upx;padding-top: 70upx;">
 		
 		<view class="av">
-					<view class="left" style="">
-						<view style="font-weight: 700;font-family: inherit;font-size: 42upx;">{{info.user_name}}</view>
-						<view style="font-size: 42upx; font-weight: 600;display: flex;align-items: center;">我的积分：{{info.money_integral}} 
-
-						 <view class="chakan" @tap="chakan"  style="padding: 10upx; background-color: greenyellow;color: #fff; font-size: 36upx;border-radius: 20upx;margin-left: 15upx;">查看</view>
+					<view class="left" style="position: relative;">
+					<!-- 	<view style="font-weight: 700;font-family: inherit;font-size: 42upx;">{{info.user_name}}</view> -->
+						<view style="font-size: 42upx; font-weight: 600;display: flex;align-items: center;position: absolute;left: 0;top: 0;">
+                         {{info.user_name}}
+						 
 						 </view>
+						 <view class="chakan" @tap="chakan"
+						 style=" padding: 10upx; background-color: greenyellow;color: #fff; font-size: 36upx;border-radius: 20upx;position: absolute;right: 120upx;top: 0;">
+						 提现</view>
 					</view>
 					<view class="right dis">
 						<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465" mode=""></image>

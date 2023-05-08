@@ -1,9 +1,9 @@
 {
-  "devDependencies": {
-    "sass": "^1.61.0",
-    "sass-loader": "^10.4.1"
-  },
-  "dependencies": {
-    "uview-ui": "^2.0.31"
-  }
+    "id": "geek-cat-dragball",
+    "name": "悬浮球_自动吸边_延迟隐藏",
+    "version": "1.0.0",
+    "description": "renderjs悬浮球，自动吸附屏幕长边，屏幕安全区域位置计算，延迟隐藏",
+    "keywords": [
+        "悬浮球,拖拽,浮标,拖动,renderjs"
+    ]
 }

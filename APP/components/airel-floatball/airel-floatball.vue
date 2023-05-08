@@ -1,11 +1,13 @@
 <template>
     <view class="main">
-		<view class="box" style="z-index: 999;"
-			:style="styleBall"
-		    @blur="blur" tabindex="1" @click="show" 
-		    @touchstart.stop="touchstart" @touchmove.stop="touchmove" @touchend="touchend">
-		    <image :src="mainImg" mode="aspectFill"></image>
-		</view>
+		<a :href="$store.state.kefu">
+			<view class="box dis" style="z-index: 999;"
+				:style="styleBall"
+			    @blur="blur" tabindex="1" @click="show" 
+			    @touchstart.stop="touchstart" @touchmove.stop="touchmove" @touchend="touchend">
+			    <image  :src="mainImg"  style="width: 140upx;height: 100upx;border-radius: 50%;"></image>
+			</view>
+		</a>
     </view>
 </template>
 
@@ -15,21 +17,21 @@
 		props:{
 			mainImg:{
 				type:String,
-				default:"/static/logo.png"
+				default:"../../static/myimg/kefu.png"
 			},
 			// 初始坐标x、y
 			x: {
 				type: Number,
-				default:100
+				default:uni.getStorageSync('x')
 			},
 			y: {
 				type: Number,
-				default:100
+				default:uni.getStorageSync('y')
 			},
 			// 是否开启吸边动画
 			sunction:{
 				type: Boolean,
-				default: false
+				default: true
 			},
 			// 吸边动画时间
 			time:{
@@ -166,10 +168,10 @@
 		position: fixed;
 		//left: 5upx;
 		//top: 70%;
-		width: 80upx;
-		height: 80upx;
+		width: 160upx;
+		height: 160upx;
 		border-radius: 50%;
-		background-color: rgba($color: #000000, $alpha: 0.5);
+		// background-color: rgba($color: #000000, $alpha: 0.5);
        // transition: left 10ms;
         outline: none; // 去除聚焦时的边框
 	}

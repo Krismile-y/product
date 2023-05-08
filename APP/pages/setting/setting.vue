@@ -1,5 +1,9 @@
 <template>
 	<view>
+
+		<airel-floatball  />
+		
+		
 		<view class="box">
 			<!-- <view class="title">
 				<view class="shu"></view>
@@ -18,82 +22,87 @@
 					<image src="../../static/myimg/fankui.png" mode=""></image>
 					反馈与帮助
 				</view>
-				
+
 				<!--  #ifdef APP -->
 				<view class="item disc" @tap='check'>
 					<image src="../../static/myimg/jiancha.png" mode=""></image>
 					检查更新
 				</view>
 				<!--  #endif -->
-				
+
 				<view class="item disc" @tap="go('about')">
 					<image src="../../static/myimg/guanyu.png" mode=""></image>
 					关于我们
 				</view>
 			</view>
 		</view>
-		
+
 		<view class="bottom dis">
 			<view class="in dis" @tap="tuichu">
 				退出登录
 			</view>
 		</view>
-	
-	 <view>
-	     
-			   <drag-button
-			       style="margin-bottom: 100upx;"
-			       :isDock="true"
-			       :existTabBar="true"
-			       @btnClick="btnClick"
-			       @btnTouchstart="btnTouchstart"
-			       @btnTouchend="btnTouchend" />
-		 
-		<!-- <a href="">
+
+		<view>
+
+			<!-- <drag-button style="margin-bottom: 100upx;" :isDock="true" :existTabBar="true" @btnClick="btnClick"
+				@btnTouchstart="btnTouchstart" @btnTouchend="btnTouchend" /> -->
+
+			<!-- <a href="">
 			 <drag-button
 			     style="margin-bottom: 100upx;"
 			     :isDock="true"
 			     :existTabBar="true"
 			      />
 		 </a> -->
-		   
-	    </view>
+
+		</view>
 	</view>
 </template>
 
 <script>
-	import x from '../../components/airel-floatball/airel-floatball.vue'
 	export default {
-		
+		components: {
+
+		},
 		data() {
 			return {
-				version:"",
+				version: "",
 			};
 		},
-		methods:{
-			check(){
+		onShow(){
+			// 获取设备信息
+			uni.getSystemInfo({
+				success: (res) => {
+					this.systemInfo = res
+					// console.log(res)
+				}
+			})
+		},
+		methods: {
+			check() {
 				console.log('检查更新s')
 				// #ifdef APP
 				plus.runtime.getProperty(plus.runtime.appid, (appInfo) => {
-				    // appInfo为当前应用程序的所有信息
-				    // this.globalData.version = appInfo.version
-				    // this.globalData.versionCode = appInfo.versionCode
-				    console.log(JSON.stringify(appInfo));
-				    // 获取版本名称
-				    console.log(appInfo.version,'版本名称e');
-					this.version=appInfo.version
-				    // 获取版本号
-				    console.log(appInfo.versionCode);
-				    // 获取当前应用id
-				    console.log(appInfo.appid);
-				   });
-				   
-				   uni.getSystemInfo({
+					// appInfo为当前应用程序的所有信息
+					// this.globalData.version = appInfo.version
+					// this.globalData.versionCode = appInfo.versionCode
+					console.log(JSON.stringify(appInfo));
+					// 获取版本名称
+					console.log(appInfo.version, '版本名称e');
+					this.version = appInfo.version
+					// 获取版本号
+					console.log(appInfo.versionCode);
+					// 获取当前应用id
+					console.log(appInfo.appid);
+				});
+
+				uni.getSystemInfo({
 					success: (res) => {
 						console.log(res.platform);
 						//检测当前平台，如果是安卓则启动安卓更新  
 						// if (res.platform == "android") {
-							this.AndroidCheckUpdate();
+						this.AndroidCheckUpdate();
 						// }
 					}
 				})
@@ -102,8 +111,8 @@
 			AndroidCheckUpdate: function() {
 				var _this = this;
 				uni.request({
-				//version.txt中内容为版本号，如果版本号大于客户端的版本号，客户端就自动更新
-					url: this.$url+'v',
+					//version.txt中内容为版本号，如果版本号大于客户端的版本号，客户端就自动更新
+					url: this.$url + 'v',
 					method: 'GET',
 					data: {},
 					success: res => {
@@ -127,7 +136,7 @@
 												title: '安装失败',
 												mask: false,
 												duration: 1500,
-												icon:'error'
+												icon: 'error'
 											});
 										})
 									} else {
@@ -177,13 +186,13 @@
 									duration: 1500
 								});
 							}
-			
-			
-						}else if(res.data.data.v == this.version){
+
+
+						} else if (res.data.data.v == this.version) {
 							uni.showToast({
-								duration:1000,
-								title:'已经是最新版本',
-								icon:'none'
+								duration: 1000,
+								title: '已经是最新版本',
+								icon: 'none'
 							})
 						}
 					},
@@ -191,28 +200,28 @@
 					complete: () => {}
 				});
 			},
-			btnClick(){
+			btnClick() {
 				console.log('btnClick')
 				window.location = ('https://www.baidu.com')
 			},
-			btnTouchstart(){
+			btnTouchstart() {
 				console.log('btnTouchstart')
 			},
-			btnTouchend(){
+			btnTouchend() {
 				console.log('btnTouchend')
-				
+
 			},
-			go(name){
+			go(name) {
 				console.log(name)
 				uni.navigateTo({
-					url:`/pages/${name}/${name}`
+					url: `/pages/${name}/${name}`
 				})
 			},
-			tuichu(){
+			tuichu() {
 				uni.removeStorageSync('token');
 				// uni.removeStorageSync('address');
 				uni.navigateTo({
-					url:'/pages/login/login'
+					url: '/pages/login/login'
 				})
 			}
 		}

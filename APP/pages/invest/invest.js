@@ -57,6 +57,19 @@ export default {
 			this.$fn.request('goods/goods_list', 'GET',goods_list).then(res => {
 				console.log(res.data.data.data,'产品列表接口')
 				this.goods_list=res.data.data.data
+				if(res.data.code == 204){
+					uni.showToast({
+						title:res.data.msg,
+						icon:'none',
+						duration:1000,
+					})
+					setTimeout(()=>{
+						uni.removeStorageSync('token');
+						uni.navigateTo({
+							url:'/pages/login/login'
+						})
+					},1500)
+				}
 			})
 			
 			// 支付方式
