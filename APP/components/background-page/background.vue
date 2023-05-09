@@ -29,6 +29,10 @@
       showBack: {
         type: Boolean,
         default: true
+      },
+      pageName: {
+        type: String,
+        default: ''
       }
     },
   	data() {
@@ -49,10 +53,13 @@
       	// })
       },
       back() {
-        // uni.navigateTo({
-        // 	url:'/pages//setting/setting'
-        // })
-        uni.navigateBack()
+        if(this.pageName == '') {
+          uni.navigateBack()
+        }else {
+          uni.navigateTo({
+            url: `/pages/${this.pageName}/${this.pageName}`
+          })
+        }
       }
     }
   }

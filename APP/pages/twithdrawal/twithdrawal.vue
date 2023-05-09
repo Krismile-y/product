@@ -2,28 +2,31 @@
 	<view>
 
 		<view class="box">
-			<view class="show disc">
-				<view class="price">{{priceTotal}}￥</view>
-				<view class="title">共计项目投资金额</view>
+			<view class="head-box">
+			  <view class="picker-view" @click="changeYear">
+			    <view class="picker-p">
+			      {{dateText}}
+			    </view>
+			    <view class="down-img">
+			      <image src="../../static/common/down.png" mode="widthFix"></image>
+			    </view>
+			  </view>
+			  <view class="head-content">
+			    <view class="head-title">
+			      项目提现总金额
+			    </view>
+			    <view class="price">{{priceTotal}}￥</view>
+			  </view>
 			</view>
-      <view class="picker-view" @click="changeYear">
-        {{dateText}}
-      </view>
 			
       
-			<view class="" style="margin-top: 10upx;">
-        <uni-table ref="table" border stripe emptyText="暂无更多数据" >
-        	<!-- 表头行 -->
-        	<uni-tr>
-        		<uni-th align="center">操作/时间</uni-th>
-        		<uni-th align="center">投资金额</uni-th>
-        	</uni-tr>
-        	<!-- 表格数据行 -->
-        	<uni-tr v-for="(item,index) in tableData" :key="index">
-        		<uni-td align="center">{{item.create_time}}</uni-td>
-        		<uni-td align="center">{{item.money}}</uni-td>
-        	</uni-tr>
-        </uni-table>
+			<view class="" style="margin-top: 20upx;">
+        <view class="noneData" v-show="tableData.length==0">
+          暂无数据
+        </view>
+        <uni-card title="提现金额" :extra="item.money" v-for="(item,index) in tableData" :key="index">
+          <text class="uni-body">{{item.create_time}}</text>
+        </uni-card>
         <view class="uni-pagination-box" v-if="showPagination"><uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total" @change="change" /></view>
 			</view>
       <template>
@@ -57,13 +60,6 @@
 	export default {
 		data() {
 			return {
-				res: '2023年3月投资小计',
-				candidates: ['2023-02-01', '2', '3', '4', '5', '6', '7'],
-				contentText: {
-          contentdown: '查看更多',
-          contentrefresh: '加载中',
-          contentnomore: '没有更多'
-        },
         page: '',  //页码
         tableData: [], //表格数据
         show: false,
@@ -81,7 +77,7 @@
 			};
 		},
 		onLoad() {
-			
+			this.init()
 		},
     // onReady() {
     // 	// 微信小程序需要用此写法
@@ -99,6 +95,13 @@
 		methods: {
       changeYear() {
         this.show = true
+      },
+      // 初始化页面，默认展示本月数据
+      init() {
+        let date = new Date()
+        let month = date.getMonth()+1 > 10 ? (date.getMonth()+1) + '' : '0' + (date.getMonth()+1) 
+        let year = date.getFullYear()
+        this.dateText = year + '-' + month
       },
       // 获取数据
       getData(page,time) {
@@ -167,72 +170,71 @@
 	.box {
 		width: 90%;
 		margin: 30upx auto;
-
-		.daiding {
-			width: 100%;
-			height: 90upx;
-			border: 1upx solid #cccccc;
-			margin-top: 10upx;
-		}
-
-		.show {
-			border: 1upx solid #cccccc;
-			width: 100%;
-			height: 180upx;
-			font-size: 36upx;
-
-			.title {
-				margin-top: 10upx;
-			}
-		}
-
-		.three {
-			width: 100%;
-			margin-top: 10upx;
-			height: 40upx;
-			display: flex;
-
-			.threeItem {
-				height: 100%;
-				flex: 1;
-				color: #999;
-			}
-		}
-
-		.inputs {
-			width: 100%;
-			height: 60upx;
-			position: relative;
-			border: 1upx solid #cccccc;
-
-			input {
-				width: 80%;
-				height: 100%;
-				margin: 0 auto;
-			}
-
-			.pos {
-				width: 100upx;
-				height: 100%;
-				position: absolute;
-				right: 0;
-				top: 0;
-
-				image {
-					width: 20upx;
-					height: 20upx;
-				}
-			}
-		}
-    .picker-view {
-      width: 100%;
-      height: 60upx;
-      box-sizing: border-box;
-      margin-top: 20upx;
-      padding: 0 0 0 20upx;
-      border: 1upx solid #cccccc;
-      line-height: 60upx;
-      color: #0c0c0c;
-    }
+	  .head-box {
+	    width: 100%;
+	    height: 160upx;
+	    border-radius: 40upx;
+	    border: 1px solid #ccc;
+	    box-shadow: #ccc 4upx 4upx 4upx 4upx;
+	    background-color: #eee;
+	    display: flex;
+	    .picker-view {
+	      width: 40%;
+	      box-sizing: border-box;
+	      height: 100%;
+	      padding: 0 30upx;
+	      display: flex;
+	      .picker-p {
+	        width: 90%;
+	        height: 100%;
+	        line-height: 160upx;
+	        font-size: 22px;
+	        font-weight: 600;
+	      }
+	      .down-img {
+	        flex: 1;
+	        display: grid;
+	        place-items: center;
+	        image {
+	          width: 100%;
+	        }
+	      }
+	    }
+	    .head-content{
+	      flex: 1;
+	      display:flex;
+	      flex-direction: column;
+	      box-sizing: border-box;
+	      justify-content: space-between;
+	      padding: 30upx 20upx;
+	      .head-title {
+	        text-align: center;
+	        width: 100%;
+	        height: 1.5em;
+	        line-height: 1.5em;
+	      }
+	      .price {
+	        font-size: 20px;
+	        width: 100%;
+	        text-align: center;
+	      }
+	    }
+	  }
+	  .noneData {
+	    margin-top: 40upx;
+	    font-size: 18px;
+	    color: #ccc;
+	    width: 100%;
+	    text-align: center;
+	  }
+	  /deep/ .uni-card {
+	    margin: 30upx 0 !important;
+	    border-radius: 20upx;
+	  }
+	  
+	  /deep/ .uni-card__header-extra-text {
+	      font-size: 18px !important;
+	      color: #111 !important;
+	    }
 	}
 </style>

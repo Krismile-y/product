@@ -1,6 +1,6 @@
 <template>
 	<view class="withdrawal">
-    <backgroundPage :title="title">
+    <backgroundPage :title="title" pageName="my">
       <view class="box">
         
         <view class="container">
@@ -17,6 +17,21 @@
             <view class="right" @click="open">
               <view style="color: #999;">点击填写银行卡信息</view>
             </view>
+          </view>
+          <view class="show-card" v-show="JSON.stringify(formData)!=='{}'">
+            <!-- <image src="../../static/common/jincard.jpg" mode="widthFix"></image> -->
+            <view class="card-title">
+              卡用户名:
+            </view>
+            <view class="card-p">{{formData.u_back_user_name}}</view>
+            <view class="card-title">
+              开户行:
+            </view>
+            <view class="card-p">{{formData.u_bank_name}}</view>
+            <view class="card-title">
+              银行卡号:
+            </view>
+            <view class="card-p" style="font-size: 18px;">{{newCardNum(formData.u_back_card)}}</view>
           </view>
           <u-popup :show="show" mode="bottom"  @close="close" @open="open">
             <view class="popupBox">
@@ -83,6 +98,20 @@
           that.title = `<view class="wdtjm">可提现余额</view><br />
           <view class="numberCode">${that.money_balance}</view>`
         })
+      },
+      // 每四位数用空格隔开
+      newCardNum(stringNum) {
+        if(stringNum == undefined || stringNum == '') {
+          return
+        }
+        let numArr = stringNum.toString().split('')
+        for(let i=0; i< numArr.length; i++) {
+          if(i%5 == 0) {
+            numArr.splice(i,0,' ')
+          }
+        }
+        let newStr = numArr.join('')
+        return newStr
       },
 			bian(index){
 				this.currentIndex=index
@@ -173,6 +202,7 @@
 		border-bottom: 1upx solid #cccccc;
 		.left{
 			width: 40%;
+      font-size: 16px;
 			height: 100%;
 			display: flex;
 			align-items: center;
@@ -191,6 +221,30 @@
 			}
 		}
 	}
+  .show-card {
+    width: 90%;
+    border-radius: 15px;
+    height: 190px;
+    margin: 30px auto;
+    background-image: url('../../static/common/heisebg.jpg');
+    background-size: 100% auto;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 15px;
+    font-size: 18px;
+    box-sizing: border-box;
+    .card-title {
+      font-size: 16px;
+      margin-bottom: 10upx;
+    }
+    .card-p {
+      font-size: 14px;
+      margin-bottom: 10upx;
+      text-indent: 2em;
+    }
+  }
 	.tishi{
 			width: 90%;
 			text-align: center;
