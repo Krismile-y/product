@@ -8,7 +8,9 @@
 					<image src="../../static/common/del.png" mode="" @tap="del(item)"></image>
 				</view>
 				<view class="left dis">
-					<image src="../../static/logo.png" mode=""></image>
+					<image
+						src="../../common/user.webp"
+						mode=""></image>
 				</view>
 				<view class="right">
 					<view class="title">
@@ -56,10 +58,10 @@
 				
 				this.currentIndex=index
 				uni.setStorageSync('address',item)
-				// uni.showToast({
-				// 	duration:1000,
-				// 	title:'已设为默认地址'
-				// })
+				uni.showToast({
+					duration:500,
+					title:'已设为默认地址'
+				})
 			},
 			del(item){//删除地址
 				let data={

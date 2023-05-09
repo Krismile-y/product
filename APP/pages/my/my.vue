@@ -7,7 +7,7 @@
 			<view class="shang">
 				<view class="left dis">
 					<image
-						src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465"
+						src="../../common/user.webp"
 						mode=""></image>
 				</view>
 				<view class="center">
@@ -60,7 +60,7 @@
 
 
 
-		<view class="box" style="margin-top: 280upx;">
+		<view class="box" style="margin-top: 280upx;" v-show="false">
 			<view class="title">
 				<view class="shu"></view>
 				活动内容
@@ -78,9 +78,9 @@
 					<image src="../../static/myimg/wode.png"></image>
 					我的团队
 				</view>
-				<view class="item disc">
+				<view class="item disc" >
 					<image src="../../static/myimg/jinru.png"></image>
-					进入官网
+					<a href="http://gw.tzhreefvg.top/">进入官网</a>
 				</view>
 				<view class="item disc" @tap="go('test')">
 					<image src="../../static/myimg/jinrong.png"></image>
@@ -98,6 +98,63 @@
 				<view class="item disc" @tap="go('setting')">
 					<image src="../../static/myimg/shezhi2.png"></image>
 					设置
+				</view>
+			</view>
+		</view>
+		<!--  -->
+		<view class="box" style="margin-top: 280upx;">
+			<view class="title">
+				<view class="shu"></view>
+				活动内容
+			</view>
+			<view class="list">
+				<view class="item" @tap="go('invite')">
+					<view class="left">分享邀请</view>
+					<view class="right">></view>
+				</view>
+			</view>
+			<view class="list">
+				<view class="item" @tap="go('msg')">
+					<view class="left">消息中心</view>
+					<view class="right">></view>
+				</view>
+			</view>
+			<view class="list">
+				<view class="item" @tap="go('myGroup')">
+					<view class="left">我的团队</view>
+					<view class="right">></view>
+				</view>
+			</view>
+			<view class="list">
+				<view class="item" @tap="goIndex()">
+					<view class="left">进入官网</view>
+					<view class="right">></view>
+				</view>
+			</view>
+			<view class="list">
+				<view class="item" @tap="go('myShop')">
+					<view class="left">我的商城</view>
+					<view class="right">></view>
+				</view>
+			</view>
+			<view class="list">
+				<view class="item" @tap="go('test')">
+					<view class="left">充值</view>
+					<view class="right">></view>
+				</view>
+			</view>
+			
+			<!-- <view class="list">
+				<view class="item" @tap="go('terrace')">
+					<view class="left">平台攻略</view>
+					<view class="right">></view>
+				</view>
+			</view> -->
+			
+			<view class="list">
+				<view class="item" @tap="go('setting')">
+					<view class="left">设置</view>
+					<view class="right">></view>
 				</view>
 			</view>
 		</view>
@@ -217,7 +274,7 @@
 				"is_whole": "1"
 			}
 			this.$fn.request('income', "GET", data).then(res => {
-				console.log(res.data, '用户今日收益')
+				// console.log(res.data, '用户今日收益')
 				if(res.data.code == 204){
 					uni.showToast({
 						title:res.data.msg,
@@ -248,6 +305,10 @@
 			},
 			queding() {
 				this.show = false
+			},
+			goIndex(){
+				window.location = ('http://gw.tzhreefvg.top/')
+				
 			}
 		}
 	}

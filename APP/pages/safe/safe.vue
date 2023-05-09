@@ -8,7 +8,7 @@
 			</view>
 		</view>
 		
-		<view class="item" style="margin-top: 30upx;"  @tap="go(1)">
+		<view class="item" style="margin-top: 0upx;"  @tap="go(1)">
 			<image src="../../static/common/shimingzhi.png" mode=""></image>
 			实名制
 			<view class="right dis">

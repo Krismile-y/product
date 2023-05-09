@@ -6,8 +6,8 @@
 				<!-- <view class="title">注册</view> -->
 			</view>
 			<view class="center disc">
-				<view class="da">Logon</view>
-				<view class="xiao">hellow</view>
+				<view class="da">注册</view>
+				<view class="xiao"></view>
 			</view>
 		</view>
 		
