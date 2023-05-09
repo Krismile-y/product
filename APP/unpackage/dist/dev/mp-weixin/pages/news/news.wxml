@@ -1,1 +1,0 @@
-<view><view class="title">{{''+article.title+''}}</view><view class="author">{{''+article.author+''}}</view><view class="detail"><rich-text nodes="{{article.content}}"></rich-text></view></view>

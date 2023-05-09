@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "u-overlay": "/node-modules/uview-ui/components/u-overlay/u-overlay",
-    "bottom": "/components/bottom/bottom"
-  }
-}

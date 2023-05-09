@@ -4,23 +4,6 @@
       <view class="box">
         
         <view class="container">
-          <view class="tits">
-            <!--  @tap="bian(0)" :class="{color:currentIndex==0?true:false}" -->
-            <view class="title dis">
-              余额提现
-            </view>
-            <!-- <view class="title dis"@tap="bian(1)" :class="{color:currentIndex==1?true:false}">
-              佣金提现
-            </view> -->
-          </view>
-          <!--  -->
-          
-          <view class="item">
-            <view class="left">可提现余额</view>
-            <!--  v-show="currentIndex==0?true:false" -->
-            <!-- <view class="left "v-show="currentIndex==1?true:false">可提现佣金</view> -->
-            <view class="right ">{{money_balance}}</view>
-          </view>
           
           <view class="item">
             <view class="left ">提现的金额</view>
@@ -39,23 +22,19 @@
             <view class="popupBox">
               <uni-forms :modelValue="formData" label-position="top">
                 <uni-forms-item label="银行卡号" name="cardNum" required>
-                  <uni-easyinput type="text" v-model="formData.cardNum" placeholder="请输入银行卡号" />
+                  <uni-easyinput type="text" v-model="formData.u_back_card" placeholder="请输入银行卡号" />
                 </uni-forms-item>
                 <uni-forms-item required name="openingBank" label="开户行">
-                  <uni-easyinput type="text" v-model="formData.openingBank" placeholder="请输入开户行" />
+                  <uni-easyinput type="text" v-model="formData.u_bank_name" placeholder="请输入开户行" />
                 </uni-forms-item>
                 <uni-forms-item required name="userName" label="卡用户名">
-                  <uni-easyinput type="text" v-model="formData.userName" placeholder="请输入卡用户名" />
+                  <uni-easyinput type="text" v-model="formData.u_back_user_name" placeholder="请输入卡用户名" />
                 </uni-forms-item>
               </uni-forms>
               <button @click="submitForm" type="primary">填写完成</button>
               <button @click="close">取消</button>
             </view>
           </u-popup>
-          
-          <view class="tishi">
-            温馨提示：请勿绑定本人以外银行卡提现
-          </view>
           
           <view class="bottom dis zbottom">
           	<view class="in dis" @tap="sendBtn">
@@ -82,7 +61,7 @@
 				currentIndex:0,
         money_balance: 0, //可提现金额
         money: 0,
-        title:'提现申请',
+        title:``,
         formData: {
           
         },
@@ -101,6 +80,8 @@
         this.$fn.request('/user',"GET",params).then(res=>{
           console.log(res);
           that.money_balance = res.data.data.money_balance
+          that.title = `<view class="wdtjm">可提现余额</view><br />
+          <view class="numberCode">${that.money_balance}</view>`
         })
       },
 			bian(index){
@@ -119,10 +100,8 @@
       // 发送申请接口
       sendBtn() {
         let params = {
-          money: 100,
-          u_bank_name: '农行',
-          u_back_card: '123',
-          u_back_user_name: 'hello'
+          money: this.money,
+          ...this.formData
         }
         
         this.$fn.request('/withdrawal',"POST",params).then(res=>{
@@ -156,6 +135,15 @@
     // background-color: #fff;
     margin-top: 40upx;
 	}
+  /deep/ .help-title {
+    top: 5%;
+    line-height: 80upx;
+    text-align: center;
+    .wdtjm {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
 }
 .container{
 	width: 90%;

@@ -1,1 +1,0 @@
-<view class="tops"><view hidden="{{!(types.name=='type1'?true:false)}}" class="fanhui dis"><image src="../../static/common/fanhui.png" mode></image><view class="title">登录</view></view><view class="center"></view></view>

@@ -1,1 +1,0 @@
-<view class="invite disc"><view class="id dis">{{"我的推荐ID:"+info.id}}</view><image src="{{code}}"></image><view data-event-opts="{{[['tap',[['fenxiang',['$event']]]]]}}" class="btn dis" bindtap="__e">立即分享</view></view>

@@ -1,11 +1,13 @@
 <template>
-	<view>
+	<view class="news-page">
+    <!-- 新闻详情页 -->
 		<view class="title">
 			{{article.title}}
 		</view>
     <view class="author">
     	{{article.author}}
     </view>
+    <image :src="article.thumb_url" mode="widthFix" class="new-img" v-show="article.thumb_url!=''"></image>
 		<view class="detail" v-html="article.content">
 			<!-- {{article.content}} -->
 		</view>
@@ -17,7 +19,11 @@
 		data() {
 			return {
 				index: '', 
-        article: null,
+        article: {
+          title: '',
+          author: '',
+          content: ''
+        },
 			};
 		},
     onLoad(option) {
@@ -53,5 +59,13 @@
 	text-indent: 60upx;
 	color: #000;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.news-page {
+  box-sizing: border-box;
+  padding: 0 20upx;
+  .new-img {
+    width: 100%;
+  }
 }
 </style>

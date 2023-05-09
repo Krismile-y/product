@@ -12,7 +12,7 @@
         </view>
         <view class="shop" v-for="item in list" >
           <view class="image-box">
-            <image @tap="show=true" src="../../static/uni.png" mode=""></image>
+            <image @tap="show=true" :src="item.head_img==''? defaultImg: item.head_img" mode=""></image>
             <!-- :src="item.head_img" -->
           </view>
           <!-- 商品信息 -->
@@ -50,6 +50,7 @@
 
 <script>
   import backgroundPage from "../../components/background-page/background.vue";
+  import defaultImg from "../../static/common/jinrong.jpg";
 	export default {
     components: {backgroundPage},
 		data() {
@@ -57,6 +58,7 @@
 				list:[],
         title:'',
         info: {},
+        defaultImg,
 			};
 		},
 		onLoad() {

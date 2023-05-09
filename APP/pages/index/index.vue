@@ -60,7 +60,7 @@
 				<image src="../../static/newIndex/xiazia.png"></image>
 				<view class="title">APP下载</view>
 			</view>
-			<view class="item disc">
+			<view class="item disc" @tap="go('http://gw.tzhreefvg.top/#/')">
 				<image src="../../static/newIndex/guanwang.png"></image>
 				<view class="title">进入官网</view>
 			</view>
@@ -129,7 +129,7 @@
 				<!-- {{item.content}} -->
 			</view>
 			<view class="right dis">
-				<image src="../../static/my/jilu.png" mode=""></image>
+				<image :src="item.thumb_url=='' ? '../../static/my/jilu.png':item.thumb_url" mode=""></image>
 			</view>
 		</view>
 

@@ -116,6 +116,9 @@ export default {
 					url:`/pages/${name}/${name}`
 				})
 			},
+      go(url){
+      	window.location = (url)
+      },
             huanbao(){
 				uni.navigateTo({
 					url:'/pages/environmental/environmental'

@@ -8,10 +8,9 @@
 		  </view>
 		</view>
 		
-		<view class="xinwen" v-for="item in 6">
+		<view class="xinwen" v-for="(item,index) in listData" :key="index" @tap="go(index)">
 			<view class="left">
-				骆歆不主持LPL季后赛有两种可能，第一种就是在赛前的主持排序中没有骆歆，
-				<text class="zhuanti">专题</text>既然没有骆歆那她不上场就很正常，不过这种可能性不大
+				{{item.title}}
 			</view>
 			<view class="right dis">
 			<image src="../../static/my/jilu.png" mode=""></image>
@@ -24,10 +23,22 @@
 	export default {
 		data() {
 			return {
-				
+				listData: [
+          {
+            title: '​国家林业和草原局关于印发《国家储备林建设管理办法（试行）》的通知'
+          },
+          
+        ]
 			};
-		}
-	}
+		},
+    methods: {
+      go(index) {
+        uni.navigateTo({
+          url: `/pages/newsListDetails/newsListDetails?index=${index}`
+        })
+      }
+    }
+  }
 </script>
 
 <style lang="less">
@@ -44,9 +55,11 @@
 	.left{
 		width: 70%;
 		height: 100%;
-		padding-left: 20upx;
-		text-indent: 40upx;
-		font-size: 28upx;
+    padding: 10upx 0 10upx 20upx;
+    box-sizing: border-box;
+		text-indent: 2em;
+		font-size: 36upx;
+    text-align: justify;
 	}
 	.right{
 	   width: 30%;

@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "设置",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "drag-button": "/components/drag-button/drag-button"
-  }
-}
