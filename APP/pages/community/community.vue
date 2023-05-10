@@ -18,7 +18,7 @@
 				</view>
 				<view class="newTop ">
 					<view style="font-weight: 700;font-size: 40upx;margin-bottom: 20upx;">团队收益</view>
-				    <view style="font-size: 50upx;font-family: inherit;font-weight: 700;letter-spacing: 0upx;">￥{{money_team}}</view>
+				    <view style="font-size: 50upx;font-family: inherit;font-weight: 700;letter-spacing: 0upx;">{{money_team}}</view>
 					<view style="margin-top: 60upx;font-size: 30upx;font-weight: 700;">我的推荐码</view>
 					<view style="font-weight: 700;">{{info.id}}</view>
 					
@@ -166,10 +166,10 @@
       		console.log(data);
           that.tableData.forEach((item)=> {
             if(item.money_amount>=0){
-              item.money_amount = `+￥${item.money_amount}`
+              item.money_amount = `+${item.money_amount}`
               that.moneyColor = true
             }else {
-              item.money_amount = `-￥${Math.abs(item.money_amount)}`
+              item.money_amount = `-${Math.abs(item.money_amount)}`
               that.moneyColor = false
             }
           })

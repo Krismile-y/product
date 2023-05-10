@@ -8,15 +8,15 @@
 		<view class="three">
 			<view class="item disc">
 				<view class="title">项目规模</view>
-				<view class="de">￥<text>1000</text>万元</view>
+				<view class="de"><text>1000</text>万元</view>
 			</view>
 			<view class="item disc">
 				<view class="title">每日分红</view>
-				<view class="de">￥<text>1000</text>万元</view>
+				<view class="de"><text>1000</text>万元</view>
 			</view>
 			<view class="item disc">
 				<view class="title">投资周期</view>
-				<view class="de">￥<text>1000</text>万元</view>
+				<view class="de"><text>1000</text>万元</view>
 			</view>
 		</view>
 		

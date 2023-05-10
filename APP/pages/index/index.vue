@@ -52,7 +52,7 @@
 				<image src="../../static/myimg/wode.png"></image>
 				<view class="title">我的团队</view>
 			</view>
-			<view class="item disc" @tap='income'>
+			<view class="item disc" @tap="goHome('income')">
 				<image src="../../static/newIndex/shouyi.png"></image>
 				<view class="title">我的收益</view>
 			</view>

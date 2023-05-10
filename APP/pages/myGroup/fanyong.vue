@@ -15,7 +15,7 @@
           <view class="head-title">
             返佣总金额
           </view>
-          <view class="price">{{priceTotal}}￥</view>
+          <view class="price">{{priceTotal}}</view>
         </view>
       </view>
       

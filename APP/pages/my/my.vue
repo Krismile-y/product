@@ -23,17 +23,17 @@
 
 				<view class="boxs">
 					<view class="item disc">
-						<view class="tit">￥{{info.money_approve}}</view>
+						<view class="tit">{{info.money_approve}}</view>
 						<view class="de">可提现</view>
 
 
 					</view>
 					<view class="item disc">
-						<view class="tit">￥{{today}}</view>
+						<view class="tit">{{today}}</view>
 						<view class="de">每日收益</view>
 					</view>
 					<view class="item disc">
-						<view class="tit">￥{{info.money_balance}}</view>
+						<view class="tit">{{info.money_balance}}</view>
 						<view class="de">总收益</view>
 					</view>
 				</view>

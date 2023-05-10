@@ -101,7 +101,7 @@ export default {
 				let data={
 					'phone':this.phone,
 					'pwd':this.pwd,
-					'captcha':'12312'
+					'captcha':this.captcha
 				}
 				this.$fn.request('login','POST',data).then(res=>{
 					if(res.data.code == 1){					

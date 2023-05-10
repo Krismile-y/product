@@ -5,7 +5,7 @@
 			
 			 <view class="one disc">
 				 <view class="title">共计获得团队津贴</view>
-				 <view class="num">0.00￥</view>
+				 <view class="num">0.00</view>
 			 </view>
 			 
 			 <view class="two">

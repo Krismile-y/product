@@ -58,7 +58,7 @@
 
 							<view class="li" style="color: #484848;font-weight: 510;">
 
-								<text>￥</text>
+								<text></text>
 								<text style="font-size: 68upx; color: #000;">
 
 									{{detail.goods_money}}
