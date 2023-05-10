@@ -10,6 +10,7 @@ export default {
 				pwd:"",//密码
 				captcha:'',//验证码
 				value:false,//记住密码
+				herf:"",//验证码
 			};
 		},
 		onBackPress(event) {
@@ -43,6 +44,9 @@ export default {
 			})
 		},
 		onShow(){
+			this.herf=this.$url+'verify'
+			
+			
 			this.value=uni.getStorageSync('remember')
 			if(uni.getStorageSync('pwd') && uni.getStorageSync('phone')){
 				this.pwd=uni.getStorageSync('pwd')
@@ -58,6 +62,14 @@ export default {
 		},
 		methods:{
 			// 记住密码
+			yanzheng(){
+				this.$fn.request('verify','GET',{}).then(res=>{
+					let times = 0;
+					times = new Date()
+					this.herf=this.$url+'verify?time='+times
+				})
+			},
+			
 			change(e) {
 				console.log('change', e);
 				uni.setStorageSync('remember',e)

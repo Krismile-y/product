@@ -16,7 +16,7 @@
 				</view>
 				<view class="item disc">
 					<image src="../../static/myimg/kefu.png" mode=""></image>
-					我的客服
+					<a :href="kefu">我的客服</a>
 				</view>
 				<view class="item disc" @tap="go('help')">
 					<image src="../../static/myimg/fankui.png" mode=""></image>
@@ -68,9 +68,11 @@
 		data() {
 			return {
 				version: "",
+				kefu:""
 			};
 		},
 		onShow(){
+			this.kefu=uni.getStorageSync('kefu')
 			// 获取设备信息
 			uni.getSystemInfo({
 				success: (res) => {

@@ -1,11 +1,25 @@
 <template>
 	<view>
+		<image src="../../static/common/forest.jpg" mode=""></image>
+		<view style="width: 95%;margin: 30upx auto;">
+			
+			1. 注册并完善个人信息：在环保网站上注册并完善个人信息可以享受更多的服务和优惠。
+			<br>
+			2. 了解平台内容：浏览网站上的内容，了解平台上提供的各类服务，包括环保产品、环保教育、环境监测等方面的内容。
+			<br>
+			3. 智能搜索：通过网站提供的智能搜索功能快速查找您所需的内容。
+			<br>
+			4. 交流互动：在平台上可以与其他网友交流和互动，分享自己的环保经验，获取和学习其他环保知识和方法。
+			<br>
+			5. 参加活动：在平台上可以参加各类环保活动，包括主题论坛、宣传活动、环保公益等，获取奖励和认证。
+			<br>
+			6. 定制服务：如果您有特殊的环保需求或问题，可以通过平台联系专业的环保顾问提供专业的服务和方案。
+			<br>
+			7. 安全支付：在网站上购买环保产品或服务时，一定要保证网站的安全，选择信誉好、口碑良好的平台，确保支付的安全。
+			
+			
+		</view>
 		
-		<image src="../../static/my/t0 (1).jpg" mode=""></image>
-		<image src="../../static/my/t0 (2).jpg" mode=""></image>
-		<image src="../../static/my/t0 (3).jpg" mode=""></image>
-		<image src="../../static/my/t0 (4).jpg" mode=""></image>
-		<image src="../../static/my/t0 (5).jpg" mode=""></image>
 	</view>
 </template>
 

@@ -28,7 +28,7 @@
 				<view class="left">
 					<input type="text" placeholder="请输入验证码" v-model="captcha">
 				</view>	
-				<image :src="$url+'verify'" mode="" style="width: 50%;height: 100%;"></image>
+				<image :src="herf" mode="" style="width: 50%;height: 100%;" @tap="yanzheng"></image>
 			</view>		
 			
 			<view class="xuanxiang" style="margin-top: 110upx;">

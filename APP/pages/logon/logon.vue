@@ -93,7 +93,7 @@
 					console.log(res.data.msg)
 					if(res.data.code == 1){
 						uni.showToast({
-							title:res.data.msg,
+							title:'注册成功',
 							duration:1000,
 							icon:'success'
 						})

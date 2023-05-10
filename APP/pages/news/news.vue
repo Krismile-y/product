@@ -62,6 +62,8 @@
 }
 
 .news-page {
+	width: 95%;
+	margin: 0 auto;
   box-sizing: border-box;
   padding: 0 20upx;
   .new-img {

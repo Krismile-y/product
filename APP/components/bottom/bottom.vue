@@ -44,6 +44,7 @@
 			<view class="list ">
 				<view class="items dis"  @tap="four(0)">按钮1</view>
 				<view class="items dis" @tap="four(1)">按钮2</view>
+				<view class="items dis" @tap="four(2)">按钮3</view>
 				<!-- <view class="items dis" @tap="four(2)">按钮3</view>
 				<view class="items dis" @tap="four(3)">按钮4</view>
 				<view class="items dis" @tap="four(4)">金融</view> -->

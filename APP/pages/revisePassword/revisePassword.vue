@@ -75,7 +75,7 @@
 					if(res.data.code == 1){
 						uni.showToast({
 							duration:1000,
-							title:res.data.msg,
+							title:'修改成功',
 							icon:'success'
 						})
 						uni.navigateTo({

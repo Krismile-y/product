@@ -105,55 +105,78 @@
 		<view class="box" style="margin-top: 280upx;">
 			<view class="title">
 				<view class="shu"></view>
-				活动内容
+				活动中心
 			</view>
 			<view class="list">
 				<view class="item" @tap="go('invite')">
-					<view class="left">分享邀请</view>
+					<view class="left">
+						<image src="../../static/myimg/fenxiang.png" mode="" ></image>
+						分享邀请
+						</view>
 					<view class="right">></view>
 				</view>
 			</view>
 			<view class="list">
 				<view class="item" @tap="go('msg')">
-					<view class="left">消息中心</view>
+					<view class="left">
+						<image src="../../static/myimg/xiaoxi.png" mode="" ></image>
+						消息中心
+						</view>
 					<view class="right">></view>
 				</view>
 			</view>
 			<view class="list">
 				<view class="item" @tap="go('myGroup')">
-					<view class="left">我的团队</view>
+					<view class="left">
+						<image src="../../static/myimg/wode.png" mode="" ></image>
+						我的团队
+						</view>
 					<view class="right">></view>
 				</view>
 			</view>
 			<view class="list">
 				<view class="item" @tap="goIndex()">
-					<view class="left">进入官网</view>
+					<view class="left">
+						<image src="../../static/myimg/jinru.png" mode="" ></image>
+						进入官网
+						</view>
 					<view class="right">></view>
 				</view>
 			</view>
 			<view class="list">
 				<view class="item" @tap="go('myShop')">
-					<view class="left">我的商城</view>
+					<view class="left">
+						<image src="../../static/myimg/shangpin.png" mode="" ></image>
+						我的商城
+						</view>
 					<view class="right">></view>
 				</view>
 			</view>
 			<view class="list">
 				<view class="item" @tap="go('test')">
-					<view class="left">充值</view>
+					<view class="left">
+						<image src="../../static/myimg/jinrong.png" mode="" ></image>
+						充值
+						</view>
 					<view class="right">></view>
 				</view>
 			</view>
 			
-			<!-- <view class="list">
+			<view class="list">
 				<view class="item" @tap="go('terrace')">
-					<view class="left">平台攻略</view>
+					<view class="left">
+					<image src="../../static/newIndex/pingtai.png" mode="" ></image>	
+						平台攻略
+					</view>
 					<view class="right">></view>
 				</view>
-			</view> -->
+			</view>
 			
 			<view class="list">
 				<view class="item" @tap="go('setting')">
-					<view class="left">设置</view>
+					<view class="left">
+						<image src="../../static/myimg/shezhi2.png" mode="" ></image>
+						设置</view>
 					<view class="right">></view>
 				</view>
 			</view>
@@ -162,35 +185,50 @@
 		<view class="box">
 			<view class="title">
 				<view class="shu"></view>
-				资金管理
+				我的资金
 			</view>
 			<view class="list">
 				<view class="item" @tap="go('record')">
-					<view class="left">投资记录</view>
+					<view class="left">
+						<image src="../../static/myimg/touxi.png" mode="" ></image>
+						投资记录
+						</view>
 					<view class="right">></view>
 				</view>
 			</view>
 			<view class="list">
 				<view class="item" @tap="go('income')">
-					<view class="left">收益记录</view>
+					<view class="left">
+						<image src="../../static/myimg/shouyi.png" mode="" ></image>
+						收益记录
+						</view>
 					<view class="right">></view>
 				</view>
 			</view>
 			<view class="list">
 				<view class="item" @tap="go('twithdrawal')">
-					<view class="left">提现记录</view>
+					<view class="left">
+						<image src="../../static/myimg/tixian.png" mode="" ></image>
+						提现记录
+						</view>
 					<view class="right">></view>
 				</view>
 			</view>
 			<view class="list">
 				<view class="item" @tap="go('withdrawal')">
-					<view class="left">提现申请</view>
+					<view class="left">
+						<image src="../../static/myimg/shenqing.png" mode="" ></image>
+						提现申请
+						</view>
 					<view class="right">></view>
 				</view>
 			</view>
 			<view class="list">
 				<view class="item" @tap="go('certificate')">
-					<view class="left">股权证书</view>
+					<view class="left">
+						<image src="../../static/myimg/guquan.png" mode="" ></image>
+						股权证书
+						</view>
 					<view class="right">></view>
 				</view>
 			</view>

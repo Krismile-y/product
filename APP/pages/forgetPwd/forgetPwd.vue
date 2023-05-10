@@ -13,8 +13,7 @@
 				<input type="text" placeholder="请输入身份证号"  v-model="sfz">
 			</view>
 		</view>
-		
-		<view class="item">
+			<view class="item">
 			<view class="left dis" >新密码</view>
 			<view class="right dis">
 				<input type="text" placeholder="新密码" v-model="pwd">
@@ -26,8 +25,8 @@
 			<view class="right dis">
 				<input type="text" placeholder="请输入验证码" v-model="captcha">
 			</view>
-			<view class="yanzheng">
-				<image :src="$url+'verify'" mode="" style="width: 100%;height: 100%;"></image>
+			<view class="yanzheng" style="">
+				<image :src="herf" mode="" style="width: 100%;height: 100%;" @tap='change()'></image>
 			</view>
 		</view>
 		
@@ -47,10 +46,23 @@
 			captcha:'',
 			pwd:'',
 			phone:"",
-			sfz:""
+			sfz:"",
+			herf:"",//验证码
 			};
 		},
+		onShow(){
+			this.herf=this.$url+'verify'
+		},
 		methods:{
+			change(){//刷新验证码
+			console.log(1)
+			
+				this.$fn.request('verify','GET',{}).then(res=>{
+					let times = 0;
+					times = new Date()
+					this.herf=this.$url+'verify?time='+times
+				})
+			},
 			go(index){
 				
 					uni.navigateTo({
@@ -125,7 +137,6 @@
 		.yanzheng{
 			width: 30%;
 			height: 100%;
-			background-color: rebeccapurple;
 			position: absolute;
 			right: 0;
 			top: 0;

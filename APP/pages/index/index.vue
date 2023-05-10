@@ -1,5 +1,5 @@
 <template>
-	<view class="content" >
+	<view class="content" style="padding-bottom: 200upx;">
 		<!-- 	<navs></navs>	 -->
       
 		<view class="tops disc" style="background-color: #54d27e;height: 400upx;">
@@ -32,7 +32,7 @@
 
 		<!-- 八个标题 -->
 		<view class="eight" style="margin-top: 100upx;">
-			<view class="item disc">
+			<view class="item disc"@tap="goHome('terrace')">
 				<image src="../../static/newIndex/pingtai.png"></image>
 				<view class="title">平台攻略</view>
 			</view>
@@ -40,23 +40,23 @@
 				<image src="../../static/newIndex/qiandao.png" @tap="goHome('sign')"></image>
 				<view class="title">签到</view>
 			</view>
-			<view class="item disc">
+			<view class="item disc" @tap="goHome('msg')">
 				<image src="../../static/myimg/xiaoxi.png"></image>
 				<view class="title">官方消息</view>
 			</view>
-			<view class="item disc">
+			<view class="item disc" @tap="goHome('invite')">
 				<image src="../../static/newIndex/fenxiang.png"></image>
 				<view class="title">分享赚钱</view>
 			</view>
-			<view class="item disc">
+			<view class="item disc" @tap="goHome('myGroup')">
 				<image src="../../static/myimg/wode.png"></image>
 				<view class="title">我的团队</view>
 			</view>
-			<view class="item disc">
+			<view class="item disc" @tap='income'>
 				<image src="../../static/newIndex/shouyi.png"></image>
 				<view class="title">我的收益</view>
 			</view>
-			<view class="item disc">
+			<view class="item disc" @tap='down'>
 				<image src="../../static/newIndex/xiazia.png"></image>
 				<view class="title">APP下载</view>
 			</view>
@@ -90,18 +90,18 @@
 			<view class="shu"></view>
 			你的专属服务
 		</view>
-		<view class="zhuanqu disc" @tap="huanbao()">
-			<view style="width: 100%; margin: 0 auto; display: flex;justify-content: space-between;">
-				<image src="https://p7.itc.cn/q_70/images01/20210705/0d6cce1353d7486591420067518b1a36.jpeg" mode="">
+		<view class="zhuanqu disc" >
+			<view style="width: 100%; margin: 0 auto; display: flex;justify-content: space-between;" >
+				<image src="../../static/index/zhuanshu1.jpg" mode=""@tap="huanbao(0)">
 				</image>
 				<image
-					src="https://img2.baidu.com/it/u=1308583920,2982159146&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=667"
-					mode="" style="margin-left: 0upx;"></image>
+					src="../../static/index/zhuanshu2.jpg"
+					mode="" style="margin-left: 0upx;" @tap="huanbao(1)"></image>
 			</view>
 		</view>
 
 		<!-- 轮播 -->
-		<swiper :autoplay="true" :interval="3000" :duration="1000" class="swiper" :circular='true'>
+		<swiper :autoplay="true" :interval="3000" :duration="1000" class="swiper" :circular='true' v-show="false">
 			<swiper-item class="swiperItem">
 				<view class="item dis">
 					<image
@@ -134,14 +134,14 @@
 		</view>
 
 		<!--  -->
-		<view class="kuaijie">
+		<!-- <view class="kuaijie">
 			<view class="shu"></view>
 			相关内容
-		</view>
+		</view> -->
 		<view class="zhengce" @tap="newsList">
-			<image src="../../static/common/ocean.jpg"></image>
+			<image src="../../static/common/zuixinzhengce.png" style="height: 300upx;"></image>
       <view class="zhengce-txt">
-        政策解读
+       <!-- 政策解读 -->
       </view>
 		</view>
 		<!--  -->
