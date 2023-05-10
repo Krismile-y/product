@@ -88,7 +88,7 @@
 		<!-- 快捷 -->
 		<view class="kuaijie">
 			<view class="shu"></view>
-			快捷选择专区
+			你的专属服务
 		</view>
 		<view class="zhuanqu disc" @tap="huanbao()">
 			<view style="width: 100%; margin: 0 auto; display: flex;justify-content: space-between;">
