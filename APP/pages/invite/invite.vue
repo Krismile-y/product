@@ -1,6 +1,6 @@
 <template>
 	<view class="invite disc">
-    <backgroundPage :title="title" pageName="my">
+    <backgroundPage :title="title">
       <view class="invite-content">
         <view class="code-img">
           <image :src="code"></image>
