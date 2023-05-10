@@ -9,26 +9,14 @@
         </view>
 
         <!--团队  -->
-        <view class="u-page" v-show="currentIndex==0?true:false && fanyongShow">
-          <!-- <view class="team-ps">
-            --点击下方人员可查看他的下级--
-          </view> -->
-          <u-list>
-            <u-list-item
-              v-for="(item, index) in last"
-              :key="index"
-            >
-              <u-cell :title="`${item.user_name} ${item.phone}\n一级代理`" @tap='chakan(item)'>
-                <u-avatar
-                  slot="icon"
-                  shape="square"
-                  size="35"
-                  :src="item.url"
-                  customStyle="margin: -3px 5px -3px 0"
-                ></u-avatar>
-              </u-cell>
-            </u-list-item>
-          </u-list>
+        <view class="u-page">
+          <view class="people-item" v-for="(item,index) in last" @tap="chakan(item)">
+            <image :src="item.url" mode=""></image>
+            <view class="people-name">
+              {{item.user_name}}
+            </view>
+          </view>
+          
         </view>
         <!-- 	<view class="daiding dis">
           <uni-load-more status="more" :content-text="contentText" />
@@ -115,7 +103,9 @@
 					
 					// console.log(res.data.data)
 					this.last=res.data.data.data
-					console.log(this.last.length,'目标')
+          this.last.forEach((item)=> {
+            item.url = this.urls[uni.$u.random(0, this.urls.length - 1)]
+          })
 					if(this.last.length == 0){
 						this.fanyongShow=false
 						 // this.last=res.data.data.data
@@ -156,31 +146,7 @@
 			changeYear() {
 				this.show = true
 			},
-			// 获取数据
-			getData(page, time) {
-				let params = {
-					'page': '1',
-					'limit': "10",
-					// 'time':"2023-04"
-				}
-				params.time = time
-				params.page = page
-				params.limit = this.pageSize
-				const that = this
-				this.$fn.request('/log/rebate', "GET", params).then(res => {
-					let data = res.data.data
-					that.priceTotal = data.count_money
-					that.tableData = data.data
-					console.log(data);
-					that.total = data.total
-					// 判断分页条是否展示
-					if (that.total <= that.pageSize) {
-						that.showPagination = false
-					} else {
-						that.showPagination = true
-					}
-				})
-			},
+			
 			// 分页触发
 			change(e) {
 				// this.selectedIndexs.length = 0

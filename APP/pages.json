@@ -181,6 +181,16 @@
             
         }
         ,{
+            "path" : "pages/myGroup/fanyong",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "团队返佣",
+                "enablePullDownRefresh": false
+                
+            }
+            
+        }
+        ,{
             "path" : "pages/terrace/terrace",
             "style" :                                                                                    
             {

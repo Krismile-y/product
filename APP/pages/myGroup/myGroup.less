@@ -170,11 +170,30 @@
 	}
   
   .u-page {
-    .team-ps {
-      width: 100%;
-      text-align: center;
-      font-size: 14px;
-      color: #999;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 40upx;
+    display: flex;
+    flex-wrap: wrap;
+    .people-item {
+      width: 50%;
+      height: 300upx;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      image {
+        display: block;
+        width: 180upx;
+        height: 180upx;
+        border-radius: 50%;
+        margin: 0 auto 0;
+      }
+      .people-name {
+        height: 80upx;
+        line-height: 80upx;
+        width: 100%;
+        text-align: center;
+      }
     }
   }
   

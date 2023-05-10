@@ -18,7 +18,7 @@
 				</view>
 				<view class="newTop ">
 					<view style="font-weight: 700;font-size: 40upx;margin-bottom: 20upx;">团队收益</view>
-				    <view style="font-size: 50upx;font-family: inherit;font-weight: 700;letter-spacing: 0upx;">￥1,000.20</view>
+				    <view style="font-size: 50upx;font-family: inherit;font-weight: 700;letter-spacing: 0upx;">￥{{money_team}}</view>
 					<view style="margin-top: 60upx;font-size: 30upx;font-weight: 700;">我的推荐码</view>
 					<view style="font-weight: 700;">{{info.id}}</view>
 					
@@ -42,7 +42,7 @@
       	</view>
       </view>
       <view class="list" >
-      	<view class="item" @tap="go('myGroup',1)">
+      	<view class="item" @tap="go('fanyong',1)">
       		<view class="left">返佣记录</view>
       		<view class="right">></view>
       	</view>
@@ -88,6 +88,8 @@
         showPagination: false, //总数据小于单页展示数据，不显示分页条
         // 每页数据量
         pageSize: 3,
+        // 团队收益
+        money_team: '',
         // 当前页
         pageCurrent: 1,
         // 数据总量
@@ -126,6 +128,7 @@
 		onShow() {
 			this.out=0
 			this.info=uni.getStorageSync('user_info')
+      this.money_team = this.info.money_team
 			if(uni.getStorageSync('name') == 'community'){
 				this.$store.state.one=true
 				this.$store.state.two=false
@@ -187,9 +190,15 @@
       },
       go(name,currentIndex){
       	console.log(name)
-      	uni.navigateTo({
-      		url:`/pages/${name}/${name}?index=${currentIndex}`
-      	})
+      	if(name=='fanyong') {
+          uni.navigateTo({
+          	url:`/pages/myGroup/${name}?index=${currentIndex}`
+          })
+        }else {
+          uni.navigateTo({
+          	url:`/pages/${name}/${name}?index=${currentIndex}`
+          })
+        }
       },
 		}
 	}

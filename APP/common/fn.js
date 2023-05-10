@@ -29,11 +29,20 @@ export default{
 					},
 				success: (res) => {
 					reslove(res)
-					
+          if(res.data.code == '0') {
+            uni.showToast({
+              title: res.data.msg,
+              icon:'error'
+            })
+          }
 				},
 				err: (err) => {
 					reject(err)
-					
+          if(err.data.code == '0') {
+            uni.showToast({
+              title: err.data.msg
+            })
+          }
 				},
 			})
 		})
