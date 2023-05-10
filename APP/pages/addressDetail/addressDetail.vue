@@ -14,7 +14,7 @@
 				手机号码
 			</view>
 			<view class="right dis">
-				<input type="text" v-model="phone">
+				<input type="text" v-model="phone" maxlength="11">
 			</view>
 		</view>
 
@@ -45,7 +45,7 @@
 			</view>
 			<view class="right dis">
 				<view class="uni-textarea" style="width: 100%;height: 200upx;background-color: #f0f0f0;border-radius: 20upx;overflow: hidden;">
-				<textarea placeholder-style="color:#F76260" placeholder=""  v-model="address" />
+				<textarea placeholder-style="color:#F76260" placeholder=""  v-model="wenben" />
 				</view>
 
 			</view>
@@ -79,7 +79,7 @@
 		},
 		data() {
 			return {
-				wenben: "",
+				wenben: "",//详细地址
 				value1: "", //滑动选项
 				formatter: {},
 				candidates: ['北京', '南京', '东京', '武汉', '天津', '上海', '海口'],
@@ -91,42 +91,77 @@
 				address:'',
 				diqu:'',
 				res:'',
+				province:"",//四川省
+                city:"",//成都市
+				county:"",//成华区
+				id:""
 			};
 		},
 		onLoad(options) {
 			// 携带过来的修改地址
-			console.log(uni.getStorageSync('exit'))
-			let res=uni.getStorageSync('exit')
-			this.phone=res.phone
-			this.address=res.address
-			this.user_name=res.username
-			this.diqu=res.province+res.county+res.city
-			// this.address()
+			
 			this.user_info=uni.getStorageSync('user_info')
+		},
+		onShow() {
+			
+			this.res=uni.getStorageSync('exit')
+			console.log(this.res)
+			this.id=this.res.id
+			
+			this.user_name=this.res.username//用户名
+            this.phone=this.res.phone//电话
+			this.diqu=this.res.province+this.res.city+this.res.county//用于显示的连续地址
+			this.wenben=this.res.address//详细地址
+			this.province=this.res.province//省
+			this.city=this.res.city//市
+			this.county=this.res.county
 		},
 		methods: {
 			change(e) {
 				console.log(e.data)
 				let res = e.data
 				this.res=e.data
-				 this.diqu = res[0] + res[1] + res[2]
-
+				this.diqu = res[0] + res[1] + res[2]
+                this.province=res[0]
+				this.city=res[1]
+				this.county=res[2]
 			},
 			
 			Addaddress(){
 				// console.log(uni.getStorageSync('user_info'))
-				
+				const res=uni.getStorageSync('exit')
+				// console.log(this.wenben)
 					let data = {
 						'address': this.wenben,
-						'province': this.res[0],
-						'city': this.res[1],
-						'county': this.res[2],
+						'province': this.province,
+						'city': this.city,
+						'county': this.county,
 						'user_name':this.user_name,
 						'phone': this.phone,
+						'aid':this.id
 					}
 				
-				this.$fn.request('address', "POST", data).then(res => {
-					console.log(res, '地址')
+
+				this.$fn.request('edit_address', "POST", data).then(res => {
+					console.log(res.data.msg, '地址')
+					if(res.data.code == 1){
+						uni.showToast({
+							duration:1000,
+							icon:'success',
+							title:res.data.msg
+						})
+						setTimeout(()=>{
+							uni.navigateTo({
+								url:'/pages/address/address'
+							})
+						},500)
+					}else{
+						uni.showToast({
+							duration:1000,
+							icon:'error',
+							title:res.data.msg
+						})
+					}
 				})
 			}
 		}

@@ -1,8 +1,8 @@
-const baseUrl = 'http://api.tzhreefvg.top/api/'
+const baseUrl = 'https://api.lszgfreer.top/api/'
 const baseUrl1 = 'http://www.api.com/api/'
 import md5 from 'js-md5';
 export default{
-	// 请求函数
+	// 请求函数  http://api.lszgfreer.top/
 	request:(url,method,data,type = 1)=>{
     // type用做请求地址判断
     let trueURL = ''

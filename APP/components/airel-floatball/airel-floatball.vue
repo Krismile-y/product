@@ -5,7 +5,7 @@
 				:style="styleBall"
 			    @blur="blur" tabindex="1" @click="show" 
 			    @touchstart.stop="touchstart" @touchmove.stop="touchmove" @touchend="touchend">
-			    <image  :src="mainImg"  style="width: 140upx;height: 100upx;border-radius: 50%;"></image>
+			    <image  :src="mainImg"  style="width: 100upx;height: 100upx;border-radius: 50%;"></image>
 			</view>
 		</a>
     </view>

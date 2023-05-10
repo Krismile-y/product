@@ -202,6 +202,15 @@
 								duration: 100,
 								scrollTop: 120,
 							})
+					// 用户信息
+					let info={
+						"is_whole":"1"
+					}
+					this.$fn.request('user','GET',info).then(res=>{
+						console.log(res.data.data.money_integral,'用户信息')
+						this.info.money_integral=res.data.data.money_integral
+						uni.setStorageSync('user_info',res.data.data)
+					})		
 					}else{
 						uni.showToast({
 							duration: 1000,
