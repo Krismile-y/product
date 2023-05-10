@@ -8,7 +8,7 @@
         <!-- <view class="btn dis" @tap="fenxiang">立即分享</view> -->
         <view class="bottom dis zbottom">
         	<view class="in dis" @tap="fenxiang">
-        		立即分享
+        		下载二维码
         	</view>
         </view>
       </view>
@@ -31,7 +31,7 @@
 		onLoad() {
 			this.info=uni.getStorageSync('user_info')
 			this.$fn.request('qrcode',"GET",{}).then(res=>{
-				console.log(res.data.data.qrcode,'用户二维码')
+				console.log(res.data.data,'用户二维码')
 				this.code=res.data.data.qrcode
         this.title = `<view class="wdtjm">我的推荐码:</view><br />
             <view class="numberCode">${this.info.id}</view>`

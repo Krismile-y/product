@@ -258,6 +258,16 @@
 		},
 
 		onShow() {
+			// 用户信息
+			let info={
+				"is_whole":"1"
+			}
+			this.$fn.request('user','GET',info).then(res=>{
+				console.log(res.data.data,'用户信息')
+				uni.setStorageSync('user_info',res.data.data)
+			})
+			
+			
 			this.out = 0
 			if (uni.getStorageSync('name') == 'my') {
 				this.$store.state.one = true
