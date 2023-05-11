@@ -1,7 +1,8 @@
 <template>
 	<view>
-		<image src="../../static/index/senlin.jpg"></image>
-		<view v-show="id==0?true:false" style="width: 95%;margin: 30upx auto;">
+		<image src="../../static/index/senlin.jpg" v-show="id==0?true:false"></image>
+		<image src="../../static/common/ocean.jpg" v-show="id==1?true:false"></image>
+		<view v-show="id==0?true:false" style="width: 90%;margin: 30upx auto;">
 			
 			
 			1. 环保产品推荐：我们根据您的消费习惯和需求，为您推荐符合环保要求的产品。这些产品具有环保认证，确保环境友好且无害。
@@ -17,7 +18,7 @@
 			
 		</view>
 		
-		<view  v-show="id==1?true:false" style="width: 95%;margin: 30upx auto;">
+		<view  v-show="id==1?true:false" style="width: 90%;margin: 30upx auto;">
 			
 			
 			1. 环境监测服务：我们提供一站式的环境监测服务，包括水质、空气、土壤等多种监测指标。我们的检测项目准确、专业、高效。

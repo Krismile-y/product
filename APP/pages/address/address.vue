@@ -75,6 +75,11 @@
 					this.$fn.request('my_address',"POST",{}).then(r=>{
 						// console.log(r.data.data,'地址')	
 						this.list=r.data.data
+						uni.showToast({
+							duration:1000,
+							icon:'success',
+							title:'删除地址成功'
+						})
 					})
 				})
 			},

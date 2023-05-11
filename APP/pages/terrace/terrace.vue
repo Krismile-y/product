@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<image src="../../static/common/forest.jpg" mode=""></image>
-		<view style="width: 95%;margin: 30upx auto;">
+		<view style="width: 90%;margin: 30upx auto;">
 			
 			1. 注册并完善个人信息：在环保网站上注册并完善个人信息可以享受更多的服务和优惠。
 			<br>

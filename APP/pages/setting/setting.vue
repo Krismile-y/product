@@ -1,7 +1,7 @@
 <template>
 	<view>
 
-		<airel-floatball  />
+		<!-- <airel-floatball  /> -->
 		
 		
 		<view class="box">
@@ -16,7 +16,7 @@
 				</view>
 				<view class="item disc">
 					<image src="../../static/myimg/kefu.png" mode=""></image>
-					<a :href="kefu">我的客服</a>
+					<a :href="kefu" style="color: black;">我的客服</a>
 				</view>
 				<view class="item disc" @tap="go('help')">
 					<image src="../../static/myimg/fankui.png" mode=""></image>
@@ -24,9 +24,10 @@
 				</view>
 
 				<!--  #ifdef APP -->
-				<view class="item disc" @tap='check'>
+				<view class="item disc" >
 					<image src="../../static/myimg/jiancha.png" mode=""></image>
-					检查更新
+					<!-- 检查更新 -->
+					<down></down>
 				</view>
 				<!--  #endif -->
 
@@ -61,9 +62,10 @@
 </template>
 
 <script>
+	import down from '../../components/down/updatepage/updatepage.vue'
 	export default {
 		components: {
-
+down
 		},
 		data() {
 			return {
@@ -80,6 +82,8 @@
 					// console.log(res)
 				}
 			})
+			
+			
 		},
 		methods: {
 			check() {
@@ -113,7 +117,7 @@
 			AndroidCheckUpdate: function() {
 				var _this = this;
 				uni.request({
-					//version.txt中内容为版本号，如果版本号大于客户端的版本号，客户端就自动更新
+					//version.txt中内容为版本号，如果版本号大于客户端的版本号，客户端就自动更新9
 					url: this.$url + 'v',
 					method: 'GET',
 					data: {},

@@ -14,7 +14,7 @@
 				手机号码
 			</view>
 			<view class="right dis">
-				<input type="text" v-model="phone">
+				<input type="number" v-model="phone" maxlength="11">
 			</view>
 		</view>
 
@@ -124,9 +124,7 @@
 							icon:'success'
 						})
 						setTimeout(()=>{
-							uni.navigateTo({
-								url:'/pages/shop/shop'
-							})
+							uni.navigateBack(1)
 						},1000)
 					}else{
 						uni.showToast({

@@ -1,0 +1,9 @@
+{
+    "id": "ylt-upgrade",
+    "name": "下载更新",
+    "version": "0.0.03",
+    "description": "uniapp更新",
+    "keywords": [
+        "更新"
+    ]
+}

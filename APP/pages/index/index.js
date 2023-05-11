@@ -1,6 +1,11 @@
+import down from '../../components/down/updatepage/updatepage.vue'
 export default {
+	components: {
+		down
+	},
 	data() {
 		return {
+			phoneDown:"",
 			out: 0,
 			obj: {
 				type: 'index',
@@ -26,6 +31,23 @@ export default {
 		}
 	},
 	onShow() {
+		// 判断手机型号
+		uni.getSystemInfo({
+			success: (res) => {
+				console.log(res.platform);
+			 this.$fn.request('v',"GET",{}).then(r=>{
+				 console.log(r.data.data)
+				 if(res.platform ='android'){
+					 this.phoneDown=r.data.data.apk
+				 }else{
+					 this.phoneDown=r.data.data.ios
+				 }
+			 })
+			 
+			}
+		})
+		
+		
 		this.out = 0
 		uni.setStorageSync('name', 'index')
 		if (uni.getStorageSync('name') == 'index') {
@@ -108,37 +130,7 @@ export default {
 	},
 	methods: {
 		income() {
-			
-			
-			// console.log('999')
-			// //用户今日收益
-			// let data = {
-			// 	"is_whole": "1"
-			// }
-			// this.$fn.request('income', "GET", data).then(res => {
-			// 	console.log(res.data, '用户今日收益')
-			// 	if (res.data.code == 1) {
-			// 		uni.showToast({
-			// 			duration: 1000,
-			// 			icon: 'none',
-			// 			title: '' + res.data.data.today
-			// 		})
-			// 	}
-			// 	if (res.data.code == 204) {
-			// 		uni.showToast({
-			// 			title: res.data.msg,
-			// 			icon: 'none',
-			// 			duration: 1000,
-			// 		})
-			// 		setTimeout(() => {
-			// 			uni.removeStorageSync('token');
-			// 			uni.navigateTo({
-			// 				url: '/pages/login/login'
-			// 			})
-			// 		}, 1500)
-			// 	}
 
-			// })
 		},
 		down() { //app下载
 			this.$fn.request('v', "GET", {}).then(res => {
@@ -196,7 +188,7 @@ export default {
 		},
 		huanbao(id) {
 			uni.navigateTo({
-				url: '/pages/environmental/environmental?id='+ id
+				url: '/pages/environmental/environmental?id=' + id
 			})
 		},
 		xinwen(index) {

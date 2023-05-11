@@ -6,7 +6,7 @@
 			}
 		},
 		onShow() {
-			
+
 			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
 					'token')) {
 				uni.navigateTo({
@@ -16,28 +16,28 @@
 		},
 		onLaunch: function() {
 			// 客服接口
-			let kefu={
-				"sid":"1"
+			let kefu = {
+				"sid": "1"
 			}
-			this.$fn.request('customer',"GET",kefu,).then(res=>{
+			this.$fn.request('customer', "GET", kefu, ).then(res => {
 				// console.log(res.data.data[0].url,'客服')
-				uni.setStorageSync('kefu',res.data.data[0].url)
-				this.$store.commit('kefu',res.data.data[0].url)
+				uni.setStorageSync('kefu', res.data.data[0].url)
+				this.$store.commit('kefu', res.data.data[0].url)
 			})
-				
+
 			// 获取设备信息
 			uni.getSystemInfo({
 				success: (res) => {
 					this.systemInfo = res
 					// console.log(res.safeArea)
-					uni.setStorageSync('x',res.safeArea.width - 70)
-					uni.setStorageSync('y',res.safeArea.bottom/2 -25)
-					this.$store.commit('x',uni.getStorageSync('x'))
-					this.$store.commit('y',uni.getStorageSync('y'))
+					uni.setStorageSync('x', res.safeArea.width - 70)
+					uni.setStorageSync('y', res.safeArea.bottom / 2 - 25)
+					this.$store.commit('x', uni.getStorageSync('x'))
+					this.$store.commit('y', uni.getStorageSync('y'))
 					// console.log(this.$store.state.y,'yy')
 				}
 			})
-			
+
 			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
 					'token')) {
 				uni.navigateTo({
@@ -64,12 +64,17 @@
 					console.log(res.platform);
 					//检测当前平台，如果是安卓则启动安卓更新  
 					// if (res.platform == "android") {
-					this.AndroidCheckUpdate();
+					// this.AndroidCheckUpdate();
 					// }
 				}
 			})
 			// #endif
-
+			uni.getSystemInfo({
+				success: (res) => {
+					console.log(res.platform);
+					
+				}
+			})
 		},
 		methods: {
 			AndroidCheckUpdate: function() {

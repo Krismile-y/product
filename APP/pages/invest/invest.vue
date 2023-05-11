@@ -1,16 +1,19 @@
 <template>
-	<view class="content" style="min-height: 200vh; padding-bottom: 100upx;">
+	<view class="content" style="min-height: 120vh; padding-bottom: 100upx;">
        <!-- 手写拉起框 -->
      <!-- <view class="myBox"></view> -->
 
-		<!-- 弹出层 -->
+		<!-- 认购弹出层 -->
 		<view>
 			<u-popup :show="show" @close="close" @open="open" round='60' style="z-index: 9999;">
 				<view class="popup">
 					<scroll-view scroll-y="true" style="width: 100%;height: 100%;overflow: hidden;">
 						<view class="investDetail">
-
+                                <view class="back">
+									<view class="backBtn dis" @tap="backBtn"><</view>
+								</view>
 							<view class="tops">
+								
 								<image
 									:src="detail.head_img"
 									mode=""></image>
@@ -102,7 +105,7 @@
 						</view>
 					</view>
 				</scroll-view>
-				
+				<!-- 单个产品 -->
 				<view class="items" v-for="(item,index) in goods_list">
 					<image :src="item.head_img"></image>
 					<view class="tit">{{item.goods_name}}</view>
@@ -113,21 +116,18 @@
 						</view>
 					</view>
 				</view>
-			
+			<u-empty text="此分类暂时没有数据" mode="order" v-show="kong"></u-empty>
 		
-
-		<!-- 单个产品 -->
-		
-
 		<view>
 			
 			<!-- 立即认购拉起框 -->
 			<u-popup :show="zhifu" @close="zhifuclose" @open="zhifuopen" round='60' style="z-index: 33;">
-				
-				
-				<view class="box" >
-					<view class="shuliang" >
-						<view style="padding-bottom: 50upx;padding-left: 30upx;">数量</view>
+				<view class="box" style="margin-top: 60upx;">
+					<view class="back">
+						<view class="backBtn dis" @tap="lastbackBtn"><</view>
+					</view>
+					<view class="shuliang" style="margin-top: 30upx;">
+						<view style="padding-bottom: 50upx;padding-left: 30upx;margin-top: 0upx;">数量</view>
 						<view class="jia">
 							<view class="zuo dis" @tap="jian" :class="{baise:xiadan==0?true:false}">-</view>
 							<view class="zhong dis">{{xiadan}}</view>
@@ -145,7 +145,7 @@
 					<!--  -->
           <u-popup :show="dayChange" @close="dayChangeClose" @open="dayChangeOpen" round='60' style="z-index: 44;">
             <view class="tianshuBox" v-show="!false">
-              <scroll-view scroll-y="true" style="width: 100%;height: 600upx;">
+              <scroll-view scroll-y="true" style="width: 100%;height: 460upx;margin-top: 60px;">
                 <view class="dayChange-title">
                   天数选择
                 </view>

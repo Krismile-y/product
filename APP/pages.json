@@ -255,7 +255,7 @@
             "path" : "pages/environmental/environmental",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "全民环保",
+                "navigationBarTitleText": "你的专属服务",
                 "enablePullDownRefresh": false
             }
             

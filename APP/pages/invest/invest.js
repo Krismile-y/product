@@ -1,6 +1,7 @@
 export default {
 		data() {
 			return {
+				kong:false,//分类数据为空
 				out:0,//退出参数
 				typeIndex:0,
 				xiadan:1,//下单数量
@@ -57,6 +58,11 @@ export default {
 			this.$fn.request('goods/goods_list', 'GET',goods_list).then(res => {
 				console.log(res.data.data.data,'产品列表接口')
 				this.goods_list=res.data.data.data
+				if(this.goods_list.length == 0 ){
+					this.kong=true
+				}else{
+					this.kong=false
+				}
 				if(res.data.code == 204){
 					uni.showToast({
 						title:res.data.msg,
@@ -127,6 +133,12 @@ export default {
 			this.$store.state.four=true
 		},
 		methods: {
+			backBtn(){//认购弹出层
+				this.close()
+			},
+			lastbackBtn(){//马上认购返回
+				this.zhifuclose()
+			},
 			jia(){
 				this.xiadan++
 			},
@@ -237,6 +249,11 @@ export default {
 				this.$fn.request('goods/goods_list', 'GET',goods_list).then(res => {
 					console.log(res.data.data.data,'产品列表接口')
 					this.goods_list=res.data.data.data
+					if(this.goods_list.length == 0 ){
+						this.kong=true
+					}else{
+						this.kong=false
+					}
 				})
 			},
 			go(index) {

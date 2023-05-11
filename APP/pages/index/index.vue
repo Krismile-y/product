@@ -1,9 +1,10 @@
 <template>
 	<view class="content" style="padding-bottom: 200upx;">
 		<!-- 	<navs></navs>	 -->
-      
+
 		<view class="tops disc" style="background-color: #54d27e;height: 400upx;">
-			<view style="padding-top: 106upx;color: #ffffff;letter-spacing: 8upx;font-size: 46upx;font-weight: 600;">绿色中国
+			<view style="padding-top: 106upx;color: #ffffff;letter-spacing: 8upx;font-size: 46upx;font-weight: 600;">
+				绿色中国
 			</view>
 
 			<view style="width: 100%;height: 100%;" class="disc">
@@ -14,8 +15,7 @@
 						<image   :src="item.img" mode="" style="width: 100%;height: 100%;border-radius: 20upx;"></image>
 					</swiper-item>	 -->
 					<swiper-item style="width: 100%;height: 200upx;" v-for="(item,index) in banner">
-						<image :src="item.img" mode=""
-							style="width: 100%;height: 100%;border-radius: 20upx;"></image>
+						<image :src="item.img" mode="" style="width: 100%;height: 100%;border-radius: 20upx;"></image>
 					</swiper-item>
 					<!-- <swiper-item style="width: 100%;height: 200upx;">
 						<image src="../../static/index/swiper2.png" mode=""
@@ -32,7 +32,7 @@
 
 		<!-- 八个标题 -->
 		<view class="eight" style="margin-top: 100upx;">
-			<view class="item disc"@tap="goHome('terrace')">
+			<view class="item disc" @tap="goHome('terrace')">
 				<image src="../../static/newIndex/pingtai.png"></image>
 				<view class="title">平台攻略</view>
 			</view>
@@ -56,10 +56,24 @@
 				<image src="../../static/newIndex/shouyi.png"></image>
 				<view class="title">我的收益</view>
 			</view>
+			<!--  #ifdef APP -->
+			<view class="item disc" >
+				<image src="../../static/newIndex/xiazia.png"></image>
+					<view class="title"></view>
+				<down>
+					
+				</down>
+								
+			</view>
+			<!--  #endif -->
+			<!-- #ifdef H5 -->
 			<view class="item disc" @tap='down'>
 				<image src="../../static/newIndex/xiazia.png"></image>
-				<view class="title">APP下载</view>
+			         <a :href="phoneDown" style="color: black;">
+						 <view class="title">APP下载</view>
+					 </a>
 			</view>
+			<!--  #endif -->
 			<view class="item disc" @tap="go('http://gw.tzhreefvg.top/#/')">
 				<image src="../../static/newIndex/guanwang.png"></image>
 				<view class="title">进入官网</view>
@@ -69,7 +83,7 @@
 
 		<!-- 滚动通知 -->
 		<view>
-			<u-notice-bar :text="text1" bgColor='#54d27e' color='#fff'></u-notice-bar>
+			<u-notice-bar :text="text1" bgColor='#54d27e' color='#fff' ></u-notice-bar>
 		</view>
 
 		<!-- 视屏 -->
@@ -77,7 +91,7 @@
 			<video src="" style="width: 100%;"></video>
 		</view> -->
 
-       
+
 
 		<!-- 新手 -->
 		<view class="news dis" @tap='xinshou'>
@@ -90,13 +104,12 @@
 			<view class="shu"></view>
 			你的专属服务
 		</view>
-		<view class="zhuanqu disc" >
-			<view style="width: 100%; margin: 0 auto; display: flex;justify-content: space-between;" >
-				<image src="../../static/index/zhuanshu1.jpg" mode=""@tap="huanbao(0)">
+		<view class="zhuanqu disc">
+			<view style="width: 100%; margin: 0 auto; display: flex;justify-content: space-between;">
+				<image src="../../static/index/zhuanshu1.jpg" mode="" @tap="huanbao(0)">
 				</image>
-				<image
-					src="../../static/index/zhuanshu2.jpg"
-					mode="" style="margin-left: 0upx;" @tap="huanbao(1)"></image>
+				<image src="../../static/index/zhuanshu2.jpg" mode="" style="margin-left: 0upx;" @tap="huanbao(1)">
+				</image>
 			</view>
 		</view>
 
@@ -124,7 +137,7 @@
 			<view class="shu"></view>
 			热门新闻
 		</view>
-		<view class="xinwen" @tap="xinwen(index)" v-for="(item,index) in article" :key="index">
+		<view class="xinwen dis" @tap="xinwen(index)" v-for="(item,index) in article" :key="index">
 			<view class="left" v-html="item.content">
 				<!-- {{item.content}} -->
 			</view>
@@ -138,11 +151,11 @@
 			<view class="shu"></view>
 			相关内容
 		</view> -->
-		<view class="zhengce" @tap="newsList">
+		<view class="zhengce" @tap="newsList" style="margin-top: 30upx;">
 			<image src="../../static/common/zuixinzhengce.png" style="height: 300upx;"></image>
-      <view class="zhengce-txt">
-       <!-- 政策解读 -->
-      </view>
+			<view class="zhengce-txt">
+				<!-- 政策解读 -->
+			</view>
 		</view>
 		<!--  -->
 

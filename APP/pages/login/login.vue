@@ -1,5 +1,6 @@
 <template>
 	<view>
+		
 		<view class="tops" style="background-color: #54d27e;height: 400upx;">
 			<view class="fanhui dis" >
 				<!-- <image src="../../static/common/fanhui.png" mode=""></image> -->
@@ -15,18 +16,21 @@
 		<!-- input -->
 		<view class="inputBox">
 			<view class="inputs">
-				<view class="title">phone</view>
-				<input type="text" placeholder="please enter phone" v-model="phone">
+				<view class="title">手机号</view>
+				
+				<!-- <input  placeholder="请输入手机号" v-model="phone" maxlength="11" type="number"> -->
+				<u-input v-model="phone" type="number"   placeholder="请输入手机号" border="true"/>
 			</view>
 			
 			<view class="inputs">
-				<view class="title">password</view>
-				<input type="password" placeholder="please enter password" v-model="pwd">
+				<view class="title">密码</view>
+				<!-- <input type="password" placeholder="请输入密码" v-model="pwd"> -->
+				<u-input v-model="pwd" type="password"  password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码" border="true"/>
 			</view>
 			
 			<view class="yanzheng">
 				<view class="left">
-					<input type="text" placeholder="请输入验证码" v-model="captcha">
+					<input type="text" placeholder="请输入验证码" v-model="captcha" style="padding-left: 30upx;">
 				</view>	
 				<image :src="herf" mode="" style="width: 50%;height: 100%;" @tap="yanzheng"></image>
 			</view>		

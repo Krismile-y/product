@@ -5,7 +5,7 @@
 		<view  v-show="type==1?true:false">
 			<view class="item">
 				<view class="shimingLeft">状态</view>
-				<view class="shimingRight">实名认证审核中...</view>
+				<view class="shimingRight">{{shiming}}</view>
 			</view>
 		</view>
 		
@@ -16,7 +16,8 @@
 					旧密码
 				</view>
 				<view class="right">
-					<input type="text" placeholder="旧密码" v-model="jiu">
+					<!-- <input type="text" placeholder="旧密码" v-model="jiu"> -->
+					<u-input v-model="jiu" type="password"  password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码" border="true"/>
 				</view>
 			</view>
 			
@@ -25,7 +26,8 @@
 					新密码
 				</view>
 				<view class="right">
-					<input type="text" placeholder="新密码" v-model="xin">
+					<!-- <input type="text" placeholder="新密码" v-model="xin"> -->
+					<u-input v-model="xin" type="password"  password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码" border="true"/>
 				</view>
 			</view>
 			
@@ -34,7 +36,8 @@
 					确认密码
 				</view>
 				<view class="right">
-					<input type="text" placeholder="确认密码" v-model="queren">
+					<!-- <input type="text" placeholder="确认密码" v-model="queren"> -->
+					<u-input v-model="queren" type="password"  password-icon="true" pattern="[0-9]{8,}" placeholder="确认密码" border="true"/>
 				</view>
 			</view>
 			
@@ -52,19 +55,49 @@
 			console.log(options.type)
 			this.type=options.type
 			
-			
+			this.info=uni.getStorageSync('user_info')
+			if(this.info.is_real_name==0){
+				this.shiming='未实名'
+			}else{
+				this.shiming='已实名'
+			} 
 		},
 		data() {
 			return {
 				  type:'',
 				  xin:'',
 				  jiu:"",
-				  queren:''	  
+				  queren:''	 ,
+				   shiming:""
 			};
 		},
 		methods:{
 			change(){
 				// 修改密码接口
+				if(this.jiu.length <8){
+					uni.showToast({
+						duration: 1000,
+						icon: "error",
+						title: '密码必须大于8位'
+					})
+					return
+				}else if(this.xin.length <8){
+					uni.showToast({
+						duration: 1000,
+						icon: "error",
+						title: '新密码必须大于8位'
+					})
+					return
+				}else if(this.queren.length <8){
+					uni.showToast({
+						duration: 1000,
+						icon: "error",
+						title: '密码必须大于8位'
+					})
+					return
+				}
+				
+				
 				let pwd={
 					'past_pwd':this.jiu,
 					'pwd':this.xin,
@@ -118,7 +151,8 @@
 		align-items: center;
 		justify-content: right;
 		color: #999;
-		padding-left: 25upx;
+		padding-right: 25upx;
+		
 	}
 	.left{
 		width: 30%;

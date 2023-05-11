@@ -1,5 +1,5 @@
 <template>
-	<view class="content" style="min-height: 200vh; padding-bottom: 100upx;">
+	<view class="content" style="min-height: 120vh; padding-bottom: 100upx;">
 
 		<!-- 弹出层 -->
 		<view>
@@ -8,25 +8,28 @@
 					<scroll-view scroll-y="true" style="width: 100%;height: 100%; ">
 						<view class="shopDetail">
 							<view style="background-color: #fff; padding-bottom: 30upx;">
+								<view class="back">
+									<view class="backBtn dis" @tap="backBtn"><</view>
+								</view>
 								<image
-									:src="item.head_img">
+									:src="item.head_img" style="margin-top: 30upx;">
 								</image>
 								<view class="biaoti">
 									<view class="left dis">绿色商品</view>
-									<text>绿色中国冬日暖心水壶</text>
+									<text>{{item.wares_name}}</text>
 								</view>
-								<view class="tishi">
+								<!-- <view class="tishi">
 									温馨提示：冬季暖心必备，家用小型电水壶
-								</view>
+								</view> -->
 
-								<view class="buy dis">
+								<!-- <view class="buy dis">
 									您可以使用能量兑换商品
-								</view>
+								</view> -->
 							</view>
 
-							<view class="de">
-								冬季暖心必备，家用小型电水壶
-							</view>
+							<!-- <view class="de">
+								{{item}}
+							</view> -->
 
 							<view class="btn dis" @tap='duihuan'>
 								兑换
@@ -79,7 +82,7 @@
 			
 			<!-- ********** -->
 			<view class="box" style="margin-top: 60upx;">
-				<view class="shop disc" v-for="item in list" @tap="go(item)">
+				<view class="shop disc" v-for="item in list" @tap="go(item)" style="margin-left: 10upx;">
 					<image @tap="show=true"
 						:src="item.head_img"
 						mode=""></image>
@@ -178,6 +181,9 @@
 
 		},
 		methods: {
+			backBtn(){//商品详情页返回
+				this.close()
+			},
 			sign() {
 				uni.navigateTo({
 					url: '/pages/sign/sign'
