@@ -22,13 +22,12 @@
       
 
 			<view class="" style="margin-top: 20upx;">
-        <view class="noneData" v-show="tableData.length==0">
-          暂无数据
-        </view>
-				<uni-card :title="item.goods_name" :extra="item.order_money" v-for="(item,index) in tableData" :key="index">
-          <text class="uni-body">{{item.create_time}}</text>
-        </uni-card>
-				<view class="uni-pagination-box" v-if="showPagination"><uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total" @change="change" /></view>
+        <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
+          <uni-card :title="item.goods_name" :extra="item.order_money" v-for="(item,index) in tableData" :key="index">
+            <text class="uni-body">{{item.create_time}}</text>
+          </uni-card>
+        </scroll-list>
+				
 			</view>
 
 		<!-- 	<view class="daiding dis">
@@ -58,6 +57,36 @@
 </template>
 
 <script>
+  let defaultOption = {
+    page: 1, // 分页
+    size: 10, // 分页大小
+    auto: false, // 自动加载
+    height: null, // 组件高度
+    disabled: false, // 禁用
+    background: '', // 背景颜色属性
+    emptyImage: '', // 空数据提示图片
+    offsetBottom: 0, // 底部高度补偿
+    pullDownSpeed: 0.5, // 下拉速率
+    lowerThreshold: 40, // 距离底部上拉加载距离
+    refresherThreshold: 80, // 距离顶部下拉刷新距离
+    refreshDelayed: 800, // 刷新延迟
+    refreshFinishDelayed: 800, // 刷新完成后的延迟
+    safeArea: false, // 是否开启安全区域适配
+    emptyTextColor: '#82848a', // 空提示文字颜色
+    loadTextColor: '#82848a', // 上拉加载文字颜色
+    loadIconColor: '#82848a', // 上拉加载图标颜色
+    refresherTextColor: '#82848a', // 下拉刷新文字颜色
+    refresherIconColor: '#82848a', // 下拉刷新图标颜色
+    emptyText: '暂无列表~', // 空数据提示文字
+    loadingText: '正在加载中~', // 加载中文字
+    loadFailText: '加载失败啦~', // 加载失败文字
+    noMoreText: '没有更多啦~', // 没有更多文字
+    refreshingText: '正在刷新~', // 正在刷新文字
+    refreshFailText: '刷新失败~', // 刷新失败文字
+    refreshSuccessText: '刷新成功~', // 刷新成功文字
+    pulldownText: '下拉刷新~', // 下拉中的文字
+    pulldownFinishText: '松开刷新~' // 下拉完成的文字
+  }
 	export default {
 		data() {
 			return {
@@ -75,20 +104,20 @@
 				// 数据总量
 				total: 0,
 				loading: false,
-				showPagination: false,  //总数据小于单页展示数据，不显示分页条
-        
+        option: defaultOption,
 			};
 		},
 		onLoad() {
       this.init()
     },
     watch: {
-      dateText(newVal,oldVal) {
+      dateText(newVal, oldVal) {
         // 通过监听页码选择变化发起请求
         //提现记录接口
         this.pageCurrent = 1
         this.total = 0
-        this.getData('1',newVal)
+        this.tableData = []
+        this.load('1')
       }
     },
 		methods: {
@@ -103,36 +132,14 @@
         this.dateText = year + '-' + month
       },
 			// 获取数据
-			getData(page,time) {
-			  let params={
-			  	'page': '1',
-			  	'limit':"10",
-			  	// 'time':"2023-04"
-			  }
-			  params.time = time
-			  params.page = page
-			  params.limit = this.pageSize
-			  const that = this
-			  this.$fn.request('/log/invest',"GET",params).then(res=>{
-			    let data = res.data.data
-			    that.priceTotal = data.count_money
-			    that.tableData = data.data
-			    console.log(data);
-			    that.total = data.total
-			    // 判断分页条是否展示
-			    if(that.total <= that.pageSize) {
-			      that.showPagination = false
-			    }else {
-			      that.showPagination = true
-			    }
-			  })
-			},
-			// 分页触发
-			  change(e) {
-			    // this.selectedIndexs.length = 0
-			    this.$refs.table.clearSelection()
-			    this.getData(e.current,this.dateText)
-			  },
+      async getData(params) {
+        let data = await this.$fn.request('/log/invest',"GET",params).then(res => {
+          let list = null
+          list = res.data.data
+          return list
+        })
+        return data
+      },
 			// 年份选择确认
 			pickerConfirm(e) {
 			  // 更改展示的年月
@@ -148,7 +155,48 @@
 			},
 			pickerCancel() {
 			  this.show = false
-			}
+			},
+      // 加载数据
+      async load(page) {
+        let list = []; //用于暂存列表数据
+        let data = null;  //请求获得的数据
+        let params = {
+          'page': '1',
+          'limit': "10",
+          // 'time':"2023-04"
+        }
+        params.time = this.dateText
+        params.page = page
+        params.limit = this.pageSize
+        // debugger
+        let promiseObj = await this.getData(params).then(res=> {
+          data = res
+        })
+        list = data.data
+        this.priceTotal = data.count_money
+        this.pageCurrent = data.current_page
+        this.total = data.total
+        this.tableData = [...this.tableData, ...list];
+        // 加载成功  参数对象{list: 当前列表,total: 数据总长度(后端查询的total)}
+        this.$refs.list.loadSuccess({
+          list: this.tableData,
+          total: this.total
+        });
+        // 加载失败
+        // this.$refs.list.loadFail()
+      },
+      // 刷新刷剧
+      refresh(paging) {
+        console.log(paging);
+        this.pageCurrent = 1
+        this.total = 0
+        this.tableData = []
+        this.load('1')
+        this.$refs.list.refreshSuccess({
+          list: this.tableData,
+          total: this.total
+        });
+      }
 		}
 	};
 </script>

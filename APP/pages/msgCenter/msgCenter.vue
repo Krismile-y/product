@@ -6,9 +6,7 @@
 				<view class="title dis">
 					系统通知
 				</view>
-				<view class="detail">
-					{{item.content}}
-				</view>
+				<view v-html="item.content" class="detail"></view>
 				<view style="width: 100%;display: flex;align-items: center;justify-content: right;">
 					{{item.create_time}}
 				</view>
