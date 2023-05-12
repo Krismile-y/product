@@ -13,7 +13,9 @@ const store = new Vuex.Store({
 		four:false,
 		x:"",
 		y:"",
-		kefu:""
+		kefu:"",
+    // 底部导航栏样式改变控制，默认选中首页
+    current: 0,
 	},
     mutations: {
 		//相当于同步的操作

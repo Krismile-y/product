@@ -1,4 +1,8 @@
+import tabBarBulge from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-bulge";
 export default {
+    components: {
+      "helang-tab-bar-bulge": tabBarBulge,
+    },
 		data() {
 			return {
 				kong:false,//分类数据为空

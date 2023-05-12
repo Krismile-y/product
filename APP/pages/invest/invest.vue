@@ -181,7 +181,9 @@
 			<!-- <u-button @click="zhifu = true">打开</u-button> -->
 		</view>
 
-		<bottom></bottom>
+		<view class="bottom-box">
+		  <helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
+		</view>
 
 	</view>
 </template>

@@ -26,13 +26,16 @@
 								<view class="content">
 									<view class="h-flex-x h-flex-3">
 										<view style="padding-top: 40rpx;">
-											<uni-icons type="star" size="42rpx" color="#c66219"></uni-icons>
+											<!-- <uni-icons type="star" size="42rpx" color="#c66219"></uni-icons> -->
+                      <view class="items dis"  @tap="four(0)">按钮1</view>
 										</view>
-										<view style="padding-bottom: 30rpx;">
-											<uni-icons type="paperplane" size="42rpx" color="#c66219"></uni-icons>
+										<view style="padding-bottom: 50rpx;">
+											<!-- <uni-icons type="paperplane" size="42rpx" color="#c66219"></uni-icons> -->
+                      <view class="items dis" @tap="four(1)">按钮2</view>
 										</view>
 										<view style="padding-top: 40rpx;">
-											<uni-icons type="heart" size="42rpx" color="#c66219"></uni-icons>
+											<!-- <uni-icons type="heart" size="42rpx" color="#c66219"></uni-icons> -->
+                      <view class="items dis" @tap="four(2)">按钮3</view>
 										</view>
 									</view>
 								</view>
@@ -40,9 +43,9 @@
 						</view>
 					</view>
 					<view v-else :class="{
-						'active':current == index
+						'active':$store.state.current == index
 					}">
-						<view class="h-flex-x h-flex-center" @tap="go(item.name)">
+						<view class="h-flex-x h-flex-center" @tap="go(item.name,index)">
 							<view class="icon">
 								<uni-icons :type="item.icon" size="48rpx" color="#b4b3b8"></uni-icons>
 							</view>
@@ -126,10 +129,20 @@
 			changeBulge(){
 				this.openBulge = !this.openBulge;
 			},
-      go(name) {
+      go(name,index) {
+        this.$store.state.current = index
       	uni.navigateTo({
       		url: `/pages/${name}/${name}`
       	})
+      },
+      four(index){
+      	
+      	if(index<4){
+          this.$store.state.current = 5
+      		uni.navigateTo({
+      			url: '/pages/invest/invest?id=' + index
+      		})
+      	}
       },
 		}
 	}
@@ -189,13 +202,13 @@
 			
 			// 舵式容器
 			.rudder{
-				width: 260rpx;
-				height: 130rpx;
+				width: 280rpx;
+				height: 150rpx;
 				position: absolute;
 				z-index: 1;
 				left: 50%;
-				margin-left: -130rpx;
-				top: -128rpx;
+				margin-left: -140rpx;
+				top: -148rpx;
 				overflow: hidden;
 				
 				> view{
@@ -218,7 +231,16 @@
 					overflow: hidden;
 					transform-origin:50% 100%;
 					transform:rotate(-180deg);
-					
+					.items {
+            width: 100upx;
+            height: 100upx;
+            border-radius: 50%;
+            // background-color: #54d27e;
+            color: #fff;
+            background-image: url('@/static/common/xiaoanniu.jpg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+          }
 					
 					&:before{
 						content: '';
