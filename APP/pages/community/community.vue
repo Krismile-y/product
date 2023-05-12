@@ -73,14 +73,20 @@
       </view>
     </view>
 		
-		<bottom num='1'></bottom>
+		<view class="bottom-box">
+		  <helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
+		</view>
 	</view>
 </template>
 
 <script>
   import payImg from '../../static/common/pay.png';
   import paymentImg from '../../static/common/payment.png';
+  import tabBarBulge from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-bulge";
 	export default {
+    components: {
+      "helang-tab-bar-bulge": tabBarBulge,
+    },
 		data() {
 			return {
 				currentIndex:0,

@@ -1,0 +1,24 @@
+{
+  "id": "helang-tabBar",
+  "displayName": "底部导航栏（有动画的）",
+  "version": "1.0.0",
+  "description": "本开源代码分享了5款有动画切换效果的 底部导航栏 组件",
+  "keywords": [
+    "底部导航栏",
+    "动画"
+],
+"repository": "",
+"engines": {
+},
+"dcloudext": {
+    "contact": {
+        "qq": ""
+    },
+    "declaration": {
+        "ads": "无",
+        "data": "无",
+        "permissions": "无"
+    },
+    "npmurl": ""
+}
+}

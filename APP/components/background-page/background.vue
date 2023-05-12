@@ -79,8 +79,8 @@
       height: 50upx;
       position: absolute;
       z-index: 999;
-      top: 20upx;
-      left: 20upx;
+      top: 3%;
+      left: 5%;
       border-radius: 50%;
       background-color: #fff;
     }

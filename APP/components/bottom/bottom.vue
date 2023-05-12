@@ -72,20 +72,27 @@ import { vShow } from "vue";
 				communityNum:true,
 				list:[
 					{
+            num: 'one',
 						title:'首页',
-						src:'../../static/common/yi.png'
+						src:'@/static/common/yi.png'
 					},
 					{
+            num: 'two',
 						title:'社区',
-						src:'../../static/common/er.png'
+						src:'@/static/common/er.png'
 					},
+          {
+          	"bulge":true,
+          },
 					{
+            num: 'three',
 						title:'商城',
-						src:'../../static/common/san.png'
+						src:'@/static/common/san.png'
 					},
 					{
+            num: 'four',
 						title:'我的',
-						src:'../../static/common/si.png'
+						src:'@/static/common/si.png'
 					},
 				],
 				

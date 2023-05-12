@@ -1,7 +1,9 @@
 import down from '../../components/down/updatepage/updatepage.vue'
+import tabBarBulge from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-bulge";
 export default {
 	components: {
-		down
+		down,
+    "helang-tab-bar-bulge": tabBarBulge,
 	},
 	data() {
 		return {

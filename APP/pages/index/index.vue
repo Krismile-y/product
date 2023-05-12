@@ -172,7 +172,9 @@
 			</view>
 		</view>
 
-		<bottom :num='obj'></bottom>
+		<view class="bottom-box">
+		  <helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
+		</view>
 	</view>
 </template>
 

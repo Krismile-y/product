@@ -93,12 +93,18 @@
 			</view>
 		
 
-		<bottom></bottom>
+		<view class="bottom-box">
+		  <helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
+		</view>
 	</view>
 </template>
 
 <script>
+  import tabBarBulge from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-bulge";
 	export default {
+    components: {
+      "helang-tab-bar-bulge": tabBarBulge,
+    },
 		data() {
 			return {
 				out:0,
