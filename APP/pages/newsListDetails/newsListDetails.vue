@@ -1,11 +1,14 @@
 <template>
   <view class="newsListDetails">
-    <view class="details-title" v-html="dataObj.title"></view>
-    <view class="warpHtml" v-html="dataObj.content"></view>
+    <!-- <view class="details-title" v-html="dataObj.title"></view>
+    <view class="warpHtml" v-html="dataObj.content"></view> -->
     <view class="head-name">
-      {{dataObj.headName}}
+      {{info.author}}
     </view>
-    <view class="childItem" v-for="(item,index) in dataObj.child" :key="index">
+	<view v-html="info.content"> 
+		
+	</view>
+    <!-- <view class="childItem" v-for="(item,index) in dataObj.child" :key="index">
       <view class="child-head">
         {{item.head}}
       </view>
@@ -13,7 +16,7 @@
         <text class="sortSpan">{{item1.sortSpan}}</text>
         {{item1.contentText}}
       </view>
-    </view>
+    </view> -->
   </view>
 </template>
 
@@ -21,6 +24,7 @@
   export default {
     data() {
       return {
+		info:{},  
         indexNum: 0,
         dataObj: {},
         dataList: [
@@ -87,6 +91,11 @@
     onLoad(option) {
       this.indexNum = option.index
       this.dataObj = this.dataList[this.indexNum]
+	  
+	  this.$fn.request('introduction','GET',{'tid':"25"}).then(res=>{
+	  	console.log(res.data.data)
+		this.info=res.data.data
+	  })
     }
   }
 </script>

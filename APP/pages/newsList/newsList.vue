@@ -30,6 +30,11 @@
 				]
 			};
 		},
+		onLoad() {
+			this.$fn.request('introduction','GET',{'tid':"25"}).then(res=>{
+				console.log(res.data.data)
+			})
+		},
 		methods: {
 			go(index) {
 				uni.navigateTo({

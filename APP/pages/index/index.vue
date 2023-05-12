@@ -1,7 +1,8 @@
 <template>
 	<view class="content" style="padding-bottom: 200upx;">
 		<!-- 	<navs></navs>	 -->
-
+        <down ref='down'></down>
+		
 		<view class="tops disc" style="background-color: #54d27e;height: 400upx;">
 			<view style="padding-top: 106upx;color: #ffffff;letter-spacing: 8upx;font-size: 46upx;font-weight: 600;">
 				绿色中国
@@ -57,13 +58,10 @@
 				<view class="title">我的收益</view>
 			</view>
 			<!--  #ifdef APP -->
-			<view class="item disc" >
+			<view class="item disc" @tap='check'>
 				<image src="../../static/newIndex/xiazia.png"></image>
-					<view class="title"></view>
-				<down>
 					
-				</down>
-								
+				 <down title='检查更新' ref='down'></down>				
 			</view>
 			<!--  #endif -->
 			<!-- #ifdef H5 -->
@@ -74,7 +72,8 @@
 					 </a>
 			</view>
 			<!--  #endif -->
-			<view class="item disc" @tap="go('http://gw.tzhreefvg.top/#/')">
+			
+			<view class="item disc" @tap="guanwang()">
 				<image src="../../static/newIndex/guanwang.png"></image>
 				<view class="title">进入官网</view>
 			</view>
@@ -161,7 +160,7 @@
 
 		<!-- 海报 -->
 		<view class=" dis" v-for="(value,key,i) in posterList"
-			:class="{poster:posterList.one.length==nowNum?false:true}" v-show="">
+			:class="{poster:posterList.one.length==nowNum?false:true}" v-show="!true">
 			<view class="box disc">
 				<view style="width: 100%;height: 100%;" class="disc" v-for="(item,index) in value"
 					v-show="index==nowNum?true:false">

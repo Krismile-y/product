@@ -3,7 +3,8 @@
   <view class="" >
     <!-- <button @click="upgrade">更新</button> -->
 	<view @tap="upgrade">
-		检查更新
+		<!-- 检查更新 -->
+		{{title}}
 	</view>
 	
     <view class="download">
@@ -70,6 +71,11 @@ import uniPopup from "./uni-popup/uni-popup.vue";
 import uniPopupMessage from "./uni-popup/uni-popup-message.vue";
 import uniPopupDialog from "./uni-popup/uni-popup-dialog.vue";
 export default {
+  props:{
+	  title:{
+		  type:String
+	  }
+  },	
   data: () => ({
     // 版本代码
     versionCode: 28,

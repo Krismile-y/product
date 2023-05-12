@@ -1,11 +1,16 @@
 import down from '../../components/down/updatepage/updatepage.vue'
+import Vue from "vue";
+import uniPopup from "../../components/down/updatepage/uni-popup/uni-popup.vue";
+import uniPopupMessage from "../../components/down/updatepage/uni-popup/uni-popup-message.vue";
+import uniPopupDialog from "../../components/down/updatepage/uni-popup/uni-popup-dialog.vue";
 export default {
 	components: {
 		down
 	},
 	data() {
 		return {
-			phoneDown:"",
+			
+			phoneDown: "",
 			out: 0,
 			obj: {
 				type: 'index',
@@ -17,37 +22,52 @@ export default {
 			nowNum: 0, //控制海报显示,
 			posterShow: true,
 			posterList: {
-				one: [{
+				one: [
+					{
+						src: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
+					},
+					{
 						src: "https://img0.baidu.com/it/u=2616180438,3555003891&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500"
 					},
 					{
 						src: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
 					},
-					{
-						src: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
-					},
+					
 				]
 			}
 		}
 	},
+	onReady() { //onReady用于监听组件渲染完成
+		//  #ifdef APP
+		if(uni.getStorageSync('gengxin') == true){
+			this.$refs.down.upgrade() //检查更新
+		}
+		
+		// #endif
+
+	},
+	onHide(){
+		uni.setStorageSync('gengxin',false)
+	},
 	onShow() {
+		
 		// 判断手机型号
 		uni.getSystemInfo({
 			success: (res) => {
 				console.log(res.platform);
-			 this.$fn.request('v',"GET",{}).then(r=>{
-				 console.log(r.data.data)
-				 if(res.platform ='android'){
-					 this.phoneDown=r.data.data.apk
-				 }else{
-					 this.phoneDown=r.data.data.ios
-				 }
-			 })
-			 
+				this.$fn.request('v', "GET", {}).then(r => {
+					console.log(r.data.data)
+					if (res.platform = 'android') {
+						this.phoneDown = r.data.data.apk
+					} else {
+						this.phoneDown = r.data.data.ios
+					}
+				})
+
 			}
 		})
-		
-		
+
+
 		this.out = 0
 		uni.setStorageSync('name', 'index')
 		if (uni.getStorageSync('name') == 'index') {
@@ -83,6 +103,7 @@ export default {
 		}
 
 	},
+
 	onLoad() {
 
 		// 轮播图接口
@@ -126,9 +147,31 @@ export default {
 			}, 3000)
 		})
 
-
+		let kefu = {
+			"sid": "1"
+		}
+		this.$fn.request('customer', "GET", kefu, ).then(res => {
+			// console.log(res.data.data[0].url,'客服')
+			uni.setStorageSync('kefu', res.data.data[0].url)
+			this.$store.commit('kefu', res.data.data[0].url)
+		})
 	},
 	methods: {
+		guanwang(){//进入官网
+		
+		uni.navigateTo({
+		  url: '/pages/webview/webview?url=http://gw.tzhreefvg.top/'
+		})
+			
+		},
+		check(){
+			//  #ifdef APP
+			this.$refs.down.upgrade()  //检查更新
+			// #endif
+		},
+		ceshi() {
+			console.log()
+		},
 		income() {
 
 		},

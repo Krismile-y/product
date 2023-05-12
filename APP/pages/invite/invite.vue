@@ -6,11 +6,26 @@
           <image :src="code"></image>
         </view>
         <!-- <view class="btn dis" @tap="fenxiang">立即分享</view> -->
+		<!-- #ifdef H5-->
         <view class="bottom dis zbottom">
-        	<view class="in dis" @tap="fenxiang">
-        		下载二维码
-        	</view>
+			
+        	<view class="in dis" >
+				<a :href="code" style="color: #fff;">
+				下载二维码
+				</a>
+        		
+        	</view>	
         </view>
+		<!-- #endif -->	
+		
+		<!-- #ifdef APP-->
+		<view class="bottom dis zbottom">
+			<view class="in dis" @tap="fenxiang">
+				下载二维码
+			</view>
+		</view>
+		<!-- #endif -->	
+		
       </view>
     </backgroundPage>
 		
@@ -31,7 +46,7 @@
 		onLoad() {
 			this.info=uni.getStorageSync('user_info')
 			this.$fn.request('qrcode',"GET",{}).then(res=>{
-				console.log(res.data.data,'用户二维码')
+				console.log(res.data.data.qrcode,'用户二维码')
 				this.code=res.data.data.qrcode
         this.title = `<view class="wdtjm">我的推荐码:</view><br />
             <view class="numberCode">${this.info.id}</view>`
@@ -41,10 +56,37 @@
 			
 			fenxiang(){
 				// #ifdef APP-PLUS 
-				  uni.share({
-				  	provider:'weixin',
-					type:0,
-					
+				  uni.downloadFile({
+				    url: this.code,
+				    success: res => {
+				      if (res.statusCode === 200) {
+				        uni.saveImageToPhotosAlbum({
+				          filePath: res.tempFilePath,
+				          success: () => {
+				            uni.showToast({
+				              title: '保存相册成功'
+				            })
+				          },
+				          fail: () => {
+				            uni.showToast({
+				              title: '保存失败',
+				              icon: 'none'
+				            })
+				          }
+				        })
+				      } else {
+				        uni.showToast({
+				          title: '下载失败',
+				          icon: 'none'
+				        })
+				      }
+				    },
+				    fail: () => {
+				      uni.showToast({
+				        title: '下载失败',
+				        icon: 'none'
+				      })
+				    }
 				  })
 				//#endif
 			}
