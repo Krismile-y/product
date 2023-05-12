@@ -135,10 +135,13 @@
 							duration: 1000,
 							icon: 'success'
 						})
-						uni.navigateTo({
-							url: '/pages/login/login'
-						})
+						setTimeout(()=>{
+							uni.navigateTo({
+								url: '/pages/login/login'
+							})
+						},2000)
 					} else {
+						console.log('wnti')
 						uni.showToast({
 							title: res.data.msg,
 							duration: 1000,

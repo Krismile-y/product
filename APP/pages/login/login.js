@@ -47,7 +47,7 @@ export default {
 		this.herf = this.$url + 'verify'
 
 
-		this.value = uni.getStorageSync('remember')
+		this.value = uni.getStorageSync('remember')//记住密码的本地状态
 		if (uni.getStorageSync('pwd') && uni.getStorageSync('phone')) {
 			this.pwd = uni.getStorageSync('pwd')
 			// console.log(this.pwd)
@@ -61,7 +61,7 @@ export default {
 		}
 	},
 	methods: {
-		// 记住密码
+		
 		yanzheng() {
 			this.$fn.request('verify', 'GET', {}).then(res => {
 				let times = 0;
@@ -69,7 +69,7 @@ export default {
 				this.herf = this.$url + 'verify?time=' + times
 			})
 		},
-
+        // 记住密码
 		change(e) {
 			console.log('change', e);
 			uni.setStorageSync('remember', e)
@@ -122,6 +122,7 @@ export default {
 			}
 			this.$fn.request('login', 'POST', data).then(res => {
 				if (res.data.code == 1) {
+					uni.setStorageSync('gengxin',true)//app首页更新一次的状态
 					uni.setStorageSync('token', res.data.data.token)
 					uni.setStorageSync('name', 'index')
 					if (this.value == true) {

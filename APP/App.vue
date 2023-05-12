@@ -1,4 +1,9 @@
+
 <script>
+	import Vue from "vue";
+	import uniPopup from "./components/down/updatepage/uni-popup/uni-popup.vue";
+	import uniPopupMessage from "./components/down/updatepage/uni-popup/uni-popup-message.vue";
+	import uniPopupDialog from "./components/down/updatepage/uni-popup/uni-popup-dialog.vue";
 	export default {
 		data: function() {
 			return {
@@ -15,15 +20,16 @@
 			}
 		},
 		onLaunch: function() {
+			uni.setStorageSync('gengxin',true)//app更新首页显示状态
 			// 客服接口
-			let kefu = {
-				"sid": "1"
-			}
-			this.$fn.request('customer', "GET", kefu, ).then(res => {
-				// console.log(res.data.data[0].url,'客服')
-				uni.setStorageSync('kefu', res.data.data[0].url)
-				this.$store.commit('kefu', res.data.data[0].url)
-			})
+			// let kefu = {
+			// 	"sid": "1"
+			// }
+			// this.$fn.request('customer', "GET", kefu, ).then(res => {
+			// 	// console.log(res.data.data[0].url,'客服')
+			// 	uni.setStorageSync('kefu', res.data.data[0].url)
+			// 	this.$store.commit('kefu', res.data.data[0].url)
+			// })
 
 			// 获取设备信息
 			uni.getSystemInfo({
@@ -69,12 +75,8 @@
 				}
 			})
 			// #endif
-			uni.getSystemInfo({
-				success: (res) => {
-					console.log(res.platform);
-					
-				}
-			})
+			
+			
 		},
 		methods: {
 			AndroidCheckUpdate: function() {

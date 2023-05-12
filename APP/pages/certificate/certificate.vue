@@ -5,13 +5,26 @@
 		</view> -->
 		<image :src="herf" mode="" style="height: 960upx;width: 100%;"></image>
 		
+		<!-- #ifdef H5 -->
 		<view class="bottom dis" style="bottom: 0;">
-			<view class="in dis" @tap="">
+			<view class="in dis" >
 				<a :href="link" style="color: #fff;">
 					点击下载
 				</a>
 			</view>
+		<!-- #endif -->
+			
+		<!-- #ifdef APP -->
+		<view class="bottom dis" style="bottom: 0;">
+			<view class="in dis" @tap='down'>
+				
+					点击下载
+				
+			</view>
+		<!-- #endif -->	
+			
 		</view>
+		
 	</view>
 </template>
 
@@ -29,14 +42,49 @@
 			this.$fn.request('thigh_image','GET',{}).then(res=>{
 				this.name=res.data.data.name
 				this.herf=res.data.data.thigh
-				this.link=this.$url+'thigh_down?name='+this.name
+				// 时间戳
+				let times = 0;
+				times = new Date()		
+				this.link=this.$url+'thigh_down?name='+this.name+'&time='+times
 				console.log(this.link,'下载链接')
+				console.log(res.data.code)
 			})
 			// console.log(this.$url+'thigh_down?name='+'10000.png')
 		},
 		methods:{
 			down(){
-				
+				uni.downloadFile({
+				  url: this.link,
+				  success: res => {
+				    if (res.statusCode === 200) {
+				      uni.saveImageToPhotosAlbum({
+				        filePath: res.tempFilePath,
+				        success: () => {
+				          uni.showToast({
+				            title: '保存成功至相册'
+				          })
+				        },
+				        fail: () => {
+				          uni.showToast({
+				            title: '保存失败',
+				            icon: 'none'
+				          })
+				        }
+				      })
+				    } else {
+				      uni.showToast({
+				        title: '下载失败',
+				        icon: 'none'
+				      })
+				    }
+				  },
+				  fail: () => {
+				    uni.showToast({
+				      title: '下载失败',
+				      icon: 'none'
+				    })
+				  }
+				})
 			}
 		}
 	}

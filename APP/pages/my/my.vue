@@ -15,7 +15,7 @@
 					<view class="two">我的推荐码:{{info.id}}</view>
 				</view>
 				<view class="right dis" style="color: #000;">
-					<view class="shiming dis">{{info.is_real_name==0?'未实名':'已实名'}}</view>
+					<view class="shiming dis">{{zhuangtai}}</view>
 					<!-- <image   @click="show = true" src="https://img2.baidu.com/it/u=2020520018,1139302565&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800" mode=""></image> -->
 				</view>
 			</view>
@@ -58,49 +58,6 @@
 
 
 
-
-
-		<view class="box" style="margin-top: 280upx;" v-show="false">
-			<view class="title">
-				<view class="shu"></view>
-				活动内容
-			</view>
-			<view class="msg">
-				<view class="item disc" @tap="go('invite')">
-					<image src="../../static/myimg/fenxiang.png"></image>
-					分享邀请
-				</view>
-				<view class="item disc" @tap="go('msg')">
-					<image src="../../static/myimg/xiaoxi.png"></image>
-					消息中心
-				</view>
-				<view class="item disc" @tap="go('myGroup')">
-					<image src="../../static/myimg/wode.png"></image>
-					我的团队
-				</view>
-				<view class="item disc" >
-					<image src="../../static/myimg/jinru.png"></image>
-					<a href="http://gw.tzhreefvg.top/">进入官网</a>
-				</view>
-				<view class="item disc" @tap="go('test')">
-					<image src="../../static/myimg/jinrong.png"></image>
-					充值
-				</view>
-				<view class="item disc" @tap="go('terrace')">
-					<image src="../../static/myimg/pingtai.png"></image>
-					平台攻略
-				</view>
-
-				<view class="item disc" @tap="go('myShop')">
-					<image src="../../static/myimg/shangpin.png"></image>
-					我的商品
-				</view>
-				<view class="item disc" @tap="go('setting')">
-					<image src="../../static/myimg/shezhi2.png"></image>
-					设置
-				</view>
-			</view>
-		</view>
 		<!--  -->
 		<view class="box" style="margin-top: 280upx;">
 			<view class="title">
@@ -265,6 +222,7 @@
 				info: {},
 				today: "",
 				out: 0,
+				zhuangtai:""
 			};
 		},
 		onBackPress() {
@@ -307,7 +265,7 @@
 				"is_whole":"1"
 			}
 			this.$fn.request('user','GET',info).then(res=>{
-				console.log(res.data.data,'用户信息')
+				// console.log(res.data.data,'用户信息')
 				uni.setStorageSync('user_info',res.data.data)
 			})
 			
@@ -323,25 +281,24 @@
 		onLoad() {
 			console.log(uni.getStorageSync('user_info'))
 			this.info = uni.getStorageSync('user_info')
+			console.log(this.info.is_real_name,'用户状态')
+			let z = this.info.is_real_name
+			if(z == 0){
+				this.zhuangtai='未实名'
+			}else if( z == 1){
+				this.zhuangtai='提交申请'
+			}else if( z == 2){
+				this.zhuangtai='通过申请'
+			}else if( z == 3){
+				this.zhuangtai='拒绝申请'
+			}
 			//用户今日收益	
 			let data = {
 				"is_whole": "1"
 			}
 			this.$fn.request('income', "GET", data).then(res => {
 				// console.log(res.data, '用户今日收益')
-				if(res.data.code == 204){
-					uni.showToast({
-						title:res.data.msg,
-						icon:'none',
-						duration:1000,
-					})
-					setTimeout(()=>{
-						uni.removeStorageSync('token');
-						uni.navigateTo({
-							url:'/pages/login/login'
-						})
-					},1500)
-				}
+				
 				this.today = res.data.data.today
 			})
 
@@ -361,8 +318,19 @@
 				this.show = false
 			},
 			goIndex(){
-				window.location = ('http://gw.tzhreefvg.top/')
+				uni.navigateTo({
+				  url: '/pages/webview/webview?url=http://gw.tzhreefvg.top/'
+				})
+				//  // #ifdef APP-PLUS
+				// uni.navigateTo({
+				//   url: '/pages/webview/webview?url=http://gw.tzhreefvg.top/'
+				// })
+				// // #endif
 				
+				// // #ifdef H5
+				// window.location = ('http://gw.tzhreefvg.top/')
+				// // #endif
+							
 			}
 		}
 	}

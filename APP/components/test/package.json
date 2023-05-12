@@ -1,0 +1,19 @@
+{
+    "id": "tqb-tabbar",
+    "displayName": "精美漂亮的微信小程序底部选项卡模板",
+    "version": "0.1.0",
+    "description": "非常漂亮的，中间带+号的底部选项卡",
+    "keywords": [
+        "tabbar",
+        "uni-tabbar",
+        "选项卡",
+        "异型",
+        "底部导航"
+    ],
+    "dcloudext": {
+        "category": [
+            "前端组件",
+            "通用组件"
+        ]
+    }
+}
