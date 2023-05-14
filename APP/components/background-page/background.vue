@@ -103,7 +103,6 @@
       font-weight: 600;
     }
     .help-img {
-      border-radius: 50upx 50upx 0 0;
       max-height: 400upx;
       min-height: 400upx;
     }

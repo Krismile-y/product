@@ -12,7 +12,7 @@
 			<view class="msg">
 				<view class="item disc" @tap="go('safe')">
 					<image src="../../static/myimg/zhanghu.png" mode=""></image>
-					账户安全
+					个人信息
 				</view>
 				<view class="item disc">
 					<a :href="kefu" style="width: 100%;height: 100%;color: black;" class="disc">

@@ -436,6 +436,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/headImg/headImg",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "设置个人头像",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationStyle": "default",
