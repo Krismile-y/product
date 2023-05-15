@@ -5,7 +5,7 @@
       	<image src="../../static/common/phone.png" mode=""></image>
       	头像<text class="head-tips">点击更换头像</text>
       	<view class="right">
-      		<image src="../../common/user.webp" mode="heightFix"></image>
+      		<image :src="imgSrc" mode="heightFix"></image>
           <text class="right-jiantou">></text>
       	</view>
       </view>
@@ -45,16 +45,27 @@
 		data() {
 			return {
 			  info:{},
-			  shiming:""
+			  shiming:"",
+        imgSrc: '../../common/user.webp'
 			};
 		},
+    onShow() {
+      this.info=uni.getStorageSync('user_info')
+      this.imgSrc = this.info.head_img
+    },
 		onLoad() {
 			this.info=uni.getStorageSync('user_info')
-			if(this.info.is_real_name==0){
+      this.imgSrc = this.info.head_img
+			let z = this.info.is_real_name
+			if(z == 0){
 				this.shiming='未实名'
-			}else{
-				this.shiming='已实名'
-			} 
+			}else if( z == 1){
+				this.shiming='提交申请'
+			}else if( z == 2){
+				this.shiming='通过申请'
+			}else if( z == 3){
+				this.shiming='拒绝申请'
+			}
 		},
 		methods:{
 			go(index){

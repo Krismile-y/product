@@ -20,11 +20,9 @@
               <image src="@/static/common/jinrong.jpg" mode="" @tap="changeBulge()"></image>
             </view>
             <!-- 五个小图标的视口盒子 -->
-						<view class="show-box">
+						<view class="show-box" v-show="kaiguan == 1? true: false">
 						  <view class="rudder">
 						  	<view>
-						  		<view class="color-yellow"></view>
-						  		<view class="color-orange"></view>
 						  		<view class="content">
 						  			<view class="h-flex-x h-flex-3">
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
@@ -112,7 +110,8 @@
 						"text":"我的"
 					},
 				],
-				openBulge:false
+				openBulge:false,
+        kaiguan:2 //1打开2关闭
 			};
 		},
 		computed:{
@@ -133,7 +132,18 @@
 			},
 			// 凸起按钮切换
 			changeBulge(){
-				this.openBulge = !this.openBulge;
+        if(this.kaiguan == 1) {
+          this.openBulge = !this.openBulge;
+          setTimeout(()=> {
+            this.kaiguan = 2
+          },100)
+        }else {
+          this.kaiguan = 1
+          setTimeout(()=> {
+            this.openBulge = !this.openBulge;
+          })
+        }
+        
 			},
       go(name,index) {
         this.$store.state.current = index
@@ -179,14 +189,14 @@
           position: absolute;
           top: -70upx;
           left: -2%;
-          z-index: 9999;
+          z-index: 0;
         }
       }
 			.btn{
 				width: 80rpx;
 				height: 80rpx;
 				position: absolute;
-				z-index: 2;
+				z-index: -2;
 				left: 50%;
 				margin-left: -40rpx;
 				top: -30rpx;
@@ -206,6 +216,7 @@
 				}
 			}
 			.show-box {
+        z-index: -1;
       width: 100vw;
       height: 310upx;
       position: absolute;
@@ -219,7 +230,7 @@
 				width: 500upx;
 				height: 250upx;
 				position: absolute;
-				z-index: 1;
+				z-index: -1;
 				left: 50%;
 				margin-left: -250upx;
 				top: 60upx;
@@ -227,7 +238,7 @@
 				
 				> view{
 					position: absolute;
-					z-index: 1;
+					z-index: -1;
 					width: 100%;
 					height: 200%;
 					// overflow: hidden;
@@ -236,7 +247,7 @@
 				}
 				
 				
-				.color-yellow,.color-orange,.content{
+				.content{
 					position: absolute;
 					width: 100%;
 					left: 0;
@@ -282,6 +293,7 @@
 					&:before{
 						content: '';
 						display: block;
+            z-index: -1;
 						position: absolute;
 						width: 100%;
 						left: 0;
@@ -290,26 +302,26 @@
 						border-radius: 50%;
 					}
 				}
-				.color-yellow{
-					z-index: 1;
+				// .color-yellow{
+				// 	z-index: 1;
 					// transform:rotate(90deg);
 					
-					&:before{
-						background-color: rgba(25, 255, 255, 0);
-					}
+				// 	&:before{
+				// 		background-color: rgba(25, 255, 255, 0);
+				// 	}
 					
-				}
-				.color-orange{
-					z-index: 2;
+				// }
+				// .color-orange{
+				// 	z-index: 2;
 					// transform:rotate(45deg);
 					
-					&:before{
-						background-color: rgba(0, 0, 0, 0);
-					}
-				}
+				// 	&:before{
+				// 		background-color: rgba(0, 0, 0, 0);
+				// 	}
+				// }
 				
 				.content{
-					z-index: 3;
+					z-index: -1;
 					// transform:rotate(0deg);
 					
 					&:before{
@@ -322,7 +334,7 @@
 						left: 0;
 						width: 100%;
 						height: 100%;
-						z-index: 2;
+						z-index: -1;
 						padding: 0 15rpx;
 						text-align: center;
 					}
@@ -345,14 +357,8 @@
 		.open{
 			.show-box {
         .rudder{
-        	.color-yellow,.color-orange,.content{
+        	.content{
         		transform:rotate(0deg);
-        	}
-        	.color-yellow{
-        		transition: transform 0.3s ease 0s;
-        	}
-        	.color-orange{
-        		transition: transform 0.3s ease 0.05s;
         	}
         	.content{
         		transition: transform 0.3s ease 0.1s;
@@ -363,15 +369,10 @@
 		}
 		.close{
 			.show-box {
+        
         .rudder{
-        	.color-yellow,.color-orange,.content{
+        	.content{
         		transform:rotate(-180deg);
-        	}
-        	.color-yellow{
-        		transition: transform 0.3s ease 0.1s;
-        	}
-        	.color-orange{
-        		transition: transform 0.3s ease 0.05s;
         	}
         	.content{
         		transition: transform 0.3s ease 0s;
