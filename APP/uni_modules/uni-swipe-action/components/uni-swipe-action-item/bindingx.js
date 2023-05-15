@@ -61,8 +61,8 @@ bindIngXMixins = {
 				}, 200)
 			})
 		},
-		onClick(index, item, position) {
-			this.$emit('click', {
+		ontap(index, item, position) {
+			this.$emit('tap', {
 				content: item,
 				index,
 				position
@@ -104,13 +104,13 @@ bindIngXMixins = {
 				// nope
 				if (e.state === 'end') {
 					this.x = e.deltaX + this.x;
-					this.isclick = true
+					this.istap = true
 					this.bindTiming(e.deltaX)
 				}
 			});
 		},
 		touchend(e) {
-			if (this.isopen !== 'none' && !this.isclick) {
+			if (this.isopen !== 'none' && !this.istap) {
 				this.open('none')
 			}
 		},
@@ -218,7 +218,7 @@ bindIngXMixins = {
 			const rightWidth = this.button.right.width
 			this.isopen = this.isopen || 'none'
 			this.stop = false
-			this.isclick = false
+			this.istap = false
 			// 只有状态不一致才会返回结果
 			if (this.isopen !== type && this.x !== x) {
 				if (type === 'left' && leftWidth > 0) {

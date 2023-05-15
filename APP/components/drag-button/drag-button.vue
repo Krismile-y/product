@@ -7,7 +7,7 @@
 			@touchstart="touchstart"
 			@touchmove.stop.prevent="touchmove"
 			@touchend="touchend"
-			@click.stop.prevent="click"
+			@tap.stop.prevent="tap"
 			:class="{transition: isDock && !isMove }"
 		>
 		
@@ -69,8 +69,8 @@
 			}).exec();
 		},
 		methods: {
-			click() {
-				this.$emit('btnClick');
+			tap() {
+				this.$emit('btntap');
 			},
 			touchstart(e) {
 				this.$emit('btnTouchstart');

@@ -1,9 +1,9 @@
 <template>
 	<!-- #ifdef APP-NVUE -->
-	<text :style="{ color: color, 'font-size': iconSize }" class="uni-icons" @click="_onClick">{{unicode}}</text>
+	<text :style="{ color: color, 'font-size': iconSize }" class="uni-icons" @tap="_ontap">{{unicode}}</text>
 	<!-- #endif -->
 	<!-- #ifndef APP-NVUE -->
-	<text :style="{ color: color, 'font-size': iconSize }" class="uni-icons" :class="['uniui-'+type,customPrefix,customPrefix?type:'']" @click="_onClick"></text>
+	<text :style="{ color: color, 'font-size': iconSize }" class="uni-icons" :class="['uniui-'+type,customPrefix,customPrefix?type:'']" @tap="_ontap"></text>
 	<!-- #endif -->
 </template>
 
@@ -30,11 +30,11 @@
 	 * @property {String} type 图标图案，参考示例
 	 * @property {String} color 图标颜色
 	 * @property {String} customPrefix 自定义图标
-	 * @event {Function} click 点击 Icon 触发事件
+	 * @event {Function} tap 点击 Icon 触发事件
 	 */
 	export default {
 		name: 'UniIcons',
-		emits:['click'],
+		emits:['tap'],
 		props: {
 			type: {
 				type: String,
@@ -71,8 +71,8 @@
 			}
 		},
 		methods: {
-			_onClick() {
-				this.$emit('click')
+			_ontap() {
+				this.$emit('tap')
 			}
 		}
 	}

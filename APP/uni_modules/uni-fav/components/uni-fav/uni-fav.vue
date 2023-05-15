@@ -1,6 +1,6 @@
 <template>
 	<view :class="[circle === true || circle === 'true' ? 'uni-fav--circle' : '']" :style="[{ backgroundColor: checked ? bgColorChecked : bgColor }]"
-	 @click="onClick" class="uni-fav">
+	 @tap="ontap" class="uni-fav">
 		<!-- #ifdef MP-ALIPAY -->
 		<view class="uni-fav-star" v-if="!checked && (star === true || star === 'true')">
 			<uni-icons :color="fgColor" :style="{color: checked ? fgColorChecked : fgColor}" size="14" type="star-filled" />
@@ -29,7 +29,7 @@
 	 * @property {Boolean} checked = [true|false] 是否为已收藏
 	 * @property {Object} contentText = [true|false] 收藏按钮文字
 	 * @property {Boolean} stat 是否开启统计功能
-	 * @event {Function} click 点击 fav按钮触发事件
+	 * @event {Function} tap 点击 fav按钮触发事件
 	 * @example <uni-fav :checked="true"/>
 	 */
 
@@ -42,7 +42,7 @@
 	export default {
 		name: "UniFav",
 		// TODO 兼容 vue3，需要注册事件
-		emits: ['click'],
+		emits: ['tap'],
 		props: {
 			star: {
 				type: [Boolean, String],
@@ -106,8 +106,8 @@
 			}
 		},
 		methods: {
-			onClick() {
-				this.$emit("click");
+			ontap() {
+				this.$emit("tap");
 			}
 		}
 	};

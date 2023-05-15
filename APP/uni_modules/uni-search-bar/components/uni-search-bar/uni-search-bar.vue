@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-searchbar">
 		<view :style="{borderRadius:radius+'px',backgroundColor: bgColor}" class="uni-searchbar__box"
-			@click="searchClick">
+			@tap="searchtap">
 			<view class="uni-searchbar__box-icon-search">
 				<slot name="searchIcon">
 					<uni-icons color="#c0c4cc" size="18" type="search" />
@@ -12,13 +12,13 @@
 				@confirm="confirm" @blur="blur" @focus="emitFocus" />
 			<text v-else class="uni-searchbar__text-placeholder">{{ placeholder }}</text>
 			<view v-if="show && (clearButton==='always'||clearButton==='auto'&&searchVal!=='') &&!readonly"
-				class="uni-searchbar__box-icon-clear" @click="clear">
+				class="uni-searchbar__box-icon-clear" @tap="clear">
 				<slot name="clearIcon">
 					<uni-icons color="#c0c4cc" size="20" type="clear" />
 				</slot>
 			</view>
 		</view>
-		<text @click="cancel" class="uni-searchbar__cancel"
+		<text @tap="cancel" class="uni-searchbar__cancel"
 			v-if="cancelButton ==='always' || show && cancelButton ==='auto'">{{cancelTextI18n}}</text>
 	</view>
 </template>
@@ -165,7 +165,7 @@
 			}
 		},
 		methods: {
-			searchClick() {
+			searchtap() {
 				if(this.readonly) return
 				if (this.show) {
 					return

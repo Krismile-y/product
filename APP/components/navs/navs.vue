@@ -33,7 +33,7 @@
 					
 				</view>
 			</u-popup>
-			<!-- <u-button @click="show = true">打开</u-button> -->
+			<!-- <u-button @tap="show = true">打开</u-button> -->
 		</view>
 
 

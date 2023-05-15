@@ -1,6 +1,6 @@
 <template>
 	<view class="uni-date">
-		<view class="uni-date-editor" @click="show">
+		<view class="uni-date-editor" @tap="show">
 			<slot>
 				<view class="uni-date-editor--x" :class="{'uni-date-editor--x__disabled': disabled,
 		'uni-date-x--border': border}">
@@ -19,14 +19,14 @@
 						<input class="uni-date__x-input t-c" type="text" v-model="range.endDate"
 							:placeholder="endPlaceholderText" :disabled="true" />
 					</view>
-					<view v-if="showClearIcon" class="uni-date__icon-clear" @click.stop="clear">
+					<view v-if="showClearIcon" class="uni-date__icon-clear" @tap.stop="clear">
 						<uni-icons type="clear" color="#c0c4cc" size="24"></uni-icons>
 					</view>
 				</view>
 			</slot>
 		</view>
 
-		<view v-show="popup" class="uni-date-mask" @click="close"></view>
+		<view v-show="popup" class="uni-date-mask" @tap="close"></view>
 		<view v-if="!isPhone" ref="datePicker" v-show="popup" class="uni-date-picker__container">
 			<view v-if="!isRange" class="uni-date-single--x" :style="popover">
 				<view class="uni-popper__arrow"></view>
@@ -44,7 +44,7 @@
 					style="padding: 0 8px;" />
 				<view v-if="hasTime" class="popup-x-footer">
 					<!-- <text class="">此刻</text> -->
-					<text class="confirm" @click="confirmSingleChange">{{okText}}</text>
+					<text class="confirm" @tap="confirmSingleChange">{{okText}}</text>
 				</view>
 				<view class="uni-date-popper__arrow"></view>
 			</view>
@@ -83,8 +83,8 @@
 						@monthSwitch="rightMonthSwitch" style="padding: 0 8px;border-left: 1px solid #F1F1F1;" />
 				</view>
 				<view v-if="hasTime" class="popup-x-footer">
-					<text class="" @click="clear">{{clearText}}</text>
-					<text class="confirm" @click="confirmRangeChange">{{okText}}</text>
+					<text class="" @tap="clear">{{clearText}}</text>
+					<text class="confirm" @tap="confirmRangeChange">{{okText}}</text>
 				</view>
 			</view>
 		</view>
@@ -515,7 +515,7 @@
 			close() {
 				setTimeout(() => {
 					this.popup = false
-					this.$emit('maskClick', this.value)
+					this.$emit('masktap', this.value)
 					this.$refs.mobile.close()
 				}, 20)
 			},

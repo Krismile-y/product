@@ -59,17 +59,17 @@ mpMixins = {
 			let diff = Math.abs(this.clientX - clientX)
 			let time = (new Date().getTime()) - this.timestamp
 			if (diff < 40 && time < 300) {
-				this.$emit('click', {
+				this.$emit('tap', {
 					content: item,
 					index,
 					position
 				})
 			}
 		},
-		onClickForPC(index, item, position) {
+		ontapForPC(index, item, position) {
 			if (!is_pc) return
 			// #ifdef H5
-			this.$emit('click', {
+			this.$emit('tap', {
 				content: item,
 				index,
 				position

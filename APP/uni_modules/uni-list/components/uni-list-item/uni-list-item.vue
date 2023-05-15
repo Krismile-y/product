@@ -4,8 +4,8 @@
 		<!-- #endif -->
 
 		<view :class="{ 'uni-list-item--disabled': disabled }"
-			:hover-class="(!clickable && !link) || disabled || showSwitch ? '' : 'uni-list-item--hover'"
-			class="uni-list-item" @click="onClick">
+			:hover-class="(!tapable && !link) || disabled || showSwitch ? '' : 'uni-list-item--hover'"
+			class="uni-list-item" @tap="ontap">
 			<view v-if="!isFirstChild" class="border--left" :class="{ 'uni-list--border': border }"></view>
 			<view class="uni-list-item__container"
 				:class="{ 'container--right': showArrow || link, 'flex--direction': direction === 'column' }">
@@ -61,7 +61,7 @@
 	 * @property {Object}   badgeStyle           数字角标样式
 	 * @property {String} 	rightText 						右侧文字内容
 	 * @property {Boolean} 	disabled = [true|false]			是否禁用
-	 * @property {Boolean} 	clickable = [true|false] 		是否开启点击反馈
+	 * @property {Boolean} 	tapable = [true|false] 		是否开启点击反馈
 	 * @property {String} 	link = [navigateTo|redirectTo|reLaunch|switchTab] 是否展示右侧箭头并开启点击反馈
 	 *  @value 	navigateTo 	同 uni.navigateTo()
 	 * 	@value redirectTo 	同 uni.redirectTo()
@@ -76,12 +76,12 @@
 	 * @property {String} 	direction = [row|column]		排版方向
 	 * @value row 			水平排列
 	 * @value column 		垂直排列
-	 * @event {Function} 	click 							点击 uniListItem 触发事件
+	 * @event {Function} 	tap 							点击 uniListItem 触发事件
 	 * @event {Function} 	switchChange 					点击切换 Switch 时触发
 	 */
 	export default {
 		name: 'UniListItem',
-		emits: ['click', 'switchChange'],
+		emits: ['tap', 'switchChange'],
 		props: {
 			direction: {
 				type: String,
@@ -103,7 +103,7 @@
 				type: [Boolean, String],
 				default: false
 			},
-			clickable: {
+			tapable: {
 				type: Boolean,
 				default: false
 			},
@@ -206,13 +206,13 @@
 				}
 				return parent;
 			},
-			onClick() {
+			ontap() {
 				if (this.to !== '') {
 					this.openPage();
 					return;
 				}
-				if (this.clickable || this.link) {
-					this.$emit('click', {
+				if (this.tapable || this.link) {
+					this.$emit('tap', {
 						data: {}
 					});
 				}
@@ -231,12 +231,12 @@
 				let callback = {
 					url: this.to,
 					success: res => {
-						this.$emit('click', {
+						this.$emit('tap', {
 							data: res
 						});
 					},
 					fail: err => {
-						this.$emit('click', {
+						this.$emit('tap', {
 							data: err
 						});
 					}

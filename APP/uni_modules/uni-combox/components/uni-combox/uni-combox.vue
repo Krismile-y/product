@@ -7,7 +7,7 @@
 			<input class="uni-combox__input" type="text" :placeholder="placeholder" 
 			placeholder-class="uni-combox__input-plac" v-model="inputVal" @input="onInput" @focus="onFocus" 
 @blur="onBlur" />
-			<uni-icons :type="showSelector? 'top' : 'bottom'" size="14" color="#999" @click="toggleSelector">
+			<uni-icons :type="showSelector? 'top' : 'bottom'" size="14" color="#999" @tap="toggleSelector">
 			</uni-icons>
 		</view>
 		<view class="uni-combox__selector" v-if="showSelector">
@@ -17,7 +17,7 @@
 					<text>{{emptyTips}}</text>
 				</view>
 				<view class="uni-combox__selector-item" v-for="(item,index) in filterCandidates" :key="index" 
-				@click="onSelectorClick(index)">
+				@tap="onSelectortap(index)">
 					<text>{{item}}</text>
 				</view>
 			</scroll-view>
@@ -132,7 +132,7 @@
 					this.showSelector = false
 				}, 153)
 			},
-			onSelectorClick(index) {
+			onSelectortap(index) {
 				this.inputVal = this.filterCandidates[index]
 				this.showSelector = false
 				this.$emit('input', this.inputVal)

@@ -3,7 +3,7 @@
 
 		<view class="box">
 			<view class="head-box">
-			  <view class="picker-view" @click="changeYear">
+			  <view class="picker-view" @tap="changeYear">
 			    <view class="picker-p">
 			      {{dateText}}
 			    </view>

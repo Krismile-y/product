@@ -1,7 +1,7 @@
 
 <template>
   <view class="" >
-    <!-- <button @click="upgrade">更新</button> -->
+    <!-- <button @tap="upgrade">更新</button> -->
 	<view @tap="upgrade">
 		<!-- 检查更新 -->
 		{{title}}
@@ -43,18 +43,18 @@
             </view>
             
 			<view v-if="!upgrading" class="btn-group" style="margin-top: 30upx;">
-              <view class="cancel" @click="hiddenUppop">
+              <view class="cancel" @tap="hiddenUppop">
                 <text>取消</text>
               </view>
-              <view class="confirm" @click="upgradeEvent">
+              <view class="confirm" @tap="upgradeEvent">
                 <text>确定</text>
               </view>
             </view>
             <view v-else class="btn-group"style="margin-top: 30upx;">
-              <view v-if="!isForceUpgrade" class="cancel" @click="abortDownload">
+              <view v-if="!isForceUpgrade" class="cancel" @tap="abortDownload">
                 <text>取消下载</text>
               </view>
-              <view v-if="!isForceUpgrade" class="confirm" @click="hiddenUpgradeEvent">
+              <view v-if="!isForceUpgrade" class="confirm" @tap="hiddenUpgradeEvent">
                 <text>后台下载</text>
               </view>
             </view>

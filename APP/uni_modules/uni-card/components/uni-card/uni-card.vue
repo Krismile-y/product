@@ -4,13 +4,13 @@
 		<!-- 封面 -->
 		<slot name="cover">
 			<view v-if="cover" class="uni-card__cover">
-				<image class="uni-card__cover-image" mode="widthFix" @click="onClick('cover')" :src="cover"></image>
+				<image class="uni-card__cover-image" mode="widthFix" @tap="ontap('cover')" :src="cover"></image>
 			</view>
 		</slot>
 		<slot name="title">
 			<view v-if="title || extra" class="uni-card__header">
 				<!-- 卡片标题 -->
-				<view class="uni-card__header-box" @click="onClick('title')">
+				<view class="uni-card__header-box" @tap="ontap('title')">
 					<view v-if="thumbnail" class="uni-card__header-avatar">
 						<image class="uni-card__header-avatar-image" :src="thumbnail" mode="aspectFit" />
 					</view>
@@ -20,16 +20,16 @@
 							class="uni-card__header-content-subtitle uni-ellipsis">{{ subTitle }}</text>
 					</view>
 				</view>
-				<view class="uni-card__header-extra" @click="onClick('extra')">
+				<view class="uni-card__header-extra" @tap="ontap('extra')">
 					<text class="uni-card__header-extra-text">{{ extra }}</text>
 				</view>
 			</view>
 		</slot>
 		<!-- 卡片内容 -->
-		<view class="uni-card__content" :style="{padding:padding}" @click="onClick('content')">
+		<view class="uni-card__content" :style="{padding:padding}" @tap="ontap('content')">
 			<slot></slot>
 		</view>
-		<view class="uni-card__actions" @click="onClick('actions')">
+		<view class="uni-card__actions" @tap="ontap('actions')">
 			<slot name="actions"></slot>
 		</view>
 	</view>
@@ -52,11 +52,11 @@
 	 * @property {Boolean} is-shadow = [true | false] 卡片内容是否开启阴影
 	 * @property {String} shadow 卡片阴影
 	 * @property {Boolean} border 卡片边框
-	 * @event {Function} click 点击 Card 触发事件
+	 * @event {Function} tap 点击 Card 触发事件
 	 */
 	export default {
 		name: 'UniCard',
-		emits: ['click'],
+		emits: ['tap'],
 		props: {
 			title: {
 				type: String,
@@ -110,8 +110,8 @@
 			}
 		},
 		methods: {
-			onClick(type) {
-				this.$emit('click', type)
+			ontap(type) {
+				this.$emit('tap', type)
 			}
 		}
 	}

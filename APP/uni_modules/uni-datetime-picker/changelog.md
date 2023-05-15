@@ -7,7 +7,7 @@
 ## 2.2.8（2022-09-08）
 - 修复 close事件无效的 bug
 ## 2.2.7（2022-09-05）
-- 修复 移动端 maskClick 无效的 bug，详见:[https://ask.dcloud.net.cn/question/140824?item_id=209458&rf=false](https://ask.dcloud.net.cn/question/140824?item_id=209458&rf=false)
+- 修复 移动端 masktap 无效的 bug，详见:[https://ask.dcloud.net.cn/question/140824?item_id=209458&rf=false](https://ask.dcloud.net.cn/question/140824?item_id=209458&rf=false)
 ## 2.2.6（2022-06-30）
 - 优化 组件样式，调整了组件图标大小、高度、颜色等，与uni-ui风格保持一致
 ## 2.2.5（2022-06-24）
@@ -71,7 +71,7 @@
 - 修复 范围起始点样式的背景色与今日样式的字体前景色融合，导致日期字体看不清的 bug
 - 优化 弹出层在超出视窗边缘被遮盖的问题
 ## 2.0.9（2021-07-07）
-- 新增 maskClick 事件
+- 新增 masktap 事件
 - 修复 特殊情况日历 rpx 布局错误的 bug，rpx -> px
 - 修复 范围选择时清空返回值不合理的bug，['', ''] -> []
 ## 2.0.8（2021-07-07）

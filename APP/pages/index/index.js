@@ -23,29 +23,42 @@ export default {
 			text1: '',
 			nowNum: 0, //控制海报显示,
 			posterShow: true,
-			posterList: {
-				one: [
-					{
-						src: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
-					},
-					{
-						src: "https://img0.baidu.com/it/u=2616180438,3555003891&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500"
-					},
-					{
-						src: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
-					},
+			posterList: [
+				
+					// {
+					// 	img: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
+					// },
+					// {
+					// 	img: "https://img0.baidu.com/it/u=2616180438,3555003891&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500"
+					// },
+					// {
+					// 	img: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
+					// },
 					
-				]
-			}
+				
+			]
+			// posterList: {
+			// 	one: [
+			// 		{
+			// 			src: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
+			// 		},
+			// 		{
+			// 			src: "https://img0.baidu.com/it/u=2616180438,3555003891&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500"
+			// 		},
+			// 		{
+			// 			src: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
+			// 		},
+					
+			// 	]
+			// }
 		}
 	},
 	onReady() { //onReady用于监听组件渲染完成
-		//  #ifdef APP
-		if(uni.getStorageSync('gengxin') == true){
-			this.$refs.down.upgrade() //检查更新
-		}
-		
-		// #endif
+		// //  #ifdef APP
+		// if(uni.getStorageSync('gengxin') == true){
+		// 	this.$refs.down.upgrade() //检查更新
+		// }	
+		// // #endif
 
 	},
 	onHide(){
@@ -107,6 +120,12 @@ export default {
 	},
 
 	onLoad() {
+		// 海报接口
+		this.$fn.request('banner', "GET", {"type":"5"}).then(res => {
+			console.log(res.data.data,'海报')
+			 this.posterList = res.data.data
+		})
+		
 
 		// 轮播图接口
 		let data = {
@@ -254,8 +273,13 @@ export default {
 		close() { //关闭海报
 			this.nowNum++
 
-			if (this.nowNum >= this.posterList.one.length - 1) {
+			if (this.nowNum >= this.posterList.length - 1) {
 				this.posterShow = false
+				//  #ifdef APP
+				if(uni.getStorageSync('gengxin') == true){
+					this.$refs.down.upgrade() //检查更新
+				}	
+				// #endif
 			}
 		}
 	}

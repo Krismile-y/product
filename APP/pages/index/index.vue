@@ -160,12 +160,12 @@
 
 		<!-- 海报 -->
 		<view class=" dis" v-for="(value,key,i) in posterList"
-			:class="{poster:posterList.one.length==nowNum?false:true}" v-show="!true">
+			:class="{poster:posterList.length==nowNum?false:true}" v-show="true">
 			<view class="box disc">
-				<view style="width: 100%;height: 100%;" class="disc" v-for="(item,index) in value"
+				<view style="width: 100%;height: 100%;" class="disc" v-for="(item,index) in posterList"
 					v-show="index==nowNum?true:false">
-					<image :src="item.src" mode="" style="width: 100%;height: 700upx;border-radius: 20upx;"></image>
-					<image src="../../static/index/close.png" mode=""
+					<image :src="item.img" mode="" style="width: 100%;height: 700upx;border-radius: 20upx;"></image>
+					<image src="../../static/index/guanbi.png" mode=""
 						style="width: 60upx;height: 60upx;margin-top: 30upx;" @tap='close'></image>
 				</view>
 			</view>

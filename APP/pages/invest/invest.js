@@ -152,14 +152,14 @@ export default {
 				}
 				this.xiadan--
 			},
-			typeClick(index){//支付方式
+			typetap(index){//支付方式
 				this.typeIndex=index
 				console.log(index)
 			},
 			danxuan(e){
 				console.log(e)
 			},
-			rightClick(index,item){//天数
+			righttap(index,item){//天数
 			
 				this.currentDay=index
         this.dayChangeClose()

@@ -1,6 +1,6 @@
 <template>
 	<view class="uni-filter-dropdown">
-		<view class="dropdown-btn" @click="onDropdown">
+		<view class="dropdown-btn" @tap="onDropdown">
 			<view class="icon-select" :class="{active: canReset}" v-if="isSelect || isRange"></view>
 			<view class="icon-search" :class="{active: canReset}" v-if="isSearch">
 				<view class="icon-search-0"></view>
@@ -11,12 +11,12 @@
 				<view class="icon-calendar-1"></view>
 			</view>
 		</view>
-		<view class="uni-dropdown-cover" v-if="isOpened" @click="handleClose"></view>
-		<view class="dropdown-popup dropdown-popup-right" v-if="isOpened" @click.stop>
+		<view class="uni-dropdown-cover" v-if="isOpened" @tap="handleClose"></view>
+		<view class="dropdown-popup dropdown-popup-right" v-if="isOpened" @tap.stop>
 			<!-- select-->
 			<view v-if="isSelect" class="list">
 				<label class="flex-r a-i-c list-item" v-for="(item,index) in dataList" :key="index"
-					@click="onItemClick($event, index)">
+					@tap="onItemtap($event, index)">
 					<check-box class="check" :checked="item.checked" />
 					<view class="checklist-content">
 						<text class="checklist-text" :style="item.styleIconText">{{item[map.text]}}</text>
@@ -24,17 +24,17 @@
 				</label>
 			</view>
 			<view v-if="isSelect" class="flex-r opera-area">
-				<view class="flex-f btn btn-default" :class="{disable: !canReset}" @click="handleSelectReset">
+				<view class="flex-f btn btn-default" :class="{disable: !canReset}" @tap="handleSelectReset">
 					{{resource.reset}}</view>
-				<view class="flex-f btn btn-submit" @click="handleSelectSubmit">{{resource.submit}}</view>
+				<view class="flex-f btn btn-submit" @tap="handleSelectSubmit">{{resource.submit}}</view>
 			</view>
 			<!-- search -->
 			<view v-if="isSearch" class="search-area">
 				<input class="search-input" v-model="filterValue" />
 			</view>
 			<view v-if="isSearch" class="flex-r opera-area">
-				<view class="flex-f btn btn-submit" @click="handleSearchSubmit">{{resource.search}}</view>
-				<view class="flex-f btn btn-default" :class="{disable: !canReset}" @click="handleSearchReset">
+				<view class="flex-f btn btn-submit" @tap="handleSearchSubmit">{{resource.search}}</view>
+				<view class="flex-f btn btn-default" :class="{disable: !canReset}" @tap="handleSearchReset">
 					{{resource.reset}}</view>
 			</view>
 			<!-- range -->
@@ -45,13 +45,13 @@
 				<input class="input" v-model="ltValue" />
 			</view>
 			<view v-if="isRange" class="flex-r opera-area">
-				<view class="flex-f btn btn-default" :class="{disable: !canReset}" @click="handleRangeReset">
+				<view class="flex-f btn btn-default" :class="{disable: !canReset}" @tap="handleRangeReset">
 					{{resource.reset}}</view>
-				<view class="flex-f btn btn-submit" @click="handleRangeSubmit">{{resource.submit}}</view>
+				<view class="flex-f btn btn-submit" @tap="handleRangeSubmit">{{resource.submit}}</view>
 			</view>
 			<!-- date -->
 			<view v-if="isDate">
-				<uni-datetime-picker ref="datetimepicker" :value="dateRange" type="datetimerange" return-type="timestamp" @change="datetimechange" @maskClick="timepickerclose">
+				<uni-datetime-picker ref="datetimepicker" :value="dateRange" type="datetimerange" return-type="timestamp" @change="datetimechange" @masktap="timepickerclose">
 					<view></view>
 				</uni-datetime-picker>
 			</view>
@@ -203,7 +203,7 @@
 			onDropdown(e) {
 				this.openPopup()
 			},
-			onItemClick(e, index) {
+			onItemtap(e, index) {
 				let items = this.dataList
 				let listItem = items[index]
 				if (listItem.checked === undefined) {

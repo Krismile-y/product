@@ -1,6 +1,6 @@
 <template>
 	<view class="uni-file-picker__files">
-		<view v-if="!readonly" class="files-button" @click="choose">
+		<view v-if="!readonly" class="files-button" @tap="choose">
 			<slot></slot>
 		</view>
 		<!-- :class="{'is-text-box':showType === 'list'}" -->
@@ -16,7 +16,7 @@
 						<image class="header-image" :src="item.logo" mode="aspectFit"></image>
 					</view> -->
 					<view class="files__name">{{item.name}}</view>
-					<view v-if="delIcon&&!readonly" class="icon-del-box icon-files" @click="delFile(index)">
+					<view v-if="delIcon&&!readonly" class="icon-del-box icon-files" @tap="delFile(index)">
 						<view class="icon-del icon-files"></view>
 						<view class="icon-del rotate"></view>
 					</view>
@@ -25,7 +25,7 @@
 					<progress class="file-picker__progress-item" :percent="item.progress === -1?0:item.progress" stroke-width="4"
 					 :backgroundColor="item.errMsg?'#ff5a5f':'#EBEBEB'" />
 				</view>
-				<view v-if="item.status === 'error'" class="file-picker__mask" @click.stop="uploadFiles(item,index)">
+				<view v-if="item.status === 'error'" class="file-picker__mask" @tap.stop="uploadFiles(item,index)">
 					点击重试
 				</view>
 			</view>

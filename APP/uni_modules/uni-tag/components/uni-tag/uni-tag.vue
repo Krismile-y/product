@@ -1,5 +1,5 @@
 <template>
-	<text class="uni-tag" v-if="text" :class="classes" :style="customStyle" @click="onClick">{{text}}</text>
+	<text class="uni-tag" v-if="text" :class="classes" :style="customStyle" @tap="ontap">{{text}}</text>
 </template>
 
 <script>
@@ -21,12 +21,12 @@
 	 * @property {Boolean} disabled = [true|false] 是否为禁用状态
 	 * @property {Boolean} inverted = [true|false] 是否无需背景颜色（空心标签）
 	 * @property {Boolean} circle = [true|false] 是否为圆角
-	 * @event {Function} click 点击 Tag 触发事件
+	 * @event {Function} tap 点击 Tag 触发事件
 	 */
 
 	export default {
 		name: "UniTag",
-		emits: ['click'],
+		emits: ['tap'],
 		props: {
 			type: {
 				// 标签类型default、primary、success、warning、error、royal
@@ -98,9 +98,9 @@
 			isTrue(value) {
 				return value === true || value === 'true'
 			},
-			onClick() {
+			ontap() {
 				if (this.isTrue(this.disabled)) return
-				this.$emit("click");
+				this.$emit("tap");
 			}
 		}
 	};

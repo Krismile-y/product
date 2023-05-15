@@ -5,7 +5,7 @@
 			<status-bar v-if="statusBar" />
 			<view :style="{ color: themeColor,backgroundColor: themeBgColor ,height:navbarHeight}"
 				class="uni-navbar__header">
-				<view @tap="onClickLeft" class="uni-navbar__header-btns uni-navbar__header-btns-left"
+				<view @tap="ontapLeft" class="uni-navbar__header-btns uni-navbar__header-btns-left"
 					:style="{width:leftIconWidth}">
 					<slot name="left">
 						<view class="uni-navbar__content_view" v-if="leftIcon.length > 0">
@@ -17,7 +17,7 @@
 						</view>
 					</slot>
 				</view>
-				<view class="uni-navbar__header-container " @tap="onClickTitle">
+				<view class="uni-navbar__header-container " @tap="ontapTitle">
 					<slot>
 						<view class="uni-navbar__header-container-inner" v-if="title.length>0">
 							<text class="uni-nav-bar-text uni-ellipsis-1"
@@ -25,7 +25,7 @@
 						</view>
 					</slot>
 				</view>
-				<view @click="onClickRight" class="uni-navbar__header-btns uni-navbar__header-btns-right"
+				<view @tap="ontapRight" class="uni-navbar__header-btns uni-navbar__header-btns-right"
 					:style="{width:rightIconWidth}">
 					<slot name="right">
 						<view v-if="rightIcon.length">
@@ -69,16 +69,16 @@
 	 * @property {Boolean} statusBar = [true|false] 是否包含状态栏
 	 * @property {Boolean} shadow = [true|false] 导航栏下是否有阴影
 	 * @property {Boolean} stat 是否开启统计标题上报
-	 * @event {Function} clickLeft 左侧按钮点击时触发
-	 * @event {Function} clickRight 右侧按钮点击时触发
-	 * @event {Function} clickTitle 中间标题点击时触发
+	 * @event {Function} tapLeft 左侧按钮点击时触发
+	 * @event {Function} tapRight 右侧按钮点击时触发
+	 * @event {Function} tapTitle 中间标题点击时触发
 	 */
 	export default {
 		name: "UniNavBar",
 		components: {
 			statusBar
 		},
-		emits: ['clickLeft', 'clickRight', 'clickTitle'],
+		emits: ['tapLeft', 'tapRight', 'tapTitle'],
 		props: {
 			dark: {
 				type: Boolean,
@@ -184,14 +184,14 @@
 			}
 		},
 		methods: {
-			onClickLeft() {
-				this.$emit("clickLeft");
+			ontapLeft() {
+				this.$emit("tapLeft");
 			},
-			onClickRight() {
-				this.$emit("clickRight");
+			ontapRight() {
+				this.$emit("tapRight");
 			},
-			onClickTitle() {
-				this.$emit("clickTitle");
+			ontapTitle() {
+				this.$emit("tapTitle");
 			}
 		}
 	};

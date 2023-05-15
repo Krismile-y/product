@@ -22,7 +22,7 @@
 	 */
 	export default {
 		name: 'uniGroup',
-		emits:['click'],
+		emits:['tap'],
 		props: {
 			title: {
 				type: String,
@@ -75,8 +75,8 @@
 				}
 				return parent;
 			},
-			onClick() {
-				this.$emit('click')
+			ontap() {
+				this.$emit('tap')
 			}
 		}
 	}

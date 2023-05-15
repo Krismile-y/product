@@ -5,7 +5,7 @@
 
 ### 使用方式
 ``` html
-<liu-folding-panel :dataList="dataList" @clickChildItem="change"></liu-folding-panel>
+<liu-folding-panel :dataList="dataList" @tapChildItem="change"></liu-folding-panel>
 ```
 ``` javascript
 export default {

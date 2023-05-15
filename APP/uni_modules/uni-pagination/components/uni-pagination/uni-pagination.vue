@@ -2,8 +2,8 @@
 	<view class="uni-pagination">
 		<!-- #ifndef MP -->
 		<picker v-if="showPageSize === true || showPageSize === 'true'" class="select-picker" mode="selector"
-			:value="pageSizeIndex" :range="pageSizeRange" @change="pickerChange" @cancel="pickerClick"
-			@click.native="pickerClick">
+			:value="pageSizeIndex" :range="pageSizeRange" @change="pickerChange" @cancel="pickertap"
+			@tap.native="pickertap">
 			<button type="default" size="mini" :plain="true">
 				<text>{{pageSizeRange[pageSizeIndex]}} {{piecePerPage}}</text>
 				<uni-icons class="select-picker-icon" type="arrowdown" size="12" color="#999"></uni-icons>
@@ -16,7 +16,7 @@
 		<view class="uni-pagination__btn"
 			:class="currentIndex === 1 ? 'uni-pagination--disabled' : 'uni-pagination--enabled'"
 			:hover-class="currentIndex === 1 ? '' : 'uni-pagination--hover'" :hover-start-time="20"
-			:hover-stay-time="70" @click="clickLeft">
+			:hover-stay-time="70" @tap="tapLeft">
 			<template v-if="showIcon === true || showIcon === 'true'">
 				<uni-icons color="#666" size="16" type="left" />
 			</template>
@@ -30,7 +30,7 @@
 				<text class="uni-pagination__num-current-text is-pc-hide">/{{ maxPage || 0 }}</text>
 				<!-- #ifndef APP-NVUE -->
 				<view v-for="(item, index) in paper" :key="index" :class="{ 'page--active': item === currentIndex }"
-					class="uni-pagination__num-tag tag--active is-phone-hide" @click.top="selectPage(item, index)">
+					class="uni-pagination__num-tag tag--active is-phone-hide" @tap.top="selectPage(item, index)">
 					<text>{{ item }}</text>
 				</view>
 				<!-- #endif -->
@@ -40,7 +40,7 @@
 		<view class="uni-pagination__btn"
 			:class="currentIndex >= maxPage ? 'uni-pagination--disabled' : 'uni-pagination--enabled'"
 			:hover-class="currentIndex === maxPage ? '' : 'uni-pagination--hover'" :hover-start-time="20"
-			:hover-stay-time="70" @click="clickRight">
+			:hover-stay-time="70" @tap="tapRight">
 			<template v-if="showIcon === true || showIcon === 'true'">
 				<uni-icons color="#666" size="16" type="right" />
 			</template>
@@ -237,9 +237,9 @@
 		methods: {
 			pickerChange(e) {
 				this.pageSizeIndex = e.detail.value
-				this.pickerClick()
+				this.pickertap()
 			},
-			pickerClick() {
+			pickertap() {
 				// #ifdef H5
 				const body = document.querySelector('body')
 				if (!body) return
@@ -282,14 +282,14 @@
 					}
 				}
 			},
-			clickLeft() {
+			tapLeft() {
 				if (Number(this.currentIndex) === 1) {
 					return
 				}
 				this.currentIndex -= 1
 				this.change('prev')
 			},
-			clickRight() {
+			tapRight() {
 				if (Number(this.currentIndex) >= this.maxPage) {
 					return
 				}

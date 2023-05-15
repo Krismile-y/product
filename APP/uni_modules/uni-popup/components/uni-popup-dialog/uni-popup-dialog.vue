@@ -14,10 +14,10 @@
 			</slot>
 		</view>
 		<view class="uni-dialog-button-group">
-			<view class="uni-dialog-button" @click="closeDialog">
+			<view class="uni-dialog-button" @tap="closeDialog">
 				<text class="uni-dialog-button-text">{{closeText}}</text>
 			</view>
-			<view class="uni-dialog-button uni-border-left" @click="onOk">
+			<view class="uni-dialog-button uni-border-left" @tap="onOk">
 				<text class="uni-dialog-button-text uni-button-color">{{okText}}</text>
 			</view>
 		</view>

@@ -14,7 +14,7 @@
 
           <view class="item">
             <view class="left ">请选择银行卡</view>
-            <view class="right" @click="open">
+            <view class="right" @tap="open">
               <view style="color: #999;">点击填写银行卡信息</view>
             </view>
           </view>
@@ -46,8 +46,8 @@
                   <uni-easyinput type="text" v-model="valiFormData.u_back_user_name" placeholder="请输入卡用户名" />
                 </uni-forms-item>
               </uni-forms>
-              <button @click="submitForm('valiForm')" type="primary">填写完成</button>
-              <button @click="close">取消</button>
+              <button @tap="submitForm('valiForm')" type="primary">填写完成</button>
+              <button @tap="close">取消</button>
             </view>
           </u-popup>
 
@@ -57,7 +57,7 @@
             </view>
           </view>
           <!-- <view class="btns">
-            <view class="btn dis" @click="sendBtn" style="background-color: #aaff7f;">申请提现</view>
+            <view class="btn dis" @tap="sendBtn" style="background-color: #aaff7f;">申请提现</view>
           </view> -->
         </view>
 

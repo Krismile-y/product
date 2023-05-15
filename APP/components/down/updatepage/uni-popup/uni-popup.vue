@@ -1,8 +1,8 @@
 <template>
 	<view v-if="showPopup" class="uni-popup" :class="[popupstyle]" @touchmove.stop.prevent="clear">
-		<uni-transition v-if="maskShow" class="uni-mask--hook" :mode-class="['fade']" :styles="maskClass" :duration="duration" :show="showTrans" @click="onTap" />
-		<uni-transition :mode-class="ani" :styles="transClass" :duration="duration" :show="showTrans" @click="onTap">
-			<view class="uni-popup__wrapper-box" @click.stop="clear">
+		<uni-transition v-if="maskShow" class="uni-mask--hook" :mode-class="['fade']" :styles="maskClass" :duration="duration" :show="showTrans" @tap="onTap" />
+		<uni-transition :mode-class="ani" :styles="transClass" :duration="duration" :show="showTrans" @tap="onTap">
+			<view class="uni-popup__wrapper-box" @tap.stop="clear">
 				<slot />
 			</view>
 		</uni-transition>
@@ -24,7 +24,7 @@
 	 * 	@value dialog 对话框
 	 * 	@value share 底部分享示例
 	 * @property {Boolean} animation = [ture|false] 是否开启动画
-	 * @property {Boolean} maskClick = [ture|false] 蒙版点击是否关闭弹窗
+	 * @property {Boolean} masktap = [ture|false] 蒙版点击是否关闭弹窗
 	 * @event {Function} change 打开关闭弹窗触发，e={show: false}
 	 */
 
@@ -45,8 +45,8 @@
 				type: String,
 				default: 'center'
 			},
-			// maskClick
-			maskClick: {
+			// masktap
+			masktap: {
 				type: Boolean,
 				default: true
 			}
@@ -71,8 +71,8 @@
 			 * 监听遮罩是否可点击
 			 * @param {Object} val
 			 */
-			maskClick(val) {
-				this.mkclick = val
+			masktap(val) {
+				this.mktap = val
 			}
 		},
 		data() {
@@ -95,12 +95,12 @@
 					'right': 0,
 				},
 				maskShow: true,
-				mkclick: true,
+				mktap: true,
 				popupstyle: 'top'
 			}
 		},
 		created() {
-			this.mkclick = this.maskClick
+			this.mktap = this.masktap
 			if (this.animation) {
 				this.duration = 300
 			} else {
@@ -153,7 +153,7 @@
 				})
 			},
 			onTap() {
-				if (!this.mkclick) return
+				if (!this.mktap) return
 				this.close()
 			},
 			/**

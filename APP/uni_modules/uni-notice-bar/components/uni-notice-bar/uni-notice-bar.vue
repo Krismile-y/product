@@ -1,5 +1,5 @@
 <template>
-	<view v-if="show" class="uni-noticebar" :style="{ backgroundColor }" @click="onClick">
+	<view v-if="show" class="uni-noticebar" :style="{ backgroundColor }" @tap="ontap">
 		<uni-icons v-if="showIcon === true || showIcon === 'true'" class="uni-noticebar-icon" type="sound"
 			:color="color" :size="fontSize * 1.5" />
 		<view ref="textBox" class="uni-noticebar__content-wrapper"
@@ -36,12 +36,12 @@
 			</view>
 		</view>
 		<view v-if="isShowGetMore" class="uni-noticebar__more uni-cursor-point"
-			@click="clickMore">
+			@tap="tapMore">
 			<text v-if="moreText.length > 0" :style="{ color: moreColor, fontSize: fontSize + 'px' }">{{ moreText }}</text>
 			<uni-icons v-else type="right" :color="moreColor" :size="fontSize * 1.1" />
 		</view>
 		<view class="uni-noticebar-close uni-cursor-point" v-if="isShowClose">
-			<uni-icons type="closeempty" :color="color" :size="fontSize * 1.1" @click="close" />
+			<uni-icons type="closeempty" :color="color" :size="fontSize * 1.1" @tap="close" />
 		</view>
 	</view>
 </template>
@@ -67,14 +67,14 @@
 	 * @property {Boolean} showIcon = [true|false] 是否显示左侧喇叭图标
 	 * @property {Boolean} showClose = [true|false] 是否显示左侧关闭按钮
 	 * @property {Boolean} showGetMore = [true|false] 是否显示右侧查看更多图标，为true时，NoticeBar为单行
-	 * @event {Function} click 点击 NoticeBar 触发事件
+	 * @event {Function} tap 点击 NoticeBar 触发事件
 	 * @event {Function} close 关闭 NoticeBar 触发事件
 	 * @event {Function} getmore 点击”查看更多“时触发事件
 	 */
 
 	export default {
 		name: 'UniNoticeBar',
-		emits: ['click', 'getmore', 'close'],
+		emits: ['tap', 'getmore', 'close'],
 		props: {
 			text: {
 				type: String,
@@ -284,15 +284,15 @@
 				});
 				// #endif
 			},
-			clickMore() {
+			tapMore() {
 				this.$emit('getmore')
 			},
 			close() {
 				this.show = false;
 				this.$emit('close')
 			},
-			onClick() {
-				this.$emit('click')
+			ontap() {
+				this.$emit('tap')
 			}
 		}
 	}

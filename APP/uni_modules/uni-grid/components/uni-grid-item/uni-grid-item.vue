@@ -2,7 +2,7 @@
 	<view v-if="width" :style="'width:'+width+';'+(square?'height:'+width:'')" class="uni-grid-item">
 		<view :class="{ 'uni-grid-item--border': showBorder,  'uni-grid-item--border-top': showBorder && index < column, 'uni-highlight': highlight }"
 		 :style="{'border-right-color': borderColor ,'border-bottom-color': borderColor ,'border-top-color': borderColor }"
-		 class="uni-grid-item__box" @click="_onClick">
+		 class="uni-grid-item__box" @tap="_ontap">
 			<slot />
 		</view>
 	</view>
@@ -57,7 +57,7 @@
 			})
 		},
 		methods: {
-			_onClick() {
+			_ontap() {
 				this.grid.change({
 					detail: {
 						index: this.index

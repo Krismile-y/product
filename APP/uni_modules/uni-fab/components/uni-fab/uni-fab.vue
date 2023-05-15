@@ -19,7 +19,7 @@
 				class="uni-fab__content" elevation="5">
 				<view v-if="flexDirectionStart || horizontalLeft" class="uni-fab__item uni-fab__item--first" />
 				<view v-for="(item, index) in content" :key="index" :class="{ 'uni-fab__item--active': isShow }"
-					class="uni-fab__item" @click="_onItemClick(index, item)">
+					class="uni-fab__item" @tap="_onItemtap(index, item)">
 					<image :src="item.active ? item.selectedIconPath : item.iconPath" class="uni-fab__item-image"
 						mode="aspectFit" />
 					<text class="uni-fab__item-text"
@@ -34,7 +34,7 @@
 		  'uni-fab__circle--leftTop': leftTop,
 		  'uni-fab__circle--rightTop': rightTop,
 		  'uni-fab__content--other-platform': !isAndroidNvue
-		}" class="uni-fab__circle uni-fab__plus" :style="{ 'background-color': styles.buttonColor, 'bottom': nvueBottom }" @click="_onClick">
+		}" class="uni-fab__circle uni-fab__plus" :style="{ 'background-color': styles.buttonColor, 'bottom': nvueBottom }" @tap="_ontap">
 			<uni-icons class="fab-circle-icon" type="plusempty" :color="styles.iconColor" size="32"
 				:class="{'uni-fab__plus--active': isShow && content.length > 0}"></uni-icons>
 			<!-- <view class="fab-circle-v"  :class="{'uni-fab__plus--active': isShow && content.length > 0}"></view>
@@ -66,11 +66,11 @@
 	 * @property {Array} content 展开菜单内容配置项
 	 * @property {Boolean} popMenu 是否使用弹出菜单
 	 * @event {Function} trigger 展开菜单点击事件，返回点击信息
-	 * @event {Function} fabClick 悬浮按钮点击事件
+	 * @event {Function} fabtap 悬浮按钮点击事件
 	 */
 	export default {
 		name: 'UniFab',
-		emits: ['fabClick', 'trigger'],
+		emits: ['fabtap', 'trigger'],
 		props: {
 			pattern: {
 				type: Object,
@@ -189,8 +189,8 @@
 			this.styles = Object.assign({}, this.styles, this.pattern)
 		},
 		methods: {
-			_onClick() {
-				this.$emit('fabClick')
+			_ontap() {
+				this.$emit('fabtap')
 				if (!this.popMenu) {
 					return
 				}
@@ -205,7 +205,7 @@
 			/**
 			 * 按钮点击事件
 			 */
-			_onItemClick(index, item) {
+			_onItemtap(index, item) {
 				if (!this.isShow) {
 					return
 				}

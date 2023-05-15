@@ -1,6 +1,6 @@
 <template>
   <view class="uni-data-tree">
-    <view class="uni-data-tree-input" @click="handleInput">
+    <view class="uni-data-tree-input" @tap="handleInput">
       <slot :options="options" :data="inputSelected" :error="errorMessage">
         <view class="input-value" :class="{'input-value-border': border}">
           <text v-if="errorMessage" class="selected-area error-text">{{errorMessage}}</text>
@@ -16,7 +16,7 @@
             </view>
           </scroll-view>
           <text v-else class="selected-area placeholder">{{placeholder}}</text>
-          <view v-if="clearIcon && !readonly && inputSelected.length" class="icon-clear" @click.stop="clear">
+          <view v-if="clearIcon && !readonly && inputSelected.length" class="icon-clear" @tap.stop="clear">
             <uni-icons type="clear" color="#c0c4cc" size="24"></uni-icons>
           </view>
           <view class="arrow-area" v-if="(!clearIcon || !inputSelected.length) && !readonly ">
@@ -25,14 +25,14 @@
         </view>
       </slot>
     </view>
-    <view class="uni-data-tree-cover" v-if="isOpened" @click="handleClose"></view>
+    <view class="uni-data-tree-cover" v-if="isOpened" @tap="handleClose"></view>
     <view class="uni-data-tree-dialog" v-if="isOpened">
       <view class="uni-popper__arrow"></view>
       <view class="dialog-caption">
         <view class="title-area">
           <text class="dialog-title">{{popupTitle}}</text>
         </view>
-        <view class="dialog-close" @click="handleClose">
+        <view class="dialog-close" @tap="handleClose">
           <view class="dialog-close-plus" data-id="close"></view>
           <view class="dialog-close-plus dialog-close-rotate" data-id="close"></view>
         </view>
@@ -40,7 +40,7 @@
       <data-picker-view class="picker-view" ref="pickerView" v-model="dataValue" :localdata="localdata"
         :preload="preload" :collection="collection" :field="field" :orderby="orderby" :where="where"
         :step-searh="stepSearh" :self-field="selfField" :parent-field="parentField" :managed-mode="true" :map="map"
-        :ellipsis="ellipsis" @change="onchange" @datachange="ondatachange" @nodeclick="onnodeclick">
+        :ellipsis="ellipsis" @change="onchange" @datachange="ondatachange" @nodetap="onnodetap">
       </data-picker-view>
     </view>
   </view>
@@ -75,7 +75,7 @@
    */
   export default {
     name: 'UniDataPicker',
-    emits: ['popupopened', 'popupclosed', 'nodeclick', 'input', 'change', 'update:modelValue'],
+    emits: ['popupopened', 'popupclosed', 'nodetap', 'input', 'change', 'update:modelValue'],
     mixins: [dataPicker],
     components: {
       DataPickerView
@@ -191,8 +191,8 @@
       handleClose(e) {
         this.hide()
       },
-      onnodeclick(e) {
-        this.$emit('nodeclick', e)
+      onnodetap(e) {
+        this.$emit('nodetap', e)
       },
       ondatachange(e) {
         this._treeData = this.$refs.pickerView._treeData

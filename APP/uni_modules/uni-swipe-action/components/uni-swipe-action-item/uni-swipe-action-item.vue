@@ -19,7 +19,7 @@
 					  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD'
 					}" class="uni-swipe_button button-hock" @touchstart="appTouchStart"
 							@touchend="appTouchEnd($event,index,item,'left')"
-							@click.stop="onClickForPC(index,item,'left')">
+							@tap.stop="ontapForPC(index,item,'left')">
 							<text class="uni-swipe_button-text"
 								:style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'}">{{ item.text }}</text>
 						</view>
@@ -34,7 +34,7 @@
 					  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD'
 					}" class="uni-swipe_button button-hock" @touchstart="appTouchStart"
 							@touchend="appTouchEnd($event,index,item,'right')"
-							@click.stop="onClickForPC(index,item,'right')"><text class="uni-swipe_button-text"
+							@tap.stop="ontapForPC(index,item,'right')"><text class="uni-swipe_button-text"
 								:style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'}">{{ item.text }}</text>
 						</view>
 					</slot>
@@ -49,7 +49,7 @@
 				<slot name="left">
 					<view v-for="(item,index) in leftOptions" :key="index" :style="{
 				  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD'
-				}" class="uni-swipe_button button-hock" @click.stop="onClick(index,item,'left')"><text
+				}" class="uni-swipe_button button-hock" @tap.stop="ontap(index,item,'left')"><text
 							class="uni-swipe_button-text"
 							:style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF', fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'}">{{ item.text }}</text>
 					</view>
@@ -59,7 +59,7 @@
 				<slot name="right">
 					<view v-for="(item,index) in rightOptions" :key="index" :style="{
 				  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD'
-				}" class="uni-swipe_button button-hock" @click.stop="onClick(index,item,'right')"><text
+				}" class="uni-swipe_button button-hock" @tap.stop="ontap(index,item,'right')"><text
 							class="uni-swipe_button-text"
 							:style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'}">{{ item.text }}</text>
 					</view>
@@ -142,13 +142,13 @@
 	 * @property {Number}  threshold 					滑动缺省值
 	 * @property {Array} leftOptions 					左侧选项内容及样式
 	 * @property {Array} rgihtOptions 					右侧选项内容及样式
-	 * @event {Function} click 							点击选项按钮时触发事件，e = {content,index} ，content（点击内容）、index（下标)
+	 * @event {Function} tap 							点击选项按钮时触发事件，e = {content,index} ，content（点击内容）、index（下标)
 	 * @event {Function} change 						组件打开或关闭时触发，left\right\none
 	 */
 
 	export default {
 		mixins: [mpwxs, bindingx, mpother],
-		emits: ['click', 'change'],
+		emits: ['tap', 'change'],
 		props: {
 			// 控制开关
 			show: {

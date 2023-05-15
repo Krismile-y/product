@@ -1,6 +1,6 @@
 <template>
 	<view class="uni-section">
-		<view class="uni-section-header" @click="onClick">
+		<view class="uni-section-header" @tap="ontap">
 				<view class="uni-section-header__decoration" v-if="type" :class="type" />
         <slot v-else name="decoration"></slot>
 
@@ -40,7 +40,7 @@
 
 	export default {
 		name: 'UniSection',
-    emits:['click'],
+    emits:['tap'],
 		props: {
 			type: {
 				type: String,
@@ -93,8 +93,8 @@
 			}
 		},
     methods: {
-			onClick() {
-				this.$emit('click')
+			ontap() {
+				this.$emit('tap')
 			}
 		}
 	}

@@ -15,7 +15,7 @@
 					class="content-clear-icon"
 					:type="prefixIcon"
 					color="#c0c4cc"
-					@click="onClickIcon('prefix')"
+					@tap="ontapIcon('prefix')"
 					size="22"
 				></uni-icons>
 			</slot>
@@ -66,7 +66,7 @@
 					:type="showPassword ? 'eye-slash-filled' : 'eye-filled'"
 					:size="22"
 					:color="focusShow ? primaryColor : '#c0c4cc'"
-					@click="onEyes"
+					@tap="onEyes"
 				>
 				</uni-icons>
 			</template>
@@ -77,7 +77,7 @@
 						class="content-clear-icon"
 						:type="suffixIcon"
 						color="#c0c4cc"
-						@click="onClickIcon('suffix')"
+						@tap="ontapIcon('suffix')"
 						size="22"
 					></uni-icons>
 				</slot>
@@ -90,7 +90,7 @@
 					type="clear"
 					:size="clearSize"
 					:color="msg ? '#dd524d' : focusShow ? primaryColor : '#c0c4cc'"
-					@click="onClear"
+					@tap="onClear"
 				></uni-icons>
 			</template>
 			<slot name="right"></slot>
@@ -138,7 +138,7 @@
  * @event {Function}	focus	输入框获得焦点时触发
  * @event {Function}	blur	输入框失去焦点时触发
  * @event {Function}	confirm	点击完成按钮时触发
- * @event {Function}	iconClick	点击图标时触发
+ * @event {Function}	icontap	点击图标时触发
  * @slot prefixIcon 输入框头部插槽
  * @slot suffixIcon 输入框尾部插槽
  * @example <uni-easyinput v-model="mobile"></uni-easyinput>
@@ -165,8 +165,8 @@ function obj2strStyle(obj) {
 export default {
 	name: "uni-easyinput",
 	emits: [
-		"click",
-		"iconClick",
+		"tap",
+		"icontap",
 		"update:modelValue",
 		"input",
 		"focus",
@@ -396,8 +396,8 @@ export default {
 		 * 点击图标时触发
 		 * @param {Object} type
 		 */
-		onClickIcon(type) {
-			this.$emit("iconClick", type);
+		ontapIcon(type) {
+			this.$emit("icontap", type);
 		},
 
 		/**

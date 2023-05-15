@@ -2,8 +2,8 @@
 	<view class="uni-file-picker__container">
 		<view class="file-picker__box" v-for="(item,index) in filesList" :key="index" :style="boxStyle">
 			<view class="file-picker__box-content" :style="borderStyle">
-				<image class="file-image" :src="item.url" mode="aspectFill" @click.stop="prviewImage(item,index)"></image>
-				<view v-if="delIcon && !readonly" class="icon-del-box" @click.stop="delFile(index)">
+				<image class="file-image" :src="item.url" mode="aspectFill" @tap.stop="prviewImage(item,index)"></image>
+				<view v-if="delIcon && !readonly" class="icon-del-box" @tap.stop="delFile(index)">
 					<view class="icon-del"></view>
 					<view class="icon-del rotate"></view>
 				</view>
@@ -11,13 +11,13 @@
 					<progress class="file-picker__progress-item" :percent="item.progress === -1?0:item.progress" stroke-width="4"
 					 :backgroundColor="item.errMsg?'#ff5a5f':'#EBEBEB'" />
 				</view>
-				<view v-if="item.errMsg" class="file-picker__mask" @click.stop="uploadFiles(item,index)">
+				<view v-if="item.errMsg" class="file-picker__mask" @tap.stop="uploadFiles(item,index)">
 					点击重试
 				</view>
 			</view>
 		</view>
 		<view v-if="filesList.length < limit && !readonly" class="file-picker__box" :style="boxStyle">
-			<view class="file-picker__box-content is-add" :style="borderStyle" @click="choose">
+			<view class="file-picker__box-content is-add" :style="borderStyle" @tap="choose">
 				<slot>
 					<view class="icon-add"></view>
 					<view class="icon-add rotate"></view>

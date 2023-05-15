@@ -2,10 +2,10 @@
 	<view v-if="showPopup||onceRender" v-show="showPopup"  class="uni-popup" :class="[popupstyle, isDesktop ? 'fixforpc-z-index' : '']">
 		<view @touchstart="touchstart">
 			<uni-transition key="1" v-if="maskShow" name="mask" mode-class="fade" :styles="maskClass"
-				:duration="duration" :show="showTrans" @click="onTap" />
+				:duration="duration" :show="showTrans" @tap="onTap" />
 			<uni-transition key="2" :mode-class="ani" name="content" :styles="transClass" :duration="duration"
-				:show="showTrans" @click="onTap" :once-render="onceRender">
-				<view class="uni-popup__wrapper" :style="{ backgroundColor: bg }" :class="[popupstyle]" @click="clear">
+				:show="showTrans" @tap="onTap" :once-render="onceRender">
+				<view class="uni-popup__wrapper" :style="{ backgroundColor: bg }" :class="[popupstyle]" @tap="clear">
 					<slot />
 				</view>
 			</uni-transition>
@@ -35,13 +35,13 @@
 	 * 	@value dialog 对话框
 	 * 	@value share 底部分享示例
 	 * @property {Boolean} animation = [true|false] 是否开启动画
-	 * @property {Boolean} maskClick = [true|false] 蒙版点击是否关闭弹窗(废弃)
-	 * @property {Boolean} isMaskClick = [true|false] 蒙版点击是否关闭弹窗
+	 * @property {Boolean} masktap = [true|false] 蒙版点击是否关闭弹窗(废弃)
+	 * @property {Boolean} isMasktap = [true|false] 蒙版点击是否关闭弹窗
 	 * @property {String}  backgroundColor 主窗口背景色
 	 * @property {String}  maskBackgroundColor 蒙版颜色
 	 * @property {Boolean} safeArea		   是否适配底部安全区
 	 * @event {Function} change 打开关闭弹窗触发，e={show: false}
-	 * @event {Function} maskClick 点击遮罩触发
+	 * @event {Function} masktap 点击遮罩触发
 	 */
 
 	export default {
@@ -51,7 +51,7 @@
 			keypress
 			// #endif
 		},
-		emits: ['change', 'maskClick'],
+		emits: ['change', 'masktap'],
 		props: {
 			// 开启动画
 			animation: {
@@ -64,13 +64,13 @@
 				type: String,
 				default: 'center'
 			},
-			// maskClick
-			isMaskClick: {
+			// masktap
+			isMasktap: {
 				type: Boolean,
 				default: null
 			},
-			// TODO 2 个版本后废弃属性 ，使用 isMaskClick
-			maskClick: {
+			// TODO 2 个版本后废弃属性 ，使用 isMasktap
+			masktap: {
 				type: Boolean,
 				default: null
 			},
@@ -115,15 +115,15 @@
 			 * 监听遮罩是否可点击
 			 * @param {Object} val
 			 */
-			maskClick: {
+			masktap: {
 				handler: function(val) {
-					this.mkclick = val
+					this.mktap = val
 				},
 				immediate: true
 			},
-			isMaskClick: {
+			isMasktap: {
 				handler: function(val) {
-					this.mkclick = val
+					this.mktap = val
 				},
 				immediate: true
 			},
@@ -167,7 +167,7 @@
 					right: 0
 				},
 				maskShow: true,
-				mkclick: true,
+				mktap: true,
 				popupstyle: this.isDesktop ? 'fixforpc-top' : 'top'
 			}
 		},
@@ -227,11 +227,11 @@
 		},
 		// #endif
 		created() {
-			// this.mkclick =  this.isMaskClick || this.maskClick
-			if (this.isMaskClick === null && this.maskClick === null) {
-				this.mkclick = true
+			// this.mktap =  this.isMasktap || this.masktap
+			if (this.isMasktap === null && this.masktap === null) {
+				this.mktap = true
 			} else {
-				this.mkclick = this.isMaskClick !== null ? this.isMaskClick : this.maskClick
+				this.mktap = this.isMasktap !== null ? this.isMasktap : this.masktap
 			}
 			if (this.animation) {
 				this.duration = 300
@@ -261,7 +261,7 @@
 			 * 公用方法，遮罩层禁止点击
 			 */
 			disableMask() {
-				this.mkclick = false
+				this.mktap = false
 			},
 			// TODO nvue 取消冒泡
 			clear(e) {
@@ -315,8 +315,8 @@
 					this.clearPropagation = false
 					return
 				}
-				this.$emit('maskClick')
-				if (!this.mkclick) return
+				this.$emit('masktap')
+				if (!this.mktap) return
 				this.close()
 			},
 			/**

@@ -3265,7 +3265,7 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
 
 {
-  name: "uniPopup", props: ["animation", "type", "isMaskClick", "maskClick", "backgroundColor", "safeArea", "maskBackgroundColor", "onceRender"],
+  name: "uniPopup", props: ["animation", "type", "isMasktap", "masktap", "backgroundColor", "safeArea", "maskBackgroundColor", "onceRender"],
   data: function data() {
     return {
       wxsProps: {} };
@@ -3559,7 +3559,7 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 var _uniTransition = _interopRequireDefault(__webpack_require__(/*! ../uni-transition/uni-transition.vue */ 66));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
-  name: "UniPopup", props: ["animation", "type", "maskClick"],
+  name: "UniPopup", props: ["animation", "type", "masktap"],
   data: function data() {
     return {
       wxsProps: {} };
@@ -5492,7 +5492,7 @@ var render = function() {
                       _c(
                         "uni-view",
                         { staticClass: _vm._$g(31, "sc"), attrs: { _i: 31 } },
-                        [_vm._v("积分")]
+                        [_vm._v("碳汇")]
                       )
                     ],
                     1
@@ -6206,9 +6206,6 @@ var render = function() {
                 blur: function($event) {
                   return _vm.$handleViewEvent($event)
                 },
-                click: function($event) {
-                  return _vm.$handleViewEvent($event)
-                },
                 touchstart: function($event) {
                   return _vm.$handleViewEvent($event, { stop: true })
                 },
@@ -6216,6 +6213,9 @@ var render = function() {
                   return _vm.$handleViewEvent($event, { stop: true })
                 },
                 touchend: function($event) {
+                  return _vm.$handleViewEvent($event)
+                },
+                click: function($event) {
                   return _vm.$handleViewEvent($event)
                 }
               }
@@ -21295,6 +21295,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    airelFloatball: __webpack_require__(/*! @/components/airel-floatball/airel-floatball.vue */ 122)
+      .default
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -21303,19 +21325,20 @@ var render = function() {
     "uni-view",
     { attrs: { _i: 0 } },
     [
+      _c("airel-floatball", { attrs: { _i: 1 } }),
       _c(
         "uni-view",
-        { staticClass: _vm._$g(1, "sc"), attrs: { _i: 1 } },
+        { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
         [
           _c(
             "uni-view",
-            { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
+            { staticClass: _vm._$g(3, "sc"), attrs: { _i: 3 } },
             [
               _c(
                 "uni-view",
                 {
-                  staticClass: _vm._$g(3, "sc"),
-                  attrs: { _i: 3 },
+                  staticClass: _vm._$g(4, "sc"),
+                  attrs: { _i: 4 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
@@ -21324,7 +21347,7 @@ var render = function() {
                 },
                 [
                   _c("v-uni-image", {
-                    attrs: { src: _vm._$g(4, "a-src"), mode: "", _i: 4 }
+                    attrs: { src: _vm._$g(5, "a-src"), mode: "", _i: 5 }
                   }),
                   _vm._v("个人信息")
                 ],
@@ -21332,22 +21355,22 @@ var render = function() {
               ),
               _c(
                 "uni-view",
-                { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
+                { staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } },
                 [
                   _c(
                     "a",
                     {
-                      staticClass: _vm._$g(6, "sc"),
+                      staticClass: _vm._$g(7, "sc"),
                       staticStyle: {
                         width: "100%",
                         height: "100%",
                         color: "black"
                       },
-                      attrs: { href: _vm._$g(6, "a-href"), _i: 6 }
+                      attrs: { href: _vm._$g(7, "a-href"), _i: 7 }
                     },
                     [
                       _c("v-uni-image", {
-                        attrs: { src: _vm._$g(7, "a-src"), mode: "", _i: 7 }
+                        attrs: { src: _vm._$g(8, "a-src"), mode: "", _i: 8 }
                       }),
                       _vm._v("我的客服")
                     ],
@@ -21359,8 +21382,8 @@ var render = function() {
               _c(
                 "uni-view",
                 {
-                  staticClass: _vm._$g(8, "sc"),
-                  attrs: { _i: 8 },
+                  staticClass: _vm._$g(9, "sc"),
+                  attrs: { _i: 9 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
@@ -21369,7 +21392,7 @@ var render = function() {
                 },
                 [
                   _c("v-uni-image", {
-                    attrs: { src: _vm._$g(9, "a-src"), mode: "", _i: 9 }
+                    attrs: { src: _vm._$g(10, "a-src"), mode: "", _i: 10 }
                   }),
                   _vm._v("反馈与帮助")
                 ],
@@ -21378,8 +21401,8 @@ var render = function() {
               _c(
                 "uni-view",
                 {
-                  staticClass: _vm._$g(10, "sc"),
-                  attrs: { _i: 10 },
+                  staticClass: _vm._$g(11, "sc"),
+                  attrs: { _i: 11 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
@@ -21388,17 +21411,17 @@ var render = function() {
                 },
                 [
                   _c("v-uni-image", {
-                    attrs: { src: _vm._$g(11, "a-src"), mode: "", _i: 11 }
+                    attrs: { src: _vm._$g(12, "a-src"), mode: "", _i: 12 }
                   }),
-                  _c("down", { ref: "down", attrs: { _i: 12 } })
+                  _c("down", { ref: "down", attrs: { _i: 13 } })
                 ],
                 1
               ),
               _c(
                 "uni-view",
                 {
-                  staticClass: _vm._$g(13, "sc"),
-                  attrs: { _i: 13 },
+                  staticClass: _vm._$g(14, "sc"),
+                  attrs: { _i: 14 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
@@ -21407,7 +21430,7 @@ var render = function() {
                 },
                 [
                   _c("v-uni-image", {
-                    attrs: { src: _vm._$g(14, "a-src"), mode: "", _i: 14 }
+                    attrs: { src: _vm._$g(15, "a-src"), mode: "", _i: 15 }
                   }),
                   _vm._v("关于我们")
                 ],
@@ -21421,13 +21444,13 @@ var render = function() {
       ),
       _c(
         "uni-view",
-        { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
+        { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
         [
           _c(
             "uni-view",
             {
-              staticClass: _vm._$g(16, "sc"),
-              attrs: { _i: 16 },
+              staticClass: _vm._$g(17, "sc"),
+              attrs: { _i: 17 },
               on: {
                 click: function($event) {
                   return _vm.$handleViewEvent($event)
@@ -21439,7 +21462,7 @@ var render = function() {
         ],
         1
       ),
-      _c("uni-view", { attrs: { _i: 17 } })
+      _c("uni-view", { attrs: { _i: 18 } })
     ],
     1
   )
