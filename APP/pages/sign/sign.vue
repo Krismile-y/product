@@ -7,13 +7,13 @@
 			</view>
 			<!-- <uni-section class="hideOnPc" title="弹出模式" type="line"></uni-section> -->
 			<!-- <view class="example-body hideOnPc">
-				<button class="calendar-button" type="button" @click="open">打开日历</button>
+				<button class="calendar-button" type="button" @tap="open">打开日历</button>
 			</view> -->
 		</view>
 		
 		
 		<view class="bottom dis">
-			<view class="in dis" @click="signSubmit">
+			<view class="in dis" @tap="signSubmit">
 				立即签到
 			</view>
 		</view>

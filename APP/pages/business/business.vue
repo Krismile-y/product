@@ -102,7 +102,7 @@
 		</view>
 		
 		<!-- 遮罩层 -->
-		<u-overlay :show="show" @click="show = false">
+		<u-overlay :show="show" @tap="show = false">
 				<view class="warp">
 					<view class="rect" @tap.stop>
 						<view class="shang dis">温馨提示</view>

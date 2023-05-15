@@ -6,7 +6,7 @@
 		index === 0&&styleType === 'button' ? 'segmented-control__item--button--first': '',
 			index === values.length - 1&&styleType === 'button' ? 'segmented-control__item--button--last': '' ]" :key="index"
 			:style="{ backgroundColor: index === currentIndex && styleType === 'button' ? activeColor : '',borderColor: index === currentIndex&&styleType === 'text'||styleType === 'button'?activeColor:'transparent' }"
-			class="segmented-control__item" @click="_onClick(index)">
+			class="segmented-control__item" @tap="_ontap(index)">
 			<view>
 				<text :style="{color:
 				    index === currentIndex
@@ -33,12 +33,12 @@
 	 * 	@value text 文字类型
 	 * @property {String} activeColor 选中的标签背景色与边框颜色
 	 * @property {Array} values 选项数组
-	 * @event {Function} clickItem 组件触发点击事件时触发，e={currentIndex}
+	 * @event {Function} tapItem 组件触发点击事件时触发，e={currentIndex}
 	 */
 
 	export default {
 		name: 'UniSegmentedControl',
-		emits: ['clickItem'],
+		emits: ['tapItem'],
 		props: {
 			current: {
 				type: Number,
@@ -75,10 +75,10 @@
 			this.currentIndex = this.current
 		},
 		methods: {
-			_onClick(index) {
+			_ontap(index) {
 				if (this.currentIndex !== index) {
 					this.currentIndex = index
-					this.$emit('clickItem', {
+					this.$emit('tapItem', {
 						currentIndex: index
 					})
 				}

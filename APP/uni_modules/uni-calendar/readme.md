@@ -49,7 +49,7 @@
 	:insert="false"
 	@confirm="confirm"
 	 />
-	 <button @click="open">打开日历</button>
+	 <button @tap="open">打开日历</button>
 </view>
 ```
 

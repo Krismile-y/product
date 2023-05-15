@@ -9,7 +9,7 @@
 					<view v-for="(list, idx) in lists" :key="idx" :id="'uni-indexed-list-' + idx">
 						<!-- #endif -->
 						<indexed-list-item :list="list" :loaded="loaded" :idx="idx" :showSelect="showSelect"
-							@itemClick="onClick"></indexed-list-item>
+							@itemtap="ontap"></indexed-list-item>
 						<!-- #ifndef APP-NVUE -->
 					</view>
 				</scroll-view>
@@ -82,15 +82,15 @@
 	 * 	@value true 展示模式
 	 * 	@value false 选择模式
 	 * @property {Object} options 索引列表需要的数据对象
-	 * @event {Function} click 点击列表事件 ，返回当前选择项的事件对象
-	 * @example <uni-indexed-list options="" showSelect="false" @click=""></uni-indexed-list>
+	 * @event {Function} tap 点击列表事件 ，返回当前选择项的事件对象
+	 * @example <uni-indexed-list options="" showSelect="false" @tap=""></uni-indexed-list>
 	 */
 	export default {
 		name: 'UniIndexedList',
 		components: {
 			indexedListItem
 		},
-		emits: ['click'],
+		emits: ['tap'],
 		props: {
 			options: {
 				type: Array,
@@ -250,7 +250,7 @@
 			// #endif
 
 
-			onClick(e) {
+			ontap(e) {
 				let {
 					idx,
 					index
@@ -274,7 +274,7 @@
 						})
 					})
 				}
-				this.$emit('click', {
+				this.$emit('tap', {
 					item: obj,
 					select: select
 				})

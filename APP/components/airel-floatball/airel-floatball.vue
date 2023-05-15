@@ -3,7 +3,7 @@
 		<a :href="$store.state.kefu">
 			<view class="box dis" style="z-index: 999;"
 				:style="styleBall"
-			    @blur="blur" tabindex="1" @click="show" 
+			    @blur="blur" tabindex="1" @tap="show" 
 			    @touchstart.stop="touchstart" @touchmove.stop="touchmove" @touchend="touchend">
 			    <image  :src="mainImg"  style="width: 100upx;height: 100upx;border-radius: 50%;"></image>
 			</view>
@@ -80,8 +80,8 @@
             focus: function(){
                 console.log('focus');
             },
-            click: function(){
-                console.log('click');
+            tap: function(){
+                console.log('tap');
             },
 			doNothing:function(){},
 			/*

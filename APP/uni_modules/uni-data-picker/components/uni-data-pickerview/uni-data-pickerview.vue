@@ -5,7 +5,7 @@
         <template v-for="(item,index) in selected">
           <view class="selected-item"
             :class="{'selected-item-active':index==selectedIndex}"
-            v-if="item.text" @click="handleSelect(index)">
+            v-if="item.text" @tap="handleSelect(index)">
             <text>{{item.text}}</text>
           </view>
         </template>
@@ -15,7 +15,7 @@
       <template v-for="(child, i) in dataList">
         <scroll-view class="list" :key="i" v-if="i==selectedIndex" :scroll-y="true">
           <view class="item" :class="{'is-disabled': !!item.disable}" v-for="(item, j) in child"
-            @click="handleNodeClick(item, i, j)">
+            @tap="handleNodetap(item, i, j)">
             <text class="item-text">{{item[map.text]}}</text>
             <view class="check" v-if="selected.length > i && item[map.value] == selected[i].value"></view>
           </view>
@@ -52,7 +52,7 @@
    */
   export default {
     name: 'UniDataPickerView',
-    emits: ['nodeclick', 'change', 'datachange', 'update:modelValue'],
+    emits: ['nodetap', 'change', 'datachange', 'update:modelValue'],
     mixins: [dataPicker],
     props: {
       managedMode: {
@@ -82,7 +82,7 @@
       handleSelect(index) {
         this.selectedIndex = index;
       },
-      handleNodeClick(item, i, j) {
+      handleNodetap(item, i, j) {
         if (item.disable) {
           return;
         }
@@ -154,7 +154,7 @@
         }
 
         if (node) {
-          this.$emit('nodeclick', node)
+          this.$emit('nodetap', node)
         }
       },
       _dispatchEvent() {

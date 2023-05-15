@@ -2,7 +2,7 @@
 	<!-- #ifdef APP-NVUE -->
 	<cell>
 		<!-- #endif -->
-		<view :hover-class="!clickable && !link ? '' : 'uni-list-chat--hover'" class="uni-list-chat" @click.stop="onClick">
+		<view :hover-class="!tapable && !link ? '' : 'uni-list-chat--hover'" class="uni-list-chat" @tap.stop="ontap">
 			<view :class="{ 'uni-list--border': border, 'uni-list-chat--first': isFirstChild }"></view>
 			<view class="uni-list-chat__container">
 				<view class="uni-list-chat__header-warp">
@@ -52,7 +52,7 @@
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=24
 	 * @property {String} 	title 							标题
 	 * @property {String} 	note 							描述
-	 * @property {Boolean} 	clickable = [true|false] 		是否开启点击反馈，默认为false
+	 * @property {Boolean} 	tapable = [true|false] 		是否开启点击反馈，默认为false
 	 * @property {String} 	badgeText						数字角标内容
 	 * @property {String}  	badgePositon = [left|right]		角标位置，默认为 right
 	 * @property {String} 	link = [false｜navigateTo|redirectTo|reLaunch|switchTab] 是否展示右侧箭头并开启点击反馈，默认为false
@@ -66,11 +66,11 @@
 	 * @property {Boolean} 	avatarCircle = [true|false]		是否显示圆形头像，默认为false
 	 * @property {String} 	avatar							头像地址，avatarCircle 不填时生效
 	 * @property {Array} 	avatarList 						头像组，格式为 [{url:''}]
-	 * @event {Function} 	click 							点击 uniListChat 触发事件
+	 * @event {Function} 	tap 							点击 uniListChat 触发事件
 	 */
 	export default {
 		name: 'UniListChat',
-		emits:['click'],
+		emits:['tap'],
 		props: {
 			title: {
 				type: String,
@@ -80,7 +80,7 @@
 				type: String,
 				default: ''
 			},
-			clickable: {
+			tapable: {
 				type: Boolean,
 				default: false
 			},
@@ -178,14 +178,14 @@
 				}
 				return parent;
 			},
-			onClick() {
+			ontap() {
 				if (this.to !== '') {
 					this.openPage();
 					return;
 				}
 
-				if (this.clickable || this.link) {
-					this.$emit('click', {
+				if (this.tapable || this.link) {
+					this.$emit('tap', {
 						data: {}
 					});
 				}
@@ -201,12 +201,12 @@
 				uni[api]({
 					url: this.to,
 					success: res => {
-						this.$emit('click', {
+						this.$emit('tap', {
 							data: res
 						});
 					},
 					fail: err => {
-						this.$emit('click', {
+						this.$emit('tap', {
 							data: err
 						});
 						console.error(err.errMsg);

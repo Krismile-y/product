@@ -1,5 +1,5 @@
 <template>
-	<view v-if="isShow" ref="ani" class="uni-transition" :class="[ani.in]" :style="'transform:' +transform+';'+stylesObject" @click="change">
+	<view v-if="isShow" ref="ani" class="uni-transition" :class="[ani.in]" :style="'transform:' +transform+';'+stylesObject" @tap="change">
 		<slot></slot>
 	</view>
 </template>
@@ -94,7 +94,7 @@
 		},
 		methods: {
 			change() {
-				this.$emit('click', {
+				this.$emit('tap', {
 					detail: this.isShow
 				})
 			},

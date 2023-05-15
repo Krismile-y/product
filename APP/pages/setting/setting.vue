@@ -1,7 +1,7 @@
 <template>
 	<view>
 
-		<!-- <airel-floatball  /> -->
+		<airel-floatball  />
 
 
 		<view class="box">
@@ -50,7 +50,7 @@
 
 		<view>
 
-			<!-- <drag-button style="margin-bottom: 100upx;" :isDock="true" :existTabBar="true" @btnClick="btnClick"
+			<!-- <drag-button style="margin-bottom: 100upx;" :isDock="true" :existTabBar="true" @btntap="btntap"
 				@btnTouchstart="btnTouchstart" @btnTouchend="btnTouchend" /> -->
 
 			<!-- <a href="">
@@ -101,8 +101,8 @@
 				this.$refs.down.upgrade() //检查更新
 				// #endif
 			},
-			btnClick() {
-				console.log('btnClick')
+			btntap() {
+				console.log('btntap')
 				window.location = ('https://www.baidu.com')
 			},
 			btnTouchstart() {

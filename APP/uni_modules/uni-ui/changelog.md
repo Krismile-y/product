@@ -12,7 +12,7 @@
 - uni-data-select 新增 支持 disabled 属性
 - uni-datetime-picker 修复，反向选择日期范围，日期显示异常，[详情](https://ask.dcloud.net.cn/question/153401?item_id=212892&rf=false)
 - uni-datetime-picker 修复 close事件无效的 bug
-- uni-datetime-picker 修复 移动端 maskClick 无效的 bug，详见:[https://ask.dcloud.net.cn/question/140824?item_id=209458&rf=false](https://ask.dcloud.net.cn/question/140824?item_id=209458&rf=false)
+- uni-datetime-picker 修复 移动端 masktap 无效的 bug，详见:[https://ask.dcloud.net.cn/question/140824?item_id=209458&rf=false](https://ask.dcloud.net.cn/question/140824?item_id=209458&rf=false)
 - uni-fab 修复 小程序端由于 style 使用了对象导致报错，[详情](https://ask.dcloud.net.cn/question/152790?item_id=211778&rf=false)
 - uni-fab 修复 nvue 环境下，具有 tabBar 时，fab 组件下部位置无法正常获取 --window-bottom 的bug，详见：[https://ask.dcloud.net.cn/question/110638?notification_id=826310](https://ask.dcloud.net.cn/question/110638?notification_id=826310)
 - uni-forms 优化 根据 rules 自动添加 required 的问题
@@ -62,7 +62,7 @@
 - uni-file-picker 修复 在uni-forms下样式不生效的bug
 - uni-nav-bar 修复 组件示例中插槽用法无法显示内容的bug
 - uni-swipe-action 修复 vue3 下使用组件不能正常运行的Bug
-- uni-swipe-action 修复 h5端点击click触发两次的Bug
+- uni-swipe-action 修复 h5端点击tap触发两次的Bug
 - uni-table 修复 微信小程序存在无使用组件的问题
 ## 1.4.17（2022-06-30）
 - 支持 ios 安全区
@@ -125,10 +125,10 @@
 - uni-nav-bar 新增 dark 属性可可开启暗黑模式
 - uni-nav-bar 优化 标题字数过多显示省略号
 - uni-nav-bar 优化 插槽，插入内容可完全覆盖
-- uni-popup 修复 isMaskClick 失效的bug
+- uni-popup 修复 isMasktap 失效的bug
 - uni-popup 新增 cancelText \ confirmText 属性 ，可自定义文本
 - uni-popup 新增 maskBackgroundColor 属性 ，可以修改蒙版颜色
-- uni-popup 优化 maskClick属性 更新为 isMaskClick ，解决微信小程序警告的问题
+- uni-popup 优化 masktap属性 更新为 isMasktap ，解决微信小程序警告的问题
 
 ## 1.4.10（2022-01-17）
 - uni-card 修复 在vue页面下略缩图显示不正常的bug
@@ -302,7 +302,7 @@
 - uni-datetime-picker 优化 弹出层在超出视窗边缘定位不准确的问题
 - uni-datetime-picker 修复 范围起始点样式的背景色与今日样式的字体前景色融合，导致日期字体看不清的 bug
 - uni-datetime-picker 优化 弹出层在超出视窗边缘被遮盖的问题
-- uni-datetime-picker 新增 maskClick 事件
+- uni-datetime-picker 新增 masktap 事件
 - uni-datetime-picker 修复 特殊情况日历 rpx 布局错误的 bug，rpx -> px
 - uni-datetime-picker 修复 范围选择时清空返回值不合理的bug，['', ''] -> []
 - uni-datetime-picker 新增 日期时间显示框支持插槽
@@ -333,7 +333,7 @@
 - uni-forms 修复 不设置label属性，label-width属性不生效的bug
 - uni-forms 修复 setRules 方法与rules属性冲突的问题
 - uni-link 新增 download 属性，H5平台下载文件名
-- uni-popup 新增 mask-click 遮罩层点击事件
+- uni-popup 新增 mask-tap 遮罩层点击事件
 - uni-popup 修复 nvue 平台中间弹出后，点击内容，再点击遮罩无法关闭的Bug
 - uni-tag 修复 uni-tag 在字节跳动小程序上 css 类名编译错误的 bug
 ## 1.3.3（2021-06-18）

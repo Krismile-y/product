@@ -3,7 +3,7 @@
 		<view :class="{
 			'uni-breadcrumb-item--slot': true,
 			'uni-breadcrumb-item--slot-link': to && currentPage !== to
-			}" @click="navTo">
+			}" @tap="navTo">
 			<slot />
 		</view>
 		<i v-if="separatorClass" class="uni-breadcrumb-item--separator" :class="separatorClass" />

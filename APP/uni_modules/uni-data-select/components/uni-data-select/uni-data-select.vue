@@ -3,13 +3,13 @@
 		<span v-if="label" class="uni-label-text hide-on-phone">{{label + '：'}}</span>
 		<view class="uni-stat-box" :class="{'uni-stat__actived': current}">
 			<view class="uni-select"  :class="{'uni-select--disabled':disabled}">
-				<view class="uni-select__input-box" @click="toggleSelector">
+				<view class="uni-select__input-box" @tap="toggleSelector">
 					<view v-if="current" class="uni-select__input-text">{{current}}</view>
 					<view v-else class="uni-select__input-text uni-select__input-placeholder">{{typePlaceholder}}</view>
-					<uni-icons v-if="current && clear" type="clear" color="#c0c4cc" size="24" @click="clearVal" />
+					<uni-icons v-if="current && clear" type="clear" color="#c0c4cc" size="24" @tap="clearVal" />
 					<uni-icons v-else :type="showSelector? 'top' : 'bottom'" size="14" color="#999" />
 				</view>
-				<view class="uni-select--mask" v-if="showSelector" @click="toggleSelector" />
+				<view class="uni-select--mask" v-if="showSelector" @tap="toggleSelector" />
 				<view class="uni-select__selector" v-if="showSelector">
 					<view class="uni-popper__arrow"></view>
 					<scroll-view scroll-y="true" class="uni-select__selector-scroll">
@@ -17,7 +17,7 @@
 							<text>{{emptyTips}}</text>
 						</view>
 						<view v-else class="uni-select__selector-item" v-for="(item,index) in mixinDatacomResData"
-							:key="index" @click="change(item)">
+							:key="index" @tap="change(item)">
 							<text
 								:class="{'uni-select__selector__disabled': item.disable}">{{formatItemName(item)}}</text>
 						</view>

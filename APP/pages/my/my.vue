@@ -16,7 +16,7 @@
 				</view>
 				<view class="right dis" style="color: #000;">
 					<view class="shiming dis">{{zhuangtai}}</view>
-					<!-- <image   @click="show = true" src="https://img2.baidu.com/it/u=2020520018,1139302565&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800" mode=""></image> -->
+					<!-- <image   @tap="show = true" src="https://img2.baidu.com/it/u=2020520018,1139302565&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800" mode=""></image> -->
 				</view>
 			</view>
 			<view class="xia " style="">
@@ -49,7 +49,7 @@
 					</view>
 					<view class="item disc">
 						<view class="tit">{{info.money_integral}}</view>
-						<view class="de">积分</view>
+						<view class="de">碳汇</view>
 					</view>
 				</view>
 
@@ -192,11 +192,11 @@
 		</view>
 
 		<!-- 遮罩层 -->
-		<u-overlay :show="show" @click="show = false">
+		<u-overlay :show="show" @tap="show = false">
 			<view class="warp">
 				<view class="rect" @tap.stop>
 
-					<image @click="show = true"
+					<image @tap="show = true"
 						src="https://img2.baidu.com/it/u=2020520018,1139302565&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800"
 						mode=""></image>
 

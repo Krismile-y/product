@@ -1,26 +1,26 @@
 <template>
 	<view class="uni-calendar" @mouseleave="leaveCale">
 		<view v-if="!insert&&show" class="uni-calendar__mask" :class="{'uni-calendar--mask-show':aniMaskShow}"
-			@click="clean();maskClick()"></view>
+			@tap="clean();masktap()"></view>
 		<view v-if="insert || show" class="uni-calendar__content"
 			:class="{'uni-calendar--fixed':!insert,'uni-calendar--ani-show':aniMaskShow, 'uni-calendar__content-mobile': aniMaskShow}">
 			<view class="uni-calendar__header" :class="{'uni-calendar__header-mobile' :!insert}">
-				<view v-if="left" class="uni-calendar__header-btn-box" @click.stop="pre">
+				<view v-if="left" class="uni-calendar__header-btn-box" @tap.stop="pre">
 					<view class="uni-calendar__header-btn uni-calendar--left"></view>
 				</view>
 				<picker mode="date" :value="date" fields="month" @change="bindDateChange">
 					<text
 						class="uni-calendar__header-text">{{ (nowDate.year||'') + yearText + ( nowDate.month||'') + monthText}}</text>
 				</picker>
-				<view v-if="right" class="uni-calendar__header-btn-box" @click.stop="next">
+				<view v-if="right" class="uni-calendar__header-btn-box" @tap.stop="next">
 					<view class="uni-calendar__header-btn uni-calendar--right"></view>
 				</view>
-				<view v-if="!insert" class="dialog-close" @click="clean">
+				<view v-if="!insert" class="dialog-close" @tap="clean">
 					<view class="dialog-close-plus" data-id="close"></view>
 					<view class="dialog-close-plus dialog-close-rotate" data-id="close"></view>
 				</view>
 
-				<!-- <text class="uni-calendar__backtoday" @click="backtoday">回到今天</text> -->
+				<!-- <text class="uni-calendar__backtoday" @tap="backtoday">回到今天</text> -->
 			</view>
 			<view class="uni-calendar__box">
 				<view v-if="showMonth" class="uni-calendar__box-bg">
@@ -88,7 +88,7 @@
 				<!-- <view class="uni-calendar__header-btn-box">
 					<text class="uni-calendar__button-text uni-calendar--fixed-width">{{okText}}</text>
 				</view> -->
-				<view class="uni-datetime-picker--btn" @click="confirm">{{confirmText}}</view>
+				<view class="uni-datetime-picker--btn" @tap="confirm">{{confirmText}}</view>
 			</view>
 		</view>
 	</view>
@@ -414,7 +414,7 @@
 			},
 
 			// 蒙版点击事件
-			maskClick() {
+			masktap() {
 				this.$emit('maskClose')
 			},
 

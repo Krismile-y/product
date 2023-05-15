@@ -4,7 +4,7 @@
 		<view class="uni-tab__seat" />
 		<view class="uni-tab__cart-box flex">
 			<view class="flex uni-tab__cart-sub-left">
-				<view v-for="(item,index) in options" :key="index" class="flex uni-tab__cart-button-left uni-tab__shop-cart" @click="onClick(index,item)">
+				<view v-for="(item,index) in options" :key="index" class="flex uni-tab__cart-button-left uni-tab__shop-cart" @tap="ontap(index,item)">
 					<view class="uni-tab__icon">
 						<uni-icons :type="item.icon" size="20" color="#646566"></uni-icons>
 						<!-- <image class="image" :src="item.icon" mode="widthFix" /> -->
@@ -19,7 +19,7 @@
 			</view>
 			<view :class="{'uni-tab__right':fill}" class="flex uni-tab__cart-sub-right ">
 				<view v-for="(item,index) in buttonGroup" :key="index" :style="{background:item.backgroundColor,color:item.color}"
-				 class="flex uni-tab__cart-button-right" @click="buttonClick(index,item)"><text :style="{color:item.color}" class="uni-tab__cart-button-right-text">{{ item.text }}</text></view>
+				 class="flex uni-tab__cart-button-right" @tap="buttontap(index,item)"><text :style="{color:item.color}" class="uni-tab__cart-button-right-text">{{ item.text }}</text></view>
 			</view>
 		</view>
 	</view>
@@ -39,13 +39,13 @@
 	 * @property {Array} buttonGroup 组件按钮组参数
 	 * @property {Boolean} fill = [true | false] 组件按钮组参数
 	 * @property {Boolean} stat 是否开启统计功能
-	 * @event {Function} click 左侧点击事件
-	 * @event {Function} buttonClick 右侧按钮组点击事件
-	 * @example <uni-goods-nav :fill="true"  options="" buttonGroup="buttonGroup"  @click="" @buttonClick="" />
+	 * @event {Function} tap 左侧点击事件
+	 * @event {Function} buttontap 右侧按钮组点击事件
+	 * @example <uni-goods-nav :fill="true"  options="" buttonGroup="buttonGroup"  @tap="" @buttontap="" />
 	 */
 	export default {
 		name: 'UniGoodsNav',
-		emits:['click','buttonClick'],
+		emits:['tap','buttontap'],
 		props: {
 			options: {
 				type: Array,
@@ -85,17 +85,17 @@
 			}
 		},
 		methods: {
-			onClick(index, item) {
-				this.$emit('click', {
+			ontap(index, item) {
+				this.$emit('tap', {
 					index,
 					content: item,
 				})
 			},
-			buttonClick(index, item) {
+			buttontap(index, item) {
 				if (uni.report && this.stat) {
 					uni.report(item.text, item.text)
 				}
-				this.$emit('buttonClick', {
+				this.$emit('buttontap', {
 					index,
 					content: item
 				})

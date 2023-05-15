@@ -149,7 +149,7 @@
                 <view class="dayChange-title">
                   天数选择
                 </view>
-                <view class="tianshuItem" v-for="(item,index) in dayID" @tap="rightClick(index,item)" :class="{d:currentDay==index?true:false}">
+                <view class="tianshuItem" v-for="(item,index) in dayID" @tap="righttap(index,item)" :class="{d:currentDay==index?true:false}">
                   <view class="info">
                     <view>项目名：{{item.goods_name}}</view>						
                     <view>项目对应天数：{{item.project_day}}</view>
@@ -164,7 +164,7 @@
           </u-popup>
 					
 					<view class="typeItem dis" v-for="(item,index) in type"
-					@tap="typeClick(index)"
+					@tap="typetap(index)"
 					:class="{typeColor:typeIndex==index?true:false}">
 						{{item}}
 					</view>
@@ -178,7 +178,7 @@
 				
 
 			</u-popup>
-			<!-- <u-button @click="zhifu = true">打开</u-button> -->
+			<!-- <u-button @tap="zhifu = true">打开</u-button> -->
 		</view>
 
 		<view class="bottom-box">

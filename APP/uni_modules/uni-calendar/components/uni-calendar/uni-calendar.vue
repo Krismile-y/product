@@ -1,26 +1,26 @@
 <template>
 	<view class="uni-calendar">
-		<view v-if="!insert&&show" class="uni-calendar__mask" :class="{'uni-calendar--mask-show':aniMaskShow}" @click="clean"></view>
+		<view v-if="!insert&&show" class="uni-calendar__mask" :class="{'uni-calendar--mask-show':aniMaskShow}" @tap="clean"></view>
 		<view v-if="insert || show" class="uni-calendar__content" :class="{'uni-calendar--fixed':!insert,'uni-calendar--ani-show':aniMaskShow}">
 			<view v-if="!insert" class="uni-calendar__header uni-calendar--fixed-top">
-				<view class="uni-calendar__header-btn-box" @click="close">
+				<view class="uni-calendar__header-btn-box" @tap="close">
 					<text class="uni-calendar__header-text uni-calendar--fixed-width">{{cancelText}}</text>
 				</view>
-				<view class="uni-calendar__header-btn-box" @click="confirm">
+				<view class="uni-calendar__header-btn-box" @tap="confirm">
 					<text class="uni-calendar__header-text uni-calendar--fixed-width">{{okText}}</text>
 				</view>
 			</view>
 			<view class="uni-calendar__header">
-				<view class="uni-calendar__header-btn-box" @click.stop="pre">
+				<view class="uni-calendar__header-btn-box" @tap.stop="pre">
 					<view class="uni-calendar__header-btn uni-calendar--left"></view>
 				</view>
 				<picker mode="date" :value="date" fields="month" @change="bindDateChange">
 					<text class="uni-calendar__header-text">{{ (nowDate.year||'') +' / '+( nowDate.month||'')}}</text>
 				</picker>
-				<view class="uni-calendar__header-btn-box" @click.stop="next">
+				<view class="uni-calendar__header-btn-box" @tap.stop="next">
 					<view class="uni-calendar__header-btn uni-calendar--right"></view>
 				</view>
-				<text class="uni-calendar__backtoday" @click="backtoday">{{todayText}}</text>
+				<text class="uni-calendar__backtoday" @tap="backtoday">{{todayText}}</text>
 
 			</view>
 			<view class="uni-calendar__box">

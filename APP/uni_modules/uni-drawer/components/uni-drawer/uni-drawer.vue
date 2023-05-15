@@ -19,7 +19,7 @@
 	 * @description 抽屉侧滑菜单
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=26
 	 * @property {Boolean} mask = [true | false] 是否显示遮罩
-	 * @property {Boolean} maskClick = [true | false] 点击遮罩是否关闭
+	 * @property {Boolean} masktap = [true | false] 点击遮罩是否关闭
 	 * @property {Boolean} mode = [left | right] Drawer 滑出位置
 	 * 	@value left 从左侧滑出
 	 * 	@value right 从右侧侧滑出
@@ -52,7 +52,7 @@
 			/**
 			 * 遮罩是否可点击关闭
 			 */
-			maskClick:{
+			masktap:{
 				type: Boolean,
 				default: true
 			},
@@ -83,7 +83,7 @@
 			clear(){},
 			close(type) {
 				// fixed by mehaotian 抽屉尚未完全关闭或遮罩禁止点击时不触发以下逻辑
-				if((type === 'mask' && !this.maskClick) || !this.visibleSync) return
+				if((type === 'mask' && !this.masktap) || !this.visibleSync) return
 				this._change('showDrawer', 'visibleSync', false)
 			},
 			open() {

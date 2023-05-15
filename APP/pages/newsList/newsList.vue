@@ -23,7 +23,8 @@
 	export default {
 		data() {
 			return {
-				listData: [{
+				listData: [
+					{
 						title: '​国家林业和草原局关于印发《国家储备林建设管理办法（试行）》的通知'
 					},
 

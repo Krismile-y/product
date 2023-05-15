@@ -6,13 +6,13 @@
 	</a>
 	<!-- #ifndef APP-NVUE -->
 	<text v-else class="uni-link" :class="{'uni-link--withline':showUnderLine===true||showUnderLine==='true'}"
-		:style="{color,fontSize:fontSize+'px'}" @click="openURL">
+		:style="{color,fontSize:fontSize+'px'}" @tap="openURL">
 		<slot>{{text}}</slot>
 	</text>
 	<!-- #endif -->
 	<!-- #ifdef APP-NVUE -->
 	<text v-else class="uni-link" :class="{'uni-link--withline':showUnderLine===true||showUnderLine==='true'}"
-		:style="{color,fontSize:fontSize+'px'}" @click="openURL">
+		:style="{color,fontSize:fontSize+'px'}" @tap="openURL">
 		{{text}}
 	</text>
 	<!-- #endif -->

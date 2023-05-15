@@ -7,12 +7,12 @@
 					<image src="../../static/common/xiugai.png" mode="" @tap="exit(item)"></image>
 					<image src="../../static/common/del.png" mode="" @tap="del(item)"></image>
 				</view>
-				<view class="left dis" @tap="itemClick(item,index)">
+				<view class="left dis" @tap="itemtap(item,index)">
 					<image
 						src="../../common/user.webp"
 						mode=""></image>
 				</view>
-				<view class="right" @tap="itemClick(item,index)">
+				<view class="right" @tap="itemtap(item,index)">
 					<view class="title">
 						<view class="name">{{item.username}}</view>
 						<view class="phone">{{item.phone}}</view>
@@ -56,7 +56,7 @@
 					url:'/pages/newAddredd/newAddredd'
 				})
 			},
-			itemClick(item,index){
+			itemtap(item,index){
 				this.currentIndex=index
 				uni.setStorageSync('addressIndex',index)
 				uni.setStorageSync('address',item)

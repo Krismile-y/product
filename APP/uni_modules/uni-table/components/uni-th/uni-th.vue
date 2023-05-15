@@ -2,11 +2,11 @@
 	<!-- #ifdef H5 -->
 	<th :rowspan="rowspan" :colspan="colspan" class="uni-table-th" :class="{ 'table--border': border }" :style="{ width: customWidth + 'px', 'text-align': align }">
 		<view class="uni-table-th-row">
-			<view class="uni-table-th-content" :style="{ 'justify-content': contentAlign }" @click="sort">
+			<view class="uni-table-th-content" :style="{ 'justify-content': contentAlign }" @tap="sort">
 				<slot></slot>
 				<view v-if="sortable" class="arrow-box">
-					<text class="arrow up" :class="{ active: ascending }" @click.stop="ascendingFn"></text>
-					<text class="arrow down" :class="{ active: descending }" @click.stop="descendingFn"></text>
+					<text class="arrow up" :class="{ active: ascending }" @tap.stop="ascendingFn"></text>
+					<text class="arrow down" :class="{ active: descending }" @tap.stop="descendingFn"></text>
 				</view>
 			</view>
 			<dropdown v-if="filterType || filterData.length" :filterData="filterData" :filterType="filterType" @change="ondropdown"></dropdown>

@@ -8,10 +8,10 @@
 			<input v-else class="uni-dialog-input" v-model="val" type="text" :placeholder="placeholder" :focus="focus">
 		</view>
 		<view class="uni-dialog-button-group">
-			<view class="uni-dialog-button" @click="close">
+			<view class="uni-dialog-button" @tap="close">
 				<text class="uni-dialog-button-text">取消</text>
 			</view>
-			<view class="uni-dialog-button uni-border-left" @click="onOk">
+			<view class="uni-dialog-button uni-border-left" @tap="onOk">
 				<text class="uni-dialog-button-text uni-button-color">确定</text>
 			</view>
 		</view>
@@ -110,7 +110,7 @@
 		},
 		created() {
 			// 对话框遮罩不可点击
-			this.popup.mkclick = false
+			this.popup.mktap = false
 			if (this.mode === 'input') {
 				this.dialogType = 'info'
 				this.val = this.value

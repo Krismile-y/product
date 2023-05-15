@@ -93,23 +93,23 @@ uni-list不包含下拉刷新和上拉翻页。上拉翻页另见组件：[uni-l
 ```
 
 ### 开启点击反馈和右侧箭头
-- 设置 `clickable` 为 `true` ，则表示这是一个可点击的列表，会默认给一个点击效果，并可以监听 `click` 事件
+- 设置 `tapable` 为 `true` ，则表示这是一个可点击的列表，会默认给一个点击效果，并可以监听 `tap` 事件
 - 设置 `link` 属性，会自动开启点击反馈，并给列表右侧添加一个箭头
 - 设置 `to` 属性，可以跳转页面，`link` 的值表示跳转方式，如果不指定，默认为 `navigateTo`
 
 ```html
 
 <uni-list>
-	<uni-list-item title="开启点击反馈" clickable  @click="onClick" ></uni-list-item>
-	<uni-list-item title="默认 navigateTo 方式跳转页面" link to="/pages/vue/index/index" @click="onClick($event,1)" ></uni-list-item>
-	<uni-list-item title="reLaunch 方式跳转页面" link="reLaunch" to="/pages/vue/index/index" @click="onClick($event,1)" ></uni-list-item>
+	<uni-list-item title="开启点击反馈" tapable  @tap="ontap" ></uni-list-item>
+	<uni-list-item title="默认 navigateTo 方式跳转页面" link to="/pages/vue/index/index" @tap="ontap($event,1)" ></uni-list-item>
+	<uni-list-item title="reLaunch 方式跳转页面" link="reLaunch" to="/pages/vue/index/index" @tap="ontap($event,1)" ></uni-list-item>
 </uni-list>
 
 ```
 
 
 ### 聊天列表示例
-- 设置 `clickable` 为 `true` ，则表示这是一个可点击的列表，会默认给一个点击效果，并可以监听 `click` 事件
+- 设置 `tapable` 为 `true` ，则表示这是一个可点击的列表，会默认给一个点击效果，并可以监听 `tap` 事件
 - 设置 `link` 属性，会自动开启点击反馈，`link` 的值表示跳转方式，如果不指定，默认为 `navigateTo`
 - 设置 `to` 属性，可以跳转页面
 - `time` 属性，通常会设置成时间显示，但是这个属性不仅仅可以设置时间，你可以传入任何文本，注意文本长度可能会影响显示
@@ -208,8 +208,8 @@ rightText		|String		|-			|	右侧文字内容
 disabled		|Boolean	|false		|	是否禁用	
 showArrow 		|Boolean	|true		|	是否显示箭头图标			
 link			|String 	|navigateTo	|	新页面跳转方式，可选值见下表
-to				|String		|-			|	新页面跳转地址，如填写此属性，click 会返回页面是否跳转成功			
-clickable		|Boolean	|false		|	是否开启点击反馈
+to				|String		|-			|	新页面跳转地址，如填写此属性，tap 会返回页面是否跳转成功			
+tapable		|Boolean	|false		|	是否开启点击反馈
 showSwitch	    |Boolean	|false		|	是否显示Switch																			
 switchChecked	|Boolean	|false		|	Switch是否被选中																			
 showExtraIcon   |Boolean	|false		|	左侧是否显示扩展图标																		
@@ -230,7 +230,7 @@ switchTab  	|	同 uni.switchTab()
 
 事件称名			|说明									|返回参数			
 :-:				|:-:									|:-:				
-click			|点击 uniListItem 触发事件，需开启点击反馈	|-					
+tap			|点击 uniListItem 触发事件，需开启点击反馈	|-					
 switchChange	|点击切换 Switch 时触发，需显示 switch		|e={value:checked}	
 
 
@@ -285,12 +285,12 @@ footer	|	右/下内容插槽，可完全自定义右侧内容
 :-:				|:-:		|:-:		|	:-:	
 title 			|String		|-			|	标题
 note 			|String		|-			|	描述
-clickable		|Boolean	|false		|	是否开启点击反馈
+tapable		|Boolean	|false		|	是否开启点击反馈
 badgeText		|String		|-			|	数字角标内容，设置为 `dot` 将显示圆点
 badgePositon 	|String		|right		|	角标位置
 link			|String 	|navigateTo	|	是否展示右侧箭头并开启点击反馈，可选值见下表
-clickable		|Boolean	|false		|	是否开启点击反馈
-to				|String		|-			|	跳转页面地址，如填写此属性，click 会返回页面是否跳转成功	
+tapable		|Boolean	|false		|	是否开启点击反馈
+to				|String		|-			|	跳转页面地址，如填写此属性，tap 会返回页面是否跳转成功	
 time			|String 	|-			|	右侧时间显示
 avatarCircle 	|Boolean 	|false		|	是否显示圆形头像
 avatar			|String 	|-			|	头像地址，avatarCircle 不填时生效
@@ -314,7 +314,7 @@ default	|	自定义列表右侧内容（包括时间和角标显示）
 ### ListItemChat Events
 事件称名			|	说明						|	返回参数			
 :-:				|	:-:						|	:-:	
-@click			|	点击 uniListChat 触发事件	|	{data:{}}	，如有 to 属性，会返回页面跳转信息	
+@tap			|	点击 uniListChat 触发事件	|	{data:{}}	，如有 to 属性，会返回页面跳转信息	
 
 
 

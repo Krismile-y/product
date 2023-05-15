@@ -160,19 +160,19 @@
 			let wares = {}
 			this.$fn.request('wares/list', "GET", wares).then(res => {
 				console.log(res.data.data.data, '积分兑换商品列表')
-				if(res.data.code == 204){
-					uni.showToast({
-						title:res.data.msg,
-						icon:'none',
-						duration:1000,
-					})
-					setTimeout(()=>{
-						uni.removeStorageSync('token');
-						uni.navigateTo({
-							url:'/pages/login/login'
-						})
-					},1500)
-				}
+				// if(res.data.code == 204){
+				// 	uni.showToast({
+				// 		title:res.data.msg,
+				// 		icon:'none',
+				// 		duration:1000,
+				// 	})
+				// 	setTimeout(()=>{
+				// 		uni.removeStorageSync('token');
+				// 		uni.navigateTo({
+				// 			url:'/pages/login/login'
+				// 		})
+				// 	},1500)
+				// }
 				this.list = res.data.data.data
 			})
 

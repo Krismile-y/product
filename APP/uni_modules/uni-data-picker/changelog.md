@@ -57,7 +57,7 @@
 - 新增 支持云端非树形表结构数据
 - 修复 根节点 parent_field 字段等于 null 时选择界面错乱问题
 ## 0.2.0（2021-03-15）
-- 修复 nodeclick、popupopened、popupclosed 事件无法触发的问题
+- 修复 nodetap、popupopened、popupclosed 事件无法触发的问题
 ## 0.1.9（2021-03-09）
 - 修复 微信小程序某些情况下无法选择的问题
 ## 0.1.8（2021-02-05）

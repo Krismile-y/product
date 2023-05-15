@@ -2,7 +2,7 @@
 	<view class="uni-badge--x">
 		<slot />
 		<text v-if="text" :class="classNames" :style="[positionStyle, customStyle, dotStyle]"
-			class="uni-badge" @click="onClick()">{{displayValue}}</text>
+			class="uni-badge" @tap="ontap()">{{displayValue}}</text>
 	</view>
 </template>
 
@@ -28,13 +28,13 @@
 	 * 	@value leftBottom 左下
 	 * @property {Array[number]} offset	距定位角中心点的偏移量，只有存在 absolute 属性时有效，例如：[-10, -10] 表示向外偏移 10px，[10, 10] 表示向 absolute 指定的内偏移 10px
 	 * @property {String} isDot = [true|false] 是否显示为一个小点
-	 * @event {Function} click 点击 Badge 触发事件
+	 * @event {Function} tap 点击 Badge 触发事件
 	 * @example <uni-badge text="1"></uni-badge>
 	 */
 
 	export default {
 		name: 'UniBadge',
-		emits: ['click'],
+		emits: ['tap'],
 		props: {
 			type: {
 				type: String,
@@ -150,8 +150,8 @@
 			}
 		},
 		methods: {
-			onClick() {
-				this.$emit('click');
+			ontap() {
+				this.$emit('tap');
 			}
 		}
 	};

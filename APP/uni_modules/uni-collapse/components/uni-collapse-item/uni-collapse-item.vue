@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-collapse-item">
-		<!-- onClick(!isOpen) -->
-		<view @click="onClick(!isOpen)" class="uni-collapse-item__title"
+		<!-- ontap(!isOpen) -->
+		<view @tap="ontap(!isOpen)" class="uni-collapse-item__title"
 			:class="{'is-open':isOpen &&titleBorder === 'auto' ,'uni-collapse-item-border':titleBorder !== 'none'}">
 			<view class="uni-collapse-item__title-wrap">
 				<slot name="title">
@@ -114,7 +114,7 @@
 		watch: {
 			open(val) {
 				this.isOpen = val
-				this.onClick(val, 'init')
+				this.ontap(val, 'init')
 			}
 		},
 		updated(e) {
@@ -125,7 +125,7 @@
 		created() {
 			this.collapse = this.getCollapse()
 			this.oldHeight = 0
-			this.onClick(this.open, 'init')
+			this.ontap(this.open, 'init')
 		},
 		// #ifndef VUE3
 		// TODO vue2
@@ -181,7 +181,7 @@
 					})
 				}
 			},
-			onClick(isOpen, type) {
+			ontap(isOpen, type) {
 				if (this.disabled) return
 				this.isOpen = isOpen
 				if (this.isOpen && this.collapse) {
@@ -213,7 +213,7 @@
 						// #endif
 						this.isheight = true
 						if (type) return
-						this.onClick(this.isOpen, 'init')
+						this.ontap(this.isOpen, 'init')
 					})
 					.exec()
 			},
@@ -228,7 +228,7 @@
 						// #endif
 						this.isheight = true
 						if (type) return
-						this.onClick(this.open, 'init')
+						this.ontap(this.open, 'init')
 					}
 				})
 			},

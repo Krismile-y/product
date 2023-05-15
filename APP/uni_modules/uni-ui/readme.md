@@ -226,7 +226,7 @@ npm i @dcloudio/uni-ui   或   yarn add @dcloudio/uni-ui
 
 ```html
 <uni-badge text="1"></uni-badge>
-<uni-badge text="2" type="success" @click="bindClick"></uni-badge>
+<uni-badge text="2" type="success" @tap="bindtap"></uni-badge>
 <uni-badge text="3" type="primary" :inverted="true"></uni-badge>
 ```
 

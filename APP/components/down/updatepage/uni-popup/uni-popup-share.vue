@@ -3,7 +3,7 @@
 		<view class="uni-share-title"><text class="uni-share-title-text">{{title}}</text></view>
 		<view class="uni-share-content">
 			<view class="uni-share-content-box">
-				<view class="uni-share-content-item" v-for="(item,index) in bottomData" :key="index" @click.stop="select(item,index)">
+				<view class="uni-share-content-item" v-for="(item,index) in bottomData" :key="index" @tap.stop="select(item,index)">
 					<image class="uni-share-image" :src="item.icon" mode="aspectFill"></image>
 					<text class="uni-share-text">{{item.text}}</text>
 				</view>
@@ -11,7 +11,7 @@
 			</view>
 		</view>
 		<view class="uni-share-button-box">
-			<button class="uni-share-button" @click="close">取消</button>
+			<button class="uni-share-button" @tap="close">取消</button>
 		</view>
 	</view>
 </template>

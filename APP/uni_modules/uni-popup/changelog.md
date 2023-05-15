@@ -7,11 +7,11 @@
 ## 1.7.6（2022-02-14）
 - 修复 safeArea 属性不能设置为false的bug
 ## 1.7.5（2022-01-19）
-- 修复 isMaskClick 失效的bug
+- 修复 isMasktap 失效的bug
 ## 1.7.4（2022-01-19）
 - 新增 cancelText \ confirmText 属性 ，可自定义文本
 - 新增 maskBackgroundColor 属性 ，可以修改蒙版颜色
-- 优化 maskClick属性 更新为 isMaskClick ，解决微信小程序警告的问题
+- 优化 masktap属性 更新为 isMasktap ，解决微信小程序警告的问题
 ## 1.7.3（2022-01-13）
 - 修复 设置 safeArea 属性不生效的bug
 ## 1.7.2（2021-11-26）
@@ -28,7 +28,7 @@
 ## 1.6.0（2021-07-13）
 - 组件兼容 vue3，如何创建vue3项目，详见 [uni-app 项目支持 vue3 介绍](https://ask.dcloud.net.cn/article/37834)
 ## 1.5.0（2021-06-23）
-- 新增 mask-click 遮罩层点击事件
+- 新增 mask-tap 遮罩层点击事件
 ## 1.4.5（2021-06-22）
 - 修复 nvue 平台中间弹出后，点击内容，再点击遮罩无法关闭的Bug
 ## 1.4.4（2021-06-18）

@@ -1,5 +1,5 @@
 <template>
-	<view class="uni-load-more" @click="onClick">
+	<view class="uni-load-more" @tap="ontap">
 		<!-- #ifdef APP-NVUE -->
 		<loading-indicator v-if="!webviewHide && status === 'loading' && showIcon"
 			:style="{color: color,width:iconSize+'px',height:iconSize+'px'}" :animating="true"
@@ -64,11 +64,11 @@
 	 * 	@value auto 根据平台自动选择加载样式
 	 * @property {String} color 图标和文字颜色
 	 * @property {Object} contentText 各状态文字说明，值为：{contentdown: "上拉显示更多",contentrefresh: "正在加载...",contentnomore: "没有更多数据了"}
-	 * @event {Function} clickLoadMore 点击加载更多时触发
+	 * @event {Function} tapLoadMore 点击加载更多时触发
 	 */
 	export default {
 		name: 'UniLoadMore',
-		emits: ['clickLoadMore'],
+		emits: ['tapLoadMore'],
 		props: {
 			status: {
 				// 上拉的状态：more-loading前；loading-loading中；noMore-没有更多了
@@ -141,8 +141,8 @@
 			// #endif
 		},
 		methods: {
-			onClick() {
-				this.$emit('clickLoadMore', {
+			ontap() {
+				this.$emit('tapLoadMore', {
 					detail: {
 						status: this.status,
 					}

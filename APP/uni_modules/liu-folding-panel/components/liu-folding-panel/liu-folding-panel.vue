@@ -8,7 +8,7 @@
 		</view>
 		<view class="card-message">
 			<view class="item-mess" v-if="newList.length" v-for="(item,index) in newList" :key="index"
-				@click.stop="showMore(item)">
+				@tap.stop="showMore(item)">
 				<view class="item1">
 					<view class="item-left">
 						<image class="item-left-icon" :src="img1" v-if="img1"></image>
@@ -17,7 +17,7 @@
 					<image class="item-right" :src="item.state?'../../static/shangla.png':'../../static/xiala.png' "></image>
 				</view>
 				<view class="item2" v-if="item.state && item.childs" v-for="(mess,inx) in item.childs" :key="inx"
-					@click.stop="goDetail(mess)">
+					@tap.stop="goDetail(mess)">
 					<view class="item2-left">
 						<image class="item2-left-icon" :src="img2" v-if="img2"></image>
 						<view class="item2-left-name">{{mess.name}}</view>
@@ -78,7 +78,7 @@
 				this.newList = JSON.parse(JSON.stringify(this.newList))
 			},
 			goDetail(item) {
-				this.$emit('clickChildItem', item)
+				this.$emit('tapChildItem', item)
 			}
 		}
 	}
