@@ -19,27 +19,33 @@
               <!-- 中间圆图 -->
               <image src="@/static/common/jinrong.jpg" mode="" @tap="changeBulge()"></image>
             </view>
-						<view class="rudder">
-							<view>
-								<view class="color-yellow"></view>
-								<view class="color-orange"></view>
-								<view class="content">
-									<view class="h-flex-x h-flex-3">
-										<view style="padding-top: 40rpx;">
-											<!-- <uni-icons type="star" size="42rpx" color="#c66219"></uni-icons> -->
-                      <view class="items dis"  @tap="four(0)">按钮1</view>
-										</view>
-										<view style="padding-bottom: 50rpx;">
-											<!-- <uni-icons type="paperplane" size="42rpx" color="#c66219"></uni-icons> -->
-                      <view class="items dis" @tap="four(1)">按钮2</view>
-										</view>
-										<view style="padding-top: 40rpx;">
-											<!-- <uni-icons type="heart" size="42rpx" color="#c66219"></uni-icons> -->
-                      <view class="items dis" @tap="four(2)">按钮3</view>
-										</view>
-									</view>
-								</view>
-							</view>
+            <!-- 五个小图标的视口盒子 -->
+						<view class="show-box">
+						  <view class="rudder">
+						  	<view>
+						  		<view class="color-yellow"></view>
+						  		<view class="color-orange"></view>
+						  		<view class="content">
+						  			<view class="h-flex-x h-flex-3">
+						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
+						            <view class="items dis yuan1"  @tap="four(0)">按钮1</view>
+						  				</view>
+						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
+						            <view class="items dis yuan2" @tap="four(1)">按钮2</view>
+						  				</view>
+						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
+						            <view class="items dis yuan3" @tap="four(2)">按钮3</view>
+						  				</view>
+						          <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
+						            <view class="items dis yuan4" @tap="four(3)">按钮4</view>
+						          </view>
+						          <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
+						            <view class="items dis yuan5" @tap="four(4)">按钮5</view>
+						          </view>
+						  			</view>
+						  		</view>
+						  	</view>
+						  </view>
 						</view>
 					</view>
 					<view v-else :class="{
@@ -199,24 +205,32 @@
 					transform:rotate(0deg);
 				}
 			}
-			
+			.show-box {
+      width: 100vw;
+      height: 310upx;
+      position: absolute;
+      left: 50%;
+      margin-left: -50vw;
+      top: -310upx;
+      // background-color: #000;
+      overflow: hidden;
 			// 舵式容器
 			.rudder{
-				width: 280rpx;
-				height: 150rpx;
+				width: 500upx;
+				height: 250upx;
 				position: absolute;
 				z-index: 1;
 				left: 50%;
-				margin-left: -140rpx;
-				top: -148rpx;
-				overflow: hidden;
+				margin-left: -250upx;
+				top: 60upx;
+				// overflow: hidden;
 				
 				> view{
 					position: absolute;
 					z-index: 1;
 					width: 100%;
 					height: 200%;
-					overflow: hidden;
+					// overflow: hidden;
 					top: 0;
 					left: 0;
 				}
@@ -228,18 +242,41 @@
 					left: 0;
 					top: 0;
 					height: 50%;
-					overflow: hidden;
+					// overflow: hidden;
 					transform-origin:50% 100%;
 					transform:rotate(-180deg);
 					.items {
-            width: 100upx;
-            height: 100upx;
+            width: 120upx;
+            height: 120upx;
             border-radius: 50%;
             // background-color: #54d27e;
             color: #fff;
             background-image: url('@/static/common/xiaoanniu.jpg');
             background-repeat: no-repeat;
             background-size: 100% 100%;
+            position: relative;
+          }
+          .yuan1 {
+            top: 130upx;
+            left: -60upx;
+          }
+          
+          .yuan2 {
+            top: 0;
+            left: -100upx;
+          }
+          .yuan3 {
+            top: -60upx;
+            left: -60upx;
+          }
+          .yuan4 {
+            top: 0upx;
+            left: -30upx;
+          }
+          
+          .yuan5 {
+            top: 130upx;
+            left: -60upx;
           }
 					
 					&:before{
@@ -251,7 +288,6 @@
 						top: 0;
 						height: 200%;
 						border-radius: 50%;
-						border: solid 1px #fff;
 					}
 				}
 				.color-yellow{
@@ -259,7 +295,7 @@
 					// transform:rotate(90deg);
 					
 					&:before{
-						background-color: #efd200;
+						background-color: rgba(25, 255, 255, 0);
 					}
 					
 				}
@@ -268,7 +304,7 @@
 					// transform:rotate(45deg);
 					
 					&:before{
-						background-color: #f04900;
+						background-color: rgba(0, 0, 0, 0);
 					}
 				}
 				
@@ -277,7 +313,7 @@
 					// transform:rotate(0deg);
 					
 					&:before{
-						background-color: #fff;
+						background-color: rgba(0, 0, 0, 0);
 					}
 					
 					> view{
@@ -295,6 +331,8 @@
 				
 			}
 		}
+    
+    }
 		
 		.bulge-active{
 			.btn{
@@ -305,38 +343,42 @@
 		}
 		
 		.open{
-			.rudder{
-				.color-yellow,.color-orange,.content{
-					transform:rotate(0deg);
-				}
-				.color-yellow{
-					transition: transform 0.3s ease 0s;
-				}
-				.color-orange{
-					transition: transform 0.3s ease 0.05s;
-				}
-				.content{
-					transition: transform 0.3s ease 0.1s;
-				}
-				
-			}
+			.show-box {
+        .rudder{
+        	.color-yellow,.color-orange,.content{
+        		transform:rotate(0deg);
+        	}
+        	.color-yellow{
+        		transition: transform 0.3s ease 0s;
+        	}
+        	.color-orange{
+        		transition: transform 0.3s ease 0.05s;
+        	}
+        	.content{
+        		transition: transform 0.3s ease 0.1s;
+        	}
+        	
+        }
+      }
 		}
 		.close{
-			.rudder{
-				.color-yellow,.color-orange,.content{
-					transform:rotate(-180deg);
-				}
-				.color-yellow{
-					transition: transform 0.3s ease 0.1s;
-				}
-				.color-orange{
-					transition: transform 0.3s ease 0.05s;
-				}
-				.content{
-					transition: transform 0.3s ease 0s;
-				}
-				
-			}
+			.show-box {
+        .rudder{
+        	.color-yellow,.color-orange,.content{
+        		transform:rotate(-180deg);
+        	}
+        	.color-yellow{
+        		transition: transform 0.3s ease 0.1s;
+        	}
+        	.color-orange{
+        		transition: transform 0.3s ease 0.05s;
+        	}
+        	.content{
+        		transition: transform 0.3s ease 0s;
+        	}
+        	
+        }
+      }
 		}
 		
 		

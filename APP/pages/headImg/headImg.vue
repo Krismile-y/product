@@ -13,27 +13,35 @@
 </template>
 
 <script>
+  import defaultImg from "../../common/user.webp"
   export default {
     data() {
       return {
-        imageSrc:'../../common/user.webp',
+        imageSrc:defaultImg,
+        imgFile: null,
         imgStyle: {
           width: 0,//屏幕宽度
           height: 0,
         },
       };
     },
-    mounted() {
-      this.$nextTick(()=> {
+    // mounted() {
+    //   this.$nextTick(()=> {
+    //     this.getScreenWidth()
+    //   })
+    // },
+    onLoad() {
         this.getScreenWidth()
-      })
+        let info=uni.getStorageSync('user_info')
+        this.imageSrc = info.head_img
+        console.log(info,'user');
     },
     methods: {
       getScreenWidth() {
             uni.getSystemInfo({
               success: (res) => {
-                this.imgStyle.width = res.windowWidth
-                this.imgStyle.height = res.windowWidth
+                this.imgStyle.width = res.windowWidth + 'px'
+                this.imgStyle.height = res.windowWidth + 'px'
               }
             })
           },
@@ -47,48 +55,61 @@
       				sizeType: ['compressed'],
       				// sourceType: ['camera','album'], 从相册选择
       				sourceType: ['album'],
+              //图片裁剪
+              crop:{
+                width:this.imgStyle.width,
+                height:this.imgStyle.width
+              },
       				success: (res) => {
       				//因为有一张图片， 输出下标[0]， 直接输出地址
       					_this.imageSrc = res.tempFilePaths[0];
-      					console.log(_this.imageSrc );
+                console.log(_this.imageSrc,'本地图片',res);
+                _this.imgFile = res.tempFiles[0]
+                _this.$fn.request('upload', "POST", _this.imgFile).then(res => {
+                  uni.showToast({
+                    title:'上传成功',
+                    icon:"success"
+                  })
+                })
       					// 上传图片, 做成一个上传对象
-      					uni.uploadFile({
+      					// uni.uploadFile({
       					    // 需要上传的地址
-      						url: _this.$host + '/upload/image', 
+      						// url: 'www.api.com/api/upload', 
       						  // filePath  需要上传的文件
-      						filePath: _this.imageSrc,
+      						// filePath: _this.imageSrc,
       						//文件上传名称
-      						name: 'file',
-      						formData: {
-      						},
+      						// name: 'file',
+      						// formData: {
+      						// },
       						//上传头中带着$token
       						//Authorization 请求消息头含有服务器用于验证用户代理身份的凭证
-      						header: {
-      							Authorization: _this.$token
-      						},
-                  complete:(res) => {
-                    console.log(res);
-                  },
-      						success: (res) => {
+      						// header: {
+      						// 	Authorization: _this.$token
+      						// },
+            //       complete:(res) => {
+            //         console.log(res);
+            //       },
+      						// success: (res) => {
       						//  JSON.parse() 方法将数据转换为 JavaScript 对象
       							// let a=JSON.parse(res.data);
       							//如果状态码为200，将图片地址赋给_this.imageSrc 和	_this.imageSrcUrl
       							// if (a.code == 200) {
-      							// 	_this.imageSrc = _this.host + a.data;
-      							// 	_this.imageSrcUrl = a.data;
+                      // console.log('上传成功');
+      								// _this.imageSrc = _this.host + a.data;
+      								// _this.imageSrcUrl = a.data;
       							// } else {
-      							//弹出框提示错误
-      								// uni.showToast({
-      								// 	title: "上传失败！",
-      								// 	icon: "none"
-      								// })
-      							// }
-      						},
+      							// 弹出框提示错误
+      						// 		uni.showToast({
+      						// 			title: "上传失败！",
+      						// 			icon: "none"
+      						// 		})
+      						// 	}
+      						// },
       					//	fail，加载失败后的回调
-      						fail:(res)=>{
-      							console.log("fail",res);
-      						}
-      					});
+      					// 	fail:(res)=>{
+      					// 		console.log("fail",res);
+      					// 	}
+      					// });
       				},
       				fail: (err) => {
       					// #ifdef MP
@@ -128,8 +149,7 @@
   background-color: #ddd;
   position: relative;
   .img-head {
-    width: 100%;
-    height: 100%;
+    background-color: #fff;
   }
   .bottom-btn {
     width: 100%;

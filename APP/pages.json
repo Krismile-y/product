@@ -50,7 +50,7 @@
             "path" : "pages/safe/safe",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "账户安全",
+                "navigationBarTitleText": "个人信息",
                 "enablePullDownRefresh": false,
 				"app-plus": {
 					"titleNView": {
@@ -64,7 +64,7 @@
             "path" : "pages/revisePassword/revisePassword",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "账户安全",
+                "navigationBarTitleText": "个人信息",
                 "enablePullDownRefresh": false
             }
             

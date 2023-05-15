@@ -4,14 +4,14 @@
       <view class="myGroup-page">
         <view class="tits">
           <view class="title dis" @tap="bian(0)" :class="{color:false}">
-            团队详细
+            {{`团队详情(${mblv})`}}
           </view>
         </view>
 
         <!--团队  -->
         <view class="u-page">
           <view class="people-item" v-for="(item,index) in last" @tap="chakan(item)">
-            <image :src="item.url" mode=""></image>
+            <image :src="item.head_img" mode=""></image>
             <view class="people-name">
               {{item.user_name}}
             </view>
@@ -40,6 +40,7 @@
 		data() {
 			return {
 				lv:1,//当前等级
+        mblv: '一级会员',
         title: '我的团队',
 				agent_info: [], //我的推荐人
 				below_agent_info: [],
@@ -63,26 +64,15 @@
 				showPagination: false, //总数据小于单页展示数据，不显示分页条
                 last:[],//第一层
 				fanyongShow:true,
-        urls: [
-          'https://cdn.uviewui.com/uview/album/1.jpg',
-          'https://cdn.uviewui.com/uview/album/2.jpg',
-          'https://cdn.uviewui.com/uview/album/3.jpg',
-          'https://cdn.uviewui.com/uview/album/4.jpg',
-          'https://cdn.uviewui.com/uview/album/5.jpg',
-          'https://cdn.uviewui.com/uview/album/6.jpg',
-          'https://cdn.uviewui.com/uview/album/7.jpg',
-          'https://cdn.uviewui.com/uview/album/8.jpg',
-          'https://cdn.uviewui.com/uview/album/9.jpg',
-          'https://cdn.uviewui.com/uview/album/10.jpg',
-        ],
+        
 			};
 		},
 		onLoad(option) {
-			this.myGroup()
       this.userInfo =uni.getStorageSync('user_info')
       this.title = `<view class="wdtjm">我的团队</view><br />
           <view class="numberCode">${this.userInfo.user_name}</view>`
       console.log(this.userInfo,'userInfo');
+      this.chakan(this.userInfo)
       if(option.index) {
         this.currentIndex = option.index
       } else {
@@ -93,6 +83,10 @@
 		methods: {
 			chakan(item){
 				console.log(item)
+        if(this.lv>3) {
+          return
+        }
+        this.memberLv()
 				let data = {
 					"uid": item.id,
 					"page": '1',
@@ -103,9 +97,7 @@
 					
 					// console.log(res.data.data)
 					this.last=res.data.data.data
-          this.last.forEach((item)=> {
-            item.url = this.urls[uni.$u.random(0, this.urls.length - 1)]
-          })
+          this.lv++
 					if(this.last.length == 0){
 						this.fanyongShow=false
 						 // this.last=res.data.data.data
@@ -122,20 +114,26 @@
 				let info=uni.getStorageSync('user_info')
 				
 				let data = {
-					"uid": info.id,
-					"page": this.lv,
+					"uid": this.lv,
+					"page": '1',
 					"limit": "10"
 				}
-				this.$fn.request('user_list_team', "GET", data).then(res => {
-					console.log(res.data.data.data, '我的团队信息')
+				this.$fn.request('user_team', "GET", data).then(res => {
+					console.log(res.data.data.agent_info, '我的团队信息')
 					this.last=res.data.data.data
-				  this.last.forEach((item)=> {
-				    item.url = this.urls[uni.$u.random(0, this.urls.length - 1)]
-				  })
 					this.agent_info = res.data.data.agent_info,
-						this.below_agent_info = res.data.data.below_agent_info
+					this.below_agent_info = res.data.data.below_agent_info
 				})
 			},
+      memberLv() {
+        if(this.lv == 1) {
+          this.mblv = '一级会员'
+        }else if (this.lv == 2) {
+          this.mblv = '二级会员'
+        }else {
+          this.mblv = '三级会员'
+        }
+      },
 			bian(index) {
 				this.currentIndex = index
 				if (index == 0) {

@@ -47,7 +47,7 @@
 				show: false,
 				list: [
 					{
-						title: "账户安全",
+						title: "个人信息",
 						src: "../../static/common/zhanghuanquan.png"
 					},
 			 	{
