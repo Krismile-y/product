@@ -66,6 +66,13 @@
                 console.log(_this.imageSrc,'本地图片',res);
                 _this.imgFile = res.tempFiles[0]
                 _this.$fn.request('upload', "POST", _this.imgFile).then(res => {
+                  // let is_whole = 1
+                  // _this.$nextTick(()=> {
+                  //   _this.$fn.request('user', "GET", is_whole).then(res => {
+                  //     console.log(res,'用户信息');
+                  //   })
+                  // })
+                  console.log(res,'图片接口返回');
                   uni.showToast({
                     title:'上传成功',
                     icon:"success"
