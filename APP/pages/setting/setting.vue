@@ -120,6 +120,7 @@
 			},
 			tuichu() {
 				uni.removeStorageSync('token');
+				uni.removeStorageSync('address');
 				uni.setStorageSync('gengxin', false) //app更新首页显示状态
 				// uni.removeStorageSync('address');
 				uni.navigateTo({

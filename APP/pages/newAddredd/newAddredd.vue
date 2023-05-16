@@ -50,8 +50,9 @@
 
 			</view>
 		</view>
-
-		<!-- <view class="item">
+         
+		 
+		<view class="item">
 			<view class="left dis" style="width: 50%;">
 				设为默认收货地址
 			</view>
@@ -60,7 +61,7 @@
 					<u-switch v-model="value1" activeColor="#5ac725"></u-switch>
 				</view>
 			</view>
-		</view> -->
+		</view>
 
 		<view class="bottom dis">
 			<view class="in dis" @tap="address()" style="">
@@ -80,7 +81,7 @@
 		data() {
 			return {
 				wenben: "",
-				value1: "", //滑动选项
+				value1: false, //滑动选项
 				formatter: {},
 				candidates: ['北京', '南京', '东京', '武汉', '天津', '上海', '海口'],
 				suozaidiqu: '555',
@@ -106,6 +107,13 @@
 			},
 			
 			address(){
+				let defalutValue=''
+				if(this.value1 == true){
+					defalutValue='1'
+				}else{
+					defalutValue='0'
+				}
+				
 				// console.log(uni.getStorageSync('user_info'))
 				let data = {
 					'address': this.wenben,
@@ -114,6 +122,7 @@
 					'county': this.res[2],
 					'user_name':this.user_name,
 					'phone': this.phone,
+					'default':defalutValue
 				}
 				this.$fn.request('address', "POST", data).then(res => {
 					console.log(res.data, '地址')

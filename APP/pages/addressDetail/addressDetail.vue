@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<!-- 这个是编辑地址 -->
 		<view class="item">
 			<view class="left dis">
 				收货人
@@ -51,7 +52,7 @@
 			</view>
 		</view>
 
-		<!-- <view class="item">
+		<view class="item">
 			<view class="left dis" style="width: 50%;">
 				设为默认收货地址
 			</view>
@@ -60,7 +61,7 @@
 					<u-switch v-model="value1" activeColor="#5ac725"></u-switch>
 				</view>
 			</view>
-		</view> -->
+		</view>
 
 		<view class="bottom dis">
 			<view class="in dis" @tap="Addaddress" style="">
@@ -80,7 +81,7 @@
 		data() {
 			return {
 				wenben: "",//详细地址
-				value1: "", //滑动选项
+				value1:'', //滑动选项
 				formatter: {},
 				candidates: ['北京', '南京', '东京', '武汉', '天津', '上海', '海口'],
 				suozaidiqu: '555',
@@ -115,6 +116,12 @@
 			this.province=this.res.province//省
 			this.city=this.res.city//市
 			this.county=this.res.county
+			if(this.res.is_default == 1){
+				this.value1=true
+			}else{
+				this.value1=false
+			}
+			
 		},
 		methods: {
 			change(e) {
@@ -131,6 +138,12 @@
 				// console.log(uni.getStorageSync('user_info'))
 				const res=uni.getStorageSync('exit')
 				// console.log(this.wenben)
+				let defalutValue=''
+				if(this.value1 == true){
+					defalutValue='1'
+				}else{
+					defalutValue='0'
+				}
 					let data = {
 						'address': this.wenben,
 						'province': this.province,
@@ -138,7 +151,8 @@
 						'county': this.county,
 						'user_name':this.user_name,
 						'phone': this.phone,
-						'aid':this.id
+						'aid':this.id,
+					    'default':defalutValue
 					}
 				
 

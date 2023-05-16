@@ -1,212 +1,92 @@
 <template>
-	<view class="content">
-		<airel-floatball />
-		<!-- <navs></navs> -->
-
+	<view class="content" style="padding-bottom: 0;">
+		<!-- 头部 -->
 		<view class="top">
-			<view class="shang">
-				<view class="left dis">
-					<image
-						src="../../common/user.webp"
-						mode=""></image>
-				</view>
-				<view class="center">
-					<view class="one">用户名：{{info.user_name}}</view>
-					<view class="two">我的推荐码:{{info.id}}</view>
-				</view>
-				<view class="right dis" style="color: #000;">
-					<view class="shiming dis">{{zhuangtai}}</view>
-					<!-- <image   @tap="show = true" src="https://img2.baidu.com/it/u=2020520018,1139302565&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800" mode=""></image> -->
-				</view>
-			</view>
-			<view class="xia " style="">
-
-				<view class="boxs">
-					<view class="item disc">
-						<view class="tit">{{info.money_approve}}</view>
-						<view class="de">可提现</view>
-
-
+			<view class="topBox">
+				<view class="t ">
+					<view class="left dis">
+						<image :src="info.head_img" alt="" />
 					</view>
-					<view class="item disc">
-						<view class="tit">{{today}}</view>
-						<view class="de">每日收益</view>
-					</view>
-					<view class="item disc">
-						<view class="tit">{{info.money_balance}}</view>
-						<view class="de">总收益</view>
+					<view class="right">
+						<view class="user">
+							<view class="username">{{info.user_name}}</view>
+							<view class="shiming dis">
+								<image src="../../static/newMy/icon_people.png" mode="" style="width: 20upx;height: 20upx;margin-right: 10upx;"></image>
+								实名认证
+								</view>
+						</view>
+						<view class="code">
+							我的推荐码:{{info.agent_id}}
+						</view>
 					</view>
 				</view>
-
-				<view class="boxs">
-					<view class="item disc">
-						<view class="tit">{{info.money_green}}</view>
-						<view class="de">绿币</view>
-					</view>
-					<view class="item disc">
-						<view class="tit">{{info.money_vote}}</view>
-						<view class="de">碳票</view>
-					</view>
-					<view class="item disc">
-						<view class="tit">{{info.money_integral}}</view>
-						<view class="de">碳汇</view>
-					</view>
-				</view>
-
 			</view>
 		</view>
-
-
-
-		<!--  -->
-		<view class="box" style="margin-top: 280upx;">
-			<view class="title">
-				<view class="shu"></view>
-				活动中心
+		
+		<!-- 总收益 -->
+		<view class="zongshouyi">
+			<view class="one disc">
+				<view style="color: #fff;">总收益</view>
+				<view style="font-weight: 600;font-size: 42upx;">151515</view>
 			</view>
-			<view class="list">
-				<view class="item" @tap="go('invite')">
-					<view class="left">
-						<image src="../../static/myimg/fenxiang.png" mode="" ></image>
-						分享邀请
-						</view>
-					<view class="right">></view>
+			<view class="two disc">
+				<view class="t" style="width: 100%;height: 60%;display: flex;">
+					<view class="twoItem disc">
+						<view>每日收益</view>
+						<view>26661</view>
+					</view>
+					<view class="twoItem disc">
+						<view>可提现金额</view>
+						<view>26661</view>
+					</view>
 				</view>
-			</view>
-			<view class="list">
-				<view class="item" @tap="go('msg')">
-					<view class="left">
-						<image src="../../static/myimg/xiaoxi.png" mode="" ></image>
-						消息中心
-						</view>
-					<view class="right">></view>
-				</view>
-			</view>
-			<view class="list">
-				<view class="item" @tap="go('myGroup')">
-					<view class="left">
-						<image src="../../static/myimg/wode.png" mode="" ></image>
-						我的团队
-						</view>
-					<view class="right">></view>
-				</view>
-			</view>
-			<view class="list">
-				<view class="item" @tap="goIndex()">
-					<view class="left">
-						<image src="../../static/myimg/jinru.png" mode="" ></image>
-						进入官网
-						</view>
-					<view class="right">></view>
-				</view>
-			</view>
-			<view class="list">
-				<view class="item" @tap="go('myShop')">
-					<view class="left">
-						<image src="../../static/myimg/shangpin.png" mode="" ></image>
-						我的商城
-						</view>
-					<view class="right">></view>
-				</view>
-			</view>
-			<view class="list">
-				<view class="item" @tap="go('test')">
-					<view class="left">
-						<image src="../../static/myimg/jinrong.png" mode="" ></image>
-						充值
-						</view>
-					<view class="right">></view>
+				<view class="last dis">
+					提现申请
 				</view>
 			</view>
 			
-			<view class="list">
-				<view class="item" @tap="go('terrace')">
-					<view class="left">
-					<image src="../../static/newIndex/pingtai.png" mode="" ></image>	
-						平台攻略
-					</view>
-					<view class="right">></view>
-				</view>
-			</view>
+		</view>
+		
+		<!-- 三个-->
+		<view class="three">
+			<view class="threeItem" style="background-image: url('../../static/newMy/two.png');"></view>
 			
-			<view class="list">
-				<view class="item" @tap="go('setting')">
-					<view class="left">
-						<image src="../../static/myimg/shezhi2.png" mode="" ></image>
-						设置</view>
-					<view class="right">></view>
-				</view>
-			</view>
+			<view class="threeItem" style="background-image: url('../../static/newMy/two.png');"></view>
+			<view class="threeItem" style="background-image: url('../../static/newMy/three.png');"></view>
 		</view>
-		<!--  -->
-		<view class="box">
-			<view class="title">
-				<view class="shu"></view>
-				我的资金
-			</view>
-			<view class="list">
-				<view class="item" @tap="go('record')">
-					<view class="left">
-						<image src="../../static/myimg/touxi.png" mode="" ></image>
-						投资记录
-						</view>
-					<view class="right">></view>
-				</view>
-			</view>
-			<view class="list">
-				<view class="item" @tap="go('income')">
-					<view class="left">
-						<image src="../../static/myimg/shouyi.png" mode="" ></image>
-						收益记录
-						</view>
-					<view class="right">></view>
-				</view>
-			</view>
-			<view class="list">
-				<view class="item" @tap="go('twithdrawal')">
-					<view class="left">
-						<image src="../../static/myimg/tixian.png" mode="" ></image>
-						提现记录
-						</view>
-					<view class="right">></view>
-				</view>
-			</view>
-			<view class="list">
-				<view class="item" @tap="go('withdrawal')">
-					<view class="left">
-						<image src="../../static/myimg/shenqing.png" mode="" ></image>
-						提现申请
-						</view>
-					<view class="right">></view>
-				</view>
-			</view>
-			<view class="list">
-				<view class="item" @tap="go('certificate')">
-					<view class="left">
-						<image src="../../static/myimg/guquan.png" mode="" ></image>
-						股权证书
-						</view>
-					<view class="right">></view>
-				</view>
-			</view>
+		
+		<!-- 活动标题 -->
+		<view class="title">
+			<view class="shu"></view>
+			活动中心
 		</view>
-
-		<!-- 遮罩层 -->
-		<u-overlay :show="show" @tap="show = false">
-			<view class="warp">
-				<view class="rect" @tap.stop>
-
-					<image @tap="show = true"
-						src="https://img2.baidu.com/it/u=2020520018,1139302565&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800"
-						mode=""></image>
-
-				</view>
-			</view>
-		</u-overlay>
-
-		<view class="bottom-box">
-		  <helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
+		<view class="huodongBox dis">	
+				<view class="huodongItem disc" v-for="item in huodongList"  @tap="go(item.go)">
+					<view class="yuan dis">
+						<image src="../../static/newMy/fenxiang.png" mode=""></image>
+					</view>
+					<view style="margin-top: 10upx;">{{item.name}}</view>
+				</view>		
 		</view>
+		
+		
+		<!-- 我的资金 -->
+		<view class="title" style="margin-bottom: 30upx;">
+			<view class="shu"></view>
+			我的资金
+		</view>
+		
+		<view class="money" v-for="item in 4">
+			<view class="moneyItem">
+				<image src="../../static/my/jilu.png" mode=""></image>
+				收益记录
+				<view class="pos dis">
+					<image src="../../static/newMy/youjiantou.png" mode="" ></image>
+				</view>
+			</view>		
+		</view>
+		
+		<helang-tab-bar-bulge></helang-tab-bar-bulge>
 	</view>
 </template>
 
@@ -222,7 +102,49 @@
 				info: {},
 				today: "",
 				out: 0,
-				zhuangtai:""
+				zhuangtai:"",
+				huodongList:[
+					{
+						name:'分享邀请',
+						url:'',
+						go:'invite'
+					},
+					{
+						name:'消息中心',
+						url:'',
+						go:'msg'
+					},
+					{
+						name:'我的团队',
+						url:'',
+						go:'myGroup'
+					},
+					{
+						name:'进入官网',
+						url:'',
+						go:'guanwnag',
+					},
+					{
+						name:'我的商城',
+						url:'',
+						go:'myShop'
+					},
+					{
+						name:'充值',
+						url:'',
+						go:'test'
+					},
+					{
+						name:'平台攻略',
+						url:'',
+						go:'terrace'
+					},
+					{
+						name:'设置',
+						url:'',
+						go:'setting'
+					},
+				]
 			};
 		},
 		onBackPress() {
@@ -309,6 +231,12 @@
 		},
 		methods: {
 			go(name) {
+				if(name == 'guanwnag'){
+					uni.navigateTo({
+					  url: '/pages/webview/webview?url=http://gw.tzhreefvg.top/'
+					})
+					return
+				}
 				console.log(name)
 				uni.navigateTo({
 					url: `/pages/${name}/${name}`
@@ -336,6 +264,10 @@
 	}
 </script>
 
-<style lang="less" scoped src='./my.less'>
+<!-- <style lang="less" scoped src='./my.less'>
+
+</style> -->
+
+<style lang="less" scoped src='./new.less'>
 
 </style>
