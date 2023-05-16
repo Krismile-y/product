@@ -6,32 +6,93 @@
 	.item{
 		width: 25%;
 		height: 160upx;
-		image{
-			width: 70upx;
-			height: 70upx;
-		}
+    .img-box {
+      width: 104rpx;
+      height: 104rpx;
+      border-radius: 50%;
+      background-color: #fff;
+      display: grid;
+      place-items: center;
+      image{
+      	width: 36upx;
+      	height: 36upx;
+      }
+    }
+		
 		.title{
-			margin-top: 10upx;
-			font-size: 28upx;
+			margin-top: 4upx;
+			font-size: 24rpx;
+			font-family: PingFangSC-Regular, PingFang SC;
+			font-weight: 400;
+			color: #272727;
 		}
 	}
 }
-.kuaijie{
-	width: 100%;
-	margin-top: 20upx;
-	display: flex;
-	height: 60upx;
-	align-items: center;
-	font-weight: 600;
-	font-size: 36upx;
-	.shu{
-		width: 8upx;
-		height: 80%;
-		background-color: red;
-		margin-left: 30upx;
-		margin-right: 20upx;
-		font-size: 30upx;
-	}
+.tops {
+  background: linear-gradient(to bottom, #34D099 0%, #fff 100%);
+  // opacity: 0.3;
+  // filter: blur(60px);
+  box-sizing: border-box;
+  padding: 0 32upx;
+  .top-title {
+    width: 100%;
+    height: 50rpx;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60upx;
+    .top-title-text {
+      font-size: 36rpx;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: #1C1C1C;
+      line-height: 50rpx;
+    }
+    .signIcon {
+      width: 50rpx;
+      height: 50rpx;
+      image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+.notice-bar {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 32upx;
+  margin-top: 20upx;
+  /deep/ .u-notice-bar{
+    background: linear-gradient(128deg, #08C380 0%, #00A96D 100%);
+    border-radius: 25rpx;
+    padding: 8rpx 18rpx ;
+  }
+}
+.zhuanshu{
+	width: 686rpx;
+	height: 370rpx;
+	background: #FFFFFF;
+  margin: 0 auto;
+	border-radius: 16rpx;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  .head-bg {
+    width: 100%;
+    height: 12rpx;
+    background: #CDAA79;
+  }
+  .zhuanshu-title {
+    font-size: 28rpx;
+    font-family: HuXiaoBo-NanShen, HuXiaoBo;
+    font-weight: 600;
+    color: #432C2E;
+    line-height: 29rpx;
+    letter-spacing: 1px;
+    margin-top: 20rpx;
+    box-sizing: border-box;
+    padding-left: 24rpx;
+  }
 }
 .zhuanqu{
 	width: 82%;
@@ -45,6 +106,32 @@
 		height: 280upx;
 		border-radius: 30upx;	
 	}
+}
+.xinwen-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 32upx;
+  margin-top: 24rpx;
+  .shu { 
+    width: 10rpx;
+    height: 24rpx;
+    background: #02AD70;
+    border-radius: 5rpx;
+    margin-right: 8rpx;
+  }
+  .xinwen-ttext {
+    flex: 1;
+    font-size: 28rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 600;
+    color: #272727;
+    line-height: 40rpx;
+  }
+}
+.xinwen-box {
+  
 }
 .xinwen{
 	width: 100%;
@@ -148,7 +235,7 @@
 	}
 }
 .poster{
-	z-index: 0;
+	z-index: 99;
 	background-color: rgba(0,0,0,0.3);
 	width: 100%;
 	height: 100vh;
@@ -163,7 +250,7 @@
 }
 
 .news{
-	width: 82%;
+	width: 88%;
 	margin: 30upx auto;
 	height: 200upx;
 	background-image: url('../../static/index/xinshou.png');

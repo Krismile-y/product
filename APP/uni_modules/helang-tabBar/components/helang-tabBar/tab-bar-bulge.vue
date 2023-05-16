@@ -141,7 +141,7 @@
           this.kaiguan = 1
           setTimeout(()=> {
             this.openBulge = !this.openBulge;
-          })
+          },10)
         }
         
 			},

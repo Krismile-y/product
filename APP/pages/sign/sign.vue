@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="sign">
 		<view class="calendar-content" v-if="showCalendar">
 			<view>
 				<!-- 插入模式 -->
@@ -10,11 +10,20 @@
 				<button class="calendar-button" type="button" @tap="open">打开日历</button>
 			</view> -->
 		</view>
-		
+		<view class="jifenminxi">
+      <!-- 积分明细 -->
+		  <view class="totaljifem">
+        <!-- 总积分 -->
+		    总积分:{{totaljifen}}
+		  </view>
+      <view class="jifen-table" @tap="gominxi">
+        查看签到详情>>>
+      </view>
+		</view>
 		
 		<view class="bottom dis">
-			<view class="in dis" @tap="signSubmit">
-				立即签到
+			<view class="in dis" @tap="go">
+				使用积分
 			</view>
 		</view>
 		
@@ -47,6 +56,36 @@
 			day: dd.getDay()
 		}
 	}
+  let defaultOption = {
+    page: 1, // 分页
+    size: 10, // 分页大小
+    auto: false, // 自动加载
+    height: null, // 组件高度
+    disabled: false, // 禁用
+    background: '', // 背景颜色属性
+    emptyImage: '', // 空数据提示图片
+    offsetBottom: 0, // 底部高度补偿
+    pullDownSpeed: 0.5, // 下拉速率
+    lowerThreshold: 40, // 距离底部上拉加载距离
+    refresherThreshold: 80, // 距离顶部下拉刷新距离
+    refreshDelayed: 800, // 刷新延迟
+    refreshFinishDelayed: 800, // 刷新完成后的延迟
+    safeArea: false, // 是否开启安全区域适配
+    emptyTextColor: '#82848a', // 空提示文字颜色
+    loadTextColor: '#82848a', // 上拉加载文字颜色
+    loadIconColor: '#82848a', // 上拉加载图标颜色
+    refresherTextColor: '#82848a', // 下拉刷新文字颜色
+    refresherIconColor: '#82848a', // 下拉刷新图标颜色
+    emptyText: '暂无列表~', // 空数据提示文字
+    loadingText: '正在加载中~', // 加载中文字
+    loadFailText: '加载失败啦~', // 加载失败文字
+    noMoreText: '没有更多啦~', // 没有更多文字
+    refreshingText: '正在刷新~', // 正在刷新文字
+    refreshFailText: '刷新失败~', // 刷新失败文字
+    refreshSuccessText: '刷新成功~', // 刷新成功文字
+    pulldownText: '下拉刷新~', // 下拉中的文字
+    pulldownFinishText: '松开刷新~' // 下拉完成的文字
+  }
 	export default {
 		components: {},
 		data() {
@@ -55,12 +94,21 @@
         dateObj: null, //日历点击获取的事件对象
         nowDate: null,
         dateList: [], //已签到日期列表
+        totaljifen: 0,
 				info: {
 					lunar: true,
 					range: true,
 					insert: false,
 					selected: []
-				}
+				},
+        dataList: [], //用于积分明细渲染
+        // 每页数据量
+        pageSize: 10,
+        // 当前页
+        pageCurrent: 1,
+        // 数据总量
+        total: 0,
+        showPagination: false,  //总数据小于单页展示数据，不显示分页条
 			}
 		},
 		onReady() {
@@ -72,6 +120,8 @@
     onLoad() {
       this.getDateList()
       this.initNowDay()
+      let info = uni.getStorageSync('user_info')
+      this.totaljifen = info.money_integral
     },
 		methods: {
       initNowDay() {
@@ -82,6 +132,17 @@
         let day = date.getDate()
         console.log(day);
         this.nowDate = year + '-' + month + '-' + day
+      },
+      gominxi() {
+        uni.navigateTo({
+          url:'/pages/jifenminxi/jifenminxi'
+        })
+      },
+      go() {
+        this.$store.state.current = 3
+        uni.navigateTo({
+          url:'/pages/shop/shop'
+        })
       },
       getDateList() {
         // 获取签到列表
@@ -107,7 +168,8 @@
 			},
 			change(e) {
 				// 模拟动态打卡
-        this.dateObj = e
+        // this.dateObj = e
+        this.signSubmit()
 			},
 			confirm(e) {
 				console.log('confirm 返回:', e)

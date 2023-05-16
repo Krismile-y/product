@@ -22584,6 +22584,9 @@ var components
 try {
   components = {
     uniCalendar: __webpack_require__(/*! @/uni_modules/uni-calendar/components/uni-calendar/uni-calendar.vue */ 554)
+      .default,
+    scrollList: __webpack_require__(/*! @/components/scroll-list/scroll-list.vue */ 284).default,
+    uniCard: __webpack_require__(/*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 292)
       .default
   }
 } catch (e) {
@@ -22609,7 +22612,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "uni-view",
-    { attrs: { _i: 0 } },
+    { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
     [
       _vm._$g(1, "i")
         ? _c(
@@ -22643,18 +22646,68 @@ var render = function() {
         "uni-view",
         { staticClass: _vm._$g(4, "sc"), attrs: { _i: 4 } },
         [
+          _c("uni-view", { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } }, [
+            _vm._v("总积分:" + _vm._$g(5, "t0-0"))
+          ]),
+          _c(
+            "uni-view",
+            { staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } },
+            [
+              _c(
+                "scroll-list",
+                {
+                  ref: "list",
+                  attrs: { _i: 7 },
+                  on: {
+                    load: function($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                    refresh: function($event) {
+                      return _vm.$handleViewEvent($event)
+                    }
+                  }
+                },
+                _vm._l(_vm._$g(8, "f"), function(item, index, $20, $30) {
+                  return _c(
+                    "uni-card",
+                    { key: item, attrs: { _i: "8-" + $30 } },
+                    [
+                      _c(
+                        "v-uni-text",
+                        {
+                          staticClass: _vm._$g("9-" + $30, "sc"),
+                          attrs: { _i: "9-" + $30 }
+                        },
+                        [_vm._v(_vm._$g("9-" + $30, "t0-0"))]
+                      )
+                    ],
+                    1
+                  )
+                }),
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _c(
+        "uni-view",
+        { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
+        [
           _c(
             "uni-view",
             {
-              staticClass: _vm._$g(5, "sc"),
-              attrs: { _i: 5 },
+              staticClass: _vm._$g(11, "sc"),
+              attrs: { _i: 11 },
               on: {
                 click: function($event) {
                   return _vm.$handleViewEvent($event)
                 }
               }
             },
-            [_vm._v("立即签到")]
+            [_vm._v("使用积分")]
           )
         ],
         1
@@ -23517,7 +23570,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(/*! ../../static/common/
 exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, ".example-body {\n  display: flex;\n  flex-direction: row;\n}\n.calendar-button {\n  flex: 1;\n  font-weight: bold;\n  font-size: 32rpx;\n}\n.bottom {\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 300upx;\n}\n.bottom .in {\n  width: 90%;\n  height: 130upx;\n  margin-top: 30upx;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-repeat: no-repeat;\n  background-size: 100% 100%;\n  color: #fff;\n  font-size: 40upx;\n  border-radius: 20upx;\n  margin: 0 auto;\n}\n", ""]);
+exports.push([module.i, ".example-body {\n  display: flex;\n  flex-direction: row;\n}\n.calendar-button {\n  flex: 1;\n  font-weight: bold;\n  font-size: 32rpx;\n}\n.bottom {\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 300upx;\n}\n.bottom .in {\n  width: 90%;\n  height: 130upx;\n  margin-top: 30upx;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-repeat: no-repeat;\n  background-size: 100% 100%;\n  color: #fff;\n  font-size: 40upx;\n  border-radius: 20upx;\n  margin: 0 auto;\n}\n.sign {\n  width: 100%;\n  height: calc(100vh - 300upx);\n  display: flex;\n  flex-direction: column;\n}\n.sign .jifenminxi {\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n.sign .jifenminxi .totaljifem {\n  width: 100%;\n  text-align: center;\n  font-size: 18px;\n  font-weight: 600;\n  margin: 20upx 0;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

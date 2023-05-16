@@ -377,6 +377,15 @@
             
         }
         ,{
+            "path" : "pages/jifenminxi/jifenminxi",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "签到详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
             "path" : "pages/address/address",
             "style" :                                                                                    
             {

@@ -65,7 +65,6 @@ export default {
 		uni.setStorageSync('gengxin',false)
 	},
 	onShow() {
-		
 		// 判断手机型号
 		uni.getSystemInfo({
 			success: (res) => {
