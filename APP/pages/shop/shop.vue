@@ -196,41 +196,63 @@
 				})
 			},
 			duihuan() {
-				// 积分下单
-				console.log(uni.getStorageSync('address'))
-				let data = {
-					wid: this.item.id,
-					aid: uni.getStorageSync('address').id,
-				}
-				this.$fn.request('wares/order', "POST", data).then(res => {
-					// console.log(res.data.msg, '积分兑换商品接口')
-					if (res.data.code == 1) {
-						uni.showToast({
-							duration: 1000,
-							title: '兑换成功'
-						})
-						this.show=false
-							uni.pageScrollTo({
-								duration: 100,
-								scrollTop: 120,
+				let addressID=''  //默认地址id
+				// 获取默认地址
+				this.$fn.request('my_address',"POST",{'default':'1'}).then(r=>{
+					console.log(r.data.data,'地址')
+						if(r.data.data.length == 0){
+							uni.showToast({
+								duration:1000,
+								icon:"none",
+								title:'您还未添加默认地址'
 							})
-					// 用户信息
-					let info={
-						"is_whole":"1"
-					}
-					this.$fn.request('user','GET',info).then(res=>{
-						console.log(res.data.data.money_integral,'用户信息')
-						this.info.money_integral=res.data.data.money_integral
-						uni.setStorageSync('user_info',res.data.data)
-					})		
-					}else{
-						uni.showToast({
-							duration: 1000,
-							title: res.data.msg,
-							icon:'error'
-						})
-					}
+							setTimeout(()=>{
+								uni.navigateTo({
+									url:'/pages/address/address'
+								})
+							},1000)
+						}else{
+							addressID=r.data.data[0].id
+							console.log(addressID)
+							// 积分下单
+							
+							let data = {
+								wid: this.item.id,
+								aid:addressID,
+							}
+							this.$fn.request('wares/order', "POST", data).then(res => {
+								// console.log(res.data.msg, '积分兑换商品接口')
+								if (res.data.code == 1) {
+									uni.showToast({
+										duration: 1000,
+										title: '兑换成功'
+									})
+									this.show=false
+										uni.pageScrollTo({
+											duration: 100,
+											scrollTop: 120,
+										})
+								// 用户信息
+								let info={
+									"is_whole":"1"
+								}
+								this.$fn.request('user','GET',info).then(res=>{
+									console.log(res.data.data.money_integral,'用户信息')
+									this.info.money_integral=res.data.data.money_integral
+									uni.setStorageSync('user_info',res.data.data)
+								})		
+								}else{
+									uni.showToast({
+										duration: 1000,
+										title: res.data.msg,
+										icon:'error'
+									})
+								}
+							})
+						}
+					
 				})
+				
 
 			},
 			power() { //能量兑换商品
