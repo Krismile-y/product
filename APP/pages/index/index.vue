@@ -16,7 +16,7 @@
 			<view style="width: 100%;height: 100%;" class="disc">
 		<!-- 轮播 -->
 				<swiper :autoplay="true" :interval="3000" :duration="1000"
-					style="width: 88%;height: 240upx; position: absolute;top: 150upx;margin: 0 auto;">
+					style="width: 88%;height: 228upx; position: absolute;top: 150upx;margin: 0 auto;">
 					<!-- <swiper-item style="width: 100%;height: 200upx;" v-for="(item,index) in banner" :key="index">
 						<image   :src="item.img" mode="" style="width: 100%;height: 100%;border-radius: 20upx;"></image>
 					</swiper-item>	 -->
@@ -40,67 +40,70 @@
 
 		<!-- 八个标题 -->
 		<view class="eight" style="margin-top: 24upx;">
-			<view class="item disc" @tap="goHome('terrace')">
-        <view class="img-box">
-          <image src="../../static/newIndex/pingtai.png"></image>
-        </view>
-				<view class="title">平台攻略</view>
-			</view>
-			<!--  #ifdef APP -->
-			<view class="item disc" @tap='check'>
-			  <view class="img-box">
-			    <image src="../../static/newIndex/xiazai.png"></image>
-			  </view>
-				 <down title='检查更新' ref='down'></down>				
-			</view>
-			<!--  #endif -->
-			<!-- #ifdef H5 -->
-			<view class="item disc" @tap='down'>
-				<view class="img-box">
-				  <image src="../../static/newIndex/xiazai.png"></image>
-				</view>
-			         <a :href="phoneDown" style="color: black;">
-						 <view class="title">APP下载</view>
-					 </a>
-			</view>
-			<!--  #endif -->
-			<view class="item disc" @tap="goHome('msg')">
-        <view class="img-box">
-          <image src="../../static/newIndex/xiaoxi.png"></image>
-        </view>
-				<view class="title">官方消息</view>
-			</view>
-			<view class="item disc" @tap="goHome('invite')">
-        <view class="img-box">
-          <image src="../../static/newIndex/fenxiang.png"></image>
-        </view>
-				<view class="title">分享赚钱</view>
-			</view>
-			<view class="item disc" @tap="goHome('myGroup')">
-        <view class="img-box">
-          <image src="../../static/newIndex/wode.png"></image>
-        </view>
-				<view class="title">我的团队</view>
-			</view>
-			<view class="item disc" @tap="goHome('income')">
-        <view class="img-box">
-          <image src="../../static/newIndex/shouyi.png"></image>
-        </view>
-				<view class="title">我的收益</view>
-			</view>
-			
-			<view class="item disc">
-			  <view class="img-box">
-			    <image src="../../static/newIndex/guanyuwomen.png" @tap="goHome('about')"></image>
-			  </view>
-				<view class="title">关于我们</view>
-			</view>
-			<view class="item disc" @tap="guanwang()">
+      <view class="item disc" @tap="guanwang()">
         <view class="img-box">
           <image src="../../static/newIndex/guanwang.png"></image>
         </view>
-				<view class="title">进入官网</view>
+      	<view class="title">进入官网</view>
+      </view>
+      <view class="item disc">
+        <view class="img-box">
+          <image src="../../static/newIndex/guanyuwomen.png" @tap="goHome('about')"></image>
+        </view>
+      	<view class="title">关于我们</view>
+      </view>
+      <!--  #ifdef APP -->
+      <view class="item disc" @tap='check'>
+        <view class="img-box">
+          <image src="../../static/newIndex/xiazai.png"></image>
+        </view>
+      	 <down title='检查更新' ref='down'></down>				
+      </view>
+      <!--  #endif -->
+      <!-- #ifdef H5 -->
+      <view class="item disc" @tap='down'>
+      	<view class="img-box">
+      	  <image src="../../static/newIndex/xiazai.png"></image>
+      	</view>
+               <a :href="phoneDown" style="color: black;">
+      			 <view class="title">APP下载</view>
+      		 </a>
+      </view>
+      <!--  #endif -->
+      <view class="item disc" @tap="goHome('msg')">
+        <view class="img-box">
+          <image src="../../static/newIndex/xiaoxi.png"></image>
+        </view>
+      	<view class="title">官方消息</view>
+      </view>
+			<view class="item disc">
+        <view class="img-box">
+          <image src="../../static/newIndex/icon_topic_normal.png"></image>
+        </view>
+				<view class="title">我的社区</view>
 			</view>
+			
+			
+			
+			<view class="item disc" @tap="goHome('myGroup')">
+        <view class="img-box">
+          <image src="../../static/newIndex/icon_shop_normal.png"></image>
+        </view>
+				<view class="title">积分商城</view>
+			</view>
+			<view class="item disc">
+        <view class="img-box">
+          <image src="../../static/newIndex/gongyi.png"></image>
+        </view>
+				<view class="title">绿色公益</view>
+			</view>
+			<view class="item disc" @tap="goHome('invite')">
+			  <view class="img-box">
+			    <image src="../../static/newIndex/fenxiang.png"></image>
+			  </view>
+				<view class="title">分享邀请</view>
+			</view>
+			
 			<!-- 加个签到  + 得积分 -->
 		</view>
 
@@ -112,9 +115,14 @@
 
 
 		<!-- 新手 -->
-		<view class="news dis" @tap='xinshou'>
-			新手体验
-			<!-- <image src="../../static/index/xinshou.png" mode=""></image> -->
+		<view class="news" @tap='xinshou'>
+			<view class="news-title">
+			  <text>新手体验</text>
+        <image src="../../static/newIndex/icon-right.png" mode=""></image>
+			</view>
+      <view class="little-text">
+        祝你快速入门
+      </view>
 		</view>
 
 		<!-- 快捷 -->
@@ -141,7 +149,15 @@
       </view>
     </view>
 	
-
+    <view class="news gongyi">
+    	<view class="news-title">
+    	  <text>绿色公益</text>
+        <image src="../../static/newIndex/icon-right.png" mode=""></image>
+    	</view>
+      <view class="little-text">
+        让世界充满爱
+      </view>
+    </view>
 		<!-- xinwen -->
 		<view class="xinwen-title">
 			<view class="shu"></view>
@@ -150,23 +166,27 @@
 			</view>
 		</view>
     <view class="xinwen-box">
-      
+      <view class="xinwen" @tap="xinwen(index)" v-for="(item,index) in article" :key="index">
+        <view class="right">
+        	<image :src="item.thumb_url=='' ? '../../static/my/jilu.png':item.thumb_url" mode=""></image>
+        </view>
+      	<view class="left">
+          <view class="news-title-text">
+            {{item.title}}
+          </view>
+          <view class="news-content" v-html="item.content"></view>
+      		<!-- {{item.content}} -->
+      	</view>
+      </view>
     </view>
-		<view class="xinwen dis" @tap="xinwen(index)" v-for="(item,index) in article" :key="index">
-			<view class="left" v-html="item.content">
-				<!-- {{item.content}} -->
-			</view>
-			<view class="right dis">
-				<image :src="item.thumb_url=='' ? '../../static/my/jilu.png':item.thumb_url" mode=""></image>
-			</view>
-		</view>
+		
 
 		<!--  -->
 		<!-- <view class="kuaijie">
 			<view class="shu"></view>
 			相关内容
 		</view> -->
-		<view class="zhengce" @tap="newsList" style="margin-top: 30upx;">
+		<view class="zhengce" @tap="newsList" style="margin-top: 30upx; display: none;">
 			<image src="../../static/common/zuixinzhengce.png" style="height: 300upx;"></image>
 			<view class="zhengce-txt">
 				<!-- 政策解读 -->

@@ -17,7 +17,12 @@
 					>
             <view class="jinrong">
               <!-- 中间圆图 -->
-              <image src="@/static/common/jinrong.jpg" mode="" @tap="changeBulge()"></image>
+              <view class="image-white">
+                
+              </view>
+              <view class="image-bg">
+                <image src="@/static/common/earth.png" mode="" @tap="changeBulge()"></image>
+              </view>
             </view>
             <!-- 五个小图标的视口盒子 -->
 						<view class="show-box" v-show="kaiguan == 1? true: false">
@@ -47,7 +52,7 @@
 						</view>
 					</view>
 					<view v-else :class="{
-						'active':$store.state.current == index
+						'active':current == index
 					}">
 						<view class="h-flex-x h-flex-center" @tap="go(item.name,index)">
 							<view class="icon">
@@ -81,10 +86,11 @@
 				default:true
 			}
 		},
+    
 		data() {
 			return {
 				prevIndex:-1,
-				current:3,
+				current:uni.getStorageSync('current'),
 				tabList:[
 					{
 						"icon":"home",
@@ -119,16 +125,16 @@
 		},
 		methods:{
 			change(index){
-				if(this.tabList[index].bulge){
-					return;
-				}
-				if(this.current == index){
-					return;
-				};
+				// if(this.tabList[index].bulge){
+				// 	return;
+				// }
+				// if(this.current == index){
+				// 	return;
+				// };
 				
-				this.prevIndex = this.current;
-				this.current = index;
-				this.openBulge = false;
+				// this.prevIndex = this.current;
+				// this.current = index;
+				// this.openBulge = false;
 			},
 			// 凸起按钮切换
 			changeBulge(){
@@ -146,7 +152,10 @@
         
 			},
       go(name,index) {
-        this.$store.state.current = index
+        this.$nextTick(()=> {
+          uni.setStorageSync('current',index)
+        })
+        console.log(index,'index');
       	uni.navigateTo({
       		url: `/pages/${name}/${name}`
       	})
@@ -155,6 +164,8 @@
       	
       	if(index<4){
           this.$store.state.current = 5
+          uni.setStorageSync('current',5)
+          this.current = uni.getStorageSync('current')
       		uni.navigateTo({
       			url: '/pages/invest/invest?id=' + index
       		})
@@ -181,14 +192,33 @@
 			height: 100%;
 			position: relative;
 			.jinrong {
-        image {
-          width: 170upx;
-          height: 170upx;
+        position: relative;
+        .image-bg {
+          width: 108upx;
+          height: 108upx;
+          border-radius: 50%;
+          background-color: #02AE71;
+          position: absolute;
+          top: -20upx;
+          left: 50%;
+          transform: translate(-50%,0);
+          display: grid;
+          place-items: center;
+          image {
+            width: 80upx;
+            height: 80upx;
+            z-index: 1;
+          }
+        }
+        .image-white {
+          width: 160upx;
+          height: 160upx;
           border-radius: 50%;
           background-color: #fff;
           position: absolute;
-          top: -70upx;
-          left: -2%;
+          top: -40upx;
+          left: 50%;
+          transform: translate(-50%,0);
           z-index: 0;
         }
       }
@@ -227,12 +257,12 @@
       overflow: hidden;
 			// 舵式容器
 			.rudder{
-				width: 500upx;
+				width: 420upx;
 				height: 250upx;
 				position: absolute;
 				z-index: -1;
 				left: 50%;
-				margin-left: -250upx;
+				margin-left: -210upx;
 				top: 60upx;
 				// overflow: hidden;
 				
@@ -241,6 +271,7 @@
 					z-index: -1;
 					width: 100%;
 					height: 200%;
+          // background-color: #02AE71;
 					// overflow: hidden;
 					top: 0;
 					left: 0;
@@ -254,11 +285,11 @@
 					top: 0;
 					height: 50%;
 					// overflow: hidden;
-					transform-origin:50% 100%;
-					transform:rotate(-180deg);
+					// transform-origin:50% 100%;
+					// transform:rotate(-180deg);
 					.items {
-            width: 120upx;
-            height: 120upx;
+            width: 80upx;
+            height: 80upx;
             border-radius: 50%;
             // background-color: #54d27e;
             color: #fff;
@@ -268,26 +299,26 @@
             position: relative;
           }
           .yuan1 {
-            top: 130upx;
-            left: -60upx;
+            top: 300upx;
+            left: 20upx;
           }
           
           .yuan2 {
-            top: 0;
-            left: -100upx;
+            top: 300upx;
+            left: -10upx;
           }
           .yuan3 {
-            top: -60upx;
-            left: -60upx;
+            top: 300upx;
+            left: -10upx;
           }
           .yuan4 {
-            top: 0upx;
-            left: -30upx;
+            top: 300upx;
+            left: 0upx;
           }
           
           .yuan5 {
-            top: 130upx;
-            left: -60upx;
+            top: 300upx;
+            left: -40upx;
           }
 					
 					&:before{
@@ -357,12 +388,39 @@
 		.open{
 			.show-box {
         .rudder{
-        	.content{
-        		transform:rotate(0deg);
-        	}
-        	.content{
-        		transition: transform 0.3s ease 0.1s;
-        	}
+          .content{
+            .yuan1 {
+              transform: translate(0,-150rpx);
+            }
+            .yuan1 {
+              transition: transform .3s ease 0s ;
+            }
+            .yuan2 {
+              transform: translate(0,-250rpx);
+            }
+            .yuan2 {
+              transition: transform .7s ease 0s ;
+            }
+            .yuan3 {
+              transform: translate(0,-200rpx);
+            }
+            .yuan3 {
+              transition: transform .5s ease 0s ;
+            }
+            .yuan4 {
+              transform: translate(0,-150rpx);
+            }
+            .yuan4 {
+              transition: transform .3s ease 0s ;
+            }
+            .yuan5 {
+              transform: translate(0,-250rpx);
+            }
+            .yuan5 {
+              transition: transform 0.9s ease 0s ;
+            }
+          }
+        	
         	
         }
       }
@@ -372,10 +430,36 @@
         
         .rudder{
         	.content{
-        		transform:rotate(-180deg);
-        	}
-        	.content{
-        		transition: transform 0.3s ease 0s;
+        		.yuan1 {
+        	    transform: translate(0,150rpx);
+        	  }
+        	  .yuan1 {
+        	    transition: transform .3s ease 0s ;
+        	  }
+            .yuan2 {
+              transform: translate(0,250rpx);
+            }
+            .yuan2 {
+              transition: transform .7s ease 0s ;
+            }
+            .yuan3 {
+              transform: translate(0,200rpx);
+            }
+            .yuan3 {
+              transition: transform .5s ease 0s ;
+            }
+            .yuan4 {
+              transform: translate(0,150rpx);
+            }
+            .yuan4 {
+              transition: transform .3s ease 0s ;
+            }
+            .yuan5 {
+              transform: translate(0,250rpx);
+            }
+            .yuan5 {
+              transition: transform 0.9s ease 0s ;
+            }
         	}
         	
         }
