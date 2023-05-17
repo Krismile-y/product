@@ -482,6 +482,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/bankcard/bankcard",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "银行卡",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationStyle": "default",

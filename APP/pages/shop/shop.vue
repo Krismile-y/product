@@ -1,102 +1,118 @@
 <template>
-	<view class="content" style="min-height: 120vh; padding-bottom: 100upx;">
-
-		<!-- 弹出层 -->
-		<view>
-			<u-popup :show="show" @close="close" @open="open" round="60">
-				<view class="popup " style="margin-top: 50px;">
-					<scroll-view scroll-y="true" style="width: 100%;height: 100%; ">
-						<view class="shopDetail">
-							<view style="background-color: #fff; padding-bottom: 30upx;">
-								<view class="back">
-									<view class="backBtn dis" @tap="backBtn"><</view>
-								</view>
-								<image
-									:src="item.head_img" style="margin-top: 30upx;">
-								</image>
-								<view class="biaoti">
-									<view class="left dis">绿色商品</view>
-									<text>{{item.wares_name}}</text>
-								</view>
-								<!-- <view class="tishi">
-									温馨提示：冬季暖心必备，家用小型电水壶
-								</view> -->
-
-								<!-- <view class="buy dis">
-									您可以使用能量兑换商品
-								</view> -->
-							</view>
-
-							<!-- <view class="de">
-								{{item}}
-							</view> -->
-
-							<view class="btn dis" @tap='duihuan'>
-								兑换
-							</view>
-
-						</view>
-					</scroll-view>
-				</view>
-			</u-popup>
-
+	
+	<view class="content">
+		
+		<view class="xintop disc">
+			
 		</view>
-
-        <!-- 滑动 -->
 		
-		    <!-- <scroll-view scroll-y="true" style="width: 100%;height: calc(100vh - 96upx);">
-		    	<view></view>
-		    </scroll-view> -->
 		
-			<view class="top" style="position: relative;">
-			<view class="toAddress">
-				<view class="item disc">
-					<view>我的积分</view>
-					<view>{{info.money_integral}}</view>
-				</view>
-				<view class="item dis">
-					<image src="../../static/common/weizhi.png" mode="" @tap='address'></image>
-				</view>
+		
+		
+		
+		<view class="content" style="min-height: 120vh; padding-bottom: 100upx;" v-show="false">
+		
+			<!-- 弹出层 -->
+			<view>
+				<u-popup :show="show" @close="close" @open="open" round="60">
+					<view class="popup " style="margin-top: 50px;">
+						<scroll-view scroll-y="true" style="width: 100%;height: 100%; ">
+							<view class="shopDetail">
+								<view style="background-color: #fff; padding-bottom: 30upx;">
+									<view class="back">
+										<view class="backBtn dis" @tap="backBtn"><</view>
+									</view>
+									<image
+										:src="item.head_img" style="margin-top: 30upx;">
+									</image>
+									<view class="biaoti">
+										<view class="left dis">绿色商品</view>
+										<text>{{item.wares_name}}</text>
+									</view>
+									<!-- <view class="tishi">
+										温馨提示：冬季暖心必备，家用小型电水壶
+									</view> -->
+		
+									<!-- <view class="buy dis">
+										您可以使用能量兑换商品
+									</view> -->
+								</view>
+		
+								<!-- <view class="de">
+									{{item}}
+								</view> -->
+		
+								<view class="btn dis" @tap='duihuan'>
+									兑换
+								</view>
+		
+							</view>
+						</scroll-view>
+					</view>
+				</u-popup>
+		
 			</view>
-			</view>
+		
+		    <!-- 滑动 -->
 			
-			<view class="av" v-show="false">
+			    <!-- <scroll-view scroll-y="true" style="width: 100%;height: calc(100vh - 96upx);">
+			    	<view></view>
+			    </scroll-view> -->
+			
+				<view class="top" style="position: relative;">
+				<view class="toAddress">
+					<view class="item disc">
+						<view>我的积分</view>
+						<view>{{info.money_integral}}</view>
+					</view>
+					<view class="item dis">
+						<image src="../../static/common/weizhi.png" mode="" @tap='address'></image>
+					</view>
+				</view>
+				</view>
 				
-				<view class="left">
-					<view>我的 推荐人：mr:li</view>
-					<view>我的积分：{{info.money_integral}}</view>
+				<view class="av" v-show="false">
+					
+					<view class="left">
+						<view>我的 推荐人：mr:li</view>
+						<view>我的积分：{{info.money_integral}}</view>
+					</view>
+					<view class="right dis">
+						<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465"
+							mode=""></image>
+					</view>
 				</view>
-				<view class="right dis">
-					<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465"
-						mode=""></image>
+				<view class="newTop " v-show="false">
+					<view>可提现：0.00</view>
+					<view>每日收益：0.00</view>
+					<view>总收益：0.00</view>
+					<view>绿币：0.00</view>
+					<view>碳票：0.00</view>
+					<view>积分：0.00</view>
 				</view>
-			</view>
-			<view class="newTop " v-show="false">
-				<view>可提现：0.00</view>
-				<view>每日收益：0.00</view>
-				<view>总收益：0.00</view>
-				<view>绿币：0.00</view>
-				<view>碳票：0.00</view>
-				<view>积分：0.00</view>
-			</view>
+				
+				<!-- ********** -->
+				<view class="box" style="margin-top: 60upx;">
+					<view class="shop disc" v-for="item in list" @tap="go(item)" style="margin-left: 10upx;">
+						<image @tap="show=true"
+							:src="item.head_img"
+							mode=""></image>
+						<view class="title">{{item.wares_name}}</view>
+						<view class="detail">{{item.wares_money}}元</view>
+					</view>
+				
+				</view>
 			
-			<!-- ********** -->
-			<view class="box" style="margin-top: 60upx;">
-				<view class="shop disc" v-for="item in list" @tap="go(item)" style="margin-left: 10upx;">
-					<image @tap="show=true"
-						:src="item.head_img"
-						mode=""></image>
-					<view class="title">{{item.wares_name}}</view>
-					<view class="detail">{{item.wares_money}}元</view>
-				</view>
-			
-			</view>
 		
-
-		<view class="bottom-box">
-		  <helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
+			<view class="bottom-box">
+			  <helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
+			</view>
 		</view>
 	</view>
+	
+	
+	
+	
 </template>
 
 <script>
@@ -290,6 +306,10 @@
 	}
 </script>
 
-<style lang="less" src='./shop.less'>
+<!-- <style lang="less" src='./shop.less'>
+
+</style> -->
+
+<style lang="less" src='./new.less'>
 
 </style>

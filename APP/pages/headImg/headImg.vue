@@ -2,9 +2,10 @@
 	<view class="headImg">
 		<image :src="imageSrc" :style="imgStyle" mode="" class="img-head"></image>
 		<view class="bottom-btn">
-			<view class="bbtn" @tap="chooseImage">
+			<view class="bbtn" @tap="x">
 				从相册选择一张
 			</view>
+
 			<view class="bbtn">
 				拍一张照片
 			</view>
@@ -13,6 +14,7 @@
 </template>
 
 <script>
+	import md5 from 'js-md5';
 	import defaultImg from "../../common/user.webp"
 	export default {
 		data() {
@@ -34,9 +36,10 @@
 			this.getScreenWidth()
 			let info = uni.getStorageSync('user_info')
 			this.imageSrc = info.head_img
-			console.log(info, 'user');
+			// console.log(info, 'user');
 		},
 		methods: {
+
 			getScreenWidth() {
 				uni.getSystemInfo({
 					success: (res) => {
@@ -45,20 +48,8 @@
 					}
 				})
 			},
-			blobToFormData(blob, otherData) {//二进制表单
-			  const formData = new FormData();
-			  
-			  // 将其他表单数据按键值对的方式添加至 FormData 中
-			  Object.keys(otherData).forEach((key) => {
-			    formData.append(key, otherData[key]);
-			  });
-			
-			  // 将 blob 对象添加至 FormData 中
-			  formData.append('binary', blob, 'file.bin');
-			
-			  return formData;
-			},
-			
+
+            
 			chooseImage: function() {
 
 				var _this = this;
@@ -76,47 +67,39 @@
 					},
 					success: (res) => {
 						//因为有一张图片， 输出下标[0]， 直接输出地址
-						// _this.imageSrc = res.tempFilePaths[0];
+						_this.imageSrc = res.tempFilePaths[0];
 						// console.log(_this.imageSrc, '本地图片');
-						// console.log(res,'选择成功后')
+						console.log(res, 'res')
 						// _this.imgFile = res.tempFiles[0]
-						 const tempFilePaths = res.tempFilePaths[0];
-						 console.log(tempFilePaths,'blob')
-						 // 表单对象
-						 var form = new FormData();
-						 // form.append("image", res.tempFilePaths[0]);
-						 // form.append("type", res.tempFiles[0].typ);
-						console.log(form)
-						
-						let data={
-						  	'image':tempFilePaths,
-						  	'type':res.tempFiles[0].type
-						  	
-						  }
-						  
-						  _this.$fn.request('upload', "POST",data).then(res => {
-						  	// let is_whole = 1
-						  	// _this.$nextTick(()=> {
-						  	//   _this.$fn.request('user', "GET", is_whole).then(res => {
-						  	//     console.log(res,'用户信息');
-						  	//   })
-						  	// })
-						  	console.log(res, '图片接口返回');
-						  	if(res.data.code == 1){
-						  		uni.showToast({
-						  			title: '上传成功',
-						  			icon: "success"
-						  		})
-						  	}else{
-						  		uni.showToast({
-						  			title: res.data.msg,
-						  			icon: "error"
-						  		})
-						  	}
-						  })
-						
-						  
-						
+						// const tempFilePaths = res.tempFilePaths[0];
+						var form = new FormData();
+						form.append('file',res.tempFilePaths)
+						// -
+						let data = {
+							'image': form,
+							'type': res.tempFiles[0].type
+						}
+						_this.$fn.request('upload', "POST", data).then(res => {
+							// let is_whole = 1
+							// _this.$nextTick(()=> {
+							//   _this.$fn.request('user', "GET", is_whole).then(res => {
+							//     console.log(res,'用户信息');
+							//   })
+							// })
+							console.log(res, '图片接口返回');
+							if (res.data.code == 1) {
+								uni.showToast({
+									title: '上传成功',
+									icon: "success"
+								})
+							} else {
+								uni.showToast({
+									title: res.data.msg,
+									icon: "error"
+								})
+							}
+						})
+
 						// 上传图片, 做成一个上传对象
 						// uni.uploadFile({
 						// 需要上传的地址

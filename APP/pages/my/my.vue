@@ -120,7 +120,7 @@
 					{
 						name:"银行卡绑定",
 						url:'../../static/newMy/yinhangka.png',
-						go:'safe',
+						go:'bankcard',
 					},
 					{
 						name:"实名认证",
