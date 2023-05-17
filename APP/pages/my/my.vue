@@ -12,7 +12,7 @@
 							<view class="username">{{info.user_name}}</view>
 							<view class="shiming dis">
 								<image src="../../static/newMy/icon_people.png" mode="" style="width: 20upx;height: 20upx;margin-right: 10upx;"></image>
-								实名认证
+								{{zhuangtai}}
 								</view>
 						</view>
 						<view class="code">
@@ -27,20 +27,20 @@
 		<view class="zongshouyi">
 			<view class="one disc">
 				<view style="color: #fff;">总收益</view>
-				<view style="font-weight: 600;font-size: 42upx;">151515</view>
+				<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{info.money_balance}}</view>
 			</view>
 			<view class="two disc">
 				<view class="t" style="width: 100%;height: 60%;display: flex;">
 					<view class="twoItem disc">
 						<view>每日收益</view>
-						<view>26661</view>
+						<view>{{today}}</view>
 					</view>
 					<view class="twoItem disc">
 						<view>可提现金额</view>
-						<view>26661</view>
+						<view>{{info.money_approve}}</view>
 					</view>
 				</view>
-				<view class="last dis">
+				<view class="last dis" style="margin-top: -30upx;" @tap="go('withdrawal')">
 					提现申请
 				</view>
 			</view>
@@ -49,21 +49,30 @@
 		
 		<!-- 三个-->
 		<view class="three">
-			<view class="threeItem" style="background-image: url('../../static/newMy/two.png');"></view>
+			<view class="threeItem" style="background-image: url('../../static/newMy/lvbibg.png');">
+				<view  style="padding-left: 20upx;padding-top: 10upx;">我的绿币</view>
+				<view style="padding-left: 20upx;">{{info.money_green}}</view>
+			</view>
 			
-			<view class="threeItem" style="background-image: url('../../static/newMy/two.png');"></view>
-			<view class="threeItem" style="background-image: url('../../static/newMy/three.png');"></view>
+			<view class="threeItem" style="background-image: url('../../static/newMy/two.png');">
+				<view  style="padding-left: 20upx;padding-top: 10upx;">我的碳票</view>
+				<view style="padding-left: 20upx;">{{info.money_vote}}</view>
+			</view>
+			<view class="threeItem" style="background-image: url('../../static/newMy/three.png');">
+				<view  style="padding-left: 20upx;padding-top: 10upx;">碳汇</view>
+				<view style="padding-left: 20upx;">{{info.money_converge}}</view>
+			</view>
 		</view>
 		
 		<!-- 活动标题 -->
 		<view class="title">
 			<view class="shu"></view>
-			活动中心
+			个人明细
 		</view>
 		<view class="huodongBox dis">	
 				<view class="huodongItem disc" v-for="item in huodongList"  @tap="go(item.go)">
 					<view class="yuan dis">
-						<image src="../../static/newMy/fenxiang.png" mode=""></image>
+						<image :src="item.url" mode=""></image>
 					</view>
 					<view style="margin-top: 10upx;">{{item.name}}</view>
 				</view>		
@@ -76,10 +85,10 @@
 			我的资金
 		</view>
 		
-		<view class="money" v-for="item in 4">
-			<view class="moneyItem">
-				<image src="../../static/my/jilu.png" mode=""></image>
-				收益记录
+		<view class="money" v-for="(item,index) in jiluList">
+			<view class="moneyItem" @tap="go(item.go)">
+				<image :src="item.url" mode=""></image>
+				{{item.name}}
 				<view class="pos dis">
 					<image src="../../static/newMy/youjiantou.png" mode="" ></image>
 				</view>
@@ -103,45 +112,67 @@
 				today: "",
 				out: 0,
 				zhuangtai:"",
+				jiluList:[
+					{
+						name:"安全保障",
+						url:'../../static/newMy/anquanbaozhang.png',
+						go:'safe',
+					},
+					{
+						name:"银行卡绑定",
+						url:'../../static/newMy/yinhangka.png',
+						go:'safe',
+					},
+					{
+						name:"实名认证",
+						url:'../../static/newMy/shiming.png',
+						go:'safe',
+					},
+					{
+						name:"设置",
+						url:'../../static/newMy/shezhi.png',
+						go:'setting',
+					},
+				],
 				huodongList:[
 					{
-						name:'分享邀请',
-						url:'',
+						name:'投资明细',
+						url:'../../static/newMy/touzi.png',
 						go:'invite'
 					},
 					{
-						name:'消息中心',
-						url:'',
-						go:'msg'
+						name:'收益明细',
+						url:'../../static/newMy/shouyi.png',
+						go:'income'
 					},
 					{
-						name:'我的团队',
-						url:'',
+						name:'提现明细',
+						url:'../../static/newMy/tixian.png',
 						go:'myGroup'
 					},
 					{
-						name:'进入官网',
-						url:'',
+						name:'积分明细',
+						url:'../../static/newMy/jifen.png',
 						go:'guanwnag',
 					},
 					{
-						name:'我的商城',
-						url:'',
+						name:'绿币明细',
+						url:'../../static/newMy/lvbi.png',
 						go:'myShop'
 					},
 					{
-						name:'充值',
-						url:'',
+						name:'碳票明细',
+						url:'../../static/newMy/tanpiao.png',
 						go:'test'
 					},
 					{
-						name:'平台攻略',
-						url:'',
+						name:'碳汇明细',
+						url:'../../static/newMy/tanhui.png',
 						go:'terrace'
 					},
 					{
-						name:'设置',
-						url:'',
+						name:'公益明细',
+						url:'../../static/newMy/gongyi.png',
 						go:'setting'
 					},
 				]
