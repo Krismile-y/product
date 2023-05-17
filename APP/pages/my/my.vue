@@ -49,18 +49,17 @@
 		
 		<!-- 三个-->
 		<view class="three">
-			<view class="threeItem" style="background-image: url('../../static/newMy/lvbibg.png');">
-				<view  style="padding-left: 20upx;padding-top: 10upx;">我的绿币</view>
-				<view style="padding-left: 20upx;">{{info.money_green}}</view>
-			</view>
-			
+      <view class="threeItem" style="background-image: url('../../static/newMy/three.png');">
+      	<view  style="padding-left: 20upx;padding-top: 10upx;">我的碳汇</view>
+      	<view style="padding-left: 20upx;">{{info.money_converge}}</view>
+      </view>
 			<view class="threeItem" style="background-image: url('../../static/newMy/two.png');">
 				<view  style="padding-left: 20upx;padding-top: 10upx;">我的碳票</view>
 				<view style="padding-left: 20upx;">{{info.money_vote}}</view>
 			</view>
-			<view class="threeItem" style="background-image: url('../../static/newMy/three.png');">
-				<view  style="padding-left: 20upx;padding-top: 10upx;">碳汇</view>
-				<view style="padding-left: 20upx;">{{info.money_converge}}</view>
+			<view class="threeItem" style="background-image: url('../../static/newMy/lvbibg.png');">
+				<view  style="padding-left: 20upx;padding-top: 10upx;">我的绿币</view>
+				<view style="padding-left: 20upx;">{{info.money_green}}</view>
 			</view>
 		</view>
 		
@@ -79,10 +78,10 @@
 		</view>
 		
 		
-		<!-- 我的资金 -->
+		<!-- 个人中心 -->
 		<view class="title" style="margin-bottom: 30upx;">
 			<view class="shu"></view>
-			我的资金
+			个人中心
 		</view>
 		
 		<view class="money" v-for="(item,index) in jiluList">
@@ -138,7 +137,7 @@
 					{
 						name:'投资明细',
 						url:'../../static/newMy/touzi.png',
-						go:'invite'
+						go:'record'
 					},
 					{
 						name:'收益明细',
@@ -148,27 +147,27 @@
 					{
 						name:'提现明细',
 						url:'../../static/newMy/tixian.png',
-						go:'myGroup'
+						go:'twithdrawal'
 					},
 					{
 						name:'积分明细',
 						url:'../../static/newMy/jifen.png',
-						go:'guanwnag',
+						go:'jifenminxi',
 					},
 					{
 						name:'绿币明细',
 						url:'../../static/newMy/lvbi.png',
-						go:'myShop'
+						go:'lvbi'
 					},
 					{
 						name:'碳票明细',
 						url:'../../static/newMy/tanpiao.png',
-						go:'test'
+						go:'tanpiao'
 					},
 					{
 						name:'碳汇明细',
 						url:'../../static/newMy/tanhui.png',
-						go:'terrace'
+						go:'tanhui'
 					},
 					{
 						name:'公益明细',

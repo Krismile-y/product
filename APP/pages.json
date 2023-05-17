@@ -380,11 +380,21 @@
             "path" : "pages/jifenminxi/jifenminxi",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "签到详情",
+                "navigationBarTitleText": "积分明细",
                 "enablePullDownRefresh": false
             }
             
         }
+        ,{
+            "path" : "pages/lvbi/lvbi",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "绿币明细",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        
         ,{
             "path" : "pages/address/address",
             "style" :                                                                                    
@@ -454,7 +464,24 @@
             }
             
         }
-        
+        ,{
+            "path" : "pages/tanhui/tanhui",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "碳汇明细",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/tanpiao/tanpiao",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "碳票明细",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationStyle": "default",
