@@ -155,7 +155,7 @@
       submitForm(ref) {
         this.$refs[ref].validate().then(res => {
           console.log('success', res);
-          if(res.u_back_card.length != 19) {
+          if(res.u_back_card.length <= 15 || res.u_back_card.length >19) {
             uni.showToast({
               title: "请检查银行卡号输入是否正确",
               icon:"error"

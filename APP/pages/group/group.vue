@@ -27,7 +27,7 @@
 				<view class="font ">
 					绿色中国宣传直推30人岗位津贴1500元/月
 				</view>
-				<view class="btn dis">(18/30)领取</view>
+				<view class="btn pink dis">(18/30)领取</view>
 			</view>
 		</view>
 		
@@ -113,5 +113,10 @@
     bottom: 15upx;
     right: 15upx;
 	}
+  .pink {
+    filter: brightness(110%);
+    box-shadow: 0 0 5px #fff, 0 0 10upx #fff, 0 0 15upx #fff, 0 0 10upx #fff,
+        0 0 10upx #fff, 0 0 40upx #fff, 0 0 10upx #fff, 0 0 15upx #fff;
+  }
 }
 </style>

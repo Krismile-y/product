@@ -93,6 +93,7 @@ export default {
 		// console.log(uni.getStorageSync('token'),'')
 
 	},
+  
 	onBackPress(event) {
 		if (this.out == 0) {
 			this.out++
@@ -189,6 +190,11 @@ export default {
 			this.$refs.down.upgrade()  //检查更新
 			// #endif
 		},
+    linshitiaozhuan() {
+      uni.navigateTo({
+        url:'/pages/projectDetails/projectDetails'
+      })
+    },
 		ceshi() {
 			console.log()
 		},

@@ -415,6 +415,24 @@
             
         }
         ,{
+            "path" : "pages/projectDetails/projectDetails",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "项目详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/rengou/rengou",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "项目详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
             "path" : "pages/certificate/certificate",
             "style" :                                                                                    
             {

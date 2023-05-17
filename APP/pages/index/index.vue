@@ -78,7 +78,7 @@
       </view>
 			<view class="item disc">
         <view class="img-box">
-          <image src="../../static/newIndex/icon_topic_normal.png"></image>
+          <image src="../../static/newIndex/icon_topic_active.png"></image>
         </view>
 				<view class="title">我的社区</view>
 			</view>
@@ -87,7 +87,7 @@
 			
 			<view class="item disc" @tap="goHome('myGroup')">
         <view class="img-box">
-          <image src="../../static/newIndex/icon_shop_normal.png"></image>
+          <image src="../../static/newIndex/icon_shop_active.png"></image>
         </view>
 				<view class="title">积分商城</view>
 			</view>
@@ -149,7 +149,7 @@
       </view>
     </view>
 	
-    <view class="news gongyi">
+    <view class="news gongyi" @tap="linshitiaozhuan">
     	<view class="news-title">
     	  <text>绿色公益</text>
         <image src="../../static/newIndex/icon-right.png" mode=""></image>
