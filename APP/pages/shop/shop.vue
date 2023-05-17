@@ -1,14 +1,44 @@
 <template>
 	
-	<view class="content">
+	<view class="content" style="position: relative;">
+		<!-- 头部 -->
 		
-		<view class="xintop disc">
+			<view class="xintop disc">
+				<view style="">我的积分</view>
+				<view style="margin-top: 30upx;font-size: 36upx; font-weight: 580;">{{info.money_integral}}</view>
+				<view class="pos dis" @tap='address'>
+					<image src="../../static/newShop/icon_local_slices/icon_local.png" mode=""></image>
+					收货地址
+				</view>
+				
+			</view>
+	
+		
+		<!-- 商品盒子 -->
+		<view class="itemBox">
 			
+			
+			<view class="box">
+				<view class="title">
+					<view class="shu"></view>
+					积分商城
+				</view>
+				<view class="boxItem" v-for="(item,index) in list" @tap="shopDetail(item)">
+					<image :src="item.head_img"></image>
+				 <view class="name">{{item.wares_name}} </view>
+				<view class="juse">
+					<view style="font-size: 34upx;">{{item.wares_money}}</view>
+					<view style="font-size: 22upx;padding-top: 10upx;margin-left: 10upx;">积分</view>
+				</view>	
+				 
+				</view>
+				
+			</view>
 		</view>
 		
-		
-		
-		
+		<view class="bottom-box" style="z-index: 2999;">
+		  <helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
+		</view>
 		
 		<view class="content" style="min-height: 120vh; padding-bottom: 100upx;" v-show="false">
 		
@@ -166,10 +196,10 @@
 			}
 		},
 		mounted() {
-			uni.pageScrollTo({
-				duration: 100,
-				scrollTop: 120,
-			})
+			// uni.pageScrollTo({
+			// 	duration: 100,
+			// 	scrollTop: 120,
+			// })
 		},
 		onLoad() {
 			// 积分兑换商品列表
@@ -300,6 +330,13 @@
 			address() {
 				uni.navigateTo({
 					url: '/pages/address/address'
+				})
+			},
+			// 商品详情
+			shopDetail(item){
+				uni.setStorageSync('shopDetail',item)
+				uni.navigateTo({
+					url:'/pages/shopDetail/shopDetail'
 				})
 			}
 		}
