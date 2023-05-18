@@ -10,13 +10,13 @@
       <view class="card-number">
         {{item.card}}
       </view>
-      <image class="editImg" src="../../static/newIndex/edit.png" mode=""></image>
-      <image class="deleteImg" src="../../static/newIndex/delete_light.png" mode=""></image>
-      <view class="defaultText">
+      <image class="editImg" src="../../static/newIndex/edit.png" mode="" @tap="open(2,index)"></image>
+      <image class="deleteImg" src="../../static/newIndex/delete_light.png" mode="" @tap="openModel(index)"></image>
+      <view class="defaultText" v-show="(item.is_default==1)">
         默认
       </view>
     </view>
-    <view class="addCard" @tap="open()">
+    <view class="addCard" @tap="open(1,-1)">
       <image src="../../static/newIndex/add.png" mode=""></image>
       <view class="addtext">
         添加银行卡
@@ -34,11 +34,15 @@
           <uni-forms-item required name="u_back_user_name" label="卡用户名">
             <uni-easyinput type="text" v-model="valiFormData.u_back_user_name" placeholder="请输入卡用户名" />
           </uni-forms-item>
+          <uni-forms-item label="是否设置为默认" name="is_default">
+            <uni-data-checkbox v-model="valiFormData.is_default" :localdata="sexs" />
+          </uni-forms-item>
         </uni-forms>
         <button @tap="submitForm('valiForm')" type="primary">填写完成</button>
         <button @tap="close">取消</button>
       </view>
     </u-popup>
+    <u-modal :show="delCardType" title="系统消息" :content='content' :showCancelButton="true" @confirm="confirm" @cancel="cancel"></u-modal>
   </view>
 </template>
 
@@ -49,11 +53,16 @@ import index from '../index';
       return {
         cardList: [],
         show: false, //添加银行卡弹框
+        typeForm: 1,  //用于判断表单是新增还是修改 1新增 2修改
+        nowCardId: '',
+        content:'请问您确定要删除吗',
+        delCardType: false,
         // 校验表单数据
         valiFormData: {
           u_back_card: '',
           u_bank_name: '',
           u_back_user_name: '',
+          is_default: 0
         },
         // 校验规则
         rules: {
@@ -79,10 +88,18 @@ import index from '../index';
             }]
           }
         },
+        sexs: [{
+        					text: '否',
+        					value: 0
+        				}, {
+        					text: '是',
+        					value: 1
+        				}],
       };
     },
     methods: {
       init() {
+        this.cardList = []
         // 获取用户已绑定的银行卡
         let params = {
           
@@ -91,7 +108,8 @@ import index from '../index';
         this.$fn.request('my_bank', "POST", params).then(res => {
           console.log(res,'我的银行卡');
           res.data.data.forEach((item,index) => {
-            item.card = that.newCardNum(item.card)
+            let cardStr = item.card.trim()
+            item.card = that.newCardNum(cardStr)
             that.cardList.push(item)
           })
         })
@@ -107,9 +125,20 @@ import index from '../index';
           this.close()
         })
       },
+      editCard(params) {
+        // 修改银行卡
+        this.$fn.request('edit_bank', "POST", params).then(res => {
+          uni.showToast({
+            title:"修改银行卡成功",
+            icon:'success'
+          })
+          this.init()
+          this.close()
+        })
+      },
       // 删除银行卡
       deleteCard(bid) {
-        this.$fn.request('bank', "POST", params).then(res => {
+        this.$fn.request('del_bank', "POST", bid).then(res => {
           console.log(res,'删除我的银行卡');
           uni.showToast({
             title:"删除银行卡成功",
@@ -117,6 +146,23 @@ import index from '../index';
           })
           this.init()
         })
+      },
+      openModel(index) {
+        this.nowCardId = this.cardList[index].id
+        this.delCardType = true
+      },
+      confirm() {
+        let params = {}
+        params.bid = this.nowCardId
+        this.delCardType = false
+        this.deleteCard(params)
+      },
+      cancel() {
+        this.delCardType = false
+      },
+      // 去掉字符串中所有的空格
+      noSpace(str) {
+        return str.replace(/\s/g, '')
       },
       // 每四位数用空格隔开
       newCardNum(stringNum) {
@@ -135,7 +181,24 @@ import index from '../index';
       bian(index) {
         this.currentIndex = index
       },
-      open() {
+      open(type,index) {
+        // type = 1 新增 ，2修改
+        if(type == 1) {
+          this.typeForm = type
+          this.valiFormData = {
+            u_back_card: '',
+            u_bank_name: '',
+            u_back_user_name: '',
+            is_default:0,
+          }
+        }else if(type == 2) {
+          this.typeForm = type
+          this.nowCardId = this.cardList[index].id
+          this.valiFormData.u_back_card = this.cardList[index].card
+          this.valiFormData.u_bank_name = this.cardList[index].name
+          this.valiFormData.u_back_user_name = this.cardList[index].account_name
+          this.valiFormData.is_default = this.cardList[index].is_default
+        }
         this.show = true
       },
       close() {
@@ -145,8 +208,9 @@ import index from '../index';
         // 非中文字符的正则表达式
         const reg = /[^\u4e00-\u9fa5]/g
         this.$refs[ref].validate().then(res => {
-          console.log('success', );
-          if(res.u_back_card.length <= 15 || res.u_back_card.length >19 ) {
+          let cardStr = this.noSpace(res.u_back_card)
+          console.log('success',res ,cardStr);
+          if(cardStr.length <= 15 || cardStr.length >19 ) {
             uni.showToast({
               title: "请检查银行卡号输入是否正确",
               icon:"error"
@@ -161,12 +225,20 @@ import index from '../index';
             let params = {
               name: '',
               card: '',
-              account_name: ''
+              account_name: '',
+              default: 0
             }
             params.name = res.u_bank_name
-            params.card = res.u_back_card
+            params.card = cardStr
             params.account_name = res.u_back_user_name
-            this.addCard(params)
+            params.default = res.is_default
+            console.log(params);
+            if(this.typeForm == 1) {
+              this.addCard(params)
+            }else {
+              params.bid = this.nowCardId
+              this.editCard(params)
+            }
           }
         }).catch(err => {
           console.log('err', err);

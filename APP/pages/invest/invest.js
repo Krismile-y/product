@@ -42,10 +42,7 @@ export default {
 			};
 		},
 		mounted() {
-			uni.pageScrollTo({
-				duration: 100,
-				scrollTop: 120,
-			})
+			
 		},
 		onShow(){
 			
@@ -166,61 +163,6 @@ export default {
         this.dayChangeClose()
 				console.log(item.id)
 			},
-			shang(){//上一步
-			console.log(this.showIndex)
-			 //    if(this.showIndex==0){
-				// 	return
-				// }
-				this.showIndex--
-			},
-			next(){//下一步
-				this.showIndex++
-				// if(this.showIndex>3){
-				// 	return
-				// }
-				
-				if(this.showIndex==1){
-					//产品天数接口
-					let goods_day={
-						'gid':this.detail.id
-					}
-					this.$fn.request('goods/goods_day', 'GET',goods_day).then(res => {
-						// console.log(res,'产品天数接口')
-						this.dayID=res.data.data.data
-						console.log(this.dayID,'产品天数接口')
-					})
-				}
-				
-				
-				
-			},
-			pay(){ //最终支付
-			console.log(this.xiadan.toString())
-				let data={
-					'gid':this.detail.id.toString(),
-					'num':this.xiadan.toString(),
-					'did':this.dayID[this.currentDay].id.toString(),
-					'pid':(this.typeIndex+1).toString(),
-					'cid':'0'
-				}
-				this.$fn.request('/pay/order', 'POST',data).then(res => {
-					console.log(res.data,)
-					// this.goods_list=res.data.data.data
-					if(res.data.code == 1){
-						uni.showToast({
-							title:'购买成功',
-							duration:1000,
-							icon:"success"
-						})
-					}else{
-						uni.showToast({
-							title:res.data.msg,
-							duration:1000,
-							icon:"error"
-						})
-					}
-				})
-			},
 			// -----------
 			changeDay(e){
 				// this.currentDay=e
@@ -230,20 +172,6 @@ export default {
 				console.log(this.xiadan)
 			},
 			
-			lijirengou(item){//立即认购
-				this.zhifu=true
-				this.showIndex=0
-				
-				// 页面天数
-				let goods_day={
-					'gid':this.detail.id
-				}
-				this.$fn.request('goods/goods_day', 'GET',goods_day).then(res => {
-					// console.log(res,'产品天数接口')
-					this.dayID=res.data.data.data
-					console.log(this.dayID,'产品天数接口')
-				})
-			},
 			bian(index,id) {//切换产品列表接口
 				this.currentIndex = index
 				// 产品列表接口
@@ -262,19 +190,18 @@ export default {
 				})
 			},
 			go(index) {
-				this.show=true
+				// this.show=true
 				this.id=index
 				// 产品详情
-				let goods_one={
-					"id":this.id
-				}
-				this.$fn.request('goods/goods_one', 'GET',goods_one).then(res => {
-					console.log(res.data.data,'产品详情')
-					this.detail=res.data.data
-				}) 
-				uni.pageScrollTo({
-					duration:100,
-					scrollTop:0,
+				// let goods_one={
+				// 	"id":this.id
+				// }
+				// this.$fn.request('goods/goods_one', 'GET',goods_one).then(res => {
+				// 	console.log(res.data.data,'产品详情')
+				// 	this.detail=res.data.data
+				// }) 
+				uni.navigateTo({
+				  url:`/pages/projectDetails/projectDetails?id=${index}`
 				})
 			},
 			open() {

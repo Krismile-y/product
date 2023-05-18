@@ -191,11 +191,6 @@ export default {
 			this.$refs.down.upgrade()  //检查更新
 			// #endif
 		},
-    linshitiaozhuan() {
-      uni.navigateTo({
-        url:'/pages/projectDetails/projectDetails'
-      })
-    },
 		ceshi() {
 			console.log()
 		},

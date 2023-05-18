@@ -1,19 +1,19 @@
 <template>
-  <view class="projectDetails">
+  <view class="projectDetails" ref="projectDetails">
     <!-- 项目详情 -->
     <!-- 商品详情图片 -->
-    <image class="detailsImg" src="../../static/uni.png" mode=""></image>
+    <image class="detailsImg" :src="detail.head_img" mode="widthFix"></image>
     <!-- 商品信息 -->
     <view class="project-content">
       <view class="project-title">
-        项目名称
+        {{detail.goods_name}}
       </view>
       <view class="items">
         <view class="item-left">
           项目规模
         </view>
         <view class="item-right">
-          <text class="orange">5000.00</text>万元
+          <text class="orange">{{detail.project_scale}}</text>万元
         </view>
       </view>
       <view class="items">
@@ -21,7 +21,7 @@
           每日分红
         </view>
         <view class="item-right">
-          <text class="orange">1280.00</text>元
+          <text class="orange">{{detail.day_red}}</text>元
         </view>
       </view>
       <view class="items">
@@ -29,7 +29,7 @@
           投资周期
         </view>
         <view class="item-right">
-          <text class="orange">7</text>天
+          <text class="orange">{{detail.period}}</text>天
         </view>
       </view>
       <view class="items">
@@ -45,17 +45,20 @@
           担保机构
         </view>
         <view class="item-right">
-          中国人民银行
+          {{detail.warrant}}
         </view>
       </view>
     </view>
-    <view class="bottom-fixd">
+    <view class="opcity-bottom">
+      
+    </view>
+    <view class="bottom-fixd" :class="{'fixed': fixedType}">
       <view class="bottom-text">
         <text class="qitou">起投金额：</text>
-        <text class="orange">￥5000</text>
+        <text class="orange">￥{{parseInt(detail.goods_money)}}</text>
         <text class="orange small">.00</text>
       </view>
-      <view class="bottom-btn" @tap="go">
+      <view class="bottom-btn" @tap="go(detail.id)">
         马上认购
       </view>
     </view>
@@ -66,13 +69,29 @@
   export default {
     data() {
       return {
-        
+        id: '',
+        detail: {},
+        fixedType: true
       };
     },
+    onLoad(option) {
+      // 产品详情
+      this.id = option.id
+      let goods_one={
+      	"id":this.id
+      }
+      this.$fn.request('goods/goods_one', 'GET',goods_one).then(res => {
+      	console.log(res.data.data,'产品详情')
+      	this.detail=res.data.data
+      }) 
+    },
+    mounted() {
+      
+    },
     methods: {
-      go() {
+      go(detailId) {
         uni.navigateTo({
-          url:'/pages/rengou/rengou'
+          url:`/pages/rengou/rengou?id=${detailId}&img=${this.detail.head_img}`
         })
       }
     }
@@ -83,7 +102,7 @@
 .projectDetails {
   .detailsImg {
     width: 750rpx;
-    height: 750rpx;
+    // height: 750rpx;
   }
   .project-content {
     width: 702rpx;
@@ -125,6 +144,10 @@
       }
     }
   }
+  .opcity-bottom {
+    width: 100vw;
+    height: 180rpx;
+  }
   .bottom-fixd {
     width: 100vw;
     height: 180rpx;
@@ -164,6 +187,11 @@
       text-align: center;
       line-height: 80rpx;
     }
+  }
+  .fixed {
+    position: fixed;
+    bottom: 0%;
+    left: 0%;
   }
 }
 </style>
