@@ -509,6 +509,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/chooseAddress/chooseAddress",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "选择地址",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationStyle": "default",

@@ -250,11 +250,11 @@
 							uni.showToast({
 								duration:1000,
 								icon:"none",
-								title:'您还未添加默认地址'
+								title:'您还未选择地址'
 							})
 							setTimeout(()=>{
 								uni.navigateTo({
-									url:'/pages/address/address'
+									url:'/pages/chooseAddress/chooseAddress'
 								})
 							},1000)
 						}else{
@@ -273,11 +273,8 @@
 										duration: 1000,
 										title: '兑换成功'
 									})
-									this.show=false
-										uni.pageScrollTo({
-											duration: 100,
-											scrollTop: 120,
-										})
+									// this.show=false
+									
 								// 用户信息
 								let info={
 									"is_whole":"1"

@@ -25,9 +25,13 @@
 			</view>
 		</scroll-view>
 		
+		<!-- <view class="add dis">
+			<view class="f dis">添加地址</view>
+		</view> -->
+		
 		<view class="bottom dis">
 			<view class="in dis" @tap="add" >
-				新增地址 +
+			   添加地址
 			</view>
 		</view>
 		
@@ -42,15 +46,24 @@
 			    currentIndex:"",
 			};
 		},
+		onBackPress(event) {
+		
+		// 	if (event.from === 'backbutton') {
+				
+		
+		// 		return true;
+		// 	} else {
+		// 		// return false
+		// 	}
+		
+		},
 		onShow() {
 			this.currentIndex=uni.getStorageSync('addressIndex')
 			
 			this.$fn.request('my_address',"POST",{}).then(r=>{
-				// console.log(r,'地址')	
+				console.log(r.data.data,'地址')	
 				this.list=r.data.data
-				this.list.forEach((item,index)=>{
-					console.log(item)
-				})
+				
 			})
 		},
 		methods:{
@@ -63,9 +76,10 @@
 				// this.currentIndex=index
 				// uni.setStorageSync('addressIndex',index)
 				// uni.setStorageSync('address',item)
+				console.log(item.id)
 				// uni.showToast({
 				// 	duration:500,
-				// 	title:'已设为默认地址'
+				// 	title:'已选择地址'
 				// })
 			},
 			del(item){//删除地址

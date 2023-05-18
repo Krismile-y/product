@@ -164,11 +164,11 @@
 							icon:'success',
 							title:res.data.msg
 						})
-						setTimeout(()=>{
-							uni.navigateTo({
-								url:'/pages/address/address'
-							})
-						},500)
+						// setTimeout(()=>{
+						// 	uni.navigateTo({
+						// 		url:'/pages/address/address'
+						// 	})
+						// },500)
 					}else{
 						uni.showToast({
 							duration:1000,

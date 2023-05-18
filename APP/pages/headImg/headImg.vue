@@ -2,7 +2,7 @@
 	<view class="headImg">
 		<image :src="imageSrc" :style="imgStyle" mode="" class="img-head"></image>
 		<view class="bottom-btn">
-			<view class="bbtn" @tap="x">
+			<view class="bbtn" @tap="chooseImage()">
 				从相册选择一张
 			</view>
 
@@ -49,7 +49,7 @@
 				})
 			},
 
-            
+
 			chooseImage: function() {
 
 				var _this = this;
@@ -69,36 +69,64 @@
 						//因为有一张图片， 输出下标[0]， 直接输出地址
 						_this.imageSrc = res.tempFilePaths[0];
 						// console.log(_this.imageSrc, '本地图片');
-						console.log(res, 'res')
+						console.log(res.tempFiles[0], '二进制文件流')
 						// _this.imgFile = res.tempFiles[0]
-						// const tempFilePaths = res.tempFilePaths[0];
-						var form = new FormData();
-						form.append('file',res.tempFilePaths)
-						// -
-						let data = {
-							'image': form,
-							'type': res.tempFiles[0].type
-						}
-						_this.$fn.request('upload', "POST", data).then(res => {
-							// let is_whole = 1
-							// _this.$nextTick(()=> {
-							//   _this.$fn.request('user', "GET", is_whole).then(res => {
-							//     console.log(res,'用户信息');
-							//   })
-							// })
-							console.log(res, '图片接口返回');
-							if (res.data.code == 1) {
-								uni.showToast({
-									title: '上传成功',
-									icon: "success"
-								})
-							} else {
-								uni.showToast({
-									title: res.data.msg,
-									icon: "error"
-								})
+	
+
+						let form = new FormData();
+
+// file , => res.temp
+						form.append('file', res.tempFiles[0])
+				        
+                         let tokens = uni.getStorageSync('token') ? uni.getStorageSync('token') : '';
+                         let times = Math.round(new Date().getTime() / 1000).toString();
+                         let keys = '2zn7s4m0uctu';
+						 
+						 let data={
+							 'iamge':res.tempFiles[0],//二进制文件
+							 'type': res.tempFiles[0].type
+						 }
+						 uni.request({
+						 	url:'https://api.lszgfreer.top/api/upload',
+							method:'POST',
+							header: {
+								'Content-Type':'multipart/form-data',
+								'token': tokens,
+								'sign': md5(tokens + '&' + keys + '&' + times),
+								'time': times
+							},
+							data,
+							success: (r) => {
+								console.log(r)
 							}
-						})
+						 })
+						// let data = {
+						// 	'image': form,
+						// 	'type': res.tempFiles[0].type
+						// }
+						// _this.$fn.request('upload', "POST",data).then(res => {
+						// 	// let is_whole = 1
+						// 	// _this.$nextTick(()=> {
+						// 	//   _this.$fn.request('user', "GET", is_whole).then(res => {
+						// 	//     console.log(res,'用户信息');
+						// 	//   })
+						// 	// })
+						// 	console.log(res, '图片接口返回');
+						// 	if (res.data.code == 1) {
+						// 		uni.showToast({
+						// 			title: '上传成功',
+						// 			icon: "success"
+						// 		})
+						// 	} else {
+						// 		uni.showToast({
+						// 			title: res.data.msg,
+						// 			icon: "error"
+						// 		})
+						// 	}
+						// })
+
+
+
 
 						// 上传图片, 做成一个上传对象
 						// uni.uploadFile({

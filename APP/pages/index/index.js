@@ -103,9 +103,10 @@ export default {
 				icon: "none"
 			})
 		} else if (this.out >= 1) {
-			if (plus.os.name.toLowerCase() === 'android') {
-				plus.runtime.quit();
-			}
+			plus.runtime.quit();
+			// if (plus.os.name.toLowerCase() === 'android') {
+			// 	plus.runtime.quit();
+			// }
 			uni.removeStorageSync('token')
 		}
 

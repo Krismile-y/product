@@ -70,7 +70,8 @@
       		 </a>
       </view>
       <!--  #endif -->
-      <view class="item disc" @tap="goHome('msg')">
+      <view class="item disc" @tap="goHome('msg')" style="position: relative;">
+		 <u-badge value="99" max="999" type="danger" style="color: red;position: absolute;top: -10upx;right: 30upx;background-color:#34D099;" />
         <view class="img-box">
           <image src="../../static/newIndex/xiaoxi.png"></image>
         </view>

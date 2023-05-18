@@ -9,9 +9,9 @@
 		<!-- #ifdef H5-->
         <view class="bottom dis zbottom">
 			
-        	<view class="in dis" >
-				<a :href="code" style="color: #fff;">
-				下载二维码
+        	<view class="in dis"  @tap="xin">
+				<a  style="color: #fff;">
+				复制二维码分享
 				</a>
         		
         	</view>	
@@ -20,8 +20,8 @@
 		
 		<!-- #ifdef APP-->
 		<view class="bottom dis zbottom">
-			<view class="in dis" @tap="fenxiang">
-				下载二维码
+			<view class="in dis" @tap="xin">
+				复制二维码分享
 			</view>
 		</view>
 		<!-- #endif -->	
@@ -44,6 +44,8 @@
 			};
 		},
 		onLoad() {
+			
+			
 			this.info=uni.getStorageSync('user_info')
 			this.$fn.request('qrcode',"GET",{}).then(res=>{
 				console.log(res.data.data.qrcode,'用户二维码')
@@ -53,8 +55,19 @@
 			})
 		},
 		methods:{
-			
+			xin(){
+				uni.setClipboardData({
+				  data: this.code,
+				  success: function () {
+				    uni.showToast({
+				      title: '复制成功'
+				    })
+				  }
+				})
+			},
 			fenxiang(){
+				
+				
 				// #ifdef APP-PLUS 
 				  uni.downloadFile({
 				    url: this.code,
