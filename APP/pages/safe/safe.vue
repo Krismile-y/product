@@ -50,8 +50,17 @@
 			};
 		},
     onShow() {
-      this.info=uni.getStorageSync('user_info')
-      this.imgSrc = this.info.head_img
+		let info={
+			"is_whole":"1"
+		}
+		this.$fn.request('user','GET',info).then(res=>{
+			// console.log(res.data.data,'用户信息')
+			uni.setStorageSync('user_info',res.data.data)
+			this.info=uni.getStorageSync('user_info')
+			 this.imgSrc = this.info.head_img
+		})
+    
+     
     },
 		onLoad() {
 			this.info=uni.getStorageSync('user_info')

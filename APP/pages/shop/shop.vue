@@ -245,7 +245,7 @@
 			duihuan() {
 				let addressID=''  //默认地址id
 				// 获取默认地址
-				this.$fn.request('my_address',"POST",{'default':'1'}).then(r=>{
+				this.$fn.request('my_address',"GET",{'default':'1'}).then(r=>{
 					console.log(r.data.data,'地址')
 						if(r.data.data.length == 0){
 							uni.showToast({

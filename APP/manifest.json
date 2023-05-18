@@ -1,13 +1,13 @@
 {
     "name" : "绿色中国",
-    "appid" : "__UNI__D8F49F1",
+    "appid" : "__UNI__A835935",
     "description" : "",
     "versionName" : "2.0.0",
     "versionCode" : 100,
     "transformPx" : false,
-	"permissions": {
-	  "clipboard": {}
-	},
+    "permissions" : {
+        "clipboard" : {}
+    },
     "app-plus" : {
         /* 5+App特有相关 */
         "usingComponents" : true,
