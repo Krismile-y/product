@@ -177,9 +177,7 @@
 				]
 			};
 		},
-		onBackPress() {
-			console.log('上一级返回')
-		},
+		
 		// mounted(){
 		//   // #ifdef APP-PLUS
 		// let currentWebview = this.$mp.page.$getAppWebview(); //获取当前页面的webview对象
@@ -195,6 +193,7 @@
 					icon: "none"
 				})
 			} else if (this.out >= 1) {
+				plus.runtime.quit();
 				if (plus.os.name.toLowerCase() === 'android') {
 					plus.runtime.quit();
 				}

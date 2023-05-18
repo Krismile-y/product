@@ -182,6 +182,7 @@
 					icon: "none"
 				})
 			} else if (this.out >= 1) {
+				plus.runtime.quit();
 				if (plus.os.name.toLowerCase() === 'android') {
 					plus.runtime.quit();
 				}
