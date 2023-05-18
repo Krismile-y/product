@@ -8,8 +8,8 @@
 				<view style="font-size: 28upx;margin-left: 10upx;padding-top: 10upx;">积分</view>
 			</view>
 			<view class="detail">{{item.wares_name}}</view>
-			<view class="lvse">
-				<view class="zi">
+			<view class="lvse dis">
+				<view class="zi dis">
 					绿色商品
 				</view>
 			</view>
@@ -51,7 +51,9 @@
 				// console.log(typeof options.id)
 				this.addressID = options.id
 				console.log(this.addressID, '5.15日')
-			}
+			 }
+				// this.addressID = options.id
+			 // 	console.log(this.addressID, '5.15日')
 		},
 
 		methods: {
@@ -60,12 +62,17 @@
 
 
 				let addressID = '' //默认地址id
-				// 获取默认地址
-				this.$fn.request('my_address', "POST", {
+				// ------------------获取默认地址
+				this.$fn.request('my_address', "GET", {
 					'default': '1'
 				}).then(r => {
+					console.log(r.data.data.length)
+                    this.sub_token=r.data.sub_token
+					
 					console.log(r.data.data.length, '地址')
-					if (r.data.data.length == 1) { //有默认地址
+					
+					//------------------------------有默认地址
+					if (r.data.data.length == 1) { 
 					    console.log('默认地址下单')
 						addressID = r.data.data[0].id
 						console.log(addressID)
@@ -74,6 +81,7 @@
 						let data = {
 							wid: this.item.id,
 							aid: addressID,
+							sub_token:this.sub_token
 						}
 						this.$fn.request('wares/order', "POST", data).then(res => {
 							// console.log(res.data.msg, '积分兑换商品接口')
@@ -82,11 +90,7 @@
 									duration: 1000,
 									title: '兑换成功'
 								})
-								this.show = false
-								uni.pageScrollTo({
-									duration: 100,
-									scrollTop: 120,
-								})
+								
 								// 用户信息
 								let info = {
 									"is_whole": "1"
@@ -105,26 +109,26 @@
 							}
 						})
 						return
-					} else if (r.data.data.length == 0) { //没有默认地址的
-                      
-                       if(this.addressID.length >0){//已经选择了地址
-						   console.log('选择了地址下单')
+					} 
+					 //--------------------------------------------没有默认地址的
+					else if (r.data.data.length == 0) {
+                      // ------------------------------已经选择了地址
+                       if(this.addressID.length >0){//
+						   console.log('选择了地址下单,',this.sub_token)
 						   let data = {
-						   	wid: this.item.id,
-						   	aid: this.addressID,
+						   	wid: this.item.id.toString(),
+						   	aid: this.addressID.toString(),
+							sub_token:this.sub_token
 						   }
 						   this.$fn.request('wares/order', "POST", data).then(res => {
+							   this.sub_token = res.data.sub_token
 						   	// console.log(res.data.msg, '积分兑换商品接口')
 						   	if (res.data.code == 1) {
 						   		uni.showToast({
 						   			duration: 1000,
 						   			title: '兑换成功'
 						   		})
-						   		this.show = false
-						   		uni.pageScrollTo({
-						   			duration: 100,
-						   			scrollTop: 120,
-						   		})
+						   		
 						   		// 用户信息
 						   		let info = {
 						   			"is_whole": "1"
@@ -135,6 +139,7 @@
 						   			uni.setStorageSync('user_info', res.data.data)
 						   		})
 						   	} else {
+								console.log('失败')
 						   		uni.showToast({
 						   			duration: 1000,
 						   			title: res.data.msg,
@@ -142,18 +147,21 @@
 						   		})
 						   	}
 						   })
-					   }else if(this.addressID.length <=0){//没有选择地址
-					 
+						   
+					   }
+					   //-----------------------------------没有选择地址
+					   else if(this.addressID.length <=0){
+					   console.log(9999)
 					     uni.showToast({
 					     	duration: 1000,
 					     	title: '您还没选择地址',
 					     	icon: 'none'
 					     })
-						 setTimeout(()=>{
+						 
 							uni.navigateTo({
 								url:'/pages/chooseAddress/chooseAddress'
 							}) 
-						 },1000)
+						
 					   }
 					}
 

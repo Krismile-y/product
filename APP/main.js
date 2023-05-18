@@ -12,7 +12,7 @@ import store from './store/index.js'
 import dragButton from "@/components/drag-button/drag-button.vue"; //拖动按钮
 Vue.component('dragButton',dragButton)
 Vue.prototype.$store = store
-Vue.prototype.$url ='http://api.lszgfreer.top/api/'
+Vue.prototype.$url ='https://api.lszgfreer.top/api/'
 Vue.prototype.$url1 ='http://www.api.com/api/' 
 // Vue.prototype.$request =request
 Vue.prototype.$fn =fn

@@ -49,7 +49,7 @@
 		onShow() {
 			// this.currentIndex=uni.getStorageSync('addressIndex')
 			
-			this.$fn.request('my_address',"POST",{}).then(r=>{
+			this.$fn.request('my_address',"GET",{}).then(r=>{
 				console.log(r.data.data,'地址')	
 				this.list=r.data.data
 				

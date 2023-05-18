@@ -83,23 +83,39 @@
                          let keys = '2zn7s4m0uctu';
 						 
 						 let data={
-							 'iamge':res.tempFiles[0],//二进制文件
+							 'image':res.tempFiles[0],//二进制文件
 							 'type': res.tempFiles[0].type
 						 }
-						 uni.request({
-						 	url:'https://api.lszgfreer.top/api/upload',
-							method:'POST',
-							header: {
-								'Content-Type':'multipart/form-data',
-								'token': tokens,
-								'sign': md5(tokens + '&' + keys + '&' + times),
-								'time': times
-							},
-							data,
-							success: (r) => {
-								console.log(r)
-							}
-						 })
+						 // uni.request({
+						 // 	url:'https://api.lszgfreer.top/api/upload',
+							// method:'POST',
+							// header: {
+							// 	// 'Content-Type':'multipart/form-data',
+							// 	'token': tokens,
+							// 	'sign': md5(tokens + '&' + keys + '&' + times),
+							// 	'time': times
+							// },
+							// data,
+							// success: (r) => {
+							// 	console.log(r)
+							// }
+						 // })
+						 
+						 uni.uploadFile({
+						        url: this.$url+'upload',
+						        header:{
+						         'token': tokens,
+						         'sign': md5(tokens + '&' + keys + '&' + times),
+						         'time': times
+						        },
+								
+						        filePath: res.tempFilePaths[0],
+						        name: 'file',
+						        formData: data,
+						        success: (uploadFileRes) => {
+						         console.log('上传成功返回--',uploadFileRes.data);
+						        }
+						       });
 						// let data = {
 						// 	'image': form,
 						// 	'type': res.tempFiles[0].type

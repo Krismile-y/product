@@ -132,9 +132,9 @@
 							duration:1000,
 							icon:'success'
 						})
-						setTimeout(()=>{
-							uni.navigateBack(1)
-						},1000)
+						// setTimeout(()=>{
+						// 	uni.navigateBack(1)
+						// },1000)
 					}else{
 						uni.showToast({
 							title:res.data.msg,

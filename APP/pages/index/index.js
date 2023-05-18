@@ -121,6 +121,13 @@ export default {
 	},
 
 	onLoad() {
+		// 最新官方消息接口
+		this.$fn.request('count', "GET", {"type":"1"}).then(res => {
+			console.log(res.data.data,'最新消息')
+			 // this.posterList = res.data.data
+		})
+		
+		
 		// 海报接口
 		this.$fn.request('banner', "GET", {"type":"5"}).then(res => {
 			console.log(res.data.data,'海报')
