@@ -128,11 +128,7 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "提现申请",
-                "enablePullDownRefresh": false,
-                "navigationStyle":"custom",
-                "app-plus":{
-                  "titleView":false
-                }
+                "enablePullDownRefresh": false
             }
             
         }
@@ -427,7 +423,7 @@
             "path" : "pages/rengou/rengou",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "项目详情",
+                "navigationBarTitleText": "认购",
                 "enablePullDownRefresh": false
             }
             
@@ -514,6 +510,15 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "选择地址",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/fukuan/fukuan",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "付款",
                 "enablePullDownRefresh": false
             }
             
