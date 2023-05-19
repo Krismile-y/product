@@ -57,8 +57,8 @@
 </template>
 
 <script>
-  // import defaultImg from "../../static/common/Round shape.png"
-  // import checkedImg from "../../static/common/icon_Selected2.png"
+  import defaultImg from "../../static/common/Round shape.png"
+  import checkedImg from "../../static/common/icon_Selected2.png"
   export default {
     data() {
       return {
