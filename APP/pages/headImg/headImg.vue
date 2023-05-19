@@ -6,9 +6,9 @@
 				从相册选择一张
 			</view>
 
-			<view class="bbtn">
+			<!-- <view class="bbtn">
 				拍一张照片
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>
@@ -223,9 +223,9 @@
 
 		.bottom-btn {
 			width: 100%;
-			position: absolute;
-			left: 0%;
-			bottom: 0%;
+			position: fixed;
+			left: 0;
+			bottom: 0;
 			background-color: #fff;
 
 			.bbtn {

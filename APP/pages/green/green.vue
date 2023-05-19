@@ -49,6 +49,14 @@
 				],
 			};
 		},
+		onLoad() {
+			let data ={
+				
+			}
+			this.$fn.request('welfare/list','GET',data).then(res=>{
+				console.log(res)
+			})
+		},
 		methods:{
 			bian(index){
 				this.currentIndex = index
