@@ -1,90 +1,127 @@
 <template>
   <view class="withdrawal">
-    <backgroundPage :title="title" pageName="my">
-      <view class="box">
-
-        <view class="container">
-
-          <view class="item">
-            <view class="left ">提现的金额</view>
-            <view class="right ">
-              <input type="text" placeholder="" v-model="money">
-            </view>
-          </view>
-
-          <view class="item">
-            <view class="left ">请选择银行卡</view>
-            <view class="right" @tap="open">
-              <view style="color: #999;">点击填写银行卡信息</view>
-            </view>
-          </view>
-          <view class="show-card" v-show="cardShow">
-            <!-- <image src="../../static/common/jincard.jpg" mode="widthFix"></image> -->
-            <view class="card-title">
-              卡用户名:
-            </view>
-            <view class="card-p">{{valiFormData.u_back_user_name}}</view>
-            <view class="card-title">
-              开户行:
-            </view>
-            <view class="card-p">{{valiFormData.u_bank_name}}</view>
-            <view class="card-title">
-              银行卡号:
-            </view>
-            <view class="card-p" style="font-size: 18px;">{{newCardNum(valiFormData.u_back_card)}}</view>
-          </view>
-          <u-popup :show="show" mode="bottom" @close="close" @open="open">
-            <view class="popupBox">
-              <uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData" labelPosition="top">
-                <uni-forms-item label="银行卡号" name="u_back_card" required>
-                  <uni-easyinput type="text" v-model="valiFormData.u_back_card" placeholder="请输入银行卡号(只能输入数字)" />
-                </uni-forms-item>
-                <uni-forms-item required name="u_bank_name" label="开户行">
-                  <uni-easyinput type="text" v-model="valiFormData.u_bank_name" placeholder="请输入开户行" />
-                </uni-forms-item>
-                <uni-forms-item required name="u_back_user_name" label="卡用户名">
-                  <uni-easyinput type="text" v-model="valiFormData.u_back_user_name" placeholder="请输入卡用户名" />
-                </uni-forms-item>
-              </uni-forms>
-              <button @tap="submitForm('valiForm')" type="primary">填写完成</button>
-              <button @tap="close">取消</button>
-            </view>
-          </u-popup>
-
-          <view class="bottom dis zbottom">
-            <view class="in dis" @tap="sendBtn">
-              申请提现
-            </view>
-          </view>
-          <!-- <view class="btns">
-            <view class="btn dis" @tap="sendBtn" style="background-color: #aaff7f;">申请提现</view>
-          </view> -->
-        </view>
-
+    <view class="head-box">
+      <view class="head-text">
+        可提现余额
       </view>
-    </backgroundPage>
+      <view class="head-num">
+        {{info.money_approve}}
+      </view>
+    </view>
+    <view class="content-box">
+      <view class="content-title">
+        <view class="shu"></view>
+        <view class="title-text">
+          提现金额
+        </view>
+      </view>
+      <view class="money-num">
+        <u--input
+          placeholder="请输入提现金额"
+          border="bottom"
+          v-model="money"
+          clearable
+        >
+          <u--text
+            text="￥"
+            slot="prefix"
+            margin="0 3px 0 0"
+            type="tips"
+          ></u--text>
+        </u--input>
+      </view>
+      <view class="cardChange" @tap="open()">
+        <view class="left">
+          银行卡
+        </view>
+        <view class="center" :class="{
+          'cardNumcolor': cardTextColor
+        }">
+          {{cardText}}
+        </view>
+        <image src="../../static/my/xia.png" mode=""></image>
+      </view>
+    </view>
+    <view class="bottom-fixd">
+      <view class="bot-btn" @tap="pay">
+        提交申请
+      </view>
+    </view>
+    <u-popup :show="show" mode="bottom" @close="close" :round="16" @open="open">
+      <view class="popupBox">
+        <view class="popupBox-title">
+          银行卡选择
+        </view>
+        <view class="card-item" v-for="(item,index) in cardList" :key="index" @tap="checkCard(item)">
+          <view class="card-name">
+            {{item.name}}
+          </view>
+          <view class="username">
+            {{item.account_name}}
+          </view>
+          <view class="card-number">
+            {{item.card}}
+          </view>
+          <view class="defaultText" v-show="(item.is_default==1)">
+            当前选中
+          </view>
+        </view>
+        <view class="addCard" @tap="openAgain()">
+          <image src="../../static/newIndex/add.png" mode=""></image>
+          <view class="addtext">
+            添加银行卡
+          </view>
+        </view>
+      </view>
+    </u-popup>
+    <u-popup :show="addShow" mode="bottom" @close="closeAgain" :round="16" @open="openAgain">
+      <view class="popupBox">
+        <view class="popupBox-title">
+          银行卡填写
+        </view>
+        <uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData" :label-width='80'>
+          <uni-forms-item label="银行卡号" name="u_back_card" required>
+            <uni-easyinput type="text" v-model="valiFormData.u_back_card" placeholder="请输入银行卡号(只能输入数字)" />
+          </uni-forms-item>
+          <uni-forms-item required name="u_bank_name" label="开户行">
+            <uni-easyinput type="text" v-model="valiFormData.u_bank_name" placeholder="请输入开户行" />
+          </uni-forms-item>
+          <uni-forms-item required name="u_back_user_name" label="卡用户名">
+            <uni-easyinput type="text" v-model="valiFormData.u_back_user_name" placeholder="请输入卡用户名" />
+          </uni-forms-item>
+        </uni-forms>
+        <view class="btn-group">
+          <view class="quxiao" @tap="close">
+            取消
+          </view>
+          <view class="wancheng" @tap="submitForm('valiForm')">
+            填写完成
+          </view>
+        </view>
+      </view>
+    </u-popup>
   </view>
 </template>
 
 <script>
-  import backgroundPage from "../../components/background-page/background.vue";
   export default {
-    components: {
-      backgroundPage
-    },
     data() {
       return {
-        show: false, //显示银行填写信息
-        currentIndex: 0,
-        money_balance: 0, //可提现金额
+        show: false,
+        addShow: false,
         money: 0,
-        title: ``,
-        cardShow: false, //银行卡信息填写完成时展示
+        cardList: [],
+        info: {
+          money_approve: 0
+        }, //用户信息
+        cardText: '请选择',
+        cardTextColor: false,
         // 校验表单数据
         valiFormData: {
           u_back_card: '',
           u_bank_name: '',
           u_back_user_name: '',
+          is_default: 0
         },
         // 校验规则
         rules: {
@@ -110,24 +147,112 @@
             }]
           }
         },
+        sexs: [{
+        					text: '否',
+        					value: 0
+        				}, {
+        					text: '是',
+        					value: 1
+        				}],
       };
+    },
+    watch: {
+      cardText(newVal) {
+        if(newVal!='请选择') {
+          this.cardTextColor = true
+        }
+      }
     },
     onLoad() {
       this.init()
+      this.getuserMsg()
     },
     methods: {
+      // 获取银行卡列表
       init() {
-        // 获取用户可提现资金
+        this.cardList = []
+        // 获取用户已绑定的银行卡
+        let params = {
+          
+        }
+        const that = this
+        this.$fn.request('my_bank', "POST", params).then(res => {
+          console.log(res,'我的银行卡');
+          res.data.data.forEach((item,index) => {
+            let cardStr = this.noSpace(item.card)
+            item.card = that.newCardNum(cardStr)
+            that.cardList.push(item)
+            if(item.is_default == 1) {
+              this.cardText = item.card
+            }
+          })
+        })
+      },
+      getuserMsg() {
         let params = {
           is_whole: 1
         }
-        const that = this
-        this.$fn.request('/user', "GET", params).then(res => {
-          console.log(res);
-          that.money_balance = res.data.data.money_balance
-          that.title = `<view class="wdtjm">可提现余额</view><br />
-          <view class="numberCode">${that.money_balance}</view>`
+        this.$fn.request('user', "GET", params).then(res => {
+          console.log(res,'个人信息');
+          this.info = res.data.data
         })
+      },
+      // 选择银行卡
+      checkCard(item) {
+        console.log(item,'信息');
+        this.cardText = this.noSpace(item.card)
+        this.cardText = this.newCardNum(this.cardText)
+        let params = {
+          name: item.name,
+          card: this.cardText,
+          account_name: item.account_name,
+          default: 1,
+          bid: item.id
+        }
+        this.editCard(params)
+      },
+      addCard(params) {
+        // 新增银行卡
+        this.$fn.request('bank', "POST", params).then(res => {
+          uni.showToast({
+            title:"添加银行卡成功",
+            icon:'success'
+          })
+          this.init()
+          this.$forceUpdate()
+          this.close()
+          this.closeAgain()
+        })
+      },
+      editCard(params) {
+        // 修改银行卡
+        this.$fn.request('edit_bank', "POST", params).then(res => {
+          uni.showToast({
+            title:"修改银行卡成功",
+            icon:'success'
+          })
+          this.init()
+          this.close()
+        })
+      },
+      // 打开银行卡列表
+      open() {
+        this.show = true
+      },
+      // 关闭银行卡列表
+      close() {
+        this.show = false
+      },
+      // 打开银行卡信息填写弹窗
+      openAgain() {
+        this.addShow = true
+      },
+      closeAgain() {
+        this.addShow = false
+      },
+      // 去掉字符串中所有的空格
+      noSpace(str) {
+        return str.replace(/\s/g, '')
       },
       // 每四位数用空格隔开
       newCardNum(stringNum) {
@@ -143,195 +268,284 @@
         let newStr = numArr.join('')
         return newStr
       },
-      bian(index) {
-        this.currentIndex = index
-      },
-      open() {
-        this.show = true
-      },
-      close() {
-        this.show = false
-      },
       submitForm(ref) {
+        // 非中文字符的正则表达式
+        const reg = /[^\u4e00-\u9fa5]/g
         this.$refs[ref].validate().then(res => {
-          console.log('success', res);
-          if(res.u_back_card.length <= 15 || res.u_back_card.length >19) {
+          let cardStr = this.noSpace(res.u_back_card)
+          console.log('success',res ,cardStr);
+          if(cardStr.length <= 15 || cardStr.length >19 ) {
             uni.showToast({
               title: "请检查银行卡号输入是否正确",
               icon:"error"
             })
-            this.cardShow = false
-          }else {
-            this.cardShow = true
-            this.close()
+          }else if (reg.test(res.u_bank_name) || reg.test(res.u_back_user_name)) {
+            uni.showToast({
+              title: "请检查开户行或卡用户名",
+              icon:"error"
+            })
+          }
+          else {
+            let params = {
+              name: '',
+              card: '',
+              account_name: '',
+              default: 1
+            }
+            params.name = res.u_bank_name
+            params.card = cardStr
+            params.account_name = res.u_back_user_name
+            console.log(params);
+            this.addCard(params)
           }
         }).catch(err => {
           console.log('err', err);
         })
         // this.close()
       },
-      // 发送申请接口
-      sendBtn() {
-        let params = {
-          money: this.money,
-          ...this.valiFormData
-        }
-
-        this.$fn.request('/withdrawal', "POST", params).then(res => {
-          console.log(res);
-          if (res.data.code == 1) {
-            // 请求成功
-            uni.showToast({
-              icon: 'success',
-              title: "申请成功",
-              success: () => {
-                this.init()
-              }
-            })
-
-          }
-        })
-      }
     }
   }
 </script>
 
 <style lang="less">
-  .color {
-    background-color: red;
-    color: #fff;
-  }
-
   .withdrawal {
     width: 100%;
-    height: 100vh;
-
-    .box {
-      // background-color: #fff;
-      margin-top: 40upx;
-    }
-
-    /deep/ .help-title {
-      top: 5%;
-      line-height: 80upx;
-      text-align: center;
-
-      .wdtjm {
-        font-size: 16px;
-        font-weight: 500;
-      }
-    }
-  }
-
-  .container {
-    width: 90%;
-    margin: 0 auto;
-    height: 100%;
-
-    .tits {
-      width: 80%;
-      height: 55upx;
-      display: flex;
-      color: 000;
-      margin: 0 auto;
-      border-radius: 10upx;
-      border: 1upx solid #000;
-      margin-top: 20upx;
-
-      .title {
+    .head-box {
+      width: 100%;
+      height: 344rpx;
+      background-image: url('../../static/common/tixian_head.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      box-sizing: border-box;
+      padding: 67rpx 0 0;
+      .head-text {
         width: 100%;
-        height: 100%;
+        font-size: 28rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #FFFFFF;
+        // line-height: 40rpx;
+        opacity: .95;
         text-align: center;
       }
-    }
-
-    .item {
-      width: 80%;
-      height: 90upx;
-      display: flex;
-      align-items: center;
-      margin: 0 auto;
-      border-bottom: 1upx solid #cccccc;
-
-      .left {
-        width: 40%;
-        font-size: 16px;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        padding-left: 20upx;
+      .head-num {
+        width: 100%;
+        text-align: center;
+        font-size: 56rpx;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #FFFFFF;
+        letter-spacing: 2px;
+        margin-top: 24rpx;
       }
-
-      .right {
-        width: 60%;
-        height: 100%;
-        box-sizing: border-box;
-        padding-left: 30upx;
+    }
+    .content-box {
+      width: 100%;
+      margin-top: -86rpx;
+      height: calc(100vh - 258rpx);
+      background: #F7F8FA;
+      border-radius: 32rpx 32rpx 0rpx 0rpx;
+      box-sizing: border-box;
+      padding: 40rpx 24rpx 0;
+      .content-title {
         display: flex;
         align-items: center;
-
-        input {
-          width: 100%;
-          height: 100%;
+        margin-bottom: 36rpx;
+        width: 100%;
+        .shu {
+          width: 10rpx;
+          height: 24rpx;
+          background: #02AD70;
+          border-radius: 5rpx;
+          margin-right: 12rpx;
+        }
+        .title-text {
+          height: 40rpx;
+          font-size: 28rpx;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 500;
+          color: #272727;
+          line-height: 40rpx;
+        }
+      }
+      .money-num {
+        /deep/ .u-text__value {
+          font-size: 64rpx !important;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 600;
+          color: #272727;
+        }
+        /deep/ .uni-input-input {
+          font-size: 60rpx !important;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 600;
+          color: #272727;
         }
       }
     }
-
-    .show-card {
-      width: 90%;
-      border-radius: 15px;
-      height: 190px;
-      margin: 30px auto;
-      background-image: url('../../static/common/heisebg.jpg');
-      background-size: 100% auto;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-left: 15px;
-      font-size: 18px;
+    .cardChange {
+      width: 100%;
+      height: 102rpx;
       box-sizing: border-box;
-
-      .card-title {
-        font-size: 16px;
-        margin-bottom: 10upx;
-      }
-
-      .card-p {
-        font-size: 14px;
-        margin-bottom: 10upx;
-        text-indent: 30upx;
-      }
-    }
-
-    .tishi {
-      width: 90%;
-      text-align: center;
-      font-size: 22upx;
-      color: red;
-      margin: 20upx auto;
-    }
-
-    .btns {
-      width: 90%;
-      height: 90upx;
-      font-size: 22upx;
-      margin: 20upx auto;
+      border-bottom: 1upx solid #E5E5E5;
       display: flex;
-      justify-content: space-around;
-
-      .btn {
-        width: 48%;
-        height: 100%;
-        background-color: green;
-        color: #fff;
-        border-radius: 10upx;
+      align-items: center;
+      .left {
+        font-size: 28rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #272727;
+      }
+      .center {
+        flex: 1;
+        text-align: right;
+        font-size: 28rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #8E8E8E;
+      }
+      // 有选择银行卡时的样式
+      .cardNumcolor{
+        font-size: 28rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #272727;
+      }
+      image {
+        width: 32rpx;
+        height: 32rpx;
+        transform: rotate(270deg);
+        margin-left: 10rpx;
+      }
+      
+    }
+    .bottom-fixd {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 180rpx;
+      background: #FFFFFF;
+      .bot-btn {
+        width: 686rpx;
+        height: 80rpx;
+        background: #02AE71;
+        border-radius: 100rpx;
+        margin: 16rpx auto 0;
+        font-size: 28rpx;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #FFFFFF;
+        line-height: 80rpx;
+        text-align: center;
       }
     }
-  }
-
-  .popupBox {
-    box-sizing: border-box;
-    padding: 10upx;
+    .popupBox {
+      width: 100%;
+      height: 836rpx;
+      background: #F7F8FA;
+      border-radius: 32rpx 32rpx 0rpx 0rpx;
+      box-sizing: border-box;
+      padding: 24rpx 24rpx 0;
+      position: relative;
+      overflow-y: scroll;
+      .popupBox-title {
+        width: 100%;
+        text-align: center;
+        font-size: 36rpx;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #272727;
+        margin-bottom: 24rpx;
+      }
+      .btn-group {
+        width: 100%;
+        position: fixed;
+        bottom: 64rpx;
+        left: 0%;
+        display: flex;
+        justify-content: space-evenly;
+        .quxiao {
+          width: 327rpx;
+          height: 80rpx;
+          border-radius: 40rpx;
+          border: 2rpx solid #8E8E8E;
+          font-size: 28rpx;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #8E8E8E;
+          line-height: 80rpx;
+          text-align: center;
+        }
+        .wancheng {
+          width: 327rpx;
+          height: 80rpx;
+          background: #02AE71;
+          border-radius: 100rpx;
+          font-size: 28rpx;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 500;
+          color: #FFFFFF;
+          line-height: 80rpx;
+          text-align: center;
+        }
+      }
+      .card-item {
+          background: linear-gradient(to bottom, #34D099 0%, #07c07e 100%);
+          margin-bottom: 20upx;
+          border-radius: 25upx;
+          width: 100%;
+          height: 200upx;
+          box-sizing: border-box;
+          padding: 20upx 40upx;
+          color: #fff;
+          position: relative;
+          .card-name {
+            font-size: 16px;
+            margin-bottom: 10upx;
+          }
+          
+          .username {
+            font-size: 14px;
+            margin-bottom: 10upx;
+          }
+          .card-number {
+            font-size: 18px;
+            margin-bottom: 10upx;
+          }
+          .defaultText {
+            border: 1upx solid #fff;
+            border-radius: 12upx;
+            box-sizing: border-box;
+            padding: 2upx 8upx 6upx;
+            color: #fff;
+            position: absolute;
+            font-size: 20rpx;
+            bottom: 12rpx;
+            right: 12rpx;
+          }
+        }
+        .addCard {
+          width: 100%;
+          height: 160rpx;
+          background-color: #fff;
+          box-sizing: border-box;
+          padding: 10rpx 20rpx;
+          display: flex;
+          align-items: center;
+          border-radius: 25rpx;
+          image {
+            width: 80rpx;
+            height: 80rpx;
+          }
+          .addtext {
+            flex: 1;
+            line-height: 160rpx;
+            color: #5e6570;
+            font-size: 16px;
+            margin-left: 20rpx;
+          }
+        }
+      }
   }
 </style>

@@ -2,10 +2,10 @@
   <view class="bankCard">
     <view class="card-item" v-for="(item,index) in cardList" :key="index">
       <view class="card-name">
-        {{item.name}}
+        {{item.account_name}}
       </view>
       <view class="username">
-        {{item.account_name}}
+        {{item.name}}
       </view>
       <view class="card-number">
         {{item.card}}
@@ -22,9 +22,12 @@
         添加银行卡
       </view>
     </view>
-    <u-popup :show="show" mode="bottom" @close="close" @open="open">
+    <u-popup :show="show" mode="bottom" @close="close" :round="16" @open="open">
       <view class="popupBox">
-        <uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData" labelPosition="top">
+        <view class="popupBox-title">
+          银行卡填写
+        </view>
+        <uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData" :label-width='80'>
           <uni-forms-item label="银行卡号" name="u_back_card" required>
             <uni-easyinput type="text" v-model="valiFormData.u_back_card" placeholder="请输入银行卡号(只能输入数字)" />
           </uni-forms-item>
@@ -34,12 +37,18 @@
           <uni-forms-item required name="u_back_user_name" label="卡用户名">
             <uni-easyinput type="text" v-model="valiFormData.u_back_user_name" placeholder="请输入卡用户名" />
           </uni-forms-item>
-          <uni-forms-item label="是否设置为默认" name="is_default">
+          <uni-forms-item label="是否默认" name="is_default">
             <uni-data-checkbox v-model="valiFormData.is_default" :localdata="sexs" />
           </uni-forms-item>
         </uni-forms>
-        <button @tap="submitForm('valiForm')" type="primary">填写完成</button>
-        <button @tap="close">取消</button>
+        <view class="btn-group">
+          <view class="quxiao" @tap="close">
+            取消
+          </view>
+          <view class="wancheng" @tap="submitForm('valiForm')">
+            填写完成
+          </view>
+        </view>
       </view>
     </u-popup>
     <u-modal :show="delCardType" title="系统消息" :content='content' :showCancelButton="true" @confirm="confirm" @cancel="cancel"></u-modal>
@@ -108,7 +117,7 @@ import index from '../index';
         this.$fn.request('my_bank', "POST", params).then(res => {
           console.log(res,'我的银行卡');
           res.data.data.forEach((item,index) => {
-            let cardStr = item.card.trim()
+            let cardStr = this.noSpace(item.card)
             item.card = that.newCardNum(cardStr)
             that.cardList.push(item)
           })
@@ -325,6 +334,56 @@ import index from '../index';
       color: #5e6570;
       font-size: 16px;
       margin-left: 20rpx;
+    }
+  }
+  .popupBox {
+    width: 100%;
+    height: 836rpx;
+    background: #FFFFFF;
+    border-radius: 32rpx 32rpx 0rpx 0rpx;
+    box-sizing: border-box;
+    padding: 24rpx 24rpx 0;
+    position: relative;
+    .popupBox-title {
+      width: 100%;
+      text-align: center;
+      font-size: 36rpx;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: #272727;
+      margin-bottom: 24rpx;
+    }
+    .btn-group {
+      width: 100%;
+      position: fixed;
+      bottom: 64rpx;
+      left: 0%;
+      display: flex;
+      justify-content: space-evenly;
+      .quxiao {
+        width: 327rpx;
+        height: 80rpx;
+        border-radius: 40rpx;
+        border: 2rpx solid #8E8E8E;
+        font-size: 28rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #8E8E8E;
+        line-height: 80rpx;
+        text-align: center;
+      }
+      .wancheng {
+        width: 327rpx;
+        height: 80rpx;
+        background: #02AE71;
+        border-radius: 100rpx;
+        font-size: 28rpx;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #FFFFFF;
+        line-height: 80rpx;
+        text-align: center;
+      }
     }
   }
 }

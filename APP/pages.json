@@ -128,11 +128,7 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "提现申请",
-                "enablePullDownRefresh": false,
-                "navigationStyle":"custom",
-                "app-plus":{
-                  "titleView":false
-                }
+                "enablePullDownRefresh": false
             }
             
         }
@@ -427,7 +423,7 @@
             "path" : "pages/rengou/rengou",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "项目详情",
+                "navigationBarTitleText": "认购",
                 "enablePullDownRefresh": false
             }
             
@@ -519,6 +515,7 @@
             
         }
         ,{
+<<<<<<< HEAD
             "path" : "pages/green/green",
             "style" :                                                                                    
             {
@@ -532,6 +529,12 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "项目名称",
+=======
+            "path" : "pages/fukuan/fukuan",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "付款",
+>>>>>>> 8868415d8d78a10370c50f0e6ae135ad6e7e5a04
                 "enablePullDownRefresh": false
             }
             
