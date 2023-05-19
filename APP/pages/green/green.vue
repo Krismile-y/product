@@ -10,7 +10,7 @@
 			</view>
 		</scroll-view>
 		
-		<view class="box disc" @tap="go()">
+		<view class="box disc" @tap="go()" >
 			<view class="shang">
 				<image src="../../static/common/gou.png"  ></image>
 				<view class="shangRight disc">
@@ -47,14 +47,20 @@
 					{type_name:"公益项目"},
 					{type_name:"捐赠记录"}
 				],
+				greenList:[],// 绿色公益列表
+				page:0,//当前页数
 			};
 		},
+		onReachBottom(){
+				console.log('已触底')
+		    },
+		
 		onLoad() {
 			let data ={
 				
 			}
 			this.$fn.request('welfare/list','GET',data).then(res=>{
-				console.log(res)
+				console.log(res.data.data)
 			})
 		},
 		methods:{

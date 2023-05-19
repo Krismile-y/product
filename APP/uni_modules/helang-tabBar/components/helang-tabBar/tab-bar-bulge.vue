@@ -152,9 +152,8 @@
         
 			},
       go(name,index) {
-        this.$nextTick(()=> {
-          uni.setStorageSync('current',index)
-        })
+        let strIndex = index+''
+        uni.setStorageSync('current',strIndex)
         console.log(index,'index');
       	uni.navigateTo({
       		url: `/pages/${name}/${name}`

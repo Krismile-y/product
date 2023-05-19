@@ -22,12 +22,12 @@
           v-model="money"
           clearable
         >
-          <u--text
+          <!-- <u--text
             text="￥"
             slot="prefix"
             margin="0 3px 0 0"
             type="tips"
-          ></u--text>
+          ></u--text> -->
         </u--input>
       </view>
       <view class="cardChange" @tap="open()">
@@ -43,7 +43,7 @@
       </view>
     </view>
     <view class="bottom-fixd">
-      <view class="bot-btn" @tap="pay">
+      <view class="bot-btn" @tap="tixian">
         提交申请
       </view>
     </view>
@@ -91,7 +91,7 @@
           </uni-forms-item>
         </uni-forms>
         <view class="btn-group">
-          <view class="quxiao" @tap="close">
+          <view class="quxiao" @tap="closeAgain">
             取消
           </view>
           <view class="wancheng" @tap="submitForm('valiForm')">
@@ -114,6 +114,7 @@
         info: {
           money_approve: 0
         }, //用户信息
+        nowCard: {}, //当前选中的银行卡
         cardText: '请选择',
         cardTextColor: false,
         // 校验表单数据
@@ -184,6 +185,7 @@
             that.cardList.push(item)
             if(item.is_default == 1) {
               this.cardText = item.card
+              this.nowCard = item
             }
           })
         })
@@ -303,6 +305,37 @@
         })
         // this.close()
       },
+      // 提交申请
+      tixian() {
+        if(this.money == 0) {
+          uni.showToast({
+            title:'请输入提现金额',
+            icon:'error'
+          })
+          return
+        }
+        if(this.info.money_approve < this.money ) {
+          uni.showToast({
+            title:'可提现余额不足',
+            icon:'error'
+          })
+          return
+        }
+        let params = {
+          money: this.money,
+          u_bank_name: this.nowCard.name,
+          u_back_card: this.nowCard.card,
+          u_back_user_name: this.nowCard.account_name
+        }
+        console.log(params,'money');
+        this.$fn.request('withdrawal', "POST", params).then(res => {
+          uni.showToast({
+            title:"申请成功",
+            icon:'success'
+          })
+          this.init()
+        })
+      }
     }
   }
 </script>
@@ -372,14 +405,14 @@
         /deep/ .u-text__value {
           font-size: 64rpx !important;
           font-family: PingFangSC-Medium, PingFang SC;
-          font-weight: 600;
+          font-weight: 550;
           color: #272727;
         }
         /deep/ .uni-input-input {
-          font-size: 60rpx !important;
+          font-size: 54rpx !important;
           font-family: PingFangSC-Medium, PingFang SC;
-          font-weight: 600;
-          color: #272727;
+          font-weight: 550;
+          color: #272727; 
         }
       }
     }
