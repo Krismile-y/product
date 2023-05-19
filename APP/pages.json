@@ -450,7 +450,16 @@
 
 		}
 
-	],
+	    ,{
+            "path" : "pages/greenPage/greenPage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "公益进展",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationStyle": "default",
 		"navigationBarTextStyle": "black",

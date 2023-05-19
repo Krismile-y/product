@@ -10,7 +10,7 @@
 			</view>
 		</scroll-view>
 		
-		<view class="box disc" @tap="go(item.id)" v-for="(item,index) in greenList" :key="index">
+		<view class="box disc" @tap="go(item.id)" v-for="(item,index) in greenList" :key="index" v-show="currentIndex==0?true:false">
 			<view class="shang">
 				<image :src="item.img_path"  ></image>
 				<view class="shangRight disc">
@@ -35,6 +35,8 @@
 			<view class="time">{{item.initiate_time}}</view>
 		</view>
 		
+		<!-- <u-empty text="此分类暂时没有数据" mode="order" v-show="kong"></u-empty> -->
+		
 	</view>
 </template>
 
@@ -50,6 +52,7 @@
 				greenList:[],// 绿色公益列表
 				page:0,//当前页数
 				juanzengjilu:[],//捐赠记录
+				kong:false,
 			};
 		},
 		onReachBottom(){
@@ -67,9 +70,14 @@
 			})
 			
 			// 捐献记录
-			this.$fn.request('welfare/list','GET',{}).then(res=>{
-				console.log(res.data.data.data,'捐献记录')
-				this.juanxianjilu=res.data.data.data.data
+			this.$fn.request('welfare/donate_log','GET',{}).then(res=>{
+				console.log(res.data.data.total,'捐献记录')			
+				this.juanxianjilu=res.data.data
+				if(res.data.data.total == 0){
+					this.kong=true
+				}else{
+					this.kong=false
+				}
 			})
 		},
 		methods:{

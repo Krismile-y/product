@@ -51,7 +51,9 @@
 			</view>
 			<view class="lastItem">
 				<view class="name">公益进展:</view>
-				<view class="nameDetail" style="color: #02AE71;" v-html="item.progress_content"></view>
+				<view class="nameDetail" style="color: #02AE71;" @tap="chakanxiangqing">
+					查看详情
+				</view>
 			</view>
 			<view class="lastItem">
 				<view class="name">已筹款人数:</view>
@@ -132,7 +134,7 @@
 		},
 		methods:{
 			open(){
-			  // 通过组件定义的ref调用uni-popup方法 ,如果传入参数 ，type 属性将失效 ，仅支持 ['top','left','bottom','right','center']
+			
 			 this.show=true
 			},
 			close() {
@@ -147,13 +149,19 @@
 				// console.log(this.amount)
 				this.currentIndex='99999999'
 			},
-			agree(){
+			agree(){//同意捐赠
 				let data={
 					'amount':this.amount,
 					'wid':this.wid
 				}
 				this.$fn.request('welfare/donate','POST',data).then(res=>{
 					console.log(res)
+				})
+			},
+			chakanxiangqing(){//查看详情页面
+			    uni.setStorageSync('gongyijinzhan',this.item.progress_content)
+				uni.navigateTo({
+					url:'/pages/greenPage/greenPage'
 				})
 			}
 		}

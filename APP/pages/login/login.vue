@@ -1,21 +1,11 @@
 <template>
 	<view class="xinhezi">
 		
-		<view class="tops" style="background-color: #54d27e;height: 400upx;" v-show="false">
-			<view class="fanhui dis" >
-				<!-- <image src="../../static/common/fanhui.png" mode=""></image> -->
-				<view class="title"></view>
-			</view>
-			<view class="center disc">
-				<image src="../../static/common/logo.png" mode="" style="width: 220upx;height: 220upx;border-radius: 50%;"></image>
-				<!-- <view class="da">Login</view>
-				<view class="xiao">hellow</view> -->
-			</view>
-		</view>
+		
 		
 		<!-- 新的 -->
 		<view class="newTop disc">
-			<image src="../../static/common/logo.png" mode="" style="border-radius: 50%;"></image>
+			<image src="../../static/login/logo.jpg" mode="" style="border-radius: 50%;"></image>
 			<view class="font">欢迎来到绿色中国</view>
 		</view>
 		
