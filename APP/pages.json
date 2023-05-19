@@ -518,6 +518,24 @@
             }
             
         }
+        ,{
+            "path" : "pages/green/green",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "绿色公益",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/greenDetail/greenDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "项目名称",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationStyle": "default",
