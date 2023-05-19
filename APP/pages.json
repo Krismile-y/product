@@ -138,14 +138,9 @@
 		}, {
 			"path": "pages/myGroup/myGroup",
 			"style": {
-				"navigationBarTitleText": "我的团队",
-				"enablePullDownRefresh": false,
-				"navigationStyle": "custom",
-				"app-plus": {
-					"titleView": false
-				}
+				"navigationBarTitleText": "团队详情",
+				"enablePullDownRefresh": false
 			}
-
 		}, {
 			"path": "pages/myGroup/fanyong",
 			"style": {
@@ -154,7 +149,16 @@
 
 			}
 
-		}, {
+		}
+    , {
+    	"path": "pages/tuanduitixian/tuanduitixian",
+    	"style": {
+    		"navigationBarTitleText": "团队提现",
+    		"enablePullDownRefresh": false
+    
+    	}
+    
+    }, {
 			"path": "pages/terrace/terrace",
 			"style": {
 				"navigationBarTitleText": "平台攻略",
@@ -255,7 +259,15 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, {
+		}
+    , {
+    	"path": "pages/shouyijieshao/shouyijieshao",
+    	"style": {
+    		"navigationBarTitleText": "收益介绍",
+    		"enablePullDownRefresh": false
+    	}
+    
+    }, {
 			"path": "pages/twithdrawal/twithdrawal",
 			"style": {
 				"navigationBarTitleText": "提现记录",

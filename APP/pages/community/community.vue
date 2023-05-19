@@ -17,7 +17,7 @@
         				<view>{{info.money_approve}}</view>
         			</view>
         		</view>
-        		<view class="last dis" style="margin-top: -30upx;" @tap="go('withdrawal')">
+        		<view class="last dis" style="margin-top: -30upx;" @tap="go('tuanduitixian')">
         			团队提现
         		</view>
         	</view>
@@ -152,7 +152,7 @@
 					{
 						name:'收益介绍',
 						url:'../../static/c/shouyijieshao.png',
-						go:'invite'
+						go:'shouyijieshao'
 					},
 					{
 						name:'团队详情',
@@ -167,7 +167,7 @@
 					{
 						name:'提现记录',
 						url:'../../static/c/tixian.png',
-						go:'withdrawal',
+						go:'twithdrawal',
 					},
 					
 				]
