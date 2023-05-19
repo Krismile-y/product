@@ -8,7 +8,7 @@
 			<view class="right ">
 				<view class="tit">系统通知</view>
 				<view class="de">
-					官方系统消息通知,请注意查看!
+					官方系统消息通知,请注意查看!官方系统消息通知,请注意查看!官方系统消息通知,请注意查看!官方系统消息通知,请注意查看!官方系统消息通知,请注意查看!官方系统消息通知,请注意查看!官方系统消息通知,请注意查看!
 				</view>
 			</view>
 		</view>
@@ -20,7 +20,9 @@
 			<view class="right ">
 				<view class="tit">最新活动</view>
 				<view class="de">
-					官方活动消息通知,请注意查看!
+					<view class="text">
+					  官方活动消息通知,请注意查看!
+					</view>
 				</view>
 			</view>
 		</view>
@@ -72,41 +74,55 @@
 
 <style lang="less">
 .msg{
-	
+	width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 41rpx 24rpx 0;
 }
 .item{
-	height: 200upx;
-	width: 95%;
-	margin: 30upx auto;
-	border: 1upx solid #cccccc;
-	border-radius: 20upx;
-	box-shadow:4px 4px 15px #cccccc;
-	display: flex;
-	.left{
-		width: 30%;
-		height: 100%;
-		image{
-			width: 90upx;
-			height: 90upx;
-			border-radius: 50%;
-			// background-color: #383838;
-		}
-	}
+	height: 216upx;
+	width: 100%;
+	background: #FFFFFF;
+	border-radius: 16rpx;
+  box-sizing: border-box;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
 	.right{
-		padding-left: 60upx;
-		width: 70%;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		flex-direction: column;
-		font-size: 32upx;
-		.tit{
-			color: #bfbfbf;
-		}
-		.de{
-			margin-top: 20upx;
-			
-		}
+		width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .tit {
+      font-size: 32rpx;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 550;
+      color: #272727;
+      margin-bottom: 15rpx;
+    }
+    .de {
+      flex: 1;
+      // width: 100%;
+      // height: 100%;
+      background: #F7F8FA;
+      border-radius: 8rpx;
+      box-sizing: border-box;
+      padding: 16rpx;
+      text-overflow: -o-ellipsis-lastline;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      .text {
+        width: 100%;
+        height: 100%;
+        font-size: 24rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #272727;
+        line-height: 38rpx;
+      }
+    }
 	}
 }
 </style>

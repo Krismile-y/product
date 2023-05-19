@@ -13,6 +13,9 @@
       <view class="teamLv">
         {{mblv}}
       </view>
+      <view class="back" @tap="backTop()" v-if="lv!=1">
+        <image src="../../static/myimg/back.png" mode=""></image>
+      </view>
         <view class="team-content">
           <!-- <scroll-view scroll-y :style="{ height: viewHeight + 'px' }" @scrolltolower="loadMore"> -->
             <view class="team-content1">
@@ -69,6 +72,8 @@
         nowItem: {},
         currentPage: 1, //当前页
         lastPage: 0, //最后一页
+        oldItem: {}, //记录上一级，用于返回按钮
+        backTap: false, //判断是否点击了返回按钮
 			};
 		},
 		onLoad(option) {
@@ -103,10 +108,18 @@
         if(this.lv>3) {
           return
         }
+        // 记录第一层下钻,用于返回3返2
+        if(this.lv == 1) {
+          this.oldItem = item
+        }
         if(item.id != this.nowItem.id) {
           this.pageNo = 1
-          this.lv++
           this.list = []
+          // 点击返回，lv重置过了不用++
+          if(!this.backTap) {
+            this.lv++
+          }
+          
         }
         this.memberLv()
         this.nowItem = item
@@ -125,8 +138,24 @@
 					// console.log(res.data.data)
 					this.list=[...this.list,...newList]
           this.pageNo++
+          // 重置返回按钮
+          this.backTap = false
 				})
 			},
+      // 返回上一级
+      backTop() {
+        if(this.lv == 2) {
+          // 二级返回一级
+          this.lv = 1
+          this.backTap = true
+          this.chakan(this.below_agent_info)
+        }else if(this.lv == 3){
+          // 三级返回二级
+          this.lv = 2
+          this.backTap = true
+          this.chakan(this.oldItem)
+        }
+      },
 			myGroup(){
 				let info=uni.getStorageSync('user_info')
 				let data = {
