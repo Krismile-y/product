@@ -83,7 +83,7 @@
 				  
 				  <view class="zidingyi">
 					  <view class="jine dis">自定义金额</view>
-					  <input type="number" placeholder="请输入金额" v-model="amount" @input='change'>
+					  <input type="number" placeholder="请输入金额" v-model="zidingyijine" @input='change'>
 					  <view class="font dis">元</view>
 				  </view>
 				  
@@ -111,9 +111,11 @@
 				item:{},
 				amount:'',//金额
 				wid:'',//文章id
-				currentIndex:"",//当前选中状态
+				currentIndex:8888888,//当前选中状态
 				info:"",//用户信息
 				set_amount:[],//捐献金额
+				zidingyijine:'',
+				zhuangtai:99999,//0 是选择的三个金额，  1是自定义金额
 			};
 		},
 		onLoad(options) {
@@ -143,15 +145,25 @@
 			chooseMoney(num,index){//选择金额
 			    this.currentIndex=index
 				this.amount=num
+				this.zhuangtai=0
+				this.zidingyijine=null
 			},
 			change(e){//输入框改变
 				// console.log(e.detail.value)
 				// console.log(this.amount)
 				this.currentIndex='99999999'
+				this.zhuangtai=1
 			},
 			agree(){//同意捐赠
+			   let lastMoney;
+			   if(this.zhuangtai==0){
+				   lastMoney=this.amount  
+			   }else if(this.zhuangtai=1){
+				   lastMoney=this.zidingyijine
+			   }
+			
 				let data={
-					'amount':this.amount,
+					'amount':lastMoney,
 					'wid':this.wid
 				}
 				this.$fn.request('welfare/donate','POST',data).then(res=>{

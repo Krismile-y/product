@@ -1,6 +1,23 @@
 <template>
 	<view class="invite disc">
-		<backgroundPage :title="title">
+		
+		<view class="newBox disc" >
+			<image :src="code"></image>
+			<view class="dis tuijianma" >我的推荐码</view>
+			<view class="dis id" style="font-size: 56upx;">{{info.id}}</view>
+		</view>
+		
+		<view class="two">
+			<!-- #ifdef APP-->
+			<view class="itemONE dis" @tap="fenxiang">保存图片</view>
+			<!-- #endif -->
+			<view class="itemONE dis" >
+				<a :href="code"> 保存图片</a>
+				</view>
+			<view class="itemTWO dis" @tap="xin">复制二维码链接</view>
+		</view>
+		
+		<backgroundPage :title="title" v-show="false">
 			<view class="invite-content">
 				<view class="code-img">
 					<image :src="code"></image>
@@ -58,9 +75,15 @@
 				this.title = `<view class="wdtjm">我的推荐码:</view><br />
             <view class="numberCode">${this.info.id}</view>`
 			})
+			
+			console.log(this.info.id)
 		},
 		methods: {
 			xin() {
+				this.info = uni.getStorageSync('user_info')
+				console.log(this.info.id)
+				let xx=this.info.id
+				uni.setStorageSync('code',xx)
 				uni.setClipboardData({
 					data: this.qr_url,
 					success: function() {
@@ -113,12 +136,64 @@
 </script>
 
 <style lang="less">
+	.two{
+		width: 622rpx;
+		height: 100rpx;
+		margin-top: 60upx;
+		display: flex;
+		justify-content: space-around;
+		.itemONE{
+			width: 220rpx;
+			height: 100rpx;
+			background: #E2E2E8;
+			border-radius: 100rpx;
+		}
+		.itemTWO{
+			width: 378rpx;
+			height: 100rpx;
+			background: linear-gradient(270deg, #05D7AA 0%, #04D381 100%);
+			border-radius: 100rpx;
+		}
+	}
+	.newBox{
+		width: 622rpx;
+		height: 800rpx;
+		background: #FFFFFF;
+		box-shadow: 0rpx 6rpx 16rpx 0rpx rgba(208,241,230,0.2);
+		border-radius: 32rpx;
+		image{
+			width: 400rpx;
+			height: 400rpx;
+			background: #D8D8D8;
+			border-radius: 24rpx;
+		}
+		.tuijianma{
+			width: 100%;
+			height: 83rpx;
+			
+			font-family: PingFangSC-Medium, PingFang SC;
+			font-weight: 500;
+			color: #A1A1A1;
+			margin-top: 30upx;
+		}
+		.id{
+			width: 100%;
+			height: 80rpx;
+			
+			font-family: PingFangSC-Medium, PingFang SC;
+			font-weight: 500;
+			color: #333333;
+		}
+	}
+	
 	.invite {
 		width: 100%;
+    background-image: url('../../static/login/background.png');
+	background-size: 100% 674upx;
+	background-position:0 100% ;
+	height: 100vh;
+    background-repeat: no-repeat;
 
-		// // background-image:url('https://pic.616pic.com/bg_w1180/00/20/57/zkoqzSOdaL.jpg') ;
-		// background-repeat: no-repeat;
-		// background-size: 100% 100%;
 		.id {
 			width: 50%;
 			// color: #fff;
