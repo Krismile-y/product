@@ -1,5 +1,5 @@
 <template>
-	<view class="revisePassword">
+	<view class="revisePassword" style="width: 100%;height: 100vh;background-color: #fff;">
 		
 		
 		<view  v-show="type==1?true:false">
@@ -9,41 +9,28 @@
 			</view>
 		</view>
 		
-		<!--  -->
+		<!-- 修改密码 -->
 		<view v-show="type==2?true:false">
-			<view class="item">
-				<view class="left ">
-					旧密码
-				</view>
-				<view class="right">
-					<!-- <input type="text" placeholder="旧密码" v-model="jiu"> -->
+			<view class="newInput">
+				<view class="newInputItem">
+					<view class="inputName ">旧密码</view>
 					<u-input v-model="jiu" type="password"  password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码" border="true"/>
 				</view>
-			</view>
-			
-			<view class="item">
-				<view class="left ">
-					新密码
-				</view>
-				<view class="right">
-					<!-- <input type="text" placeholder="新密码" v-model="xin"> -->
+				
+				<view class="newInputItem">
+					<view class="inputName ">新密码</view>
 					<u-input v-model="xin" type="password"  password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码" border="true"/>
 				</view>
-			</view>
-			
-			<view class="item">
-				<view class="left ">
-					确认密码
-				</view>
-				<view class="right">
-					<!-- <input type="text" placeholder="确认密码" v-model="queren"> -->
+				
+				<view class="newInputItem">
+					<view class="inputName ">确认密码</view>
 					<u-input v-model="queren" type="password"  password-icon="true" pattern="[0-9]{8,}" placeholder="确认密码" border="true"/>
 				</view>
+				
+				<view class="xinBtn dis" @tap="change" style="margin-top: 90upx;">修改密码</view>
 			</view>
 			
-			<view class="btn dis" @tap="change">
-				提交
-			</view>
+			
 		</view>
 		
 	</view>
@@ -106,6 +93,7 @@
 				this.$fn.request('pwd', 'POST',pwd).then(res => {
 					console.log(res.data.code)
 					if(res.data.code == 1){
+						uni.removeStorageSync('pwd')
 						uni.showToast({
 							duration:1000,
 							title:'修改成功',
@@ -128,6 +116,59 @@
 </script>
 
 <style lang="less">
+.newInput{
+	margin: 0 auto;
+	width: 686rpx;
+	.newInputItem{
+		width: 100%;
+		height: 90upx;
+		border-bottom: 1rpx solid #E5E5E5;
+		display: flex;
+		align-items: center;
+		.inputName{
+			font-family: PingFangSC-Regular, PingFang SC;
+			width: 140upx;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: left;
+		}
+		input{
+			height:100% ;
+			width: 546upx;
+		}
+	}
+	.two{
+		width: 100%;
+		height: 90upx;
+		display: flex;
+		align-items: center;
+		position: relative;
+		.jizhu{
+			display: flex;
+			align-items: center;
+		}
+		.wangji{
+			position: absolute;
+			width: 160upx;
+			height: 100%;
+			right: 0;
+			top: 0;
+		}
+	}
+}
+
+.xinBtn{
+	width: 686rpx;
+	height: 80rpx;
+	background: #02AE71;
+	border-radius: 100rpx;
+	margin: 0 auto;
+	margin-top: 30upx;
+	color: #fff;
+}	
+	
+	
 .revisePassword{
 	
 }

@@ -2,7 +2,7 @@
 	<view class="content" style="padding-bottom: 200upx; background-color: #F4F4F6;">
 		<!-- 	<navs></navs>	 -->
 		<down ref='down'></down>
-
+        
 		<view class="tops disc" style="height: 400upx;">
 			<view class="top-title">
 				<view class="top-title-text">

@@ -1,18 +1,50 @@
 <template>
-	<view class="logon">
-		<view class="tops" style="background-color: #54d27e;height: 400upx;">
-			<view class="fanhui dis">
-				<image src="../../static/common/fanhui.png" mode="" @tap="fanhui"></image>
-				<!-- <view class="title">注册</view> -->
+	<view class="logon" style="background-color: #fff;width: 100%;height: 100vh;">
+		
+		<view style="width: 100%;height: 50upx;"></view>
+		
+        <view class="newInput">
+        	<view class="newInputItem">
+        		<view class="inputName ">手机号</view>
+        		<u-input v-model="phone" type="number" placeholder="请输入手机号" border="true" />
+        	</view>
+        	
+			<view class="newInputItem">
+				<view class="inputName ">密码</view>
+				<u-input v-model="pwd" type="password" password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码"
+					border="true" />
 			</view>
-			<view class="center disc">
-				<view class="da">注册</view>
-				<view class="xiao"></view>
+			
+			<view class="newInputItem">
+				<view class="inputName ">确认密码</view>
+				<u-input v-model="upwd" type="password" password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码"
+					border="true" />
 			</view>
-		</view>
+			
+			<view class="newInputItem">
+				<view class="inputName ">身份证</view>
+				<u-input v-model="sfz" type="number" placeholder="请输入身份证号" border="true" max-length=''/>
+			</view>
+			
+			<view class="newInputItem">
+				<view class="inputName ">用户姓名</view>
+				<u-input v-model="username" type="text" placeholder="请输入昵称" border="true" />
+			</view>
+			
+			<view class="newInputItem">
+				<view class="inputName ">邀请码</view>
+				<u-input v-model="agent_id" type="number" placeholder="请输入邀请码" border="true" />
+			</view>
+			
+			<view class="xinBtn dis" @tap="logon">注册</view>
+        	
+        </view>
 
+
+		
+		
 		<!-- input -->
-		<view class="inputBox">
+		<view class="inputBox" v-show="false">
 			<view class="inputs">
 				<view class="title">电话</view>
 				<!-- <input type="number" placeholder="请输入电话" v-model="phone" maxlength="11"> -->
@@ -56,9 +88,9 @@
 
 
 		</view>
-		<view class="in dis" @tap="logon" style="margin: 30upx auto;">
+		<!-- <view class="in dis" @tap="logon" style="margin: 30upx auto;">
 			注册
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -103,14 +135,14 @@
 					uni.showToast({
 						duration: 1000,
 						icon: "error",
-						title: '密码必须大于8位'
+						title: '密码最少8位'
 					})
 					return
 				}else if(this.upwd.length < 8){
 					uni.showToast({
 						duration: 1000,
 						icon: "error",
-						title: '密码必须大于8位'
+						title: '密码最少8位'
 					})
 					return
 				}else if(this.sfz.length !==18){

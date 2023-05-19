@@ -54,7 +54,16 @@
             "icons" : {
                 "android" : {
                     "hdpi" : "",
-                    "xxhdpi" : "static/common/logo.png"
+                    "xxhdpi" : "",
+                    "xxxhdpi" : "static/login/logo.jpg"
+                },
+                "ios" : {
+                    "iphone" : {
+                        "app@2x" : "static/login/logo.jpg"
+                    },
+                    "ipad" : {
+                        "app" : "static/login/logo.jpg"
+                    }
                 }
             }
         }

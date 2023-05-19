@@ -243,11 +243,9 @@
 		}, {
 			"path": "pages/logon/logon",
 			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false,
-				"app-plus": {
-					"titleNView": false
-				}
+				"navigationBarTitleText": "注册",
+				"enablePullDownRefresh": false
+				
 			}
 
 		}, {

@@ -1,44 +1,32 @@
 <template>
 	<view class="safe">
-		<view class="item">
-			<view class="left dis" >手机号</view>
-			<view class="right dis">
-				<!-- <input type="text" placeholder="请输入手机号" v-model="phone"> -->
-				<u-input v-model="phone" type="number"   placeholder="请输入手机号" border="true" />
-			</view>
-		</view>
 		
-		<view class="item">
-			<view class="left dis">身份证号</view>
-			<view class="right dis">
-				<!-- <input type="text" placeholder="请输入身份证号"  v-model="sfz"> -->
-				<u-input v-model="sfz" type="number"   placeholder="请输入身份证号" border="true"/>
+		
+		<view class="newInput">
+			<view class="newInputItem">
+				<view class="inputName ">手机号</view>
+				<u-input v-model="phone" type="number"   placeholder="请输入手机号" border="true"/>
 			</view>
-		</view>
-			<view class="item">
-			<view class="left dis" >新密码</view>
-			<view class="right dis">
-				<!-- <input type="text" placeholder="新密码" v-model="pwd"> -->
+			<view class="newInputItem">
+				<view class="inputName ">身份证号</view>
+				 	<u-input v-model="sfz" type="number"   placeholder="请输入身份证号" border="true"/>
+			</view>
+			
+			<view class="newInputItem">
+				<view class="inputName ">新密码</view>
 				<u-input v-model="pwd" type="password"  password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码" border="true"/>
 			</view>
+			
+			<view class="newInputItem">
+				<view class="inputName ">验证码</view>
+					<u-input v-model="captcha" type="number"   placeholder="请输入验证码" border="true"/>
+				<image :src="herf" mode="" style="width: 40%;height: 100%;" @tap='change()'></image>
+			</view>
+			
+			<view class="xinBtn dis" @tap="xiugai()" style="margin-top: 90upx;">提交</view>
 		</view>
 		
-		<view class="item">
-			<view class="left dis" >验证码</view>
-			<view class="right dis">
-				<!-- <input type="text" placeholder="请输入验证码" v-model="captcha"> -->
-				<u-input v-model="captcha" type="number"   placeholder="请输入验证码" border="true"/>
-			</view>
-			<view class="yanzheng" style="">
-				<image :src="herf" mode="" style="width: 100%;height: 100%;" @tap='change()'></image>
-			</view>
-		</view>
 		
-		<view style="width: 100%;position: fixed;left: 0;bottom: 80upx;" class="dis">
-			<view class="in dis" @tap="xiugai">
-				确认
-			</view>
-		</view>
 		
 	</view>
 </template>
@@ -86,7 +74,7 @@
 					uni.showToast({
 						duration: 1000,
 						icon: "error",
-						title: '密码必须大于8位'
+						title: '密码最少8位'
 					})
 					return
 				}else if(this.sfz.length !==18){
@@ -107,6 +95,7 @@
 				this.$fn.request('forget','POST',data).then(res=>{
 					console.log(res.data.msg)
 					if(res.data.code == 1){
+						uni.removeStorageSync('pwd')
 						uni.showToast({
 							title:res.data.msg,
 							icon:'success',
@@ -132,7 +121,7 @@
 .safe{
 	width: 100%;
 	height: 100vh;
-	// background-color: #f1f1f1;
+	background-color: #fff;
 	.item{
 		width: 95%;
 		height: 100upx;
@@ -190,5 +179,57 @@
 		color: #fff;
 		font-size: 40upx;
 		border-radius: 20upx;
+	}
+	
+	.newInput{
+		margin: 0 auto;
+		width: 686rpx;
+		.newInputItem{
+			width: 100%;
+			height: 90upx;
+			border-bottom: 1rpx solid #E5E5E5;
+			display: flex;
+			align-items: center;
+			.inputName{
+				font-family: PingFangSC-Regular, PingFang SC;
+				width: 140upx;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: left;
+			}
+			input{
+				height:100% ;
+				width: 546upx;
+			}
+		}
+		.two{
+			width: 100%;
+			height: 90upx;
+			display: flex;
+			align-items: center;
+			position: relative;
+			.jizhu{
+				display: flex;
+				align-items: center;
+			}
+			.wangji{
+				position: absolute;
+				width: 160upx;
+				height: 100%;
+				right: 0;
+				top: 0;
+			}
+		}
+	}
+	
+	.xinBtn{
+		width: 686rpx;
+		height: 80rpx;
+		background: #02AE71;
+		border-radius: 100rpx;
+		margin: 0 auto;
+		margin-top: 30upx;
+		color: #fff;
 	}
 </style>
