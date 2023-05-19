@@ -424,7 +424,7 @@
 			"path": "pages/green/green",
 			"style": {
 				"navigationBarTitleText": "绿色公益",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": true
 			}
 
 		},

@@ -89,6 +89,9 @@
 				  
 				  <view class="ketixian">可提现金额：200000</view>
 				  
+				  <view class="btnBox dis">
+					  <view class="btn dis">同意并捐赠</view>
+				  </view>
 			  </view>
 			  
 		  </view>
