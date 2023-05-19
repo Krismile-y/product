@@ -114,11 +114,9 @@
 			"path": "pages/invite/invite",
 			"style": {
 				"navigationBarTitleText": "邀请好友",
-				"enablePullDownRefresh": false,
-				"navigationStyle": "custom",
-				"app-plus": {
-					"titleView": false
-				}
+				"enablePullDownRefresh": false
+				
+				
 			}
 
 		}, {

@@ -79,6 +79,12 @@
 				}
 			};
 		},
+		onLoad(){
+			let code = uni.getStorageSync('code')
+			if(code || code!==null ||code!==undefined){
+				this.agent_id=code
+			}
+		},
 		methods: {
 			fanhui() {
 				uni.navigateTo({

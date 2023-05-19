@@ -29,7 +29,7 @@
 
 				<!--  #ifdef APP -->
 				<view class="item disc" @tap="check">
-					<image src="../../static/myimg/jiancha.png" mode=""></image>
+					<image src="../../static/setting/gengxin.png" mode=""></image>
 					<!-- 检查更新 -->
 					<down title='检查更新' ref='down'></down>
 				</view>
