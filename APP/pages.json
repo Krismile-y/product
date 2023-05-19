@@ -436,7 +436,8 @@
 			"path": "pages/green/green",
 			"style": {
 				"navigationBarTitleText": "绿色公益",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": true,
+				"onReachBottomDistance":20 //距离底部多远时触发 单位为px
 			}
 
 		},

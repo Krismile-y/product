@@ -5,7 +5,7 @@
 				:style="styleBall"
 			    @blur="blur" tabindex="1" @tap="show" 
 			    @touchstart.stop="touchstart" @touchmove.stop="touchmove" @touchend="touchend">
-			    <image  :src="mainImg"  style="width: 100upx;height: 100upx;border-radius: 50%;"></image>
+			    <image  :src="mainImg"  style="width: 160upx;height: 100upx;border-radius: 0%;"></image>
 			</view>
 		</a>
     </view>
@@ -17,7 +17,7 @@
 		props:{
 			mainImg:{
 				type:String,
-				default:"../../static/myimg/kefu.png"
+				default:"../../static/setting/wodekefu.png"
 			},
 			// 初始坐标x、y
 			x: {

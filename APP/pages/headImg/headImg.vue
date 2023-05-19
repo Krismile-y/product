@@ -228,7 +228,7 @@
 			bottom: 0;
 			background-color: #fff;
 
-			.bbtn {
+			.btn {
 				text-align: center;
 				padding: 20upx 0;
 				font-size: 16px;

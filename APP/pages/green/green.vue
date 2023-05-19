@@ -10,29 +10,29 @@
 			</view>
 		</scroll-view>
 		
-		<view class="box disc" @tap="go()">
+		<view class="box disc" @tap="go(item.id)" v-for="(item,index) in greenList" :key="index">
 			<view class="shang">
-				<image src="../../static/common/gou.png"  ></image>
+				<image :src="item.img_path"  ></image>
 				<view class="shangRight disc">
 					<view class="biaoti">
 						<view class="gr dis">标签内容</view>
 						<view class="gDetail">
-							撒就代扣代缴睡觉睡觉代理商
+							{{item.title}}
 						</view>
 					</view>
 					<view class="line"></view>
 					
-					<view class="detail">
-						是是是是是是所所所所所所所所所所是是是少时诵诗书是是是是是是所所所所所所所所所所是是是少时诵诗书
+					<view class="detail" v-html="item.content">
+						
 					</view>
 				</view>
 			</view>
 			
-			<view class="title">是是是是是是所所所所所所所所所所是是是少时诵诗书是是是是是是所所所所所所所所</view>
+			<view class="title">{{item.title}}</view>
 			
-			<image src="../../common/zuixinzhengce.png" mode="" class="bigImage"></image>
+			<image :src="item.img_path" mode="" class="bigImage"></image>
 			
-			<view class="time">发送时间：2022.12.22 12:1</view>
+			<view class="time">{{item.initiate_time}}</view>
 		</view>
 		
 	</view>
@@ -47,23 +47,38 @@
 					{type_name:"公益项目"},
 					{type_name:"捐赠记录"}
 				],
+				greenList:[],// 绿色公益列表
+				page:0,//当前页数
+				juanzengjilu:[],//捐赠记录
 			};
 		},
+		onReachBottom(){
+				console.log('已触底')
+		    },
+		
 		onLoad() {
 			let data ={
 				
 			}
+			// 文章列表
 			this.$fn.request('welfare/list','GET',data).then(res=>{
-				console.log(res)
+				console.log(res.data.data.data)
+				this.greenList=res.data.data.data
+			})
+			
+			// 捐献记录
+			this.$fn.request('welfare/list','GET',{}).then(res=>{
+				console.log(res.data.data.data,'捐献记录')
+				this.juanxianjilu=res.data.data.data.data
 			})
 		},
 		methods:{
 			bian(index){
 				this.currentIndex = index
 			},
-			go(){
+			go(id){
 				uni.navigateTo({
-					url:'/pages/greenDetail/greenDetail'
+					url:'/pages/greenDetail/greenDetail?id=' + id
 				})
 			}
 		}

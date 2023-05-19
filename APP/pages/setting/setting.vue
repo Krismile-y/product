@@ -11,19 +11,19 @@
 				</view> -->
 			<view class="msg">
 				<view class="item disc" @tap="go('safe')">
-					<image src="../../static/myimg/zhanghu.png" mode=""></image>
+					<image src="../../static/setting/grrenxinxi.png" mode=""></image>
 					个人信息
 				</view>
 				<view class="item disc">
 					<a :href="kefu" style="width: 100%;height: 100%;color: black;" class="disc">
-						<image src="../../static/myimg/kefu.png" mode=""></image>
+						<image src="../../static/setting/wodekefu.png" mode=""></image>
 						我的客服
 					</a>
 
 					<!-- <a :href="kefu" style="color: black;">我的客服</a> -->
 				</view>
 				<view class="item disc" @tap="go('help')">
-					<image src="../../static/myimg/fankui.png" mode=""></image>
+					<image src="../../static/setting/fankuihebangzhu.png" mode=""></image>
 					反馈与帮助
 				</view>
 
@@ -36,16 +36,17 @@
 				<!--  #endif -->
 
 				<view class="item disc" @tap="go('about')">
-					<image src="../../static/myimg/guanyu.png" mode=""></image>
+					<image src="../../static/setting/guanyuwomen.png" mode=""></image>
 					关于我们
 				</view>
 			</view>
 		</view>
 
 		<view class="bottom dis">
-			<view class="in dis" @tap="tuichu">
+			<!-- <view class="in dis" @tap="tuichu">
 				退出登录
-			</view>
+			</view> -->
+			<view class="newBtn dis" @tap="tuichu">退出登录</view>
 		</view>
 
 		<view>
