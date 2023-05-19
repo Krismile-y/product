@@ -71,7 +71,7 @@
       </view>
       <!--  #endif -->
       <view class="item disc" @tap="goHome('msg')" style="position: relative;">
-		 <u-badge value="99" max="999" type="danger" style="color: #fff;position: absolute;top: -10upx;right: 30upx;background-color:red" />
+		 <u-badge :value="newMSG" max="999" type="danger" style="color: #fff;position: absolute;top: -10upx;right: 30upx;background-color:red" />
         <view class="img-box">
           <image src="../../static/newIndex/xiaoxi.png"></image>
         </view>

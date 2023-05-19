@@ -14,6 +14,7 @@
 </template>
 
 <script>
+	// import FormData from 'form-data'
 	import md5 from 'js-md5';
 	import defaultImg from "../../common/user.webp"
 	export default {
@@ -70,52 +71,46 @@
 						_this.imageSrc = res.tempFilePaths[0];
 						// console.log(_this.imageSrc, '本地图片');
 						console.log(res.tempFiles[0], '二进制文件流')
-						// _this.imgFile = res.tempFiles[0]
-	
+						let tokens = uni.getStorageSync('token') ? uni.getStorageSync('token') : '';
+						let times = Math.round(new Date().getTime() / 1000).toString();
+						let keys = '2zn7s4m0uctu';
+						let data = {
+							'image': res.tempFiles[0], //二进制文件
+							'type': res.tempFiles[0].type
+						}
+						console.log(res.tempFiles,'data里的type')
+						uni.uploadFile({
+							url: this.$url + 'upload',
+							header: {
+								'token': tokens,
+								'sign': md5(tokens + '&' + keys + '&' + times),
+								'time': times
+							},
 
-						let form = new FormData();
+							filePath: res.tempFilePaths[0],
+							name: 'file',
+							formData: data,
+							success: (uploadFileRes) => {
+								console.log('上传成功返回--', uploadFileRes.data);
+							}
+						});
 
-// file , => res.temp
-						form.append('file', res.tempFiles[0])
-				        
-                         let tokens = uni.getStorageSync('token') ? uni.getStorageSync('token') : '';
-                         let times = Math.round(new Date().getTime() / 1000).toString();
-                         let keys = '2zn7s4m0uctu';
-						 
-						 let data={
-							 'image':res.tempFiles[0],//二进制文件
-							 'type': res.tempFiles[0].type
-						 }
-						 // uni.request({
-						 // 	url:'https://api.lszgfreer.top/api/upload',
-							// method:'POST',
-							// header: {
-							// 	// 'Content-Type':'multipart/form-data',
-							// 	'token': tokens,
-							// 	'sign': md5(tokens + '&' + keys + '&' + times),
-							// 	'time': times
-							// },
-							// data,
-							// success: (r) => {
-							// 	console.log(r)
-							// }
-						 // })
-						 
-						 uni.uploadFile({
-						        url: this.$url+'upload',
-						        header:{
-						         'token': tokens,
-						         'sign': md5(tokens + '&' + keys + '&' + times),
-						         'time': times
-						        },
-								
-						        filePath: res.tempFilePaths[0],
-						        name: 'file',
-						        formData: data,
-						        success: (uploadFileRes) => {
-						         console.log('上传成功返回--',uploadFileRes.data);
-						        }
-						       });
+						// uni.request({
+						// 	url:'https://api.lszgfreer.top/api/upload',
+						// method:'POST',
+						// header: {
+						// 	// 'Content-Type':'multipart/form-data',
+						// 	'token': tokens,
+						// 	'sign': md5(tokens + '&' + keys + '&' + times),
+						// 	'time': times
+						// },
+						// data,
+						// success: (r) => {
+						// 	console.log(r)
+						// }
+						// })
+
+
 						// let data = {
 						// 	'image': form,
 						// 	'type': res.tempFiles[0].type

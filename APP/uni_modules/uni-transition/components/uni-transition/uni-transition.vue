@@ -1,5 +1,10 @@
 <template>
-	<view v-if="isShow||onceRender" v-show="isShow" ref="ani" :animation="animationData" :class="customClass" :style="transformStyles" @tap="ontap"><slot></slot></view>
+  <!-- #ifndef APP-NVUE -->
+  <view v-show="isShow" ref="ani" :animation="animationData" :class="customClass" :style="transformStyles" @click="onClick"><slot></slot></view>
+  <!-- #endif -->
+  <!-- #ifdef APP-NVUE -->
+  <view v-if="isShow" ref="ani" :animation="animationData" :class="customClass" :style="transformStyles" @click="onClick"><slot></slot></view>
+  <!-- #endif -->
 </template>
 
 <script>
@@ -23,7 +28,7 @@ import { createAnimation } from './createAnimation'
  */
 export default {
 	name: 'uniTransition',
-	emits:['tap','change'],
+	emits:['click','change'],
 	props: {
 		show: {
 			type: Boolean,
@@ -121,8 +126,8 @@ export default {
 		/**
 		 * 点击组件触发回调
 		 */
-		ontap() {
-			this.$emit('tap', {
+		onClick() {
+			this.$emit('click', {
 				detail: this.isShow
 			})
 		},

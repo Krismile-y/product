@@ -11,7 +11,7 @@ export default {
 	},
 	data() {
 		return {
-			
+			newMSG:0,//官方最新消息
 			phoneDown: "",
 			out: 0,
 			obj: {
@@ -119,12 +119,15 @@ export default {
 		}
 
 	},
-
+  onReady(){
+	 
+  },
+  
 	onLoad() {
 		// 最新官方消息接口
-		this.$fn.request('count', "GET", {"type":"1"}).then(res => {
-			console.log(res.data.data,'最新消息')
-			 // this.posterList = res.data.data
+		this.$fn.request('notice/count', "GET", {"type":"1"}).then(res => {
+			console.log(res.data.data.count,'最新消息')
+			this.newMSG=res.data.data.count
 		})
 		
 		

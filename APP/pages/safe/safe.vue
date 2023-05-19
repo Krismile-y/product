@@ -44,6 +44,7 @@
 	export default {
 		data() {
 			return {
+				show:true,
 			  info:{},
 			  shiming:"",
         imgSrc: '../../common/user.webp'
@@ -59,12 +60,13 @@
 			this.info=uni.getStorageSync('user_info')
 			 this.imgSrc = this.info.head_img
 		})
-    
+    this.info=uni.getStorageSync('user_info')
+     this.imgSrc = this.info.head_img
      
     },
 		onLoad() {
 			this.info=uni.getStorageSync('user_info')
-      this.imgSrc = this.info.head_img
+             this.imgSrc = this.info.head_img
 			let z = this.info.is_real_name
 			if(z == 0){
 				this.shiming='未实名'
