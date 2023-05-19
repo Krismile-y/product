@@ -1,6 +1,6 @@
 <template>
 	<view class="investDetail"> 
-		
+		<airel-floatball  />
 		<view class="top">
 			<image src="https://img0.baidu.com/it/u=528833255,3463981408&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800" mode=""></image>
 		</view>

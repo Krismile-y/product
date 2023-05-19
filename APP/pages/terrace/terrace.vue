@@ -1,5 +1,6 @@
 <template>
 	<view>
+    <airel-floatball  />
 		<image :src="img" mode=""></image>
 		<view style="width: 90%;margin: 30upx auto;">
 			

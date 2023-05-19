@@ -1,6 +1,6 @@
 <template>
 	<view class="invite disc">
-		
+		<airel-floatball  />
 		<view class="newBox disc" >
 			<image :src="code"></image>
 			<view class="dis tuijianma" >我的推荐码</view>

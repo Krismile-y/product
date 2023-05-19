@@ -1,6 +1,6 @@
 <template>
 	<view v-html="info">
-		
+		<airel-floatball  />
 	</view>
 </template>
 

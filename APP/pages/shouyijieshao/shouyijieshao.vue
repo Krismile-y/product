@@ -1,5 +1,6 @@
 <template>
   <view>
+    <airel-floatball  />
     <!-- 收益介绍 -->
   </view>
 </template>

@@ -1,5 +1,6 @@
 <template>
 	<view class="sign">
+    <airel-floatball  />
 		<view class="calendar-content" v-if="showCalendar">
 			<view>
 				<!-- 插入模式 -->

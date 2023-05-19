@@ -1,5 +1,6 @@
 <template>
 	<view>
+    <airel-floatball  />
 		<view class="item">
 			<view class="left dis">
 				收货人

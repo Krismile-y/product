@@ -1,5 +1,6 @@
 <template>
   <view class="lvbiDetails">
+    <airel-floatball  />
     <image src="../../static/index/senlin.jpg" mode=""></image>
   </view>
 </template>

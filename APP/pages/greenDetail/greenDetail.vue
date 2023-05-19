@@ -1,6 +1,6 @@
 <template>
 	<view class="greenDetail" style="">
-		
+		<airel-floatball  />
 		<view style="width: 100%;height:30upx;"></view>
 		
 		<view class="box disc" >

@@ -1,5 +1,6 @@
 <template>
 	<view style="padding-bottom: 30upx;">
+    <airel-floatball  />
 		<view class="top">
 			<view><text class="da">12.64</text><text class="xiao">+1.6%</text></view>
 			<view class="right dis">

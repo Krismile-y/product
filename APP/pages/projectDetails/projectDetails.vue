@@ -1,5 +1,6 @@
 <template>
   <view class="projectDetails" ref="projectDetails">
+    <airel-floatball  />
     <!-- 项目详情 -->
     <!-- 商品详情图片 -->
     <image class="detailsImg" :src="detail.head_img" mode="widthFix"></image>

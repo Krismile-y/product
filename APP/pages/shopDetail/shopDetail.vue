@@ -1,5 +1,6 @@
 <template>
 	<view class="shopDetail">
+    <airel-floatball  />
 		<image :src="item.head_img" style="width: 750upx;height: 750upx;margin: 0 auto;border-radius: 20upx;"
 			mode="widthFix"></image>
 		<view class="shopInfo">

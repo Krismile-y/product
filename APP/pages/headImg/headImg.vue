@@ -1,5 +1,6 @@
 <template>
 	<view class="headImg">
+    <airel-floatball  />
     <view class="headImg-box">
       <image :src="imageSrc" mode="" class="img-head"></image>
     </view>

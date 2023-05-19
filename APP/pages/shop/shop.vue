@@ -2,7 +2,7 @@
 	
 	<view class="content" style="position: relative;">
 		<!-- 头部 -->
-		
+		<airel-floatball  />
 			<view class="xintop disc">
 				<view style="">我的积分</view>
 				<view style="margin-top: 30upx;font-size: 36upx; font-weight: 580;">{{info.money_integral}}</view>

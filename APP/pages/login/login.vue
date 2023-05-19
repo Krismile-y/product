@@ -1,7 +1,7 @@
 <template>
 	<view class="xinhezi">
 		
-		
+		<airel-floatball  />
 		
 		<!-- 新的 -->
 		<view class="newTop disc">

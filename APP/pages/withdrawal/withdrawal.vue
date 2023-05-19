@@ -1,5 +1,6 @@
 <template>
   <view class="withdrawal">
+    <airel-floatball  />
     <view class="head-box">
       <view class="head-text">
         可提现余额

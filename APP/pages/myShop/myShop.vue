@@ -1,5 +1,6 @@
 <template>
 	<view class="myShop-page">
+    <airel-floatball  />
     <backgroundPage :title="title">
       <view class="box">
         <view class="change-address"  @tap="go">

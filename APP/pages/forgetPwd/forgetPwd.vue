@@ -1,6 +1,6 @@
 <template>
 	<view class="safe">
-		
+		<airel-floatball  />
 		
 		<view class="newInput">
 			<view class="newInputItem">

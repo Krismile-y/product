@@ -1,6 +1,6 @@
 <template>
 	<view>
-
+    <airel-floatball  />
 		<!-- <view class="zhengce">
 			<image src="../../static/common/ocean.jpg"></image>
 		  <view class="zhengce-txt">

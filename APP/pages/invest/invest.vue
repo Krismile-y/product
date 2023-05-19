@@ -1,7 +1,7 @@
 <template>
 	<view class="content" style="min-height: 120vh; padding-bottom: 100upx;">
        <!-- 手写拉起框 -->
-				
+				<airel-floatball  />
 				<!-- 标题栏 -->
 				<scroll-view scroll-x="true" style="width: 100%;height: 90upx;white-space: nowrap;margin-top: 50upx;">
 					<view class="item " v-for="(item,index) in list" :key="index" @tap="bian(index,item.id)">

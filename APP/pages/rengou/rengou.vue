@@ -1,5 +1,6 @@
 <template>
   <view class="rengou">
+    <airel-floatball  />
     <!-- 商品详情图片 -->
     <image class="detailsImg" :src="head_img" mode=""></image>
     <view class="project-title">

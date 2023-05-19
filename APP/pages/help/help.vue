@@ -1,5 +1,6 @@
 <template>
 	<view class="help-page">
+    <airel-floatball  />
     <image src="../../static/common/back.png" mode="widthFix" class="back-img" @tap="back"></image>
 		<image src="../../static/common/forest.jpg" mode="widthFix" class="help-img"></image>
     <view class="help-title">

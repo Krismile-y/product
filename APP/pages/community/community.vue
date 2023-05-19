@@ -1,6 +1,6 @@
 <template>
 	<view style="padding-bottom: 0upx;padding-top: 70upx;background-color: #f7f8fa;min-height: 100vh;">
-
+      <airel-floatball  />
         <view class="zongshouyi">
         	<view class="one disc">
         		<view style="color: #fff;">总收益</view>

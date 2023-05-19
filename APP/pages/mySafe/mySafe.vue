@@ -1,5 +1,6 @@
 <template>
 	<view>
+    <airel-floatball  />
 		<image src="../../static/my/mySafe.jpg" mode="widthFix"></image>
 	</view>
 </template>

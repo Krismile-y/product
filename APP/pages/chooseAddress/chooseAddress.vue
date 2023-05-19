@@ -1,6 +1,6 @@
 <template>
 	<view class="address">
-		
+		<airel-floatball  />
 		<scroll-view scroll-y="true" style="width: 100%;height: calc(100vh - 300upx);padding-bottom: 160upx;">
 			<view class="item" v-for="(item,index) in list" :key="index"  :class="{color:currentIndex==index?true:false}">
 				<view class="pos disc">

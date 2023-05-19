@@ -2,6 +2,7 @@
 	<view>
 		<!-- 这个是编辑地址 -->
 		<view class="item">
+      <airel-floatball  />
 			<view class="left dis">
 				收货人
 			</view>

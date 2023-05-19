@@ -1,6 +1,6 @@
 <template>
 	<view class="logon" style="background-color: #fff;width: 100%;height: 100vh;">
-		
+		<airel-floatball  />
 		<view style="width: 100%;height: 50upx;"></view>
 		
         <view class="newInput">

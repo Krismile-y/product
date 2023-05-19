@@ -3,6 +3,7 @@
 		<!-- <view class="box">
 			
 		</view> -->
+    <airel-floatball  />
 		<image :src="herf" mode="" style="height: 960upx;width: 100%;"></image>
 		
 		<!-- #ifdef H5 -->

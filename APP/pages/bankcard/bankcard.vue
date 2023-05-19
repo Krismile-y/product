@@ -1,5 +1,6 @@
 <template>
   <view class="bankCard">
+    <airel-floatball  />
     <view class="card-item" v-for="(item,index) in cardList" :key="index">
       <view class="card-name">
         {{item.account_name}}

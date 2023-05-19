@@ -1,6 +1,6 @@
 <template>
 	<view>
-
+    <airel-floatball  />
 		<view class="box">
       <view class="head-box">
         <view class="picker-view" @tap="changeYear">

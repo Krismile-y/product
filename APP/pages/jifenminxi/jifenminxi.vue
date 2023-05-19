@@ -1,5 +1,6 @@
 <template>
   <view>
+    <airel-floatball  />
   <!-- 签到详情 -->
     <view class="box">
       <view class="head-box">

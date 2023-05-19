@@ -1,6 +1,6 @@
 <template>
 	<view>
-		
+		<airel-floatball  />
 		
 		<scroll-view scroll-x="true" style="width: 100%;height: 90upx;white-space: nowrap;margin-top: 50upx;">
 			<view class="item " v-for="(item,index) in list" :key="index" @tap="bian(index,item.id)">

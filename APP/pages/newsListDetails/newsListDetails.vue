@@ -1,5 +1,6 @@
 <template>
   <view class="newsListDetails">
+    <airel-floatball  />
     <!-- <view class="details-title" v-html="dataObj.title"></view>
     <view class="warpHtml" v-html="dataObj.content"></view> -->
     <view class="head-name">

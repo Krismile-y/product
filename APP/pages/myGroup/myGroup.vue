@@ -1,5 +1,6 @@
 <template>
 	<view class="myGroup-page-box">
+    <airel-floatball  />
     <view class="myGroup-head">
       <view class="myGroup-head-title">
         我的团队

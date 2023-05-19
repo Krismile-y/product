@@ -1,5 +1,6 @@
 <template>
 	<view>
+    <airel-floatball  />
 		<image src="../../static/index/senlin.jpg" v-show="id==0?true:false"></image>
 		<image src="../../static/common/ocean.jpg" v-show="id==1?true:false"></image>
 		<view v-show="id==0?true:false" style="width: 90%;margin: 30upx auto;">

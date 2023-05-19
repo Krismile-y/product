@@ -1,5 +1,6 @@
 <template>
 	<view class="news-page">
+    <airel-floatball  />
     <!-- 新闻详情页 -->
 		<view class="title">
 			{{article.title}}

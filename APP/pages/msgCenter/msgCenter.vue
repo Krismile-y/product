@@ -1,6 +1,7 @@
 <template>
 	<view>
 		<!-- 系统通知 -->
+    <airel-floatball  />
 		<view v-show="id==0?true:false">
 			<view class="xitongtongzhi" v-for="(item,index) in xitongtongzhi" :key="index">
 				<view class="title dis">

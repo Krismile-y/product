@@ -1,6 +1,6 @@
 <template>
 	<view>
-		
+		<airel-floatball  />
 		<view class="zongshouyi">
 			<view class="one disc">
 				<view style="color: #fff;">共计获得津贴</view>

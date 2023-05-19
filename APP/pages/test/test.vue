@@ -1,5 +1,6 @@
 <template>
   <view class="container">
+    <airel-floatball  />
     <backgroundPage :title="title" :imgUrl="forestBg">
       <view class="chongzhi">
         <view class="input-box">

@@ -1,5 +1,6 @@
 <template>
   <view class="fukuan">
+    <airel-floatball  />
     <!-- 付款 -->
     <view class="header">
       <view class="head-money">

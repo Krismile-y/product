@@ -1,5 +1,6 @@
 <template>
 	<view class="content" style="padding-bottom: 0;">
+    <airel-floatball  />
 		<!-- 头部 -->
 		<view class="top">
 			<view class="topBox">
