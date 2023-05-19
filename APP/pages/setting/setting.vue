@@ -123,7 +123,7 @@
 				uni.removeStorageSync('address');
 				uni.setStorageSync('gengxin', false) //app更新首页显示状态
 				// uni.removeStorageSync('address');
-        uni.setStorageSync('current',0)
+        uni.setStorageSync('current','0')
 				uni.navigateTo({
 					url: '/pages/login/login'
 				})

@@ -1,15 +1,39 @@
 <template>
 	<view class="myGroup-page-box">
-    <backgroundPage :title="title">
-      <view class="myGroup-page">
-        <view class="tits">
-          <view class="title dis" @tap="bian(0)" :class="{color:false}">
-            {{`团队详情(${mblv})`}}
-          </view>
+    <view class="myGroup-head">
+      <view class="myGroup-head-title">
+        我的团队
+      </view>
+      <view class="team-name">
+        {{teamName}}
+      </view>
+    </view>
+    
+    <view class="team-box">
+      <view class="teamLv">
+        {{mblv}}
+      </view>
+        <view class="team-content">
+          <!-- <scroll-view scroll-y :style="{ height: viewHeight + 'px' }" @scrolltolower="loadMore"> -->
+            <view class="team-content1">
+              <view class="items" v-for="(item,index) in list" :key="index" @tap="chakan(item)">
+                <view class="item-img">
+                  <image :src="item.head_img==''?defaultHeadImg:item.head_img" mode=""></image>
+                </view>
+                <view class="item-name">
+                  {{item.user_name}}
+                </view>
+                <view class="item-id">
+                  ID:{{item.id}}
+                </view>
+              </view>
+            </view>
+          <!-- </scroll-view> -->
         </view>
-
+      
+    </view>
         <!--团队  -->
-        <view class="u-page">
+        <!-- <view class="u-page">
           <view class="people-item" v-for="(item,index) in last" @tap="chakan(item)">
             <image :src="item.head_img" mode=""></image>
             <view class="people-name">
@@ -17,156 +41,126 @@
             </view>
           </view>
           
-        </view>
+        </view> -->
         <!-- 	<view class="daiding dis">
           <uni-load-more status="more" :content-text="contentText" />
         </view> -->
-        <!-- 年月选择弹框 -->
-          <template>
-            <view>
-              <u-datetime-picker :show="show" v-model="value1" mode="year-month" @confirm="pickerConfirm"
-                @close="pickerClose" @cancel="pickerCancel"></u-datetime-picker>
-            </view>
-          </template>
-      </view>
-    </backgroundPage>
   </view>
 </template>
 
 <script>
-  import backgroundPage from "../../components/background-page/background.vue";
+  import defaultHeadImg from "../../static/common/logo.png"
 	export default {
-    components: {backgroundPage},
 		data() {
 			return {
-				lv:1,//当前等级
-        mblv: '一级会员',
-        title: '我的团队',
-				agent_info: [], //我的推荐人
-				below_agent_info: [],
-        userInfo: {},
-				currentIndex: 0,
-				nowShow: true,
-				res: '2023年3月投资小计',
-				page: '', //页码
-				tableData: [], //表格数据
-				show: false,
-				value1: Number(new Date()),
-				dateText: '请选择年月',
-				priceTotal: '0.00',
-				// 每页数据量
-				pageSize: 10,
-				// 当前页
-				pageCurrent: 1,
-				// 数据总量
-				total: 0,
-				loading: false,
-				showPagination: false, //总数据小于单页展示数据，不显示分页条
-                last:[],//第一层
-				fanyongShow:true,
-        
+        userInfo: {
+          user_name:'',
+        },
+				list: [], //团队列表
+        lv: 1, //记录会员等级
+        mblv: '一级团队',
+        defaultHeadImg,
+        below_agent_info: {}, //记录我的团队信息
+        teamName: '',
+        viewHeight: 420,   // scroll-view 的高度
+        pageNo: 1,       // 当前页数
+        pageSize: 12,    // 每页数据条数
+        hasMore: true,    // 是否还有更多数据
+        nowItem: {},
+        currentPage: 1, //当前页
+        lastPage: 0, //最后一页
 			};
 		},
 		onLoad(option) {
       this.userInfo =uni.getStorageSync('user_info')
-      this.title = `<view class="wdtjm">我的团队</view><br />
-          <view class="numberCode">${this.userInfo.user_name}</view>`
-      console.log(this.userInfo,'userInfo');
-      this.chakan(this.userInfo)
-      if(option.index) {
-        this.currentIndex = option.index
-      } else {
-        console.log(option.index,' console.log(option.index);');
-      }
+      this.teamName = this.userInfo.user_name
+      this.myGroup()
 		},
-		
+    onReachBottom() {
+      // 当前页不是最后一页，触底发送请求
+      if(this.currentPage != this.lastPage) {
+        this.chakan(this.nowItem)
+      }else {
+        uni.showToast({
+          title:'没有更多了~',
+          icon:"error"
+        })
+      }
+      
+    },
+		onReady() {
+      // 获取 scroll-view 的高度
+      const query = uni.createSelectorQuery().in(this);
+      query.select('.uni-scroll-view').boundingClientRect((res) => {
+        console.log(res);
+        // this.viewHeight = res.height;
+      }).exec();
+    },
 		methods: {
 			chakan(item){
+        // 我的团队查询下一级信息
 				console.log(item)
         if(this.lv>3) {
           return
         }
+        if(item.id != this.nowItem.id) {
+          this.pageNo = 1
+          this.lv++
+          this.list = []
+        }
         this.memberLv()
+        this.nowItem = item
 				let data = {
 					"uid": item.id,
-					"page": '1',
-					"limit": "10"
+					"page": this.pageNo,
+					"limit": this.pageSize
 				}
+        this.teamName = item.user_name
 				this.$fn.request('user_list_team', "GET", data).then(res => {
-					// console.log(res.data.data, '我的团队信息')
-					
+					console.log(res.data.data, '我的团队列表')
+          //记录当前页和最后一页
+          this.currentPage = res.data.data.current_page
+          this.lastPage = res.data.data.last_page 
+					let newList = res.data.data.data
 					// console.log(res.data.data)
-					this.last=res.data.data.data
-          this.lv++
-					if(this.last.length == 0){
-						this.fanyongShow=false
-						 // this.last=res.data.data.data
-						// console.log(res.data.data.data)
-						
-					}
+					this.list=[...this.list,...newList]
+          this.pageNo++
 				})
-				// console.log(this.lv)
-				// this.myGroup(item.id)
-				// console.log(item.id,'id')
 			},
 			myGroup(){
-				// 我的团队查询下一级信息
 				let info=uni.getStorageSync('user_info')
-				
 				let data = {
-					"uid": this.lv,
+					"lv": this.lv,
 					"page": '1',
 					"limit": "10"
 				}
 				this.$fn.request('user_team', "GET", data).then(res => {
-					console.log(res.data.data.agent_info, '我的团队信息')
-					this.last=res.data.data.data
-					this.agent_info = res.data.data.agent_info,
+					console.log(res, '我的团队信息')
+					// this.list=res.data.data.data
+					// this.agent_info = res.data.data.agent_info,
 					this.below_agent_info = res.data.data.below_agent_info
+          this.nowItem = res.data.data.below_agent_info
+          this.chakan(this.below_agent_info)
 				})
 			},
       memberLv() {
         if(this.lv == 1) {
-          this.mblv = '一级会员'
+          this.mblv = '一级团队'
         }else if (this.lv == 2) {
-          this.mblv = '二级会员'
+          this.mblv = '二级团队'
         }else {
-          this.mblv = '三级会员'
+          this.mblv = '三级团队'
         }
       },
-			bian(index) {
-				this.currentIndex = index
-				if (index == 0) {
-					// 我的团队信息
-					
-				}
-			},
-			changeYear() {
-				this.show = true
-			},
-			
-			// 分页触发
-			change(e) {
-				// this.selectedIndexs.length = 0
-				this.$refs.table.clearSelection()
-				this.getData(e.current, this.dateText)
-			},
-			// 年份选择确认
-			pickerConfirm(e) {
-				// 更改展示的年月
-				let date = new Date(e.value)
-				console.log(date)
-				let month = date.getMonth() + 1 > 10 ? (date.getMonth() + 1) + '' : '0' + (date.getMonth() + 1)
-				let year = date.getFullYear()
-				this.dateText = year + '-' + month
-				this.show = false
-			},
-			pickerClose() {
-				this.show = false
-			},
-			pickerCancel() {
-				this.show = false
-			}
+      loadMore() {
+        if (!this.hasMore) {
+          // 如果没有更多数据了，就不再加载
+          return;
+        }
+        // console.log('我到底部了');
+        // 如果滚动到底部了，就加载下一页数据
+        // this.loadPageData();
+      }
 		}
 	};
 </script>
