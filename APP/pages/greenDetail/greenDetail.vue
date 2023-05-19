@@ -5,18 +5,18 @@
 		
 		<view class="box disc" >
 			<view class="shang">
-				<image src="../../static/common/gou.png"  ></image>
+				<image :src="item.img_path"  ></image>
 				<view class="shangRight disc">
 					<view class="biaoti">
 						<!-- <view class="gr dis">标签内容</view> -->
 						<view class="gDetail">
-							撒就代扣代缴睡觉睡觉代理商
+						  {{item.title}}
 						</view>
 					</view>
 					<!-- <view class="line"></view> -->
 					
 					<view class="detail">
-						已经有888人参与了捐赠
+						已经有{{item.people}}人参与了捐赠
 					</view>
 					
 					<view class="address">
@@ -27,15 +27,15 @@
 				</view>
 			</view>
 			
-			<view class="title">正文标题</view>
+			<view class="title">{{item.title}}</view>
 			
-			<view class="neirong">
-				啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+			<view class="neirong" v-html="item.content">
+				
 			</view>
 			
-			<image src="../../common/zuixinzhengce.png" mode="" class="bigImage"></image>
+			<image :src="item.img_path"  mode="" class="bigImage"></image>
 			
-			<view class="time">备案号：12312312314124124</view>
+			<view class="time">{{item.record_no}}</view>
 		</view>
 		
 		
@@ -43,23 +43,23 @@
 		<view class="last disc">
 			<view class="lastItem">
 				<view class="name">收款机构:</view>
-				<view class="nameDetail">内容内容内容内容内容内容</view>
+				<view class="nameDetail">{{item.collection_agency}}</view>
 			</view>
 			<view class="lastItem">
 				<view class="name">执行机构:</view>
-				<view class="nameDetail">内容内容内容内容内容内容</view>
+				<view class="nameDetail">{{item.executing_agency}}</view>
 			</view>
 			<view class="lastItem">
 				<view class="name">公益进展:</view>
-				<view class="nameDetail" style="color: #02AE71;">内容内容内容内容内容内容</view>
+				<view class="nameDetail" style="color: #02AE71;" v-html="item.progress_content"></view>
 			</view>
 			<view class="lastItem">
 				<view class="name">已筹款人数:</view>
-				<view class="nameDetail">内容内容内容内容内容内容</view>
+				<view class="nameDetail">{{item.people}}</view>
 			</view>
 			<view class="lastItem">
 				<view class="name">已筹善款:</view>
-				<view class="nameDetail">内容内容内容内容内容内容</view>
+				<view class="nameDetail">{{item.amount}}</view>
 			</view>
 		</view>
 		
@@ -70,27 +70,27 @@
 			  <view class="infoBox">
 				  <view class="infoTitle dis">我要捐款</view>
 				  <view class="shankuan">
-					  <view class="sDetail">善款接收：阿阿阿阿阿阿</view>
+					  <view class="sDetail">善款接收：{{item.executing_agency}}</view>
 				  </view>
 				  <view class="three">
-					  <view class="threeItem dis">100元</view>
-					  <view class="threeItem dis">200元</view>
-					  <view class="threeItem dis">500元</view>
+					  <view class="threeItem dis" @tap="chooseMoney(set_amount[0],0)" :class="{color:currentIndex==0?true:false}">{{set_amount[0]}}元</view>
+					  <view class="threeItem dis" @tap="chooseMoney(set_amount[1],1)" :class="{color:currentIndex==1?true:false}">{{set_amount[1]}}元</view>
+					  <view class="threeItem dis"  @tap="chooseMoney(set_amount[2],2)" :class="{color:currentIndex==2?true:false}">{{set_amount[2]}}元</view>
 					   
 				  </view>
 				  
 				  <view class="zidingyi">
 					  <view class="jine dis">自定义金额</view>
-					  <input type="number" placeholder="请输入金额">
+					  <input type="number" placeholder="请输入金额" v-model="amount" @input='change'>
 					  <view class="font dis">元</view>
 				  </view>
 				  
 				  <view class="line"></view>
 				  
-				  <view class="ketixian">可提现金额：200000</view>
+				  <view class="ketixian">可提现金额：{{info.money_approve}}</view>
 				  
 				  <view class="btnBox dis">
-					  <view class="btn dis">同意并捐赠</view>
+					  <view class="btn dis" @tap="agree">同意并捐赠</view>
 				  </view>
 			  </view>
 			  
@@ -104,8 +104,31 @@
 	export default {
 		data() {
 			return {
-				show:false
+				show:false,
+				id:"",
+				item:{},
+				amount:'',//金额
+				wid:'',//文章id
+				currentIndex:"",//当前选中状态
+				info:"",//用户信息
+				set_amount:[],//捐献金额
 			};
+		},
+		onLoad(options) {
+			this.info = uni.getStorageSync('user_info')
+			this.id=options.id
+			this.wid=options.id
+			
+			this.$fn.request('welfare/details',"GET",{'id':this.id}).then(res=>{
+				console.log(res.data.data,'产品详情')
+				this.item=res.data.data
+			})
+			
+			// 捐献金额接口
+			this.$fn.request('set_amount',"GET",{}).then(res=>{
+				console.log(res.data.data,'捐献金额')
+				this.set_amount=res.data.data
+			})
 		},
 		methods:{
 			open(){
@@ -114,6 +137,24 @@
 			},
 			close() {
 			 this.show=!true
+			},
+			chooseMoney(num,index){//选择金额
+			    this.currentIndex=index
+				this.amount=num
+			},
+			change(e){//输入框改变
+				// console.log(e.detail.value)
+				// console.log(this.amount)
+				this.currentIndex='99999999'
+			},
+			agree(){
+				let data={
+					'amount':this.amount,
+					'wid':this.wid
+				}
+				this.$fn.request('welfare/donate','POST',data).then(res=>{
+					console.log(res)
+				})
 			}
 		}
 	}
