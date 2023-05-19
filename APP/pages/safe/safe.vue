@@ -44,6 +44,7 @@
 	export default {
 		data() {
 			return {
+				show:true,
 			  info:{},
 			  shiming:"",
         imgSrc: '../../common/user.webp'

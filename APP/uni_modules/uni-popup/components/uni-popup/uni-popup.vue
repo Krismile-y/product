@@ -1,11 +1,11 @@
 <template>
-	<view v-if="showPopup||onceRender" v-show="showPopup"  class="uni-popup" :class="[popupstyle, isDesktop ? 'fixforpc-z-index' : '']">
+	<view v-if="showPopup" class="uni-popup" :class="[popupstyle, isDesktop ? 'fixforpc-z-index' : '']">
 		<view @touchstart="touchstart">
 			<uni-transition key="1" v-if="maskShow" name="mask" mode-class="fade" :styles="maskClass"
-				:duration="duration" :show="showTrans" @tap="onTap" />
+				:duration="duration" :show="showTrans" @click="onTap" />
 			<uni-transition key="2" :mode-class="ani" name="content" :styles="transClass" :duration="duration"
-				:show="showTrans" @tap="onTap" :once-render="onceRender">
-				<view class="uni-popup__wrapper" :style="{ backgroundColor: bg }" :class="[popupstyle]" @tap="clear">
+				:show="showTrans" @click="onTap">
+				<view class="uni-popup__wrapper" :style="{ backgroundColor: bg }" :class="[popupstyle]" @click="clear">
 					<slot />
 				</view>
 			</uni-transition>
@@ -35,13 +35,13 @@
 	 * 	@value dialog 对话框
 	 * 	@value share 底部分享示例
 	 * @property {Boolean} animation = [true|false] 是否开启动画
-	 * @property {Boolean} masktap = [true|false] 蒙版点击是否关闭弹窗(废弃)
-	 * @property {Boolean} isMasktap = [true|false] 蒙版点击是否关闭弹窗
+	 * @property {Boolean} maskClick = [true|false] 蒙版点击是否关闭弹窗(废弃)
+	 * @property {Boolean} isMaskClick = [true|false] 蒙版点击是否关闭弹窗
 	 * @property {String}  backgroundColor 主窗口背景色
 	 * @property {String}  maskBackgroundColor 蒙版颜色
 	 * @property {Boolean} safeArea		   是否适配底部安全区
 	 * @event {Function} change 打开关闭弹窗触发，e={show: false}
-	 * @event {Function} masktap 点击遮罩触发
+	 * @event {Function} maskClick 点击遮罩触发
 	 */
 
 	export default {
@@ -51,7 +51,7 @@
 			keypress
 			// #endif
 		},
-		emits: ['change', 'masktap'],
+		emits: ['change', 'maskClick'],
 		props: {
 			// 开启动画
 			animation: {
@@ -64,13 +64,13 @@
 				type: String,
 				default: 'center'
 			},
-			// masktap
-			isMasktap: {
+			// maskClick
+			isMaskClick: {
 				type: Boolean,
 				default: null
 			},
-			// TODO 2 个版本后废弃属性 ，使用 isMasktap
-			masktap: {
+			// TODO 2 个版本后废弃属性 ，使用 isMaskClick
+			maskClick: {
 				type: Boolean,
 				default: null
 			},
@@ -85,11 +85,6 @@
 			maskBackgroundColor: {
 				type: String,
 				default: 'rgba(0, 0, 0, 0.4)'
-			},
-			// 指定使用v-show指令，不重新渲染Pop组件
-			onceRender:{
-				type:Boolean,
-				default:false
 			},
 		},
 
@@ -115,15 +110,15 @@
 			 * 监听遮罩是否可点击
 			 * @param {Object} val
 			 */
-			masktap: {
+			maskClick: {
 				handler: function(val) {
-					this.mktap = val
+					this.mkclick = val
 				},
 				immediate: true
 			},
-			isMasktap: {
+			isMaskClick: {
 				handler: function(val) {
-					this.mktap = val
+					this.mkclick = val
 				},
 				immediate: true
 			},
@@ -167,7 +162,7 @@
 					right: 0
 				},
 				maskShow: true,
-				mktap: true,
+				mkclick: true,
 				popupstyle: this.isDesktop ? 'fixforpc-top' : 'top'
 			}
 		},
@@ -227,11 +222,11 @@
 		},
 		// #endif
 		created() {
-			// this.mktap =  this.isMasktap || this.masktap
-			if (this.isMasktap === null && this.masktap === null) {
-				this.mktap = true
+			// this.mkclick =  this.isMaskClick || this.maskClick
+			if (this.isMaskClick === null && this.maskClick === null) {
+				this.mkclick = true
 			} else {
-				this.mktap = this.isMasktap !== null ? this.isMasktap : this.masktap
+				this.mkclick = this.isMaskClick !== null ? this.isMaskClick : this.maskClick
 			}
 			if (this.animation) {
 				this.duration = 300
@@ -261,7 +256,7 @@
 			 * 公用方法，遮罩层禁止点击
 			 */
 			disableMask() {
-				this.mktap = false
+				this.mkclick = false
 			},
 			// TODO nvue 取消冒泡
 			clear(e) {
@@ -274,8 +269,7 @@
 			open(direction) {
 				// fix by mehaotian 处理快速打开关闭的情况
 				if (this.showPopup) {
-					clearTimeout(this.timer)
-					this.showPopup = false
+					return
 				}
 				let innerType = ['top', 'center', 'bottom', 'left', 'right', 'message', 'dialog', 'share']
 				if (!(direction && innerType.indexOf(direction) !== -1)) {
@@ -315,8 +309,8 @@
 					this.clearPropagation = false
 					return
 				}
-				this.$emit('masktap')
-				if (!this.mktap) return
+				this.$emit('maskClick')
+				if (!this.mkclick) return
 				this.close()
 			},
 			/**

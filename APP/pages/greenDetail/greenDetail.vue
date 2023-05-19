@@ -21,7 +21,7 @@
 					
 					<view class="address">
 						<view>地址：海南</view>
-						<view class="aixin dis">捐献爱心</view>
+						<view class="aixin dis" @tap="open">捐献爱心</view>
 					</view>
 					
 				</view>
@@ -63,6 +63,37 @@
 			</view>
 		</view>
 		
+		<!-- 弹出层 -->
+		<u-popup :show="show" mode="bottom" @close="close" :round="16" @open="open">
+		  <view style="width: 100%;height: 800upx;">
+			  
+			  <view class="infoBox">
+				  <view class="infoTitle dis">我要捐款</view>
+				  <view class="shankuan">
+					  <view class="sDetail">善款接收：阿阿阿阿阿阿</view>
+				  </view>
+				  <view class="three">
+					  <view class="threeItem dis">100元</view>
+					  <view class="threeItem dis">200元</view>
+					  <view class="threeItem dis">500元</view>
+					   
+				  </view>
+				  
+				  <view class="zidingyi">
+					  <view class="jine dis">自定义金额</view>
+					  <input type="number" placeholder="请输入金额">
+					  <view class="font dis">元</view>
+				  </view>
+				  
+				  <view class="line"></view>
+				  
+				  <view class="ketixian">可提现金额：200000</view>
+				  
+			  </view>
+			  
+		  </view>
+		</u-popup>
+		
 	</view>
 </template>
 
@@ -70,8 +101,17 @@
 	export default {
 		data() {
 			return {
-				
+				show:false
 			};
+		},
+		methods:{
+			open(){
+			  // 通过组件定义的ref调用uni-popup方法 ,如果传入参数 ，type 属性将失效 ，仅支持 ['top','left','bottom','right','center']
+			 this.show=true
+			},
+			close() {
+			 this.show=!true
+			}
 		}
 	}
 </script>
