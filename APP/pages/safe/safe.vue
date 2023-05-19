@@ -1,16 +1,15 @@
 <template>
 	<view class="safe">
     <view class="safe-box">
-      <view class="item" @tap="goImgPage">
-      	<image src="../../static/common/phone.png" mode=""></image>
-      	头像<text class="head-tips">点击更换头像</text>
+      <view class="item item1" @tap="goImgPage">
+      	<image src="../../static/common/icon_avatar.png" mode=""></image>
+      	头像<view class="head-tips">点击更换头像</view>
       	<view class="right">
       		<image :src="imgSrc" mode="heightFix"></image>
-          <text class="right-jiantou">></text>
       	</view>
       </view>
       <view class="item">
-      	<image src="../../static/common/phone.png" mode=""></image>
+      	<image src="../../static/common/icon_iphone.png" mode=""></image>
       	手机号
       	<view class="right">
       		{{info.phone}}
@@ -19,7 +18,7 @@
       </view>
       
       <view class="item" style="margin-top: 0upx;"  @tap="go(1)">
-      	<image src="../../static/common/shimingzhi.png" mode=""></image>
+      	<image src="../../static/common/icon_id-card.png" mode=""></image>
       	实名制
       	<view class="right">
       		{{shiming}}
@@ -27,7 +26,7 @@
       	</view>
       </view>
       <view class="item" style="margin-top: 0upx;" @tap="go(2)">
-      	<image src="../../static/common/xiugai.png" mode=""></image>
+      	<image src="../../static/common/icon_edit.png" mode=""></image>
       	修改登录密码
       	
       	<view class="right">
@@ -100,39 +99,45 @@
 .safe{
 	width: 100%;
 	height: 100vh;
-  box-sizing: border-box;
-  padding: 40upx 20upx 0;
-	background-color: #f1f1f1;
+	background: #F7F8FA;
   .safe-box {
-    border-radius: 30upx;
-    overflow: hidden;
+    width: 750rpx;
+    height: 472rpx;
+    background: #FFFFFF;
     .item{
     	width: 100%;
-    	height: 90upx;
+    	height: 102upx;
     	background-color: #ffffff;
     	display: flex;
     	align-items: center;
     	box-sizing: border-box;
+      padding:0 32upx;
+      border-bottom: 2rpx solid #E5E5E5;
     	position: relative;
       image{
       	width: 40upx;
       	height: 40upx;
-      	padding-left: 30upx;
-      	margin-right: 15upx;
+        margin-right: 18rpx;
       }
       .head-tips {
         text-indent: .5em;
         color: #bbb;
+        flex: 1;
+        text-align: right;
+        font-size: 28rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #8E8E8E;
       }
     	.right{
-    		position: absolute;
-    		top: 0;
-    		right: 30upx;
-        line-height: 90upx;
-    		flex: 1;
-    		height: 100%;
+        flex: 1;
+        text-align: right;
+        line-height: 102upx;
+        box-sizing: border-box;
         padding-right: 30upx;
+    		height: 100%;
     		color: #999;
+        position: relative;
         .right-jiantou {
           display: block;
           color: #bbb;
@@ -141,14 +146,26 @@
           right: 0;
           transform: translate(0,-50%) scale(1,1.8);
         }
-        image{
-        	width: 100%;
-        	height: 100%;
-          margin-right: 0;
-          box-sizing: border-box;
-          padding: 10upx;
-        }
     	}
+    }
+    .item1 {
+      width: 100%;
+      height: 165rpx;
+      box-sizing: border-box;
+      padding-bottom: 31rpx;
+      display: flex;
+      align-items: flex-end;
+      .right {
+        flex: none;
+        width: 96rpx;
+        height: 96rpx;
+        margin-left: 18rpx;
+        image{
+        	width: 96rpx;
+        	height: 96rpx;
+          margin-right: 0;
+        }
+      }
     }
   }
 	

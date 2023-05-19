@@ -49,15 +49,15 @@
 		
 		<!-- 三个-->
 		<view class="three">
-      <view class="threeItem" style="background-image: url('../../static/newMy/three.png');">
+      <view class="threeItem" style="background-image: url('../../static/newMy/three.png');" @tap="goDetails(1)">
       	<view  style="padding-left: 20upx;padding-top: 10upx;">我的碳汇</view>
       	<view style="padding-left: 20upx;">{{info.money_converge}}</view>
       </view>
-			<view class="threeItem" style="background-image: url('../../static/newMy/two.png');">
+			<view class="threeItem" style="background-image: url('../../static/newMy/two.png');" @tap="goDetails(2)">
 				<view  style="padding-left: 20upx;padding-top: 10upx;">我的碳票</view>
 				<view style="padding-left: 20upx;">{{info.money_vote}}</view>
 			</view>
-			<view class="threeItem" style="background-image: url('../../static/newMy/lvbibg.png');">
+			<view class="threeItem" style="background-image: url('../../static/newMy/lvbibg.png');" @tap="goDetails(3)">
 				<view  style="padding-left: 20upx;padding-top: 10upx;">我的绿币</view>
 				<view style="padding-left: 20upx;">{{info.money_green}}</view>
 			</view>
@@ -271,6 +271,22 @@
 					url: `/pages/${name}/${name}`
 				})
 			},
+      // 三个票详情入口
+      goDetails(i) {
+        if(i==1) {
+          uni.navigateTo({
+            url:'/pages/tanhui/tanhuiDetails'
+          })
+        }else if(i==2) {
+          uni.navigateTo({
+            url:'/pages/tanpiao/tanpiaoDetails'
+          })
+        }else {
+          uni.navigateTo({
+            url:'/pages/lvbi/lvbiDetails'
+          })
+        }
+      },
 			queding() {
 				this.show = false
 			},

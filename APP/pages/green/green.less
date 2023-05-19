@@ -140,3 +140,69 @@
 		margin: 0 auto;
 	}
 }
+// 捐赠记录
+.juanzenjili {
+  width: 100%;
+  .juanzen-item {
+    width: 100%;
+    height: 232rpx;
+    box-sizing: border-box;
+    padding: 16rpx 24rpx;
+    background-color: #FEFEFE;
+    display: flex;
+    margin-bottom: 24rpx;
+    .item-img {
+      width: 200rpx;
+      height: 200rpx;
+      margin-right: 24rpx;
+      image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .item-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .item-title {
+        width: 100%;
+        height: 80rpx;
+        text-overflow: -o-ellipsis-lastline;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        .title-text {
+          width: 100%;
+          height: 100%;
+          font-size: 28rpx;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 500;
+          color: #272727;
+          line-height: 40rpx;
+        }
+        
+      }
+      .item-money {
+        width: 100%;
+        height: 40rpx;
+        font-size: 28rpx;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #EA3F3F;
+        line-height: 40rpx;
+      }
+      .item-time {
+        width: 100%;
+        height: 33rpx;
+        font-size: 24rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #333333;
+        line-height: 33rpx;
+      }
+    }
+  }
+}

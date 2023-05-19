@@ -328,7 +328,14 @@
 				"enablePullDownRefresh": false
 			}
 
-		}
+		}, {
+    	"path": "pages/lvbi/lvbiDetails",
+    	"style": {
+    		"navigationBarTitleText": "绿币介绍",
+    		"enablePullDownRefresh": false
+    	}
+    
+    }
 
 		, {
 			"path": "pages/address/address",
@@ -408,14 +415,31 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, {
+		}
+    , {
+    	"path": "pages/tanhui/tanhuiDetails",
+    	"style": {
+    		"navigationBarTitleText": "碳汇介绍",
+    		"enablePullDownRefresh": false
+    	}
+    
+    }, {
 			"path": "pages/tanpiao/tanpiao",
 			"style": {
 				"navigationBarTitleText": "碳票明细",
 				"enablePullDownRefresh": false
 			}
 
-		}, {
+		}
+    , {
+    	"path": "pages/tanpiao/tanpiaoDetails",
+    	"style": {
+    		"navigationBarTitleText": "碳票介绍",
+    		"enablePullDownRefresh": false
+    	}
+    
+    }
+    , {
 			"path": "pages/bankcard/bankcard",
 			"style": {
 				"navigationBarTitleText": "银行卡",

@@ -34,6 +34,28 @@
 			
 			<view class="time">{{item.initiate_time}}</view>
 		</view>
+    
+    <!-- 捐赠记录 -->
+    <view class="juanzenjili" v-show="currentIndex==1?true:false">
+      <view class="juanzen-item" v-for="(item,index) in juanxianjilu" :key="index">
+        <view class="item-img">
+          <image src="../../static/uni.png" mode=""></image>
+        </view>
+        <view class="item-content">
+          <view class="item-title">
+            <view class="title-text">
+              {{item.title}}
+            </view>
+          </view>
+          <view class="item-money">
+            捐赠金额：￥{{item.amount}}
+          </view>
+          <view class="item-time">
+            捐赠时间：{{item.create_time}}
+          </view>
+        </view>
+      </view>
+    </view>
 		
 		<!-- <u-empty text="此分类暂时没有数据" mode="order" v-show="kong"></u-empty> -->
 		
@@ -71,8 +93,8 @@
 			
 			// 捐献记录
 			this.$fn.request('welfare/donate_log','GET',{}).then(res=>{
-				console.log(res.data.data.total,'捐献记录')			
-				this.juanxianjilu=res.data.data
+				console.log(res,'捐献记录')			
+				this.juanxianjilu=res.data.data.data
 				if(res.data.data.total == 0){
 					this.kong=true
 				}else{

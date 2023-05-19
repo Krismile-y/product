@@ -31,20 +31,40 @@
 						  		<view class="content">
 						  			<view class="h-flex-x h-flex-3">
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-						            <view class="items dis yuan1"  @tap="four(0)">按钮1</view>
+						            <view class="items dis yuan1"  @tap="four(0)">
+                          <image src="../../../../static/newIndex/gabige.png" mode=""></image>
+                        </view>
 						  				</view>
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-						            <view class="items dis yuan2" @tap="four(1)">按钮2</view>
+						            <view class="items dis yuan2" @tap="four(1)">
+                          <image src="../../../../static/newIndex/chuan.png" mode=""></image>
+                        </view>
 						  				</view>
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-						            <view class="items dis yuan3" @tap="four(2)">按钮3</view>
+						            <view class="items dis yuan3" @tap="four(2)">
+                          <image src="../../../../static/newIndex/plane.png" mode=""></image>
+                        </view>
 						  				</view>
 						          <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-						            <view class="items dis yuan4" @tap="four(3)">按钮4</view>
+						            <view class="items dis yuan4" @tap="four(3)">
+                          <image src="../../../../static/newIndex/nengyuan.png" mode=""></image>
+                        </view>
 						          </view>
 						          <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-						            <view class="items dis yuan5" @tap="four(4)">按钮5</view>
+						            <view class="items dis yuan5" @tap="four(4)">
+                          <image src="../../../../static/newIndex/lou.png" mode=""></image>
+                        </view>
 						          </view>
+                      <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
+                        <view class="items dis yuan6" @tap="four(5)">
+                          <image src="../../../../static/newIndex/car.png" mode=""></image>
+                        </view>
+                      </view>
+                      <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
+                        <view class="items dis yuan7" @tap="four(6)">
+                          <image src="../../../../static/newIndex/tree.png" mode=""></image>
+                        </view>
+                      </view>
 						  			</view>
 						  		</view>
 						  	</view>
@@ -287,37 +307,47 @@
 					// transform-origin:50% 100%;
 					// transform:rotate(-180deg);
 					.items {
-            width: 80upx;
-            height: 80upx;
+            width: 100upx;
+            height: 100upx;
             border-radius: 50%;
-            // background-color: #54d27e;
             color: #fff;
-            background-image: url('@/static/common/xiaoanniu.jpg');
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
+            background-color: #fff;
             position: relative;
+            >image {
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+            }
           }
           .yuan1 {
-            top: 300upx;
-            left: 20upx;
-          }
-          
-          .yuan2 {
-            top: 300upx;
-            left: -10upx;
-          }
-          .yuan3 {
-            top: 300upx;
-            left: -10upx;
-          }
-          .yuan4 {
             top: 300upx;
             left: 0upx;
           }
           
+          .yuan2 {
+            top: 300upx;
+            left: -60upx;
+          }
+          .yuan3 {
+            top: 300upx;
+            left: -88upx;
+          }
+          .yuan4 {
+            top: 300upx;
+            left: -108upx;
+          }
+          
           .yuan5 {
             top: 300upx;
-            left: -40upx;
+            left: -160upx;
+          }
+          .yuan6 {
+            top: 300upx;
+            left: -190upx;
+          }
+          .yuan7 {
+            top: 300upx;
+            left: -280upx;
           }
 					
 					&:before{
@@ -395,27 +425,39 @@
               transition: transform .3s ease 0s ;
             }
             .yuan2 {
-              transform: translate(0,-250rpx);
+              transform: translate(0,-300rpx);
             }
             .yuan2 {
               transition: transform .7s ease 0s ;
             }
             .yuan3 {
-              transform: translate(0,-200rpx);
+              transform: translate(0,-220rpx);
             }
             .yuan3 {
               transition: transform .5s ease 0s ;
             }
             .yuan4 {
-              transform: translate(0,-150rpx);
+              transform: translate(0,-320rpx);
             }
             .yuan4 {
-              transition: transform .3s ease 0s ;
+              transition: transform .7s ease 0s ;
             }
             .yuan5 {
-              transform: translate(0,-250rpx);
+              transform: translate(0,-220rpx);
             }
             .yuan5 {
+              transition: transform 0.9s ease 0s ;
+            }
+            .yuan6 {
+              transform: translate(0,-310rpx);
+            }
+            .yuan6 {
+              transition: transform 0.9s ease 0s ;
+            }
+            .yuan7 {
+              transform: translate(0,-150rpx);
+            }
+            .yuan7 {
               transition: transform 0.9s ease 0s ;
             }
           }
@@ -436,27 +478,39 @@
         	    transition: transform .3s ease 0s ;
         	  }
             .yuan2 {
-              transform: translate(0,250rpx);
+              transform: translate(0,300rpx);
             }
             .yuan2 {
               transition: transform .7s ease 0s ;
             }
             .yuan3 {
-              transform: translate(0,200rpx);
+              transform: translate(0,220rpx);
             }
             .yuan3 {
               transition: transform .5s ease 0s ;
             }
             .yuan4 {
-              transform: translate(0,150rpx);
+              transform: translate(0,320rpx);
             }
             .yuan4 {
-              transition: transform .3s ease 0s ;
+              transition: transform .7s ease 0s ;
             }
             .yuan5 {
-              transform: translate(0,250rpx);
+              transform: translate(0,220rpx);
             }
             .yuan5 {
+              transition: transform 0.9s ease 0s ;
+            }
+            .yuan6 {
+              transform: translate(0,310rpx);
+            }
+            .yuan6 {
+              transition: transform 0.9s ease 0s ;
+            }
+            .yuan7 {
+              transform: translate(0,150rpx);
+            }
+            .yuan7 {
               transition: transform 0.9s ease 0s ;
             }
         	}

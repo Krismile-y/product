@@ -1,6 +1,8 @@
 <template>
 	<view class="headImg">
-		<image :src="imageSrc" :style="imgStyle" mode="" class="img-head"></image>
+    <view class="headImg-box">
+      <image :src="imageSrc" mode="" class="img-head"></image>
+    </view>
 		<view class="bottom-btn">
 			<view class="bbtn" @tap="chooseImage()">
 				从相册选择一张
@@ -216,23 +218,36 @@
 		height: calc(100vh - 88upx);
 		background-color: #ddd;
 		position: relative;
-
-		.img-head {
-			background-color: #fff;
-		}
+    box-sizing: border-box;
+    padding-top: 98rpx;
+    .headImg-box {
+      width: 380rpx;
+      height: 380rpx;
+      background: #D8D8D8;
+      border: 1rpx solid #979797;
+      margin: 0 auto 128rpx;
+      border-radius: 50%;
+      image {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
 
 		.bottom-btn {
-			width: 100%;
-			position: fixed;
-			left: 0;
-			bottom: 0;
-			background-color: #fff;
-
-			.btn {
-				text-align: center;
-				padding: 20upx 0;
-				font-size: 16px;
-			}
+			width: 750rpx;
+			height: 100rpx;
+			background: #FFFFFF;
+      .bbtn {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        line-height: 100rpx;
+        font-size: 28rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #272727;
+      }
 		}
 	}
 </style>

@@ -1,0 +1,19 @@
+<template>
+  <view class="tanhuiDetails">
+    <image src="../../static/index/senlin.jpg" mode=""></image>
+  </view>
+</template>
+
+<script>
+</script>
+
+<style lang="less">
+  .tanhuiDetails {
+    width: 100%;
+    height: 100vh;
+    image {
+      width: 100%;
+      height: 500rpx;
+    }
+  }
+</style>
