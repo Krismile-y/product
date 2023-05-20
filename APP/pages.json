@@ -457,7 +457,7 @@
 			"style": {
 				"navigationBarTitleText": "绿色公益",
 				"enablePullDownRefresh": true,
-				"onReachBottomDistance":20 //距离底部多远时触发 单位为px
+				"onReachBottomDistance":0 //距离底部多远时触发 单位为px
 			}
 
 		},

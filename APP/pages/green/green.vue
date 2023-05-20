@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view style="padding-bottom: 60upx;">
 		<airel-floatball  />
 		
 		<scroll-view scroll-x="true" style="width: 100%;height: 90upx;white-space: nowrap;margin-top: 50upx;">
@@ -36,8 +36,8 @@
 		</view>
     
     <!-- 捐赠记录 -->
-    <view class="juanzenjili" v-show="currentIndex==1?true:false ">
-      <view class="juanzen-item" v-for="(item,index) in juanxianjilu" :key="index" v-if='juanxianjilu'>
+    <view class="juanzenjili" v-show="currentIndex==1?true:false " style="margin-bottom: 30upx;">
+      <view class="juanzen-item" v-for="(item,index) in lastList" :key="index" v-if='lastList'>
         <view class="item-img">
           <image :src="item.img_path" mode=""></image>
         </view>
@@ -75,11 +75,18 @@
 				page:0,//当前页数
 				juanxianjilu:[],//捐赠记录
 				kong:false,
-				
+				lastList:[],//触底数组
+				page:1,//当前页面数
+				last_page:'',//接口总页数
 			};
 		},
 		onReachBottom(){
 				console.log('已触底')
+				if(this.page >this.last_page  ){
+					return
+					
+				}
+				this.x()
 		    },
 		
 		onLoad() {
@@ -93,18 +100,7 @@
 			})
 			
 			// 捐献记录
-		this.$fn.request('welfare/donate_log','GET',{}).then(res=>{
-			console.log(res.data.data.data,'捐献记录')			
-			
-			this.juanxianjilu=res.data.data.data
-			
-			console.log(this.currentIndex,'pppp')
-			if(res.data.data.total == 0 && this.currentIndex==1){
-				this.kong=true
-			}else{
-				this.kong=false
-			}
-		})
+		    
 		},
 		methods:{
 			bian(index){
@@ -119,18 +115,29 @@
 				})
 			},
 			x(){
-				// this.$fn.request('welfare/donate_log','GET',{}).then(res=>{
-				// 	console.log(res.data.data.data,'捐献记录')			
+				
+				
+				let data={
+					page:this.page.toString(),
+					limit:'10',
+					time:''
+				}
+				this.$fn.request('welfare/donate_log','GET',data).then(res=>{
+					console.log(res.data.data,'捐献记录')			
+					if(res.data.code == 1){
+						this.juanxianjilu=res.data.data.data
+						this.lastList.push(...res.data.data.data)
+						console.log(res.data.data.last_page)
+						this.last_page=res.data.data.last_page
+						this.page++
+						if(res.data.data.total == 0 && this.currentIndex==1){
+							this.kong=true
+						}else{
+							this.kong=false
+						}
+					}
 					
-				// 	this.juanxianjilu=res.data.data.data
-					
-				// 	console.log(this.currentIndex,'pppp')
-				// 	if(res.data.data.total == 0 && this.currentIndex==1){
-				// 		this.kong=true
-				// 	}else{
-				// 		this.kong=false
-				// 	}
-				// })
+				})
 			}
 		}
 	}
