@@ -5,7 +5,7 @@
       <view class="head-text">
         可提现余额
       </view>
-      <view class="head-num">
+      <view class="head-num" :key="moneyRemake">
         {{info.money_approve}}
       </view>
     </view>
@@ -110,8 +110,9 @@
       return {
         show: false,
         addShow: false,
-        money: 0,
+        money: '0',
         cardList: [],
+        moneyRemake: 0,
         info: {
           money_approve: 0
         }, //用户信息
@@ -163,6 +164,15 @@
         if(newVal!='请选择') {
           this.cardTextColor = true
         }
+      },
+      info: {
+        handler(newVal) {
+          this.$nextTick(()=> {
+            this.moneyRemake = this.moneyRemake==0? 1:0
+            this.$forceUpdate();
+          })
+        },
+        deep: true
       }
     },
     onLoad() {
@@ -336,6 +346,8 @@
 				  title:"申请成功",
 				  icon:'success'
 				})
+        // this.info = uni.getStorageSync('user_info')
+        this.getuserMsg()
 				this.init()
 			}
           

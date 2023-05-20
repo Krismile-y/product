@@ -331,11 +331,19 @@
         }
         console.log(params,'money');
         this.$fn.request('team_withdrawal', "POST", params).then(res => {
-          uni.showToast({
-            title:"申请成功",
-            icon:'success'
-          })
-          this.init()
+          if(res.data.code == 1) {
+            uni.showToast({
+              title:"申请成功",
+              icon:'success'
+            })
+            this.init()
+            this.getuserMsg()
+          }else {
+            uni.showToast({
+              title:res.errorMsg,
+              icon:'error'
+            })
+          }
         })
       }
     }

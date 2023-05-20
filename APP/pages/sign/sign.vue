@@ -1,6 +1,8 @@
 <template>
 	<view class="sign">
-    <airel-floatball  />
+    <view class="">
+      <airel-floatball  />
+    </view>
 		<view class="calendar-content" v-if="showCalendar">
 			<view>
 				<!-- 插入模式 -->
@@ -96,6 +98,7 @@
         nowDate: null,
         dateList: [], //已签到日期列表
         totaljifen: 0,
+        userInfo:{},
 				info: {
 					lunar: true,
 					range: true,
@@ -140,9 +143,20 @@
         })
       },
       go() {
-        this.$store.state.current = 3
+        uni.setStorageSync('current','3')
+        // this.$store.state.current = 3
         uni.navigateTo({
           url:'/pages/shop/shop'
+        })
+      },
+      // 获取用户信息，刷新总积分
+      getuserMsg() {
+        let params = {
+          is_whole: 1
+        }
+        this.$fn.request('user', "GET", params).then(res => {
+          console.log(res,'个人信息');
+          this.userInfo = res.data.data
         })
       },
       getDateList() {
@@ -189,6 +203,8 @@
           this.$fn.request('/sign',"GET").then((res)=> {
             if(res.data.code == 1) {
               // 接口成功
+              this.getuserMsg()
+              this.totaljifen = this.userInfo.money_integral
               uni.showToast({
                 icon: 'success',
                 title: '签到成功',

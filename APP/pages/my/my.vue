@@ -173,7 +173,7 @@
 					{
 						name:'公益明细',
 						url:'../../static/newMy/gongyi.png',
-						go:'setting'
+						go:'gongyiDetail'
 					},
 				]
 			};

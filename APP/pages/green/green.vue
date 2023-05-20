@@ -39,7 +39,7 @@
     <view class="juanzenjili" v-show="currentIndex==1?true:false">
       <view class="juanzen-item" v-for="(item,index) in juanxianjilu" :key="index">
         <view class="item-img">
-          <image src="../../static/uni.png" mode=""></image>
+          <image :src="item.img_path" mode=""></image>
         </view>
         <view class="item-content">
           <view class="item-title">
@@ -73,14 +73,24 @@
 				],
 				greenList:[],// 绿色公益列表
 				page:0,//当前页数
-				juanzengjilu:[],//捐赠记录
+				juanxianjilu:[],//捐赠记录
 				kong:false,
 			};
 		},
 		onReachBottom(){
 				console.log('已触底')
 		    },
-		
+		onShow() {
+		  this.$fn.request('welfare/donate_log','GET',{}).then(res=>{
+		  	console.log(res,'捐献记录')			
+		  	this.juanxianjilu=res.data.data.data
+		  	if(res.data.data.total == 0){
+		  		this.kong=true
+		  	}else{
+		  		this.kong=false
+		  	}
+		  })
+		},
 		onLoad() {
 			let data ={
 				

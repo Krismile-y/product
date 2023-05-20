@@ -142,6 +142,16 @@
 			close() {
 			 this.show=!true
 			},
+      // 获取个人信息，用于捐赠成功后刷新可提现金额
+      getuserMsg() {
+        let params = {
+          is_whole: 1
+        }
+        this.$fn.request('user', "GET", params).then(res => {
+          console.log(res,'个人信息');
+          this.info = res.data.data
+        })
+      },
 			chooseMoney(num,index){//选择金额
 			    this.currentIndex=index
 				this.amount=num
@@ -167,7 +177,20 @@
 					'wid':this.wid
 				}
 				this.$fn.request('welfare/donate','POST',data).then(res=>{
-					console.log(res)
+					console.log(res,'捐献成功')
+          if(res.data.code == 1) {
+            this.getuserMsg()
+            uni.showToast({
+              title:'捐赠成功',
+              icon:'success'
+            })
+          }else {
+            uni.showToast({
+              title:res.errMsg,
+              icon:'error'
+            })
+          }
+          
 				})
 			},
 			chakanxiangqing(){//查看详情页面
