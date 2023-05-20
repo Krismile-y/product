@@ -14,6 +14,7 @@ Vue.component('dragButton',dragButton)
 Vue.prototype.$store = store
 Vue.prototype.$url ='https://api.lszgfreer.top/api/'
 Vue.prototype.$url1 ='http://www.api.com/api/' 
+Vue.prototype.$lastUrl ='http://gw.tzhreefvg.top/'//官网
 // Vue.prototype.$request =request
 Vue.prototype.$fn =fn
 Vue.component('bottom',bottom)

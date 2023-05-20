@@ -1,6 +1,6 @@
 <template>
 	<view class="invite disc">
-		<airel-floatball  />
+		<view><airel-floatball   /></view>
 		<view class="newBox disc" >
 			<image :src="code"></image>
 			<view class="dis tuijianma" >我的推荐码</view>
@@ -17,34 +17,6 @@
 			<view class="itemTWO dis" @tap="xin">复制二维码链接</view>
 		</view>
 		
-		<backgroundPage :title="title" v-show="false">
-			<view class="invite-content">
-				<view class="code-img">
-					<image :src="code"></image>
-				</view>
-				<!-- <view class="btn dis" @tap="fenxiang">立即分享</view> -->
-				<!-- #ifdef H5-->
-				<view class="bottom dis zbottom">
-
-					<view class="in dis" @tap="xin">
-						<a style="color: #fff;">
-							复制二维码链接
-						</a>
-
-					</view>
-				</view>
-				<!-- #endif -->
-
-				<!-- #ifdef APP-->
-				<view class="bottom dis zbottom">
-					<view class="in dis" @tap="xin">
-						复制二维码链接
-					</view>
-				</view>
-				<!-- #endif -->
-
-			</view>
-		</backgroundPage>
 
 	</view>
 </template>

@@ -22,14 +22,14 @@
 		onLaunch: function() {
 			uni.setStorageSync('gengxin',true)//app更新首页显示状态
 			// 客服接口
-			// let kefu = {
-			// 	"sid": "1"
-			// }
-			// this.$fn.request('customer', "GET", kefu, ).then(res => {
-			// 	// console.log(res.data.data[0].url,'客服')
-			// 	uni.setStorageSync('kefu', res.data.data[0].url)
-			// 	this.$store.commit('kefu', res.data.data[0].url)
-			// })
+			let kefu = {
+				"sid": "1"
+			}
+			this.$fn.request('customer', "GET", kefu, ).then(res => {
+				// console.log(res.data.data[0].url,'客服')
+				uni.setStorageSync('kefu', res.data.data[0].url)
+				this.$store.commit('kefu', res.data.data[0].url)
+			})
 
 			// 获取设备信息
 			uni.getSystemInfo({

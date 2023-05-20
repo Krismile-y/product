@@ -1,6 +1,6 @@
 <template>
 	<view class="msg">
-		<airel-floatball  />
+		
 		<view class="item"  @tap="go(0)">
 			<!-- <view class="left dis">
 				<image src="../../static/my/xitongtongtongzhi.png" mode=""></image>
@@ -51,7 +51,7 @@
 			</view>
 		</view>
 		
-		
+		<airel-floatball  />
 	</view>
 </template>
 

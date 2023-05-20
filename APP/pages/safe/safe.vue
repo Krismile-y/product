@@ -1,6 +1,6 @@
 <template>
 	<view class="safe">
-    <airel-floatball  />
+    
     <view class="safe-box">
       <view class="item item1" @tap="goImgPage">
       	<image src="../../static/common/icon_avatar.png" mode=""></image>
@@ -36,7 +36,7 @@
       </view>
       
     </view>
-		
+		<airel-floatball  />
 	</view>
 </template>
 

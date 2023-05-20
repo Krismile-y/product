@@ -192,7 +192,7 @@ export default {
 		guanwang(){//进入官网
 		
 		uni.navigateTo({
-		  url: '/pages/webview/webview?url=http://gw.tzhreefvg.top/'
+		  url: '/pages/webview/webview?url='+this.$lastUrl
 		})
 			
 		},

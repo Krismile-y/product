@@ -1,6 +1,8 @@
 <template>
 	<view class="revisePassword" style="width: 100%;height: 100vh;background-color: #fff;">
-		<airel-floatball  />
+		<view>
+			<airel-floatball  />
+		</view>
 		
 		<view  v-show="type==1?true:false">
 			<view class="item">
