@@ -168,6 +168,17 @@
 				}
 				this.$fn.request('welfare/donate','POST',data).then(res=>{
 					console.log(res)
+					
+					this.$fn.user().then(r=>{
+						console.log(r)
+						this.info=r
+					})
+					
+					uni.showToast({
+						title:'谢谢您的捐赠',
+						duration:1000,
+						icon:'success'
+					})
 				})
 			},
 			chakanxiangqing(){//查看详情页面

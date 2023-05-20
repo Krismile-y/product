@@ -52,24 +52,7 @@ export default {
 							uni.removeStorageSync('token')
 						},1000)
 					}else if(res.data.code == 1){
-						let last = {
-							"is_whole":"1"
-						}
-						uni.request({
-							url:'https://api.lszgfreer.top/api/user',
-							method:"GET",
-							data:last,
-							header: {
-								// 	'Content-Type':'multipart/form-data',
-								'token': tokens,
-								'sign': md5(tokens + '&' + keys + '&' + times),
-								'time': times
-							},
-							success(r) {
-								// console.log(uni.getStorageSync('user_info',r.data.data),'用户信息')
-								uni.setStorageSync('user_info',r.data.data)							
-							}
-						})
+						
 					}
 					
 					
@@ -84,6 +67,36 @@ export default {
 				},
 			})
 		})
+	},
+	user:()=>{
+		let tokens = uni.getStorageSync('token') ? uni.getStorageSync('token') : '';
+		let times = Math.round(new Date().getTime() / 1000).toString();
+		let keys = '2zn7s4m0uctu';
+		
+		return new Promise((reslove,reject)=>{
+			let last = {
+				"is_whole":"1"
+			}
+			uni.request({
+				url:'https://api.lszgfreer.top/api/user',
+				method:"GET",
+				data:last,
+				header: {
+					// 	'Content-Type':'multipart/form-data',
+					'token': tokens,
+					'sign': md5(tokens + '&' + keys + '&' + times),
+					'time': times
+				},
+				success(r) {
+					console.log(uni.getStorageSync('user_info',r.data.data),'用户信息')
+					uni.setStorageSync('user_info',r.data.data)	
+					reslove(r.data.data)
+											
+				}
+			})
+		})
+		
+		
 	}
 
 	// 
