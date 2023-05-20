@@ -70,7 +70,7 @@
 			个人明细
 		</view>
 		<view class="huodongBox dis">	
-				<view class="huodongItem disc" v-for="item in huodongList"  @tap="go(item.go)">
+				<view class="huodongItem disc" v-for="item in huodongList"  @tap="go(item.go,)">
 					<view class="yuan dis">
 						<image :src="item.url" mode=""></image>
 					</view>
@@ -86,7 +86,7 @@
 		</view>
 		
 		<view class="money" v-for="(item,index) in jiluList">
-			<view class="moneyItem" @tap="go(item.go)">
+			<view class="moneyItem" @tap="go(item.go,index)">
 				<image :src="item.url" mode=""></image>
 				{{item.name}}
 				<view class="pos dis">
@@ -126,7 +126,7 @@
 					{
 						name:"实名认证",
 						url:'../../static/newMy/shiming.png',
-						go:'safe',
+						go:'revisePassword',
 					},
 					{
 						name:"设置",
@@ -260,17 +260,29 @@
 			})
 		},
 		methods: {
-			go(name) {
+			go(name,index) {
+				
+				
+				
 				if(name == 'guanwnag'){
 					uni.navigateTo({
 					  url: '/pages/webview/webview?url=http://gw.tzhreefvg.top/'
 					})
 					return
-				}
-				console.log(name)
+				}if(name == 'revisePassword'){
+					console.log('999')
 				uni.navigateTo({
-					url: `/pages/${name}/${name}`
+					url:'/pages/revisePassword/revisePassword?type=1'
 				})
+				 return	
+				}
+				 else{
+					uni.navigateTo({
+						url: `/pages/${name}/${name}`
+					})
+				}
+				
+				
 			},
       // 三个票详情入口
       goDetails(i) {

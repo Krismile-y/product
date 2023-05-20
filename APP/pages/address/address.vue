@@ -1,6 +1,6 @@
 <template>
 	<view class="address">
-		<airel-floatball  />
+		<view><airel-floatball  /></view>
 		<scroll-view scroll-y="true" style="width: 100%;height: calc(100vh - 300upx);padding-bottom: 160upx;">
 			<view class="item" v-for="(item,index) in list" :key="index"  :class="{color:item.is_default==1?true:false}">
 				<view class="pos disc">
@@ -30,8 +30,11 @@
 		</view> -->
 		
 		<view class="bottom dis">
-			<view class="in dis" @tap="add" >
+			<!-- <view class="in dis" @tap="add" >
 			   添加地址
+			</view> -->
+			<view class="xinBtn dis" @tap="add">
+				添加地址
 			</view>
 		</view>
 		

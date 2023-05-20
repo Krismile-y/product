@@ -30,8 +30,11 @@
 		</view> -->
 		
 		<view class="bottom dis">
-			<view class="in dis" @tap="add" >
+			<!-- <view class="in dis" @tap="add" >
 			   新增地址
+			</view> -->
+			<view class="xinBtn dis" @tap="add">
+				新增地址
 			</view>
 		</view>
 		

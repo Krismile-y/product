@@ -177,20 +177,19 @@
 					'wid':this.wid
 				}
 				this.$fn.request('welfare/donate','POST',data).then(res=>{
-					console.log(res,'捐献成功')
-          if(res.data.code == 1) {
-            this.getuserMsg()
-            uni.showToast({
-              title:'捐赠成功',
-              icon:'success'
-            })
-          }else {
-            uni.showToast({
-              title:res.errMsg,
-              icon:'error'
-            })
-          }
-          
+					console.log(res)
+					
+					this.$fn.user().then(r=>{
+						console.log(r)
+						this.info=r
+					})
+					
+					uni.showToast({
+						title:'谢谢您的捐赠',
+						duration:1000,
+						icon:'success'
+					})
+
 				})
 			},
 			chakanxiangqing(){//查看详情页面

@@ -294,4 +294,13 @@
 		width: 100%;
 		height: 300upx;
 	}
+	.xinBtn{
+		width: 686rpx;
+		height: 80rpx;
+		background: #02AE71;
+		border-radius: 100rpx;
+		margin: 0 auto;
+		margin-top: 30upx;
+		color: #fff;
+	}
 </style>
