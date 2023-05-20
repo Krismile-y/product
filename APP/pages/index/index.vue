@@ -183,7 +183,16 @@
 		</view>
 
 
-		<!--  -->
+		<!-- 合作伙伴 -->
+    <view class="xinwen-title">
+    	<view class="shu"></view>
+    	<view class="xinwen-ttext">
+    		合作伙伴
+    	</view>
+    </view>
+    <view class="hezuo-box">
+      
+    </view>
 		<!-- <view class="kuaijie">
 			<view class="shu"></view>
 			相关内容
