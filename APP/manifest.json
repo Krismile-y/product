@@ -79,5 +79,8 @@
         },
         "usingComponents" : true
     },
-    "vueVersion" : "2"
+    "vueVersion" : "2",
+    "h5" : {
+        "template" : "static/index.html"
+    }
 }

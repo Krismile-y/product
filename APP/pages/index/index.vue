@@ -151,7 +151,7 @@
 			</view>
 		</view>
 
-		<view class="news gongyi">
+		<view class="news gongyi" @tap="goHome('green')">
 			<view class="news-title">
 				<text>绿色公益</text>
 				<image src="../../static/newIndex/icon-right.png" mode=""></image>
