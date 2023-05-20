@@ -1,6 +1,6 @@
 <template>
 	<view class="headImg">
-    <airel-floatball  />
+    
     <view class="headImg-box">
       <image :src="imageSrc" mode="" class="img-head"></image>
     </view>
@@ -13,6 +13,7 @@
 				拍一张照片
 			</view> -->
 		</view>
+		<view><airel-floatball  /></view>
 	</view>
 </template>
 
@@ -239,6 +240,9 @@
 			width: 750rpx;
 			height: 100rpx;
 			background: #FFFFFF;
+			position: fixed;
+			left: 0;
+			bottom: 0;
       .bbtn {
         width: 100%;
         height: 100%;
