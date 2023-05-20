@@ -65,7 +65,10 @@
 		</view>
 
 		<view class="bottom dis">
-			<view class="in dis" @tap="Addaddress" style="">
+			<!-- <view class="in dis" @tap="Addaddress" style="">
+				确认
+			</view> -->
+			<view class="xinBtn dis" @tap="Addaddress">
 				确认
 			</view>
 		</view>

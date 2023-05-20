@@ -1,6 +1,6 @@
 <template>
 	<view>
-    <airel-floatball  />
+    <view><airel-floatball  /></view>
 		<view class="item">
 			<view class="left dis">
 				收货人
@@ -65,7 +65,11 @@
 		</view>
 
 		<view class="bottom dis">
-			<view class="in dis" @tap="address()" style="">
+			<!-- <view class="in dis" @tap="address()" style="">
+				确认
+			</view> -->
+			
+			<view class="xinBtn dis" @tap="address">
 				确认
 			</view>
 		</view>
