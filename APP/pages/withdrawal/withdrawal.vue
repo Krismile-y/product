@@ -315,13 +315,13 @@
           })
           return
         }
-        if(this.info.money_approve < this.money ) {
-          uni.showToast({
-            title:'可提现余额不足',
-            icon:'error'
-          })
-          return
-        }
+        // if(this.info.money_approve < this.money ) {
+        //   uni.showToast({
+        //     title:'可提现余额不足',
+        //     icon:'error'
+        //   })
+        //   return
+        // }
         let params = {
           money: this.money,
           u_bank_name: this.nowCard.name,
@@ -330,11 +330,15 @@
         }
         console.log(params,'money');
         this.$fn.request('withdrawal', "POST", params).then(res => {
-          uni.showToast({
-            title:"申请成功",
-            icon:'success'
-          })
-          this.init()
+			console.log(res.data)
+			if(res.data.code == 1){
+				uni.showToast({
+				  title:"申请成功",
+				  icon:'success'
+				})
+				this.init()
+			}
+          
         })
       }
     }
