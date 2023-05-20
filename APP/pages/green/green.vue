@@ -36,10 +36,10 @@
 		</view>
     
     <!-- 捐赠记录 -->
-    <view class="juanzenjili" v-show="currentIndex==1?true:false">
-      <view class="juanzen-item" v-for="(item,index) in juanxianjilu" :key="index">
+    <view class="juanzenjili" v-show="currentIndex==1?true:false ">
+      <view class="juanzen-item" v-for="(item,index) in juanxianjilu" :key="index" v-if='juanxianjilu'>
         <view class="item-img">
-          <image src="../../static/uni.png" mode=""></image>
+          <image :src="item.img_path" mode=""></image>
         </view>
         <view class="item-content">
           <view class="item-title">
@@ -57,7 +57,7 @@
       </view>
     </view>
 		
-		<!-- <u-empty text="此分类暂时没有数据" mode="order" v-show="kong"></u-empty> -->
+		<u-empty text="此分类暂时没有数据" mode="order" v-show="kong&&currentIndex == 1"></u-empty>
 		
 	</view>
 </template>
@@ -73,8 +73,9 @@
 				],
 				greenList:[],// 绿色公益列表
 				page:0,//当前页数
-				juanzengjilu:[],//捐赠记录
+				juanxianjilu:[],//捐赠记录
 				kong:false,
+				
 			};
 		},
 		onReachBottom(){
@@ -92,24 +93,44 @@
 			})
 			
 			// 捐献记录
-			this.$fn.request('welfare/donate_log','GET',{}).then(res=>{
-				console.log(res,'捐献记录')			
-				this.juanxianjilu=res.data.data.data
-				if(res.data.data.total == 0){
-					this.kong=true
-				}else{
-					this.kong=false
-				}
-			})
+		this.$fn.request('welfare/donate_log','GET',{}).then(res=>{
+			console.log(res.data.data.data,'捐献记录')			
+			
+			this.juanxianjilu=res.data.data.data
+			
+			console.log(this.currentIndex,'pppp')
+			if(res.data.data.total == 0 && this.currentIndex==1){
+				this.kong=true
+			}else{
+				this.kong=false
+			}
+		})
 		},
 		methods:{
 			bian(index){
 				this.currentIndex = index
+				if(this.currentIndex == 1){
+					this.x()
+				}
 			},
 			go(id){
 				uni.navigateTo({
 					url:'/pages/greenDetail/greenDetail?id=' + id
 				})
+			},
+			x(){
+				// this.$fn.request('welfare/donate_log','GET',{}).then(res=>{
+				// 	console.log(res.data.data.data,'捐献记录')			
+					
+				// 	this.juanxianjilu=res.data.data.data
+					
+				// 	console.log(this.currentIndex,'pppp')
+				// 	if(res.data.data.total == 0 && this.currentIndex==1){
+				// 		this.kong=true
+				// 	}else{
+				// 		this.kong=false
+				// 	}
+				// })
 			}
 		}
 	}
