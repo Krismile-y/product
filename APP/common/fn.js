@@ -31,6 +31,9 @@ export default {
 				},
 				success: (res) => {
 					reslove(res)
+					
+					
+					
 					if (res.data.code == 0) {
 						uni.showToast({
 							title: res.data.msg,
@@ -48,7 +51,28 @@ export default {
 							})
 							uni.removeStorageSync('token')
 						},1000)
+					}else if(res.data.code == 1){
+						let last = {
+							"is_whole":"1"
+						}
+						uni.request({
+							url:'https://api.lszgfreer.top/api/user',
+							method:"GET",
+							data:last,
+							header: {
+								// 	'Content-Type':'multipart/form-data',
+								'token': tokens,
+								'sign': md5(tokens + '&' + keys + '&' + times),
+								'time': times
+							},
+							success(r) {
+								// console.log(uni.getStorageSync('user_info',r.data.data),'用户信息')
+								uni.setStorageSync('user_info',r.data.data)							
+							}
+						})
 					}
+					
+					
 				},
 				err: (err) => {
 					reject(err)
