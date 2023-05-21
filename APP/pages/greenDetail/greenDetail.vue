@@ -179,6 +179,7 @@
 				this.$fn.request('welfare/donate','POST',data).then(res=>{
 					console.log(res)
 					
+				if(res.data.code == 1){
 					this.$fn.user().then(r=>{
 						console.log(r)
 						this.info=r
@@ -189,6 +190,16 @@
 						duration:1000,
 						icon:'success'
 					})
+					this.zidingyijine=null
+					this.amount=null
+					this.zhuangtai=9999
+					this.currentIndex=999999
+				}else{
+					this.zidingyijine=null
+					this.amount=null
+					this.zhuangtai=9999
+					this.currentIndex=999999
+				}
 
 				})
 			},
