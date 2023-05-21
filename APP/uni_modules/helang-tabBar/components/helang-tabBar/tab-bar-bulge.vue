@@ -32,37 +32,44 @@
 						  			<view class="h-flex-x h-flex-3">
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
 						            <view class="items dis yuan1"  @tap="four(0)">
-                          <image src="../../../../static/newIndex/gabige.png" mode=""></image>
+                          <!-- <image src="../../../../static/newIndex/gabige.png" mode=""></image> -->
+                          <image src="../../../../static/newIndex/gray_gabige.png" mode=""></image>
                         </view>
 						  				</view>
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
 						            <view class="items dis yuan2" @tap="four(1)">
-                          <image src="../../../../static/newIndex/chuan.png" mode=""></image>
+                          <!-- <image src="../../../../static/newIndex/chuan.png" mode=""></image> -->
+                          <image src="../../../../static/newIndex/gray_gabige.png" mode=""></image>
                         </view>
 						  				</view>
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
 						            <view class="items dis yuan3" @tap="four(2)">
-                          <image src="../../../../static/newIndex/plane.png" mode=""></image>
+                          <!-- <image src="../../../../static/newIndex/plane.png" mode=""></image> -->
+                          <image src="../../../../static/newIndex/gray_plane.png" mode=""></image>
                         </view>
 						  				</view>
 						          <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
 						            <view class="items dis yuan4" @tap="four(3)">
                           <image src="../../../../static/newIndex/nengyuan.png" mode=""></image>
+                          <!-- <image src="../../../../static/newIndex/gray_nengyuan.png" mode=""></image> -->
                         </view>
 						          </view>
 						          <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
 						            <view class="items dis yuan5" @tap="four(4)">
-                          <image src="../../../../static/newIndex/lou.png" mode=""></image>
+                          <!-- <image src="../../../../static/newIndex/lou.png" mode=""></image> -->
+                          <image src="../../../../static/newIndex/gray_lou.png" mode=""></image>
                         </view>
 						          </view>
                       <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
                         <view class="items dis yuan6" @tap="four(5)">
-                          <image src="../../../../static/newIndex/car.png" mode=""></image>
+                          <!-- <image src="../../../../static/newIndex/car.png" mode=""></image> -->
+                          <image src="../../../../static/newIndex/gray_car.png" mode=""></image>
                         </view>
                       </view>
                       <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
                         <view class="items dis yuan7" @tap="four(6)">
-                          <image src="../../../../static/newIndex/tree.png" mode=""></image>
+                          <!-- <image src="../../../../static/newIndex/tree.png" mode=""></image> -->
+                          <image src="../../../../static/newIndex/gray_tree.png" mode=""></image>
                         </view>
                       </view>
 						  			</view>
@@ -187,14 +194,16 @@
       },
       four(index){
       	
-      	if(index<4){
+      	if(index==3){
           this.$store.state.current = 5
           uni.setStorageSync('current',5)
           this.current = uni.getStorageSync('current')
       		uni.navigateTo({
       			url: '/pages/invest/invest?id=' + index
       		})
-      	}
+      	}else {
+          return
+        }
       },
 		}
 	}
@@ -325,6 +334,12 @@
               border-radius: 50%;
             }
           }
+          .pink {
+            // 
+            filter: brightness(110%);
+            box-shadow: 0 0 5px #02AE71, 0 0 10upx #02AE71, 0 0 15upx #02AE71, 0 0 10upx #02AE71,
+                0 0 10upx #02AE71, 0 0 40upx #02AE71, 0 0 10upx #02AE71, 0 0 15upx #02AE71;
+          }
           .yuan1 {
             top: 300upx;
             left: 0upx;
@@ -425,43 +440,43 @@
         .rudder{
           .content{
             .yuan1 {
-              transform: translate(0,-150rpx);
+              transform: translate(0,-170rpx);
             }
             .yuan1 {
               transition: transform .3s ease 0s ;
             }
             .yuan2 {
-              transform: translate(0,-300rpx);
+              transform: translate(0,-320rpx);
             }
             .yuan2 {
               transition: transform .7s ease 0s ;
             }
             .yuan3 {
-              transform: translate(0,-220rpx);
+              transform: translate(0,-240rpx);
             }
             .yuan3 {
               transition: transform .5s ease 0s ;
             }
             .yuan4 {
-              transform: translate(0,-320rpx);
+              transform: translate(0,-340rpx);
             }
             .yuan4 {
               transition: transform .7s ease 0s ;
             }
             .yuan5 {
-              transform: translate(0,-220rpx);
+              transform: translate(0,-240rpx);
             }
             .yuan5 {
               transition: transform 0.9s ease 0s ;
             }
             .yuan6 {
-              transform: translate(0,-310rpx);
+              transform: translate(0,-330rpx);
             }
             .yuan6 {
               transition: transform 0.9s ease 0s ;
             }
             .yuan7 {
-              transform: translate(0,-150rpx);
+              transform: translate(0,-170rpx);
             }
             .yuan7 {
               transition: transform 0.9s ease 0s ;
@@ -478,43 +493,43 @@
         .rudder{
         	.content{
         		.yuan1 {
-        	    transform: translate(0,150rpx);
+        	    transform: translate(0,170rpx);
         	  }
         	  .yuan1 {
         	    transition: transform .3s ease 0s ;
         	  }
             .yuan2 {
-              transform: translate(0,300rpx);
+              transform: translate(0,370rpx);
             }
             .yuan2 {
               transition: transform .7s ease 0s ;
             }
             .yuan3 {
-              transform: translate(0,220rpx);
+              transform: translate(0,240rpx);
             }
             .yuan3 {
               transition: transform .5s ease 0s ;
             }
             .yuan4 {
-              transform: translate(0,320rpx);
+              transform: translate(0,340rpx);
             }
             .yuan4 {
               transition: transform .7s ease 0s ;
             }
             .yuan5 {
-              transform: translate(0,220rpx);
+              transform: translate(0,240rpx);
             }
             .yuan5 {
               transition: transform 0.9s ease 0s ;
             }
             .yuan6 {
-              transform: translate(0,310rpx);
+              transform: translate(0,330rpx);
             }
             .yuan6 {
               transition: transform 0.9s ease 0s ;
             }
             .yuan7 {
-              transform: translate(0,150rpx);
+              transform: translate(0,170rpx);
             }
             .yuan7 {
               transition: transform 0.9s ease 0s ;

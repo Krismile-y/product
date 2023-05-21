@@ -67,9 +67,16 @@
 		<!-- 活动标题 -->
 		<view class="title">
 			<view class="shu"></view>
-			个人明细
+			<view class="tt">
+			  个人中心
+			</view>
+      <view class="zhankaiImg" @tap="shousuo">
+        <image src="../../static/newMy/angle- double-down.png" mode=""></image>
+      </view>
 		</view>
-		<view class="huodongBox dis">	
+		<view class="huodongBox dis"
+      :class="{'huodongBox1': shousuoType}"
+    >	
 				<view class="huodongItem disc" v-for="item in huodongList"  @tap="go(item.go,)">
 					<view class="yuan dis">
 						<image :src="item.url" mode=""></image>
@@ -80,10 +87,10 @@
 		
 		
 		<!-- 个人中心 -->
-		<view class="title" style="margin-bottom: 30upx;">
+		<!-- <view class="title" style="margin-bottom: 30upx;">
 			<view class="shu"></view>
 			个人中心
-		</view>
+		</view> -->
 		
 		<view class="money" v-for="(item,index) in jiluList">
 			<view class="moneyItem" @tap="go(item.go,index)">
@@ -112,6 +119,7 @@
 				today: "",
 				out: 0,
 				zhuangtai:"",
+        shousuoType: false, //false 收缩状态，true展开
 				jiluList:[
 					{
 						name:"安全保障",
@@ -260,10 +268,10 @@
 			})
 		},
 		methods: {
+      shousuo() {
+        this.shousuoType = !this.shousuoType
+      },
 			go(name,index) {
-				
-				
-				
 				if(name == 'guanwnag'){
 					uni.navigateTo({
 					  url: '/pages/webview/webview?url=http://gw.tzhreefvg.top/'
