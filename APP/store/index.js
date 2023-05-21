@@ -16,6 +16,8 @@ const store = new Vuex.Store({
 		kefu:"",
     // 底部导航栏样式改变控制，默认选中首页
     current: 0,
+    // 横向scroll的下标
+    scrollIndex: 0
 	},
     mutations: {
 		//相当于同步的操作

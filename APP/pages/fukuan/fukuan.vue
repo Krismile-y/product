@@ -14,6 +14,15 @@
       <view class="fangshi-title">
         支付方式
       </view>
+      <view class="yu_e" @tap="payCheck(1)" style="border-bottom: 1rpx solid #E5E5E5;">
+        <image class="zhifuImg" src="../../static/common/yu_e.png" mode=""></image>
+        <view class="zhifuName">
+          余额支付
+        </view>
+        <view class="littleImg">
+          <image :src="checkedNum==1?checkedImg:defaultImg" mode=""></image>
+        </view>
+      </view>
       <view class="weixin" style="border-bottom: 1rpx solid #E5E5E5;" @tap="payCheck(2)">
         <image class="zhifuImg" src="../../static/common/weixin.png" mode=""></image>
         <view class="zhifuName">
@@ -23,13 +32,13 @@
           <image :src="checkedNum==2?checkedImg:defaultImg" mode=""></image>
         </view>
       </view>
-      <view class="yu_e" @tap="payCheck(1)">
-        <image class="zhifuImg" src="../../static/common/yu_e.png" mode=""></image>
+      <view class="yu_e" @tap="payCheck(3)">
+        <image class="zhifuImg" src="../../static/common/card.png" mode=""></image>
         <view class="zhifuName">
-          余额支付
+          银行卡支付
         </view>
         <view class="littleImg">
-          <image :src="checkedNum==1?checkedImg:defaultImg" mode=""></image>
+          <image :src="checkedNum==3?checkedImg:defaultImg" mode=""></image>
         </view>
       </view>
     </view>
@@ -51,18 +60,28 @@
         dataObj: {},
         defaultImg,
         checkedImg,
-        checkedNum: 0 //选中
+        checkedNum: 0 ,//选中
+        mid: '',
+        backpageId: ''  //支付完成后返回到的页面
       };
     },
     onLoad(option) {
+      this.backpageId = this.$store.state.scrollIndex
       this.dataStr = option.obj
       console.log(this.dataStr);
+      this.getPayList()
     },
     mounted() {
       this.dataObj = JSON.parse(this.dataStr)
       console.log(this.dataObj);
     },
     methods: {
+      // 获取支付方式列表
+      getPayList() {
+        this.$fn.request('pay/list', 'GET',{}).then(res => {
+        	console.log(res,'支付列表')
+        })
+      },
       payCheck(num) {
         this.checkedNum = num
       },
@@ -83,8 +102,10 @@
         			duration:1000,
         			icon:"success"
         		})
-            uni.navigateTo({
-              url:'/pages//invest/invest'
+            setTimeout(()=> {
+              uni.navigateTo({
+                url:`/pages/invest/invest?id=${this.backpageId}`
+              },2000)
             })
         	}else{
         		uni.showToast({
@@ -127,7 +148,7 @@
   }
   .fangshi {
     width: 702rpx;
-    height: 292rpx;
+    height: 404rpx;
     margin: 112rpx auto;
     background: #FFFFFF;
     border-radius: 16rpx;

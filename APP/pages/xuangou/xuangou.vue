@@ -103,10 +103,9 @@
       go() {
         let obj = {
           gid: this.gid, //货物id
-          num: this.value, //购买数量
-          did: this.dayID[this.checked].id, //天数id
-          cid: '0', //优惠券id
-          money: this.zhifuMoney
+          mid: this.moneyData[this.checked].id, //选择价位的id
+          money: this.zhifuMoney, //价位价格
+          headImg: this.head_img //商品图片
         }
         let strObj = JSON.stringify(obj)
         uni.navigateTo({

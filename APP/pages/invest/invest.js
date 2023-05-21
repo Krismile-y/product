@@ -13,15 +13,14 @@ export default {
 				showIndex:0,//下单的三个弹出框
 				dayInfo:[],//产品天数信息
 				dayID:[],
+        viewItem: '',
 				show: false,
 				currentIndex: 0,
 				type:['余额支付','微信支付'],
 				zhifu:false,
         dayChange: false, //控制天数选择的弹出框
 				value:'',
-				list: [
-					'生态修复重大工程', '中国绿色发展基金', 'title3', 'title4',
-				],
+				list: [],
 				id: '',//产品id
 				goods_list:[],//产品列表
 				detail:{},//产品详情
@@ -45,10 +44,10 @@ export default {
 			
 		},
 		onShow(){
-			
+			this.currentIndex = this.$store.state.scrollIndex
 		},
 		onLoad(options) {
-			
+			this.setViewItem(options.id)
 			//  初始页面渲染
 			this.currentIndex = options.id
 			let xx= Number(options.id)+1
@@ -93,7 +92,7 @@ export default {
 			}
 			// 产品分类接口
 			this.$fn.request('goods/goods_type', 'GET',data).then(res => {
-				// console.log(res.data.data,'产品分类接口')
+				console.log(res.data.data,'产品分类接口')
 				this.list=res.data.data
 			})
 			
@@ -138,6 +137,13 @@ export default {
 			backBtn(){//认购弹出层
 				this.close()
 			},
+      // 给横向滚动分配id
+      setViewId(index){
+        return `id${index}`
+      },
+      setViewItem(index) {
+        this.viewItem = `id${index}`
+      },
 			lastbackBtn(){//马上认购返回
 				this.zhifuclose()
 			},
@@ -174,6 +180,7 @@ export default {
 			
 			bian(index,id) {//切换产品列表接口
 				this.currentIndex = index
+        this.$store.state.scrollIndex = index
 				// 产品列表接口
 				console.log(id)
 				let goods_list={

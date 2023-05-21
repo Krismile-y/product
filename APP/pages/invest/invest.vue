@@ -1,10 +1,16 @@
 <template>
 	<view class="content" style="min-height: 120vh; padding-bottom: 100upx;">
-       <!-- 手写拉起框 -->
-				<airel-floatball  />
+       <!-- 客服 -->
+				<view class="">
+				  <airel-floatball  />
+				</view>
 				<!-- 标题栏 -->
-				<scroll-view scroll-x="true" style="width: 100%;height: 90upx;white-space: nowrap;margin-top: 50upx;">
-					<view class="item " v-for="(item,index) in list" :key="index" @tap="bian(index,item.id)">
+				<scroll-view scroll-x="true"
+         :scroll-into-view="viewItem" 
+         scroll-with-animation
+         style="width: 100%;height: 90upx;white-space: nowrap;margin-top: 50upx;"
+         >
+					<view class="item " :id="setViewId(index)" v-for="(item,index) in list" :key="index" @tap="bian(index,item.id)">
 						<view class="boxs disc">
 							<view class="title" :class="{color:currentIndex==index?true:false}">{{item.type_name}}</view>
 						</view>

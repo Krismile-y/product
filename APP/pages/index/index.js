@@ -129,6 +129,7 @@ export default {
   },
   
 	onLoad() {
+    uni.setStorageSync('current','index')
 		// 最新官方消息接口
 		this.$fn.request('notice/count', "GET", {"type":"1"}).then(res => {
 			console.log(res.data.data.count,'最新消息')
@@ -254,7 +255,7 @@ export default {
 		},
 		xinshou() {
 			uni.navigateTo({
-				url: '/pages/invest/invest?id=' + 1
+				url: '/pages/xinshoutiyan/xinshoutiyan'
 			})
 		},
 		goHome(name) {

@@ -6,7 +6,7 @@
 		<!-- 新的 -->
 		<view class="newTop disc">
 			<image src="../../static/login/logo.jpg" mode="" style="border-radius: 50%;"></image>
-			<view class="font">欢迎来到绿色中国</view>
+			<view class="font">绿色中国</view>
 		</view>
 		
 		<view class="newInput">

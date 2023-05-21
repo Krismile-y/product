@@ -438,6 +438,14 @@
     
     }
     , {
+    	"path": "pages/xinshoutiyan/xinshoutiyan",
+    	"style": {
+    		"navigationBarTitleText": "新手体验",
+    		"enablePullDownRefresh": false
+    	}
+    
+    }
+    , {
 			"path": "pages/bankcard/bankcard",
 			"style": {
 				"navigationBarTitleText": "银行卡",
@@ -505,6 +513,15 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "选购金额",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/xinshoutiyan/xinshoutiyan",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
             

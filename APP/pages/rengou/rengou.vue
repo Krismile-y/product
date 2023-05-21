@@ -72,13 +72,21 @@
         checkedImg,
         head_img: '',
         gid: '',
+        mid: '',  //价格的下标
+        chushiJine: 0  //记录金额
       };
     },
     onLoad(option) {
-      this.head_img = option.img
-      this.gid = option.id
+      let obj = JSON.parse(option.obj)
+      console.log(obj,'父级传值');
+      this.head_img = obj.headImg
+      this.gid = obj.gid
+      this.mid = obj.mid
+      this.zhifuMoney = obj.money
+      this.chushiJine = obj.money
       let goods_day={
-      	'gid':option.id
+      	'gid':this.gid,
+        'mid': this.mid
       }
       this.$fn.request('goods/goods_day', 'GET',goods_day).then(res => {
       	// console.log(res,'产品天数接口')
@@ -90,7 +98,7 @@
       value: {
         handler(newVal) {
           console.log(newVal);
-          this.zhifuMoney = this.payMoney(this.dayID[this.checked].withdrawable_money)
+          this.zhifuMoney = this.payMoney(this.chushiJine*newVal)
         },
       }
     },
@@ -111,7 +119,8 @@
           num: this.value, //购买数量
           did: this.dayID[this.checked].id, //天数id
           cid: '0', //优惠券id
-          money: this.zhifuMoney
+          money: this.zhifuMoney,
+          mid: this.mid
         }
         let strObj = JSON.stringify(obj)
         uni.navigateTo({
@@ -120,10 +129,10 @@
       },
       checkItem(index) {
         this.checked = index;
-        this.zhifuMoney = this.payMoney(this.dayID[this.checked].withdrawable_money)
+        // this.zhifuMoney = this.payMoney(this.dayID[this.checked].withdrawable_money)
       },
       payMoney(money) {
-        return parseInt(money*this.value)
+        return parseInt(money)
       }
     }
   }

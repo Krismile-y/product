@@ -137,7 +137,7 @@
 
 
 		<!-- 新手 -->
-		<view class="news" @tap='xinshou'>
+		<view class="news" @tap='xinshou()'>
 			<view class="news-title">
 				<text>新手体验</text>
 				<image src="../../static/newIndex/icon-right.png" mode=""></image>

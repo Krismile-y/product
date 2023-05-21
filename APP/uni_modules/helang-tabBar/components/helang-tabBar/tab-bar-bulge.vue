@@ -6,8 +6,9 @@
 				<view class="item h-flex-x h-flex-center"
 					v-for="(item,index) in  tabList" 
 					:key="index" 
-					@tap="change(index)"
+					@tap="change(index,item.name)"
 				>
+        <!-- -->
 					<view v-if="item.bulge" class="bulge" 
 						:class="{
 							'bulge-active':openBulge,
@@ -31,15 +32,15 @@
 						  		<view class="content">
 						  			<view class="h-flex-x h-flex-3">
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-						            <view class="items dis yuan1"  @tap="four(0)">
+						            <view class="items dis yuan1"  @tap="four(4)">
                           <!-- <image src="../../../../static/newIndex/gabige.png" mode=""></image> -->
                           <image src="../../../../static/newIndex/gray_gabige.png" mode=""></image>
                         </view>
 						  				</view>
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-						            <view class="items dis yuan2" @tap="four(1)">
+						            <view class="items dis yuan2" @tap="four(6)">
                           <!-- <image src="../../../../static/newIndex/chuan.png" mode=""></image> -->
-                          <image src="../../../../static/newIndex/gray_gabige.png" mode=""></image>
+                          <image src="../../../../static/newIndex/gray_chuan.png" mode=""></image>
                         </view>
 						  				</view>
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
@@ -49,25 +50,25 @@
                         </view>
 						  				</view>
 						          <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-						            <view class="items dis yuan4" @tap="four(3)">
+						            <view class="items dis yuan4" @tap="four(0)">
                           <image src="../../../../static/newIndex/nengyuan.png" mode=""></image>
                           <!-- <image src="../../../../static/newIndex/gray_nengyuan.png" mode=""></image> -->
                         </view>
 						          </view>
 						          <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-						            <view class="items dis yuan5" @tap="four(4)">
+						            <view class="items dis yuan5" @tap="four(5)">
                           <!-- <image src="../../../../static/newIndex/lou.png" mode=""></image> -->
                           <image src="../../../../static/newIndex/gray_lou.png" mode=""></image>
                         </view>
 						          </view>
                       <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-                        <view class="items dis yuan6" @tap="four(5)">
+                        <view class="items dis yuan6" @tap="four(3)">
                           <!-- <image src="../../../../static/newIndex/car.png" mode=""></image> -->
                           <image src="../../../../static/newIndex/gray_car.png" mode=""></image>
                         </view>
                       </view>
                       <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-                        <view class="items dis yuan7" @tap="four(6)">
+                        <view class="items dis yuan7" @tap="four(1)">
                           <!-- <image src="../../../../static/newIndex/tree.png" mode=""></image> -->
                           <image src="../../../../static/newIndex/gray_tree.png" mode=""></image>
                         </view>
@@ -79,9 +80,9 @@
 						</view>
 					</view>
 					<view v-else :class="{
-						'active':current == index
+						'active': (current == item.name)
 					}">
-						<view class="h-flex-x h-flex-center" @tap="go(item.name,index)">
+						<view class="h-flex-x h-flex-center">
 							<view class="icon">
 								<uni-icons :type="item.icon" size="48rpx" color="#b4b3b8"></uni-icons>
 							</view>
@@ -131,6 +132,7 @@
 					},
 					{
 						"bulge":true,
+            "name": ''
 					},
 					{
 						"icon":"shop",
@@ -147,21 +149,21 @@
         kaiguan:2 //1打开2关闭
 			};
 		},
-		computed:{
-			
-		},
+		
 		methods:{
-			change(index){
-				// if(this.tabList[index].bulge){
-				// 	return;
-				// }
-				// if(this.current == index){
-				// 	return;
-				// };
-				
-				// this.prevIndex = this.current;
-				// this.current = index;
-				// this.openBulge = false;
+			change(index,name){
+				let nowIndex = this.$store.state.current
+				// 防止重复点击发请求
+				if(nowIndex == name) {
+				  return
+				}
+				let strIndex = name
+				uni.setStorageSync('current',strIndex)
+				this.$store.state.current = uni.getStorageSync('current')
+				console.log(strIndex,'index',nowIndex);
+				uni.navigateTo({
+					url: `/pages/${name}/${name}`
+				})
 			},
 			// 凸起按钮切换
 			changeBulge(){
@@ -179,25 +181,16 @@
         
 			},
       go(name,index) {
-        let nowIndex = this.$store.state.current
-        // 防止重复点击发请求
-        if(nowIndex == index) {
-          return
-        }
-        let strIndex = index+''
-        uni.setStorageSync('current',strIndex)
-        this.$store.state.current = uni.getStorageSync('current')
-        console.log(index,'index');
-      	uni.navigateTo({
-      		url: `/pages/${name}/${name}`
-      	})
+        
       },
       four(index){
       	
-      	if(index==3){
+      	if(index==0){
           this.$store.state.current = 5
+          this.$store.state.scrollIndex = index
           uni.setStorageSync('current',5)
           this.current = uni.getStorageSync('current')
+          this.changeBulge()
       		uni.navigateTo({
       			url: '/pages/invest/invest?id=' + index
       		})
