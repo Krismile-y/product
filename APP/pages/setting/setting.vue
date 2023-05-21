@@ -16,7 +16,7 @@
 				</view>
 				<view class="item disc">
 					<a :href="kefu" style="width: 100%;height: 100%;color: black;" class="disc">
-						<image src="../../static/setting/wodekefu.png" mode=""></image>
+						<image src="../../static/c/erji.png" mode=""></image>
 						我的客服
 					</a>
 
