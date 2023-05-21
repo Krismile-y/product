@@ -119,7 +119,7 @@
 				if(!this.sunction) return; // 取消吸边
 				let t = this.time;
 				this.transition = `left ${t}ms`; // 设置吸边动画
-				var w = this.safeArea.width;
+				var w = this.safeArea.width - 20;
 				const pageX = e.changedTouches[0].clientX;
 				if(pageX > w*0.5){
 					this.isleft = false;

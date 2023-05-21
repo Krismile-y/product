@@ -124,8 +124,6 @@
     onLoad() {
       this.getDateList()
       this.initNowDay()
-      let info = uni.getStorageSync('user_info')
-      this.totaljifen = info.money_integral
     },
 		methods: {
       initNowDay() {
@@ -143,8 +141,8 @@
         })
       },
       go() {
-        uni.setStorageSync('current','3')
-        this.$store.state.current = '3'
+        uni.setStorageSync('current','shop')
+        this.$store.state.current = 'shop'
         uni.navigateTo({
           url:'/pages/shop/shop'
         })
@@ -157,6 +155,8 @@
         this.$fn.request('user', "GET", params).then(res => {
           console.log(res,'个人信息');
           this.userInfo = res.data.data
+          this.totaljifen = this.userInfo.money_integral
+          console.log(this.totaljifen);
         })
       },
       getDateList() {

@@ -6,9 +6,9 @@
 				<view class="item h-flex-x h-flex-center"
 					v-for="(item,index) in  tabList" 
 					:key="index" 
-					@tap="change(index,item.name)"
+					
 				>
-        <!-- -->
+        <!-- @tap="change(item.name)" -->
 					<view v-if="item.bulge" class="bulge" 
 						:class="{
 							'bulge-active':openBulge,
@@ -82,7 +82,7 @@
 					<view v-else :class="{
 						'active': (current == item.name)
 					}">
-						<view class="h-flex-x h-flex-center">
+						<view class="h-flex-x h-flex-center" @tap="go(item.name,index)">
 							<view class="icon">
 								<uni-icons :type="item.icon" size="48rpx" color="#b4b3b8"></uni-icons>
 							</view>
@@ -132,7 +132,7 @@
 					},
 					{
 						"bulge":true,
-            "name": ''
+            "name": "",
 					},
 					{
 						"icon":"shop",
@@ -149,21 +149,21 @@
         kaiguan:2 //1打开2关闭
 			};
 		},
-		
+		onShow() {
+		  this.current = uni.getStorageSync('current')
+		},
 		methods:{
-			change(index,name){
-				let nowIndex = this.$store.state.current
-				// 防止重复点击发请求
-				if(nowIndex == name) {
-				  return
-				}
-				let strIndex = name
-				uni.setStorageSync('current',strIndex)
-				this.$store.state.current = uni.getStorageSync('current')
-				console.log(strIndex,'index',nowIndex);
-				uni.navigateTo({
-					url: `/pages/${name}/${name}`
-				})
+			change(index){
+				// if(this.tabList[index].bulge){
+				// 	return;
+				// }
+				// if(this.current == index){
+				// 	return;
+				// };
+				
+				// this.prevIndex = this.current;
+				// this.current = index;
+				// this.openBulge = false;
 			},
 			// 凸起按钮切换
 			changeBulge(){
@@ -182,6 +182,18 @@
 			},
       go(name,index) {
         
+        let nowIndex = this.$store.state.current
+        // 防止重复点击发请求
+        if(nowIndex == name) {
+          return
+        }
+        let strIndex = name
+        uni.setStorageSync('current',strIndex)
+        this.$store.state.current = uni.getStorageSync('current')
+        console.log(strIndex,'index',nowIndex);
+      	uni.navigateTo({
+      		url: `/pages/${name}/${name}`
+      	})
       },
       four(index){
       	
