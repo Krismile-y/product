@@ -40,12 +40,31 @@
 
 		<!-- 八个标题 -->
 		<view class="eight" style="margin-top: 24upx;">
-			<view class="item disc" @tap="guanwang()">
+			<!-- #ifdef H5-->
+			<view class="item disc" >
+				<view class="img-box">
+					<a :href=" $lastUrl" class="dis"><image src="../../static/newIndex/guanwang.png"></image></a>
+					
+				</view>
+				<view class="title">
+					
+					<a :href=" $lastUrl">进入官网</a>
+					</view>
+			</view>
+			<!-- #endif -->
+			
+			<!-- #ifdef APP -->
+			<view class="item disc" @tap="guanwang">
 				<view class="img-box">
 					<image src="../../static/newIndex/guanwang.png"></image>
 				</view>
-				<view class="title">进入官网</view>
+				<view class="title">
+					
+					进入官网
+					</view>
 			</view>
+			<!-- #endif -->
+			
 			<view class="item disc">
 				<view class="img-box">
 					<image src="../../static/newIndex/guanyuwomen.png" @tap="goHome('about')"></image>

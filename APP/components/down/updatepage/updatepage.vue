@@ -2,7 +2,7 @@
 <template>
   <view class="" >
     <!-- <button @tap="upgrade">更新</button> -->
-	<view @tap="upgrade">
+	<view @tap="upgrade" style="font-size: 28upx;">
 		<!-- 检查更新 -->
 		{{title}}
 	</view>

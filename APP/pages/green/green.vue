@@ -133,13 +133,14 @@
 					time:''
 				}
 				this.$fn.request('welfare/donate_log','GET',data).then(res=>{
-					console.log(res.data.data,'捐献记录')			
+					console.log(res.data.data.total,'捐献记录')			
 					if(res.data.code == 1){
 						this.juanxianjilu=res.data.data.data
 						this.lastList.push(...res.data.data.data)
 						console.log(res.data.data.last_page)
 						this.last_page=res.data.data.last_page
 						this.page++
+						
 						if(res.data.data.total == 0 && this.currentIndex==1){
 							this.kong=true
 						}else{
