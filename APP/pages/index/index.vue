@@ -48,7 +48,7 @@
 				</view>
 				<view class="title">
 					
-					<a :href=" $lastUrl">进入官网</a>
+					<a :href=" $lastUrl" style="color: #000;">进入官网</a>
 					</view>
 			</view>
 			<!-- #endif -->
