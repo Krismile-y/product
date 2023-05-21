@@ -5,11 +5,12 @@
       <view class="item item1" @tap="goImgPage">
       	<image src="../../static/common/icon_avatar.png" mode=""></image>
       	头像<view class="head-tips">点击更换头像</view>
-      	<view class="right">
+      	<view class="right ">
       		<image :src="imgSrc" mode="heightFix"></image>
       	</view>
       </view>
-      <view class="item">
+	  
+      <view class="item" @tap='x'>
       	<image src="../../static/common/icon_iphone.png" mode=""></image>
       	手机号
       	<view class="right">
@@ -18,7 +19,7 @@
       	</view>
       </view>
       
-      <view class="item" style="margin-top: 0upx;"  @tap="go(1)">
+      <view class="item"   @tap="go(1)">
       	<image src="../../static/common/icon_id-card.png" mode=""></image>
       	实名制
       	<view class="right">
@@ -36,7 +37,9 @@
       </view>
       
     </view>
-		<airel-floatball  />
+		<view>
+			<airel-floatball  />
+		</view>
 	</view>
 </template>
 
@@ -85,6 +88,9 @@
 						url:'/pages/revisePassword/revisePassword?type='+index
 					})
 				
+			},
+			x(){
+				return
 			},
       goImgPage(){
       		uni.navigateTo({
