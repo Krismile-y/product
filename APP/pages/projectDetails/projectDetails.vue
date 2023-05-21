@@ -50,13 +50,16 @@
         </view>
       </view>
     </view>
+    <view class="money-table-img">
+      <image src="../../static/common/money_table.png" mode="widthFix" @tap="previewImage"></image>
+    </view>
     <view class="opcity-bottom">
-      
+      <!-- 用于支撑fixed的空白盒子 -->
     </view>
     <view class="bottom-fixd" :class="{'fixed': fixedType}">
       <view class="bottom-text">
         <text class="qitou">起投金额：</text>
-        <text class="orange">￥{{parseInt(detail.goods_money)}}</text>
+        <text class="orange">￥{{parseInt(moneyData[0].money)}}</text>
         <text class="orange small">.00</text>
       </view>
       <view class="bottom-btn" @tap="go(detail.id)">
@@ -72,7 +75,12 @@
       return {
         id: '',
         detail: {},
-        fixedType: true
+        fixedType: true,
+        moneyData: [
+          {
+            money: 0
+          }
+        ],
       };
     },
     onLoad(option) {
@@ -85,14 +93,33 @@
       	console.log(res.data.data,'产品详情')
       	this.detail=res.data.data
       }) 
+      this.getJiage(this.id)
     },
     mounted() {
       
     },
     methods: {
+      // 获取认购价格，用于起投金额
+      getJiage(id) {
+        let params = {
+          gid:id
+        }
+        this.$fn.request('goods/goods_money', 'GET',params).then(res => {
+        	console.log(res,'金额列表')
+          if(res.data.code == 1) {
+            this.moneyData=res.data.data.data
+          }
+        }) 
+      },
       go(detailId) {
         uni.navigateTo({
-          url:`/pages/rengou/rengou?id=${detailId}&img=${this.detail.head_img}`
+          url:`/pages/xuangou/xuangou?id=${detailId}&img=${this.detail.head_img}&pName=${this.detail.goods_name}`
+        })
+      },
+      // 加个列表图片预览
+      previewImage() {
+        uni.previewImage({
+          urls: ['../../static/common/money_table.png'] // 这里填写需要预览的图片地址列表
         })
       }
     }
@@ -143,6 +170,12 @@
           margin-right: .2em
         }
       }
+    }
+  }
+  .money-table-img {
+    width: 100%;
+    image {
+      width: 100%;
     }
   }
   .opcity-bottom {

@@ -500,6 +500,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/xuangou/xuangou",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "选购金额",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationStyle": "default",
