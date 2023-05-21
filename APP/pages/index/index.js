@@ -4,6 +4,8 @@ import Vue from "vue";
 import uniPopup from "../../components/down/updatepage/uni-popup/uni-popup.vue";
 import uniPopupMessage from "../../components/down/updatepage/uni-popup/uni-popup-message.vue";
 import uniPopupDialog from "../../components/down/updatepage/uni-popup/uni-popup-dialog.vue";
+import hezuoImg1 from "@/static/hezuo/hezuodanwei.png"
+import hezuoImg2 from "@/static/hezuo/hezuoAll.png"
 export default {
 	components: {
 		down,
@@ -11,6 +13,10 @@ export default {
 	},
 	data() {
 		return {
+      hezuoImg: [
+        hezuoImg1,
+        hezuoImg2,
+      ],
 			newMSG:0,//官方最新消息
 			phoneDown: "",
 			out: 0,
@@ -81,7 +87,6 @@ export default {
 			}
 		})
 
-
 		this.out = 0
 		uni.setStorageSync('name', 'index')
 		if (uni.getStorageSync('name') == 'index') {
@@ -129,7 +134,6 @@ export default {
 			console.log(res.data.data.count,'最新消息')
 			this.newMSG=res.data.data.count
 		})
-		
 		
 		// 海报接口
 		this.$fn.request('banner', "GET", {"type":"5"}).then(res => {
@@ -254,6 +258,13 @@ export default {
 			})
 		},
 		goHome(name) {
+      // 跳转到社区或者积分商城,切换底部标签
+      if(name == 'community') {
+        uni.setStorageSync('current','1')
+      }
+      if(name == 'shop') {
+        uni.setStorageSync('current','3')
+      }
 			uni.navigateTo({
 				url: `/pages/${name}/${name}`
 			})

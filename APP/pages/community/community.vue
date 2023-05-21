@@ -3,18 +3,18 @@
       <airel-floatball  />
         <view class="zongshouyi">
         	<view class="one disc">
-        		<view style="color: #fff;">总收益</view>
-        		<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{info.money_balance}}</view>
+        		<view style="color: #fff;">团队可提现金额</view>
+        		<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{info.money_team}}</view>
         	</view>
         	<view class="two disc">
         		<view class="t" style="width: 100%;height: 60%;display: flex;">
         			<view class="twoItem disc">
-        				<view>每日收益</view>
-        				<view>{{today}}</view>
+        				<view>下级人数</view>
+        				<view>{{peopleData.subordinate}}</view>
         			</view>
         			<view class="twoItem disc">
-        				<view>可提现金额</view>
-        				<view>{{info.money_approve}}</view>
+        				<view>已购人数</view>
+        				<view>{{peopleData.purchased}}</view>
         			</view>
         		</view>
         		<view class="last dis" style="margin-top: -30upx;" @tap="go('tuanduitixian')">
@@ -138,6 +138,10 @@
 				pageSize: 3,
 				// 团队收益
 				money_team: '',
+        peopleData: {
+          subordinate:'', //下级人数
+          purchased: '', //购买人数
+        },
 				// 当前页
 				pageCurrent: 1,
 				// 数据总量
@@ -199,6 +203,7 @@
 
 		},
 		onShow() {
+      this.getPeopleNum()
 			//用户今日收益
 			let data = {
 				"is_whole": "1"
@@ -233,6 +238,15 @@
 				})
 				uni.setStorageSync('name', 'shop')
 			},
+      // 下级人数接口
+      getPeopleNum() {
+        this.$fn.request('subordinate', "POST").then(res => {
+          console.log(res);
+          if(res.data.code == 1) {
+            this.peopleData = res.data.data
+          }
+        })
+      },
 			getData(page, time) {
 				let params = {
 					'page': '1',

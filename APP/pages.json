@@ -491,6 +491,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/gongyiDetail/gongyiDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "公益明细",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationStyle": "default",

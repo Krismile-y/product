@@ -78,7 +78,7 @@
 				</view>
 				<view class="title">官方消息</view>
 			</view>
-			<view class="item disc">
+			<view class="item disc" @tap="goHome('community')">
 				<view class="img-box">
 					<image src="../../static/newIndex/icon_topic_active.png"></image>
 				</view>
@@ -87,7 +87,7 @@
 
 
 
-			<view class="item disc" @tap="goHome('myGroup')">
+			<view class="item disc" @tap="goHome('shop')">
 				<view class="img-box">
 					<image src="../../static/newIndex/icon_shop_active.png"></image>
 				</view>
@@ -184,14 +184,11 @@
 
 
 		<!-- 合作伙伴 -->
-    <view class="xinwen-title">
-    	<view class="shu"></view>
-    	<view class="xinwen-ttext">
-    		合作伙伴
-    	</view>
+    <view class="hezuo-title">
+    	<image src="../../static/hezuo/hezuodanwei.png" mode="heightFix"></image>
     </view>
     <view class="hezuo-box">
-      
+      <image src="../../static/hezuo/hezuoAll.png" mode="widthFix"></image>
     </view>
 		<!-- <view class="kuaijie">
 			<view class="shu"></view>

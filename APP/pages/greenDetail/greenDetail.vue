@@ -142,6 +142,16 @@
 			close() {
 			 this.show=!true
 			},
+      // 获取个人信息，用于捐赠成功后刷新可提现金额
+      getuserMsg() {
+        let params = {
+          is_whole: 1
+        }
+        this.$fn.request('user', "GET", params).then(res => {
+          console.log(res,'个人信息');
+          this.info = res.data.data
+        })
+      },
 			chooseMoney(num,index){//选择金额
 			    this.currentIndex=index
 				this.amount=num
@@ -179,6 +189,7 @@
 						duration:1000,
 						icon:'success'
 					})
+
 				})
 			},
 			chakanxiangqing(){//查看详情页面

@@ -88,7 +88,17 @@
 				}
 				this.x()
 		    },
-		
+		onShow() {
+		  this.$fn.request('welfare/donate_log','GET',{}).then(res=>{
+		  	console.log(res,'捐献记录')			
+		  	this.juanxianjilu=res.data.data.data
+		  	if(res.data.data.total == 0){
+		  		this.kong=true
+		  	}else{
+		  		this.kong=false
+		  	}
+		  })
+		},
 		onLoad() {
 			let data ={
 				
