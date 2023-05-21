@@ -82,7 +82,8 @@
 			<!-- #ifdef H5 -->
 			<view class="item disc" @tap='down'>
 				<view class="img-box">
-					<image src="../../static/newIndex/xiazai.png"></image>
+					<a :href="phoneDown" class="dis"><image src="../../static/newIndex/xiazai.png"></image></a>
+					
 				</view>
 				<a :href="phoneDown" style="color: black;">
 					<view class="title">APP下载</view>
