@@ -20,7 +20,7 @@
 			</view>
 			<view class="newInputItem">
 				<view class="inputName ">验证码</view>
-					<input type="text" placeholder="请输入验证码" v-model="captcha" style="height: 100%;width: 270upx;">
+					<u-input type="text" placeholder="请输入验证码" v-model="captcha" style="height: 100%;width: 270upx;padding-left: 20upx;"  border="true"/>
 				<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng"></image>
 			</view>
 			<view class="two">

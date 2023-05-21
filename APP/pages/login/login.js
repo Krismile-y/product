@@ -40,7 +40,7 @@ export default {
 	onLoad() {
 
 		this.$fn.request('verify', "GET", {}).then(res => {
-			// console.log(res.data,'验证码')
+			// console.log(res,'验证码')
 		})
 	},
 	onShow() {
@@ -63,11 +63,23 @@ export default {
 	methods: {
 		
 		yanzheng() {
-			this.$fn.request('verify', 'GET', {}).then(res => {
-				let times = 0;
-				times = new Date()
-				this.herf = this.$url + 'verify?time=' + times
+			
+			uni.request({
+				url:this.$url+'verify',
+				data:{},
+				success: (res) => {
+					console.log(res)
+					let times = 0;
+					times = new Date()
+					this.herf = this.$url + 'verify?time=' + times
+				}
 			})
+			
+			// this.$fn.request('verify', 'GET', {}).then(res => {
+			// 	let times = 0;
+			// 	times = new Date()
+			// 	this.herf = this.$url + 'verify?time=' + times
+			// })
 		},
         // 记住密码
 		change(e) {

@@ -25,11 +25,7 @@
 			let kefu = {
 				"sid": "1"
 			}
-			// this.$fn.request('customer', "GET", kefu, ).then(res => {
-			// 	// console.log(res.data.data[0].url,'客服')
-			// 	uni.setStorageSync('kefu', res.data.data[0].url)
-			// 	this.$store.commit('kefu', res.data.data[0].url)
-			// })
+			
 
 			// 获取设备信息
 			uni.getSystemInfo({
