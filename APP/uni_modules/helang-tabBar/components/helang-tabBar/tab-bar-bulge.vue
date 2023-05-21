@@ -172,8 +172,14 @@
         
 			},
       go(name,index) {
+        let nowIndex = this.$store.state.current
+        // 防止重复点击发请求
+        if(nowIndex == index) {
+          return
+        }
         let strIndex = index+''
         uni.setStorageSync('current',strIndex)
+        this.$store.state.current = uni.getStorageSync('current')
         console.log(index,'index');
       	uni.navigateTo({
       		url: `/pages/${name}/${name}`

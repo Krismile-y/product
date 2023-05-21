@@ -144,7 +144,7 @@
       },
       go() {
         uni.setStorageSync('current','3')
-        // this.$store.state.current = 3
+        this.$store.state.current = '3'
         uni.navigateTo({
           url:'/pages/shop/shop'
         })

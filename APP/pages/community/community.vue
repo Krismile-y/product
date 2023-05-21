@@ -254,7 +254,7 @@
 					// 'time':"2023-04"
 				}
 				// params.time = time
-				params.page = page
+				params.page = 1
 				params.limit = this.pageSize
 				const that = this
 				this.$fn.request('/log/rebate', "GET", params).then(res => {

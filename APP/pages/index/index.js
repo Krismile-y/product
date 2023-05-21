@@ -261,9 +261,11 @@ export default {
       // 跳转到社区或者积分商城,切换底部标签
       if(name == 'community') {
         uni.setStorageSync('current','1')
+        this.$store.state.current = '1'
       }
       if(name == 'shop') {
         uni.setStorageSync('current','3')
+        this.$store.state.current = '3'
       }
 			uni.navigateTo({
 				url: `/pages/${name}/${name}`
