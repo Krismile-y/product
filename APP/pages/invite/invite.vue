@@ -7,7 +7,7 @@
 			<view class="dis id" style="font-size: 56upx;">{{info.id}}</view>
 		</view>
 
-		<view class="two">
+		<view class="two" style="margin-bottom: 80upx;">
 			<!-- #ifdef APP-->
 			<view class="itemONE dis" @tap="fenxiang">保存图片</view>
 			<!-- #endif -->
