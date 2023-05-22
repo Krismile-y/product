@@ -83,8 +83,9 @@ export default {
 		}
 		this.$fn.request('goods/goods_list', 'GET', goods_list).then(res => {
 			console.log(res.data.data.data, '产品列表接口')
-			this.left = options.id * 165
+			
 			this.goods_list = res.data.data.data
+			
 			if (this.goods_list.length == 0) {
 				this.kong = true
 			} else {
@@ -120,7 +121,13 @@ export default {
 		// 产品分类接口
 		this.$fn.request('goods/goods_type', 'GET', data).then(res => {
 			console.log(res.data.data, '产品分类接口')
-			this.list = res.data.data
+			if(res.data.code == 1){
+				this.list = res.data.data
+				setTimeout(()=>{
+					this.left = options.id * 145
+				},100)
+			}
+			
 		})
 
 
