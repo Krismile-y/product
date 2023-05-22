@@ -20,7 +20,7 @@
 			</view>
 		</view>
 
-		<view class="item">
+		<view class="item" style="">
 			<view class="left dis">
 				所在地区
 			</view>
@@ -36,7 +36,7 @@
 			<view class="left dis">
 				
 			</view>
-			<view class="right dis" style="position: relative;">
+			<view class="right dis" style="">
 				{{diqu}}
 			</view>
 		</view>
@@ -46,7 +46,7 @@
 				详细地址
 			</view>
 			<view class="right dis">
-				<view class="uni-textarea" style="width: 100%;height: 200upx;background-color: #f0f0f0;border-radius: 20upx;overflow: hidden;">
+				<view class="uni-textarea" style="width: 100%;height: 150upx;background-color: #f0f0f0;border-radius: 20upx;overflow: hidden;">
 				<textarea placeholder-style="color:#F76260" placeholder=""  v-model="wenben" />
 				</view>
 
@@ -59,19 +59,19 @@
 			</view>
 			<view class="right dis" style="width: 50%;">
 				<view class="pos dis">
-					<u-switch v-model="value1" activeColor="#5ac725"></u-switch>
+					<u-switch v-model="value1" activeColor="#02AE71"></u-switch>
 				</view>
 			</view>
 		</view>
 
-		<view class="bottom dis">
+		<!-- <view class="bottom dis"> -->
 			<!-- <view class="in dis" @tap="Addaddress" style="">
 				确认
 			</view> -->
 			<view class="xinBtn dis" @tap="Addaddress">
 				确认
 			</view>
-		</view>
+		<!-- </view> -->
 
 	</view>
 </template>
@@ -139,6 +139,24 @@
 			},
 			
 			Addaddress(){
+				if(this.user_name.length==0){
+					uni.showToast({
+						duration:1000,
+						icon:'error',
+						title:'请输入用户名'
+					})
+					return
+				}
+				if(this.phone.length!==11){
+					uni.showToast({
+						duration:1000,
+						icon:'error',
+						title:'手机号码必须是11位'
+					})
+					return
+				}
+				
+				
 				// console.log(uni.getStorageSync('user_info'))
 				const res=uni.getStorageSync('exit')
 				// console.log(this.wenben)

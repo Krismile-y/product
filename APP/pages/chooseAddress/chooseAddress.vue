@@ -160,8 +160,8 @@
 				margin-left: 20upx;
 			}
 			.moren{
-				color: #4bc93e;
-				border: 1upx solid #4bc93e;
+				color: #02AE71;
+				border: 1upx solid #02AE71;
 				width: 70upx;
 				font-size: 28upx;
 				height: 30upx;
@@ -176,6 +176,11 @@
 			margin-top: 5upx;
 			width: 88%;
 			font-size: 28upx;
+			display: -webkit-box;
+			 -webkit-box-orient: vertical;
+			 -webkit-line-clamp: 2; /* 限制最大行数 */
+			 overflow: hidden; /* 溢出部分隐藏 */
+			 text-overflow: ellipsis; /* 多余部分显示省略号 */
 		}
 	}
 }

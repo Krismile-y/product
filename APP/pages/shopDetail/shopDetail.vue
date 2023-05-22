@@ -159,9 +159,11 @@
 					     	icon: 'none'
 					     })
 						 
+						setTimeout(()=>{
 							uni.navigateTo({
 								url:'/pages/chooseAddress/chooseAddress'
 							}) 
+						},1500)
 						
 					   }
 					}

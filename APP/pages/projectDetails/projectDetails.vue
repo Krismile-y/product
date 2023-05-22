@@ -50,9 +50,6 @@
         </view>
       </view>
     </view>
-    <view class="money-table-img">
-      <image src="../../static/common/money_table.png" mode="widthFix" @tap="previewImage"></image>
-    </view>
     <view class="opcity-bottom">
       <!-- 用于支撑fixed的空白盒子 -->
     </view>

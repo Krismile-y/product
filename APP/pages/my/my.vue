@@ -5,7 +5,7 @@
 		<view class="top">
 			<view class="topBox">
 				<view class="t ">
-					<view class="left dis">
+					<view class="left dis" >
 						<image :src="info.head_img" alt="" />
 					</view>
 					<view class="right">

@@ -99,13 +99,12 @@
         	if(res.data.code == 1){
         		uni.showToast({
         			title:'购买成功',
-        			duration:1000,
         			icon:"success"
         		})
             setTimeout(()=> {
               uni.navigateTo({
-                url:`/pages/invest/invest?id=${this.backpageId}`
-              },2000)
+                url:`/pages/record/record`
+              },5000)
             })
         	}else{
         		uni.showToast({

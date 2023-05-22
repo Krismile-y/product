@@ -45,7 +45,7 @@
 				详细地址
 			</view>
 			<view class="right dis">
-				<view class="uni-textarea" style="width: 100%;height: 200upx;background-color: #f0f0f0;border-radius: 20upx;overflow: hidden;">
+				<view class="uni-textarea" style="width: 100%;height: 150upx;background-color: #f0f0f0;border-radius: 20upx;overflow: hidden;">
 				<textarea placeholder-style="color:#F76260" placeholder=""  v-model="wenben" />
 				</view>
 
@@ -59,12 +59,12 @@
 			</view>
 			<view class="right dis" style="width: 50%;">
 				<view class="pos dis">
-					<u-switch v-model="value1" activeColor="#5ac725"></u-switch>
+					<u-switch v-model="value1" activeColor="#02AE71"></u-switch>
 				</view>
 			</view>
 		</view>
 
-		<view class="bottom dis">
+		<!-- <view class="bottom dis"> -->
 			<!-- <view class="in dis" @tap="address()" style="">
 				确认
 			</view> -->
@@ -72,7 +72,7 @@
 			<view class="xinBtn dis" @tap="address">
 				确认
 			</view>
-		</view>
+		<!-- </view> -->
 
 	</view>
 </template>
@@ -112,6 +112,24 @@
 			},
 			
 			address(){
+				if(this.user_name.length==0){
+					uni.showToast({
+						duration:1000,
+						icon:'error',
+						title:'请输入用户名'
+					})
+					return
+				}
+				if(this.phone.length!==11){
+					uni.showToast({
+						duration:1000,
+						icon:'error',
+						title:'手机号码必须是11位'
+					})
+					return
+				}
+				
+				
 				let defalutValue=''
 				if(this.value1 == true){
 					defalutValue='1'
@@ -120,6 +138,14 @@
 				}
 				
 				// console.log(uni.getStorageSync('user_info'))
+				if(!this.res){
+					uni.showToast({
+						duration:1000,
+						icon:'error',
+						title:'请选择所在地区'
+					})
+					return
+				}
 				let data = {
 					'address': this.wenben,
 					'province': this.res[0],
