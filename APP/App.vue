@@ -32,7 +32,8 @@
 				success: (res) => {
 					this.systemInfo = res
 					// console.log(res.safeArea)
-					uni.setStorageSync('x', res.safeArea.width - 70)
+					// uni.setStorageSync('x', res.safeArea.width - 70)
+					uni.setStorageSync('x',0)
 					uni.setStorageSync('y', res.safeArea.bottom / 2 - 65)
 					this.$store.commit('x', uni.getStorageSync('x'))
 					this.$store.commit('y', uni.getStorageSync('y'))

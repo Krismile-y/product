@@ -214,7 +214,16 @@ export default {
 		},
 
 		bian(index, id) { //切换产品列表接口
-			// this.left=index*176
+			
+			uni.getSystemInfo({
+				success: (res) => {
+					this.systemInfo = res
+					console.log(res.safeArea.width*0.4 - 18)
+					let last = res.safeArea.width*0.4 -10
+					this.left=index*last
+					
+				}
+			})
 			this.currentIndex = index
 			this.$store.state.scrollIndex = index
 			// 产品列表接口
