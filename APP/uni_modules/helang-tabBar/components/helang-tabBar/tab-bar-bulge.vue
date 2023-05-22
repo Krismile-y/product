@@ -32,7 +32,7 @@
 						  		<view class="content">
 						  			<view class="h-flex-x h-flex-3">
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-						            <view class="items dis yuan1"  @tap="four(4)">
+						            <view class="items dis yuan1"  @tap="four(0)">
                           <!-- <image src="../../../../static/newIndex/gabige.png" mode=""></image> -->
                           <image src="../../../../static/newIndex/gray_gabige.png" mode=""></image>
                         </view>
@@ -44,13 +44,13 @@
                         </view>
 						  				</view>
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-						            <view class="items dis yuan3" @tap="four(2)">
+						            <view class="items dis yuan3" @tap="four(1)">
                           <!-- <image src="../../../../static/newIndex/plane.png" mode=""></image> -->
                           <image src="../../../../static/newIndex/gray_plane.png" mode=""></image>
                         </view>
 						  				</view>
 						          <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-						            <view class="items dis yuan4" @tap="four(0)">
+						            <view class="items dis yuan4" @tap="four(3)">
                           <image src="../../../../static/newIndex/nengyuan.png" mode=""></image>
                           <!-- <image src="../../../../static/newIndex/gray_nengyuan.png" mode=""></image> -->
                         </view>
@@ -62,13 +62,13 @@
                         </view>
 						          </view>
                       <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-                        <view class="items dis yuan6" @tap="four(3)">
+                        <view class="items dis yuan6" @tap="four(2)">
                           <!-- <image src="../../../../static/newIndex/car.png" mode=""></image> -->
                           <image src="../../../../static/newIndex/gray_car.png" mode=""></image>
                         </view>
                       </view>
                       <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
-                        <view class="items dis yuan7" @tap="four(1)">
+                        <view class="items dis yuan7" @tap="four(4)">
                           <!-- <image src="../../../../static/newIndex/tree.png" mode=""></image> -->
                           <image src="../../../../static/newIndex/gray_tree.png" mode=""></image>
                         </view>
@@ -196,19 +196,14 @@
       	})
       },
       four(index){
-      	
-      	if(index==0){
-          this.$store.state.current = 5
-          this.$store.state.scrollIndex = index
-          uni.setStorageSync('current',5)
-          this.current = uni.getStorageSync('current')
-          this.changeBulge()
-      		uni.navigateTo({
-      			url: '/pages/invest/invest?id=' + index
-      		})
-      	}else {
-          return
-        }
+        this.$store.state.current = 5
+        this.$store.state.scrollIndex = index
+        uni.setStorageSync('current',5)
+        this.current = uni.getStorageSync('current')
+        this.changeBulge()
+        uni.navigateTo({
+          url: '/pages/invest/invest?id=' + index
+        })
       },
 		}
 	}
