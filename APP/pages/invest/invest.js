@@ -11,6 +11,8 @@ export default {
 	    },
 	data() {
 		return {
+			changdu:'',//控制向左的长度
+			xxx:10,
 			 list2: [{
 			                title: 'test1'
 			            }, {
@@ -120,7 +122,8 @@ export default {
 		}
 		// 产品分类接口
 		this.$fn.request('goods/goods_type', 'GET', data).then(res => {
-			console.log(res.data.data, '产品分类接口')
+			console.log(res.data.data.length, '产品分类接口')
+			this.changdu=res.data.data.length-1
 			if(res.data.code == 1){
 				this.list = res.data.data
 				setTimeout(()=>{
@@ -214,12 +217,18 @@ export default {
 		},
 
 		bian(index, id) { //切换产品列表接口
-			
+		if(index==0  ){
+			this.xxx=0
+		}
+		if(index==this.changdu ){
+			this.xxx=20
+		}
+			this.xxx++
 			uni.getSystemInfo({
 				success: (res) => {
 					this.systemInfo = res
-					console.log(res.safeArea.width*0.4 - 18)
-					let last = res.safeArea.width*0.4 -10
+					console.log(res.safeArea.width*0.4*0.95 - 18)
+					let last = res.safeArea.width*0.4 -this.xxx
 					this.left=index*last
 					
 				}
