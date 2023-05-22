@@ -11,7 +11,7 @@
 		
 		<!-- 标题栏 -->
 		<scroll-view scroll-x="true"  scroll-with-animation
-			style="width: 100%;height: 90upx;white-space: nowrap;margin-top: 50upx;margin: 60upx auto;" :scroll-left="left">
+			style="width: 95%;height: 90upx;white-space: nowrap;margin-top: 50upx;margin: 60upx auto;" :scroll-left="left">
 			<view class="item " v-for="(item,index) in list" :key="index"
 				@tap="bian(index,item.id)">
 				<view class="boxs disc">
