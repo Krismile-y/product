@@ -74,6 +74,7 @@ import index from '../index';
           u_back_user_name: '',
           is_default: 0
         },
+        user_name: '', //用户名，用于匹配实名绑卡
         // 校验规则
         rules: {
           u_back_card: {
@@ -230,8 +231,12 @@ import index from '../index';
               title: "请检查开户行或卡用户名",
               icon:"error"
             })
-          }
-          else {
+          }else if(res.u_back_user_name !== this.user_name) {
+            uni.showToast({
+              title: "请检查卡用户名是否正确",
+              icon:"error"
+            })
+          }else {
             let params = {
               name: '',
               card: '',
@@ -258,6 +263,8 @@ import index from '../index';
     },
     onLoad() {
       this.init()
+      let userInfo = uni.getStorageSync('user_info')
+      this.user_name = userInfo.user_name
     }
   }
 </script>

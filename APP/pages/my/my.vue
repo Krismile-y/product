@@ -70,10 +70,16 @@
 			<view class="tt">
 			  个人中心
 			</view>
-      <view class="zhankaiImg" @tap="shousuo">
-        <image src="../../static/newMy/angle- double-down.png" mode=""></image>
-      </view>
 		</view>
+    <view class="money" @tap="shousuo">
+    	<view class="moneyItem">
+    		<image src="../../static/newMy/gerenmingxi.png" mode=""></image>
+    		个人明细
+    		<view class="pos dis">
+    			<image src="../../static/newMy/youjiantou.png" mode="" ></image>
+    		</view>
+    	</view>		
+    </view>
 		<view class="huodongBox dis"
       :class="{'huodongBox1': shousuoType}"
     >	
@@ -121,6 +127,11 @@
 				zhuangtai:"",
         shousuoType: false, //false 收缩状态，true展开
 				jiluList:[
+          // {
+          //   name:"个人明细",
+          //   url:'../../static/newMy/anquanbaozhang.png',
+          //   go:'eight',
+          // },
 					{
 						name:"安全保障",
 						url:'../../static/newMy/anquanbaozhang.png',
@@ -248,7 +259,7 @@
 			}else if( z == 1){
 				this.zhuangtai='提交申请'
 			}else if( z == 2){
-				this.zhuangtai='通过申请'
+				this.zhuangtai='已实名'
 			}else if( z == 3){
 				this.zhuangtai='拒绝申请'
 			}

@@ -288,6 +288,11 @@
               title: "请检查开户行或卡用户名",
               icon:"error"
             })
+          }else if(res.u_back_user_name !== this.info.user_name) {
+            uni.showToast({
+              title: "请检查卡用户名是否正确",
+              icon:"error"
+            })
           }
           else {
             let params = {

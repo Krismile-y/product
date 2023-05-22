@@ -45,11 +45,21 @@
 			this.type=options.type
 			
 			this.info=uni.getStorageSync('user_info')
-			if(this.info.is_real_name==0){
-				this.shiming='未实名'
-			}else{
-				this.shiming='已实名'
-			} 
+      let z = this.info.is_real_name
+      if(z == 0){
+      	this.shiming='未实名'
+      }else if( z == 1){
+      	this.shiming='提交申请'
+      }else if( z == 2){
+      	this.shiming='已实名'
+      }else if( z == 3){
+      	this.shiming='拒绝申请'
+      }
+			// if(this.info.is_real_name==0){
+			// 	this.shiming='未实名'
+			// }else{
+			// 	this.shiming='已实名'
+			// } 
 		},
 		data() {
 			return {
