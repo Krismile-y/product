@@ -75,37 +75,7 @@ export default {
 		this.setViewItem(options.id)
 		//  初始页面渲染
 		this.currentIndex = options.id
-
-		let xx = Number(options.id) + 1
-		console.log(xx)
-		let goods_list = {
-			'tid': xx.toString()
-		}
-		this.$fn.request('goods/goods_list', 'GET', goods_list).then(res => {
-			console.log(res.data.data.data, '产品列表接口')
-			
-			this.goods_list = res.data.data.data
-			
-			if (this.goods_list.length == 0) {
-				this.kong = true
-			} else {
-				this.kong = false
-			}
-			if (res.data.code == 204) {
-				uni.showToast({
-					title: res.data.msg,
-					icon: 'none',
-					duration: 1000,
-				})
-				setTimeout(() => {
-					uni.removeStorageSync('token');
-					uni.navigateTo({
-						url: '/pages/login/login'
-					})
-				}, 1500)
-			}
-		})
-
+		
 		// 支付方式
 		let type = {}
 		this.$fn.request('/pay/list', 'GET', type).then(res => {
@@ -123,6 +93,7 @@ export default {
 			console.log(res.data.data, '产品分类接口')
 			if(res.data.code == 1){
 				this.list = res.data.data
+        this.getchanpin(this.list[options.id].id)
 				setTimeout(()=>{
 					this.left = options.id * 145
 				},100)
@@ -191,6 +162,36 @@ export default {
 			}
 			this.xiadan--
 		},
+    // 获取产品列表的方法
+    getchanpin(id) {
+      let goods_list = {
+      	'tid': id
+      }
+      this.$fn.request('goods/goods_list', 'GET', goods_list).then(res => {
+      	console.log(res.data.data.data, '产品列表接口')
+      	
+      	this.goods_list = res.data.data.data
+      	
+      	if (this.goods_list.length == 0) {
+      		this.kong = true
+      	} else {
+      		this.kong = false
+      	}
+      	if (res.data.code == 204) {
+      		uni.showToast({
+      			title: res.data.msg,
+      			icon: 'none',
+      			duration: 1000,
+      		})
+      		setTimeout(() => {
+      			uni.removeStorageSync('token');
+      			uni.navigateTo({
+      				url: '/pages/login/login'
+      			})
+      		}, 1500)
+      	}
+      })
+    },
 		typetap(index) { //支付方式
 			this.typeIndex = index
 			console.log(index)

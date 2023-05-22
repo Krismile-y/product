@@ -14,31 +14,13 @@
       <view class="fangshi-title">
         支付方式
       </view>
-      <view class="yu_e" @tap="payCheck(1)" style="border-bottom: 1rpx solid #E5E5E5;">
-        <image class="zhifuImg" src="../../static/common/yu_e.png" mode=""></image>
+      <view class="yu_e" @tap="payCheck(index)" v-for="(item,index) in payList" :key="index" style="border-bottom: 1rpx solid #E5E5E5;">
+        <image class="zhifuImg" :src="icons[index]" mode=""></image>
         <view class="zhifuName">
-          余额支付
+          {{item}}
         </view>
         <view class="littleImg">
-          <image :src="checkedNum==1?checkedImg:defaultImg" mode=""></image>
-        </view>
-      </view>
-      <view class="weixin" style="border-bottom: 1rpx solid #E5E5E5;" @tap="payCheck(2)">
-        <image class="zhifuImg" src="../../static/common/weixin.png" mode=""></image>
-        <view class="zhifuName">
-          微信支付
-        </view>
-        <view class="littleImg">
-          <image :src="checkedNum==2?checkedImg:defaultImg" mode=""></image>
-        </view>
-      </view>
-      <view class="yu_e" @tap="payCheck(3)">
-        <image class="zhifuImg" src="../../static/common/card.png" mode=""></image>
-        <view class="zhifuName">
-          银行卡支付
-        </view>
-        <view class="littleImg">
-          <image :src="checkedNum==3?checkedImg:defaultImg" mode=""></image>
+          <image :src="checkedNum==index?checkedImg:defaultImg" mode=""></image>
         </view>
       </view>
     </view>
@@ -56,12 +38,19 @@
   export default {
     data() {
       return {
+        icons: [
+          '../../static/common/weixin.png',
+          '../../static/common/zhifubao.png',
+          '../../static/common/card.png',
+          '../../static/common/yu_e.png',
+        ],
         dataStr: '',
         dataObj: {},
         defaultImg,
         checkedImg,
         checkedNum: 0 ,//选中
         mid: '',
+        payList: [], //支付方式列表
         backpageId: ''  //支付完成后返回到的页面
       };
     },
@@ -80,6 +69,10 @@
       getPayList() {
         this.$fn.request('pay/list', 'GET',{}).then(res => {
         	console.log(res,'支付列表')
+          if(res.data.code == 1) {
+            this.payList = Object.values(res.data.data)
+          }
+          // this.payList = 
         })
       },
       payCheck(num) {
@@ -99,13 +92,28 @@
         	if(res.data.code == 1){
         		uni.showToast({
         			title:'购买成功',
-        			icon:"success"
+        			icon:"success",
+              success: ()=> {
+                console.log('支付成功了');
+                if(this.backpageId == 'xinshou') {
+                  // 回到新手体验
+                  
+                  setTimeout(()=> {
+                    uni.navigateTo({
+                      url:`/pages/xinshoutiyan/xinshoutiyan?`
+                    })
+                  },3000)
+                }else {
+                  
+                  setTimeout(()=> {
+                    uni.navigateTo({
+                      url:`/pages/invest/invest?id=${this.backpageId}`
+                    })
+                  },3000)
+                }
+              }
         		})
-            setTimeout(()=> {
-              uni.navigateTo({
-                url:`/pages/record/record`
-              },5000)
-            })
+            
         	}else{
         		uni.showToast({
         			title:res.data.msg,
@@ -147,7 +155,7 @@
   }
   .fangshi {
     width: 702rpx;
-    height: 404rpx;
+    // height: 404rpx;
     margin: 112rpx auto;
     background: #FFFFFF;
     border-radius: 16rpx;

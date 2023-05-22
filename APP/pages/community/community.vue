@@ -164,9 +164,9 @@
 						go:'myGroup'
 					},
 					{
-						name:'收益记录',
+						name:'团队收益',
 						url:'../../static/c/shouyijilu.png',
-						go:'income'
+						go:'fanyong'
 					},
 					{
 						name:'提现记录',
@@ -288,16 +288,10 @@
 			},
 			go(name, currentIndex) {
 				console.log(name)
-				if (name == 'fanyong') {
-					uni.navigateTo({
-						url: `/pages/myGroup/${name}?index=${currentIndex}`
-					})
-				} else {
-					uni.navigateTo({
-						url: `/pages/${name}/${name}?index=${currentIndex}`
-					})
-				}
-			},
+				uni.navigateTo({
+					url: `/pages/${name}/${name}?index=${currentIndex}`
+				})
+      }
 		}
 	}
 </script>

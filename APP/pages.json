@@ -140,9 +140,9 @@
 				"enablePullDownRefresh": false
 			}
 		}, {
-			"path": "pages/myGroup/fanyong",
+			"path": "pages/fanyong/fanyong",
 			"style": {
-				"navigationBarTitleText": "团队返佣",
+				"navigationBarTitleText": "团队收益",
 				"enablePullDownRefresh": false
 
 			}

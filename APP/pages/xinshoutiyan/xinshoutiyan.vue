@@ -29,14 +29,42 @@ export default {
       kong: false,
     };
   },
+  onBackPress(e) {  
+  // 这里可以自定义返回逻辑，比如下面跳转其他页面
+    
+  	uni.navigateTo({
+  		url: '/pages/index/index'
+  	});
+  	// return true 表示禁止默认返回
+  	return true
+  }, 
   onLoad() {
-    this.pankong()
+    this.getList()
   },
   methods: {
+    // 获取产品列表
+    getList() {
+      let params = {}
+      this.$fn.request('goods/experience_list', 'GET',params).then(res => {
+      	console.log(res,'新手体验')
+      	if (res.data.code == 1) {
+          // 请求成功
+          this.goods_list = res.data.data.data
+          this.pankong()
+        }
+      })
+    },
     pankong() {
       if(this.goods_list.length == 0) {
         this.kong = true
       }
+    },
+    // 跳转商品详情
+    go(id) {
+      this.$store.state.scrollIndex = 'xinshou'
+      uni.navigateTo({
+      	url: `/pages/projectDetails/projectDetails?id=${id}`
+      })
     }
   }
 }

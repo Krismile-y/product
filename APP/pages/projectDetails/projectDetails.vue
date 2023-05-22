@@ -55,7 +55,7 @@
     </view>
     <view class="bottom-fixd" :class="{'fixed': fixedType}">
       <view class="bottom-text">
-        <text class="qitou">起投金额：</text>
+        <text class="qitou">认购金额：</text>
         <text class="orange">￥{{parseInt(moneyData[0].money)}}</text>
         <text class="orange small">.00</text>
       </view>
@@ -109,8 +109,15 @@
         }) 
       },
       go(detailId) {
+        let obj = {
+          gid: this.id, //货物id
+          mid: this.moneyData[0].id, //选择价位的id
+          money: this.moneyData[0].money, //价位价格
+          headImg: this.detail.head_img //商品图片
+        }
+        let strObj = JSON.stringify(obj)
         uni.navigateTo({
-          url:`/pages/xuangou/xuangou?id=${detailId}&img=${this.detail.head_img}&pName=${this.detail.goods_name}`
+          url:`/pages/rengou/rengou?obj=${strObj}`
         })
       },
       // 加个列表图片预览

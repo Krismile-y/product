@@ -4,7 +4,7 @@
     <!-- 商品详情图片 -->
     <image class="detailsImg" :src="head_img" mode=""></image>
     <view class="project-title">
-      项目名称
+      选择数量和天数
     </view>
     <!-- 内容选择 -->
     <view class="check-box">
@@ -82,7 +82,7 @@
       this.head_img = obj.headImg
       this.gid = obj.gid
       this.mid = obj.mid
-      this.zhifuMoney = obj.money
+      this.zhifuMoney = this.payMoney(obj.money)
       this.chushiJine = obj.money
       let goods_day={
       	'gid':this.gid,
