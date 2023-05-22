@@ -234,7 +234,14 @@
 				</view>
 			</view>
 		</view>
-
+    <view class="foot">
+      <view class="foot-text1">
+        批准单位：中华人民共和国工业信息部 国家工商管理总局 指导单位：国家发改委 环境保护部 国家能源局 各地环境能源交易所
+      </view>
+      <view class="foot-text2">
+         Copyright©2014中国碳交易平台 All Rights Reserved 国家工信部备案/许可证编号京ICP备11044150号 
+      </view>
+    </view>
 		<view class="bottom-box">
 			<helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
 		</view>
