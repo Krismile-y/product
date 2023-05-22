@@ -65,7 +65,7 @@
 			
 			<view class="xuanxiang" style="margin-top: 110upx;">
 				<view class="left ">
-					记住密码 <u-switch v-model="value" @change="change" style="margin-left: 20upx;" activeColor="#4bc93e"></u-switch>
+					记住密码 <u-switch v-model="value" @change="change" style="margin-left: 20upx;" activeColor="#02AE71"></u-switch>
 				</view>
 				<view class="right "  style="">	</view>
 			</view>
