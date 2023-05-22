@@ -139,6 +139,24 @@
 			},
 			
 			Addaddress(){
+				if(this.user_name.length==0){
+					uni.showToast({
+						duration:1000,
+						icon:'error',
+						title:'请输入用户名'
+					})
+					return
+				}
+				if(this.phone.length!==11){
+					uni.showToast({
+						duration:1000,
+						icon:'error',
+						title:'手机号码必须是11位'
+					})
+					return
+				}
+				
+				
 				// console.log(uni.getStorageSync('user_info'))
 				const res=uni.getStorageSync('exit')
 				// console.log(this.wenben)

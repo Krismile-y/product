@@ -25,7 +25,7 @@
 			</view>
 			<view class="two">
 				<view class=" jizhu">
-					 <u-switch v-model="value" @change="change" style="margin-right: 20upx;width: 100upx;height: 40upx;" activeColor="#4bc93e"></u-switch>记住密码
+					 <u-switch v-model="value" @change="change" style="margin-right: 20upx;width: 100upx;height: 40upx;" activeColor="#02AE71"></u-switch>记住密码
 				</view>
 				<view class="wangji dis" @tap="go()">
 					去注册

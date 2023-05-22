@@ -112,6 +112,24 @@
 			},
 			
 			address(){
+				if(this.user_name.length==0){
+					uni.showToast({
+						duration:1000,
+						icon:'error',
+						title:'请输入用户名'
+					})
+					return
+				}
+				if(this.phone.length!==11){
+					uni.showToast({
+						duration:1000,
+						icon:'error',
+						title:'手机号码必须是11位'
+					})
+					return
+				}
+				
+				
 				let defalutValue=''
 				if(this.value1 == true){
 					defalutValue='1'
@@ -120,6 +138,14 @@
 				}
 				
 				// console.log(uni.getStorageSync('user_info'))
+				if(!this.res){
+					uni.showToast({
+						duration:1000,
+						icon:'error',
+						title:'请选择所在地区'
+					})
+					return
+				}
 				let data = {
 					'address': this.wenben,
 					'province': this.res[0],
