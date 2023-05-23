@@ -6,11 +6,11 @@
 		<view class="newInput">
 			<view class="newInputItem">
 				<view class="inputName ">手机号</view>
-				<u-input v-model="phone" type="number"   placeholder="请输入手机号" border="true"/>
+				<u-input v-model="phone" type="number"   placeholder="请输入手机号" border="true" maxlength="11"/>
 			</view>
 			<view class="newInputItem">
 				<view class="inputName ">身份证号</view>
-				 	<u-input v-model="sfz" type="number"   placeholder="请输入身份证号" border="true"/>
+				 	<u-input v-model="sfz" type="number"   placeholder="请输入身份证号" border="true" maxlength="18"/>
 			</view>
 			
 			<view class="newInputItem">
@@ -20,7 +20,7 @@
 			
 			<view class="newInputItem">
 				<view class="inputName ">验证码</view>
-					<u-input v-model="captcha" type="number"   placeholder="请输入验证码" border="true"/>
+					<u-input v-model="captcha" type="number"   placeholder="请输入验证码" border="true" maxlength="4"/>
 				<image :src="herf" mode="" style="width: 40%;height: 100%;" @tap='change()'></image>
 			</view>
 			
@@ -104,7 +104,6 @@
 							url:'/pages/login/login'
 						})
 					}else{
-						
 						this.$refs.error.showTips({
 						msg: res.data.msg,
 						duration: 2000
