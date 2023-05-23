@@ -166,6 +166,8 @@ export default {
 						})
 					this.pwd = ''
 					this.phone = ''
+					this.captcha=''
+					this.yanzheng()
 					// uni.showToast({
 					// 	duration: 1000,
 					// 	icon: "error",
