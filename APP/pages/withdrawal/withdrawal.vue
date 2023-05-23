@@ -340,13 +340,13 @@
 		  		
           return
         }
-        // if(this.info.money_approve < this.money ) {
-        //   uni.showToast({
-        //     title:'可提现余额不足',
-        //     icon:'error'
-        //   })
-        //   return
-        // }
+        if(this.info.money_approve < this.money ) {
+         this.$refs.error.showTips({
+         msg: '可提现余额不足',
+         duration: 2000
+         	})
+          return
+        }
         let params = {
           money: this.money,
           u_bank_name: this.nowCard.name,
