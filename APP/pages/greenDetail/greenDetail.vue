@@ -1,6 +1,8 @@
 <template>
 	<view class="greenDetail" style="">
 		<airel-floatball  />
+		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<view style="width: 100%;height:30upx;"></view>
 		
 		<view class="box disc" >
@@ -185,11 +187,10 @@
 						this.info=r
 					})
 					
-					uni.showToast({
-						title:'谢谢您的捐赠',
-						duration:1000,
-						icon:'success'
-					})
+					this.$refs.success.showTips({
+					    msg: '谢谢您的捐赠',
+					    duration: 2000
+					  })
 					this.zidingyijine=null
 					this.amount=null
 					this.zhuangtai=9999

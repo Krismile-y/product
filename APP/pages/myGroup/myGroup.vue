@@ -1,6 +1,8 @@
 <template>
 	<view class="myGroup-page-box">
     <airel-floatball  />
+	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
     <view class="myGroup-head">
       <view class="myGroup-head-title">
         我的团队
@@ -87,10 +89,12 @@
       if(this.currentPage != this.lastPage) {
         this.chakan(this.nowItem)
       }else {
-        uni.showToast({
-          title:'没有更多了~',
-          icon:"error"
-        })
+		  this.$refs.success.showTips({
+		      msg: '没有更多了',
+		      duration: 2000
+		    })
+		  
+        
       }
       
     },

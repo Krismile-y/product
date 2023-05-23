@@ -16,11 +16,11 @@ export default {
 	onBackPress(event) {
 		if (this.out == 0) {
 			this.out++
-			uni.showToast({
-				duration: 1000,
-				title: '再按一次退出程序',
-				icon: "none"
-			})
+			
+			this.$refs.success.showTips({
+			    msg: '再按一次退出程序',
+			    duration: 2000
+			  })
 		} else if (this.out >= 1) {
 			if (plus.os.name.toLowerCase() === 'android') {
 				plus.runtime.quit();
@@ -112,18 +112,19 @@ export default {
 			// }
 			console.log(this.phone.length)
 			if (this.phone.length !== 11) {
-				uni.showToast({
-					duration: 1000,
-					icon: "error",
-					title: '手机号必须是11位'
-				})
+				
+				
+				this.$refs.error.showTips({
+				msg: '手机号必须是11位',
+				duration: 2000
+					})
 				return
 			} else if (this.pwd.length < 8) {
-				uni.showToast({
-					duration: 1000,
-					icon: "error",
-					title: '密码必须大于8位'
-				})
+				
+				this.$refs.error.showTips({
+				msg: '密码最少8位',
+				duration: 2000
+					})
 				return
 			}
 
@@ -158,15 +159,22 @@ export default {
 					})
 				} else if (res.data.code !== 1) {
 					console.log(res.data.msg)
-					uni.showToast({
-						duration: 1000,
-						icon: "error",
-						title: res.data.msg,
-						success() {
-							this.pwd = ''
-							this.phone = ''
-						}
-					})
+					
+					this.$refs.error.showTips({
+					msg: res.data.msg,
+					duration: 2000
+						})
+					this.pwd = ''
+					this.phone = ''
+					// uni.showToast({
+					// 	duration: 1000,
+					// 	icon: "error",
+					// 	title: res.data.msg,
+					// 	success() {
+					// 		this.pwd = ''
+					// 		this.phone = ''
+					// 	}
+					// })
 				}
 			})
 		},

@@ -102,11 +102,11 @@ export default {
 	onBackPress(event) {
 		if (this.out == 0) {
 			this.out++
-			uni.showToast({
-				duration: 1000,
-				title: '再按一次退出程序',
-				icon: "none"
-			})
+			
+			this.$refs.success.showTips({
+			    msg: '在按一次退出程序',
+			    duration: 2000
+			  })
 		} else if (this.out >= 1) {
 			plus.runtime.quit();
 			// if (plus.os.name.toLowerCase() === 'android') {

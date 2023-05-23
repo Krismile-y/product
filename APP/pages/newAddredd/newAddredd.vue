@@ -1,6 +1,8 @@
 <template>
 	<view>
     <view><airel-floatball  /></view>
+	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<view class="item">
 			<view class="left dis">
 				收货人
@@ -113,19 +115,20 @@
 			
 			address(){
 				if(this.user_name.length==0){
-					uni.showToast({
-						duration:1000,
-						icon:'error',
-						title:'请输入用户名'
-					})
+					
+					this.$refs.error.showTips({
+					msg: '请输入用户名',
+					duration: 2000
+						})
 					return
 				}
 				if(this.phone.length!==11){
-					uni.showToast({
-						duration:1000,
-						icon:'error',
-						title:'手机号码必须是11位'
-					})
+					
+					this.$refs.error.showTips({
+					msg: '手机号码必须是11位',
+					duration: 2000
+						})
+		
 					return
 				}
 				
@@ -139,11 +142,11 @@
 				
 				// console.log(uni.getStorageSync('user_info'))
 				if(!this.res){
-					uni.showToast({
-						duration:1000,
-						icon:'error',
-						title:'请选择所在地区'
-					})
+					
+					this.$refs.error.showTips({
+					msg: '请选择所在地区',
+					duration: 2000
+						})
 					return
 				}
 				let data = {
@@ -158,20 +161,21 @@
 				this.$fn.request('address', "POST", data).then(res => {
 					console.log(res.data, '地址')
 					if(res.data.code == 1){
-						uni.showToast({
-							title:'新增地址成功',
-							duration:1000,
-							icon:'success'
-						})
+						
+						this.$refs.success.showTips({
+						    msg: '新增地址成功',
+						    duration: 2000
+						  })
+
 						// setTimeout(()=>{
 						// 	uni.navigateBack(1)
 						// },1000)
 					}else{
-						uni.showToast({
-							title:res.data.msg,
-							duration:1000,
-							icon:'error'
-						})
+						this.$refs.error.showTips({
+						msg: res.data.msg,
+						duration: 2000
+							})
+						
 					}
 				})
 			}

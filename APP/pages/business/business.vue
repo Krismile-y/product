@@ -1,6 +1,8 @@
 <template>
 	<view style="padding-bottom: 30upx;">
     <airel-floatball  />
+	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<view class="top">
 			<view><text class="da">12.64</text><text class="xiao">+1.6%</text></view>
 			<view class="right dis">

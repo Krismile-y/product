@@ -1,6 +1,8 @@
 <template>
 	<view class="address">
 		<view><airel-floatball  /></view>
+		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<scroll-view scroll-y="true" style="width: 100%;height: calc(100vh - 300upx);padding-bottom: 160upx;">
 			<view class="item" v-for="(item,index) in list" :key="index"  :class="{color:currentIndex==index?true:false}">
 				<view class="pos disc">
@@ -69,10 +71,12 @@
 				// uni.setStorageSync('addressIndex',index)
 				// uni.setStorageSync('address',item)
 				console.log(item.id)
-				uni.showToast({
-					duration:500,
-					title:'已选择地址'
-				})
+				
+				this.$refs.success.showTips({
+				    msg: '已选择地址',
+				    duration: 2000
+				  })
+				
 				setTimeout(()=>{
 					uni.navigateTo({
 						url:'/pages/shopDetail/shopDetail?id='+item.id
@@ -89,11 +93,10 @@
 					this.$fn.request('my_address',"POST",{}).then(r=>{
 						// console.log(r.data.data,'地址')	
 						this.list=r.data.data
-						uni.showToast({
-							duration:1000,
-							icon:'success',
-							title:'删除地址成功'
-						})
+						this.$refs.success.showTips({
+						    msg: '删除地址成功',
+						    duration: 2000
+						  })
 					})
 				})
 			},

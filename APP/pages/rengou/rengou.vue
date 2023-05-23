@@ -1,6 +1,8 @@
 <template>
   <view class="rengou">
     <airel-floatball  />
+	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
     <!-- 商品详情图片 -->
     <image class="detailsImg" :src="head_img" mode=""></image>
     <view class="project-title">
@@ -108,10 +110,11 @@
     methods: {
       go() {
         if(this.checked == -1) {
-          uni.showToast({
-            title:'请选择天数',
-            icon:'error'
-          })
+         
+		  this.$refs.error.showTips({
+		  msg: '请选择天数',
+		  duration: 2000
+		  	})
           return
         }
         let obj = {

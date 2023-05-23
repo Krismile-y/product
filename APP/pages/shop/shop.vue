@@ -3,6 +3,8 @@
 	<view class="content" style="position: relative;">
 		<!-- 头部 -->
 		<airel-floatball  />
+		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 			<view class="xintop disc">
 				<view style="">我的积分</view>
 				<view style="margin-top: 30upx;font-size: 36upx; font-weight: 580;">{{info.money_integral}}</view>
@@ -164,11 +166,11 @@
 		onBackPress(event) {
 			if(this.out == 0){
 				this.out++
-				uni.showToast({
-					duration:1000,
-					title:'再按一次退出程序',
-					icon:"none"
-				})
+				
+				this.$refs.success.showTips({
+				    msg: '再按一次退出程序',
+				    duration: 2000
+				  })
 			}else if(this.out>=1){
 				plus.runtime.quit();
 				if (plus.os.name.toLowerCase() === 'android') {
@@ -207,19 +209,7 @@
 			let wares = {}
 			this.$fn.request('wares/list', "GET", wares).then(res => {
 				console.log(res.data.data.data, '积分兑换商品列表')
-				// if(res.data.code == 204){
-				// 	uni.showToast({
-				// 		title:res.data.msg,
-				// 		icon:'none',
-				// 		duration:1000,
-				// 	})
-				// 	setTimeout(()=>{
-				// 		uni.removeStorageSync('token');
-				// 		uni.navigateTo({
-				// 			url:'/pages/login/login'
-				// 		})
-				// 	},1500)
-				// }
+				
 				this.list = res.data.data.data
 			})
 
@@ -248,11 +238,11 @@
 				this.$fn.request('my_address',"GET",{'default':'1'}).then(r=>{
 					console.log(r.data.data,'地址')
 						if(r.data.data.length == 0){
-							uni.showToast({
-								duration:1000,
-								icon:"none",
-								title:'您还未选择地址'
-							})
+							
+							this.$refs.error.showTips({
+							msg: '您还未选择地址',
+							duration: 2000
+								})
 							setTimeout(()=>{
 								uni.navigateTo({
 									url:'/pages/chooseAddress/chooseAddress'
@@ -270,10 +260,12 @@
 							this.$fn.request('wares/order', "POST", data).then(res => {
 								// console.log(res.data.msg, '积分兑换商品接口')
 								if (res.data.code == 1) {
-									uni.showToast({
-										duration: 1000,
-										title: '兑换成功'
-									})
+									
+									this.$refs.success.showTips({
+									    msg: '兑换成功',
+									    duration: 2000
+									  })
+
 									// this.show=false
 									
 								// 用户信息
@@ -286,11 +278,11 @@
 									uni.setStorageSync('user_info',res.data.data)
 								})		
 								}else{
-									uni.showToast({
-										duration: 1000,
-										title: res.data.msg,
-										icon:'error'
-									})
+									
+									this.$refs.error.showTips({
+									msg: res.data.msg,
+									duration: 2000
+										})
 								}
 							})
 						}

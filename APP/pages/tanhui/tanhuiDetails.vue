@@ -3,6 +3,8 @@
     <view class="">
       <airel-floatball  />
     </view>
+	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
     <image src="../../static/index/senlin.jpg" mode=""></image>
     <view class="tp">
       碳汇（carbon sink），是指通过植树造林、植被恢复等措施，吸收大气中的二氧化碳，从而减少温室气体在大气中浓度的过程、活动或机制。

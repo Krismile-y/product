@@ -1,6 +1,8 @@
 <template>
 	<view>
 		<airel-floatball  />
+		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<view class="zongshouyi">
 			<view class="one disc">
 				<view style="color: #fff;">共计获得津贴</view>
@@ -91,10 +93,11 @@
         if(item.status == '1'){
           this.$fn.request('welfare/received', "POST", params).then(res => {
           	if(res.data.code ==1 ) {
-              uni.showToast({
-                title:'领取成功',
-                icon: 'success'
-              })
+             
+			  this.$refs.success.showTips({
+			      msg: '领取成功',
+			      duration: 2000
+			    })
               this.getData()
             }
           })

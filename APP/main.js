@@ -7,6 +7,10 @@ import bottom from './components/bottom/bottom.vue'
 import tops from './components/tops/tops.vue'
 import navs from './components/navs/navs.vue'
 // import request from './common/http.js'
+
+import Tips from '@/uni_modules/bluestar-Tips/components/bluestar-Tips/bluestar-Tips.vue'
+Vue.component('Tips',Tips)
+
 import fn from './common/fn.js'
 import store from './store/index.js'
 import dragButton from "@/components/drag-button/drag-button.vue"; //拖动按钮

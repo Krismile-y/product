@@ -1,6 +1,8 @@
 <template>
 	<view>
     <airel-floatball  />
+	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<image src="../../static/safety/shisiwu.jpg" mode="widthFix" class="top-pictrue"></image>
     <view class="zhengwen">
       绿色中国北京3月16日电（融媒体记者耿国彪）3月15日，记者从国家林草局获悉，《“十四五”国家储备林建设实施方案》近日印发。方案明确提出，“十四五”期间，我国将科学布局和实施国家储备林建设，建设国家储备林3600万亩以上，增加蓄积7000万立方米以上，缓解木材供需矛盾，保障我国木材安全，推动国家储备林建设高质量发展。

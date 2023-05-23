@@ -1,6 +1,8 @@
 <template>
 	<view style="padding-bottom: 0upx;padding-top: 70upx;background-color: #f7f8fa;min-height: 100vh;">
       <airel-floatball  />
+	  <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	  <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
         <view class="zongshouyi">
         	<view class="one disc">
         		<view style="color: #fff;">团队可提现金额</view>
@@ -180,11 +182,11 @@
 		onBackPress(event) {
 			if (this.out == 0) {
 				this.out++
-				uni.showToast({
-					duration: 1000,
-					title: '再按一次退出程序',
-					icon: "none"
-				})
+				
+				this.$refs.success.showTips({
+				    msg: '在按一次退出程序',
+				    duration: 2000
+				  })
 			} else if (this.out >= 1) {
 				plus.runtime.quit();
 				if (plus.os.name.toLowerCase() === 'android') {

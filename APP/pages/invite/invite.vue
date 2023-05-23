@@ -1,6 +1,8 @@
 <template>
 	<view class="invite disc">
 		<view><airel-floatball /></view>
+		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<view class="newBox disc">
 			<image :src="code"></image>
 			<view class="dis tuijianma">我的推荐码</view>
@@ -61,9 +63,11 @@
 				uni.setClipboardData({
 					data: this.qr_url,
 					success: function() {
-						uni.showToast({
-							title: '复制成功'
-						})
+						
+						this.$refs.success.showTips({
+						    msg: '复制成功',
+						    duration: 2000
+						  })
 					}
 				})
 			},
@@ -78,29 +82,32 @@
 							uni.saveImageToPhotosAlbum({
 								filePath: res.tempFilePath,
 								success: () => {
-									uni.showToast({
-										title: '保存相册成功'
-									})
+									
+									this.$refs.success.showTips({
+									    msg: '保存相册成功',
+									    duration: 2000
+									  })
 								},
 								fail: () => {
-									uni.showToast({
-										title: '保存失败',
-										icon: 'none'
-									})
+									this.$refs.error.showTips({
+									msg: '保存相册失败',
+									duration: 2000
+										})
 								}
 							})
 						} else {
-							uni.showToast({
-								title: '下载失败',
-								icon: 'none'
-							})
+							
+							this.$refs.error.showTips({
+							msg: '下载失败',
+							duration: 2000
+								})
 						}
 					},
 					fail: () => {
-						uni.showToast({
-							title: '下载失败',
-							icon: 'none'
-						})
+						this.$refs.error.showTips({
+						msg: '下载失败',
+						duration: 2000
+							})
 					}
 				})
 				//#endif

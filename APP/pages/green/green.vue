@@ -1,7 +1,8 @@
 <template>
 	<view style="padding-bottom: 60upx;">
 		<airel-floatball  />
-		
+		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<scroll-view scroll-x="true" style="width: 100%;height: 90upx;white-space: nowrap;margin-top: 50upx;">
 			<view class="item " v-for="(item,index) in list" :key="index" @tap="bian(index,item.id)">
 				<view class="boxs disc">

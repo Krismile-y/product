@@ -1,6 +1,8 @@
 <template>
   <view class="container">
     <airel-floatball  />
+	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
     <backgroundPage :title="title" :imgUrl="forestBg">
       <view class="chongzhi">
         <view class="input-box">
@@ -40,10 +42,11 @@ export default {
   methods: {
     submit() {
       // 这里可以添加提交充值请求的代码
-      uni.showToast({
-        title: '充值成功',
-        icon: 'success',
-      });
+      
+	  this.$refs.success.showTips({
+	      msg: '充值成功',
+	      duration: 2000
+	    })
     },
   },
 };

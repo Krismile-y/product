@@ -1,6 +1,8 @@
 <template>
 	<view class="help-page">
     <airel-floatball  />
+	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
     <image src="../../static/common/back.png" mode="widthFix" class="back-img" @tap="back"></image>
 		<image src="../../static/common/forest.jpg" mode="widthFix" class="help-img"></image>
     <view class="help-title">
@@ -28,10 +30,11 @@
       tuichu(){
       	// uni.removeStorageSync('token');
       	// uni.removeStorageSync('address');
-        uni.showToast({
-          icon:'success',
-          title:"感谢您的反馈"
-        })
+        
+		this.$refs.success.showTips({
+		    msg: '感谢您的反馈',
+		    duration: 2000
+		  })
       	// uni.navigateTo({
       	// 	url:'/pages/login/login'
       	// })

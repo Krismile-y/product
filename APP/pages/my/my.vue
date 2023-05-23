@@ -1,6 +1,8 @@
 <template>
 	<view class="content" style="padding-bottom: 0;">
     <airel-floatball  />
+	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<!-- 头部 -->
 		<view class="top">
 			<view class="topBox">
@@ -207,11 +209,11 @@
 		onBackPress(event) {
 			if (this.out == 0) {
 				this.out++
-				uni.showToast({
-					duration: 1000,
-					title: '再按一次退出程序',
-					icon: "none"
-				})
+				
+				this.$refs.success.showTips({
+				    msg: '再按一次退出程序',
+				    duration: 2000
+				  })
 			} else if (this.out >= 1) {
 				plus.runtime.quit();
 				if (plus.os.name.toLowerCase() === 'android') {

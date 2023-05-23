@@ -111,11 +111,10 @@ export default {
 	onBackPress(event) {
 		if (this.out == 0) {
 			this.out++
-			uni.showToast({
-				duration: 1000,
-				title: '再按一次退出程序',
-				icon: "none"
-			})
+			this.$refs.success.showTips({
+			    msg: '在按一次退出程序',
+			    duration: 2000
+			  })
 		} else if (this.out >= 1) {
 			plus.runtime.quit();
 			if (plus.os.name.toLowerCase() === 'android') {
@@ -181,11 +180,12 @@ export default {
       		this.kong = false
       	}
       	if (res.data.code == 204) {
-      		uni.showToast({
-      			title: res.data.msg,
-      			icon: 'none',
-      			duration: 1000,
-      		})
+      		
+			this.$refs.error.showTips({
+			msg: res.data.msg,
+			duration: 2000
+				})
+		
       		setTimeout(() => {
       			uni.removeStorageSync('token');
       			uni.navigateTo({

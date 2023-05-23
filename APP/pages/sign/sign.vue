@@ -3,6 +3,8 @@
     <view class="">
       <airel-floatball  />
     </view>
+	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<view class="calendar-content" v-if="showCalendar">
 			<view>
 				<!-- 插入模式 -->
@@ -205,21 +207,31 @@
               // 接口成功
               this.getuserMsg()
               this.totaljifen = this.userInfo.money_integral
-              uni.showToast({
-                icon: 'success',
-                title: '签到成功',
-                success: ()=> {
-                  this.info.selected.push({
-                  	date: this.nowDate,
-                  	info: '已签到'
-                  })
-                }
-              })
+			  
+			  this.$refs.success.showTips({
+			      msg: '签到成功',
+			      duration: 2000
+			    })
+			  this.info.selected.push({
+			  	date: this.nowDate,
+			  	info: '已签到'
+			  })
+              // uni.showToast({
+              //   icon: 'success',
+              //   title: '签到成功',
+              //   success: ()=> {
+              //     this.info.selected.push({
+              //     	date: this.nowDate,
+              //     	info: '已签到'
+              //     })
+              //   }
+              // })
             } else {
-              uni.showToast({
-                icon:'error',
-                title: res.data.msg
-              })
+				this.$refs.error.showTips({
+				msg: res.data.msg,
+				duration: 2000
+					})
+             
             }
           })
           

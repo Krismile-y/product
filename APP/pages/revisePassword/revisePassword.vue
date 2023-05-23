@@ -3,7 +3,8 @@
 		<view>
 			<airel-floatball  />
 		</view>
-		
+		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<view  v-show="type==1?true:false">
 			<view class="item">
 				<view class="shimingLeft">状态</view>
@@ -74,25 +75,24 @@
 			change(){
 				// 修改密码接口
 				if(this.jiu.length <8){
-					uni.showToast({
-						duration: 1000,
-						icon: "error",
-						title: '密码必须大于8位'
-					})
+					
+					this.$refs.error.showTips({
+					msg: '密码必须最少8位',
+					duration: 2000
+						})
 					return
 				}else if(this.xin.length <8){
-					uni.showToast({
-						duration: 1000,
-						icon: "error",
-						title: '新密码必须大于8位'
-					})
+					
+					this.$refs.error.showTips({
+					msg: '新密码必须最少8位',
+					duration: 2000
+						})
 					return
 				}else if(this.queren.length <8){
-					uni.showToast({
-						duration: 1000,
-						icon: "error",
-						title: '密码必须大于8位'
-					})
+					this.$refs.error.showTips({
+					msg: '密码必须最少8位',
+					duration: 2000
+						})
 					return
 				}
 				
@@ -106,20 +106,20 @@
 					console.log(res.data.code)
 					if(res.data.code == 1){
 						uni.removeStorageSync('pwd')
-						uni.showToast({
-							duration:1000,
-							title:'修改成功',
-							icon:'success'
-						})
+						
+						this.$refs.success.showTips({
+						    msg: '修改成功',
+						    duration: 2000
+						  })
 						uni.navigateTo({
 							url:'/pages/login/login'
 						})
 					}else{
-						uni.showToast({
-							duration:1000,
-							title:res.data.msg,
-							icon:'error'
-						})
+						this.$refs.error.showTips({
+						msg: res.data.msg,
+						duration: 2000
+							})
+		
 					}
 				}) 
 			}

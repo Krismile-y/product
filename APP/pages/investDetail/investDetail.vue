@@ -4,7 +4,8 @@
 		<view class="top">
 			<image src="https://img0.baidu.com/it/u=528833255,3463981408&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800" mode=""></image>
 		</view>
-		
+		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<view class="three">
 			<view class="item disc">
 				<view class="title">项目规模</view>

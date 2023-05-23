@@ -1,6 +1,8 @@
 <template>
 	<view class="address">
 		<view><airel-floatball  /></view>
+		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<scroll-view scroll-y="true" style="width: 100%;height: calc(100vh - 300upx);padding-bottom: 160upx;">
 			<view class="item" v-for="(item,index) in list" :key="index"  :class="{color:item.is_default==1?true:false}">
 				<view class="pos disc">
@@ -93,13 +95,21 @@
 					console.log(r,'删除地址')	
 					// this.list=r.data.data
 					this.$fn.request('my_address',"GET",{}).then(r=>{
-						// console.log(r.data.data,'地址')	
-						this.list=r.data.data
-						uni.showToast({
-							duration:1000,
-							icon:'success',
-							title:'删除地址成功'
-						})
+						// console.log(r.data.data,'地址')
+						if(r.data.code == 1){
+							this.list=r.data.data
+							this.$refs.success.showTips({
+							   msg: '删除地址成功',
+							   duration: 2000
+							 })
+						}else{
+							this.$refs.error.showTips({
+							   msg: '删除地址失败	',
+							   duration: 2000
+							 })
+						}	
+						
+						
 					})
 				})
 			},

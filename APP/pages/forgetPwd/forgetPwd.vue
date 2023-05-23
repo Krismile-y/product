@@ -1,7 +1,8 @@
 <template>
 	<view class="safe">
 		<view><airel-floatball  /></view>
-		
+		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<view class="newInput">
 			<view class="newInputItem">
 				<view class="inputName ">手机号</view>
@@ -64,25 +65,24 @@
 			},
 			xiugai(){
 				if (this.phone.length !== 11) {
-					uni.showToast({
-						duration: 1000,
-						icon: "error",
-						title: '手机号必须是11位'
-					})
+					
+					this.$refs.error.showTips({
+					msg: '手机号必须是11位',
+					duration: 2000
+						})
 					return
 				} else if (this.pwd.length < 8) {
-					uni.showToast({
-						duration: 1000,
-						icon: "error",
-						title: '密码最少8位'
-					})
+					
+					this.$refs.error.showTips({
+					msg: '密码最少八位',
+					duration: 2000
+						})
 					return
 				}else if(this.sfz.length !==18){
-					uni.showToast({
-						duration: 1000,
-						icon: "error",
-						title: '身份证号必须是18位'
-					})
+					this.$refs.error.showTips({
+					msg: '身份证必须是18位',
+					duration: 2000
+						})
 					return
 				}
 				
@@ -96,20 +96,19 @@
 					console.log(res.data.msg)
 					if(res.data.code == 1){
 						uni.removeStorageSync('pwd')
-						uni.showToast({
-							title:res.data.msg,
-							icon:'success',
-							duration:1000
-						})
+						this.$refs.success.showTips({
+						    msg: res.data.msg,
+						    duration: 2000
+						  })
 						uni.navigateTo({
 							url:'/pages/login/login'
 						})
 					}else{
-						uni.showToast({
-							title:res.data.msg,
-							icon:'error',
-							duration:1000
-						})
+						
+						this.$refs.error.showTips({
+						msg: res.data.msg,
+						duration: 2000
+							})
 					}
 				})
 			}

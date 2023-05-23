@@ -1,6 +1,8 @@
 <template>
 	<view class="shopDetail">
     <airel-floatball  />
+	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<image :src="item.head_img" style="width: 750upx;height: 750upx;margin: 0 auto;border-radius: 20upx;"
 			mode="widthFix"></image>
 		<view class="shopInfo">
@@ -87,11 +89,11 @@
 						this.$fn.request('wares/order', "POST", data).then(res => {
 							// console.log(res.data.msg, '积分兑换商品接口')
 							if (res.data.code == 1) {
-								uni.showToast({
-									duration: 1000,
-									title: '兑换成功'
-								})
 								
+								this.$refs.success.showTips({
+								    msg: '兑换成功',
+								    duration: 2000
+								  })
 								// 用户信息
 								let info = {
 									"is_whole": "1"
@@ -102,11 +104,12 @@
 									uni.setStorageSync('user_info', res.data.data)
 								})
 							} else {
-								uni.showToast({
-									duration: 1000,
-									title: res.data.msg,
-									icon: 'error'
-								})
+								this.$refs.error.showTips({
+								msg:  res.data.msg,
+								duration: 2000
+									})
+			
+								
 							}
 						})
 						return
@@ -125,11 +128,12 @@
 							   this.sub_token = res.data.sub_token
 						   	// console.log(res.data.msg, '积分兑换商品接口')
 						   	if (res.data.code == 1) {
-						   		uni.showToast({
-						   			duration: 1000,
-						   			title: '兑换成功'
-						   		})
 						   		
+						   		this.$refs.success.showTips({
+						   		    msg: '兑换成功',
+						   		    duration: 2000
+						   		  })
+
 						   		// 用户信息
 						   		let info = {
 						   			"is_whole": "1"
@@ -141,11 +145,11 @@
 						   		})
 						   	} else {
 								console.log('失败')
-						   		uni.showToast({
-						   			duration: 1000,
-						   			title: res.data.msg,
-						   			icon: 'error'
-						   		})
+								this.$refs.error.showTips({
+								msg:res.data.msg,
+								duration: 2000
+									})
+						   		
 						   	}
 						   })
 						   
@@ -153,12 +157,11 @@
 					   //-----------------------------------没有选择地址
 					   else if(this.addressID.length <=0){
 					   console.log(9999)
-					     uni.showToast({
-					     	duration: 1000,
-					     	title: '您还没选择地址',
-					     	icon: 'none'
-					     })
-						 
+					     
+						 this.$refs.error.showTips({
+						 msg: '您还没选择地址',
+						 duration: 2000
+						 	})
 						setTimeout(()=>{
 							uni.navigateTo({
 								url:'/pages/chooseAddress/chooseAddress'

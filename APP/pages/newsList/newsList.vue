@@ -7,7 +7,8 @@
 		    政策解读
 		  </view>
 		</view> -->
-
+        <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+        <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<view class="xinwen" v-for="(item,index) in listData" :key="index" @tap="go(index)">
 			<view class="left">
 				{{index+1}}.{{item.title}}

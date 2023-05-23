@@ -1,6 +1,8 @@
 <template>
   <view class="withdrawal">
     <airel-floatball  />
+	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
     <view class="head-box">
       <view class="head-text">
         可提现余额
@@ -227,10 +229,11 @@
       addCard(params) {
         // 新增银行卡
         this.$fn.request('bank', "POST", params).then(res => {
-          uni.showToast({
-            title:"添加银行卡成功",
-            icon:'success'
-          })
+         
+		  this.$refs.success.showTips({
+		      msg: '添加银行卡成功',
+		      duration: 2000
+		    })
           this.init()
           this.$forceUpdate()
           this.close()
@@ -240,10 +243,12 @@
       editCard(params) {
         // 修改银行卡
         this.$fn.request('edit_bank', "POST", params).then(res => {
-          uni.showToast({
-            title:"修改银行卡成功",
-            icon:'success'
-          })
+          
+		  this.$refs.success.showTips({
+		      msg: '修改银行卡成功',
+		      duration: 2000
+		    })
+
           this.init()
           this.close()
         })
@@ -288,20 +293,23 @@
           let cardStr = this.noSpace(res.u_back_card)
           console.log('success',res ,cardStr);
           if(cardStr.length <= 15 || cardStr.length >19 ) {
-            uni.showToast({
-              title: "请检查银行卡号输入是否正确",
-              icon:"error"
-            })
+           
+			this.$refs.error.showTips({
+			msg: '请检查银行卡号输入是否正确',
+			duration: 2000
+				})
           }else if (reg.test(res.u_bank_name) || reg.test(res.u_back_user_name)) {
-            uni.showToast({
-              title: "请检查开户行或卡用户名",
-              icon:"error"
-            })
+            
+			this.$refs.error.showTips({
+			msg: '请检查开户行或卡用户名',
+			duration: 2000
+				})
           }else if(res.u_back_user_name !== this.info.user_name) {
-            uni.showToast({
-              title: "请检查卡用户名是否正确",
-              icon:"error"
-            })
+            
+			this.$refs.error.showTips({
+			msg: '请检查卡用户名是否正确',
+			duration: 2000
+				})
           }
           else {
             let params = {
@@ -324,10 +332,12 @@
       // 提交申请
       tixian() {
         if(this.money == 0) {
-          uni.showToast({
-            title:'请输入提现金额',
-            icon:'error'
-          })
+          
+		  this.$refs.error.showTips({
+		  msg: '请输入提现金额',
+		  duration: 2000
+		  	})
+		  		
           return
         }
         // if(this.info.money_approve < this.money ) {
@@ -347,10 +357,12 @@
         this.$fn.request('withdrawal', "POST", params).then(res => {
 			console.log(res.data)
 			if(res.data.code == 1){
-				uni.showToast({
-				  title:"申请成功",
-				  icon:'success'
-				})
+				
+				this.$refs.success.showTips({
+				    msg: '申请成功',
+				    duration: 2000
+				  })
+
         // this.info = uni.getStorageSync('user_info')
         this.getuserMsg()
 				this.init()
