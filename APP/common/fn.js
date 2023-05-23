@@ -31,20 +31,26 @@ export default {
 				},
 				success: (res) => {
 					reslove(res)
-					
-					
-					
+							
 					if (res.data.code == 0) {
 						// uni.showToast({
 						// 	title: res.data.msg,
-						// 	icon: 'error'
+						// 	icon: 'none'
 						// })
+						// this.$refs.error.showTips({
+						// msg: res.data.msg,
+						// duration: 2000
+						// 	})
 					}
 					if(res.data.code == 204){
-						// uni.showToast({
-						// 	title: res.data.msg,
-						// 	icon:'error'				
-						// })
+						uni.showToast({
+							title: res.data.msg,
+							icon: 'none'
+						})
+						// this.$refs.error.showTips({
+						// msg: res.data.msg,
+						// duration: 2000
+						// 	})
 						setTimeout(()=>{
 							uni.navigateTo({
 								url:'/pages/login/login'
@@ -61,8 +67,13 @@ export default {
 					reject(err)
 					if (err.data.code == '0') {
 						// uni.showToast({
-						// 	title: err.data.msg
+						// 	title: err.data.msg,
+						// 	icon:'none'
 						// })
+						// this.$refs.error.showTips({
+						// msg: err.data.msg,
+						// duration: 2000
+						// 	})
 					}
 				},
 			})
