@@ -75,11 +75,7 @@ export default {
 				}
 			})
 			
-			// this.$fn.request('verify', 'GET', {}).then(res => {
-			// 	let times = 0;
-			// 	times = new Date()
-			// 	this.herf = this.$url + 'verify?time=' + times
-			// })
+			
 		},
         // 记住密码
 		change(e) {

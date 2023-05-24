@@ -27,9 +27,10 @@
 		</view>
 		
 		<view class="bottom dis">
-			<view class="in dis" @tap="go">
+			<!-- <view class="in dis" @tap="go">
 				使用积分
-			</view>
+			</view> -->
+			<view class="xinBtn dis" @tap="go">使用积分</view>
 		</view>
 		
 	</view>
