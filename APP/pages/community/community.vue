@@ -18,6 +18,10 @@
         				<view>已购人数</view>
         				<view>{{peopleData.purchased}}</view>
         			</view>
+					<!-- <view class="twoItem disc">
+						<view>返佣金额</view>
+						<view>{{info.money_hire}}</view>
+					</view> -->
         		</view>
         		<view class="last dis" style="margin-top: -30upx;" @tap="go('tuanduitixian')">
         			团队提现
@@ -219,6 +223,7 @@
 			
 			this.out = 0
 			this.info = uni.getStorageSync('user_info')
+			console.log(this.info,'用户信息')
 			this.money_team = this.info.money_team
 			if (uni.getStorageSync('name') == 'community') {
 				this.$store.state.one = true
@@ -229,6 +234,7 @@
 		},
 		onLoad() {
 			this.getData()
+			
 		},
 		methods: {
 			bian(index) {

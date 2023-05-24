@@ -196,6 +196,10 @@
 					this.zhuangtai=9999
 					this.currentIndex=999999
 				}else{
+          this.$refs.success.showTips({
+              msg: res.data.msg,
+              duration: 2000
+            })
 					this.zidingyijine=null
 					this.amount=null
 					this.zhuangtai=9999

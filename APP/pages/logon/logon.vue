@@ -1,6 +1,6 @@
 <template>
 	<view class="logon" style="background-color: #fff;width: 100%;height: 100vh;">
-		<view><airel-floatball  /></view>
+		<!-- <view><airel-floatball  /></view> -->
 		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<view style="width: 100%;height: 50upx;"></view>
@@ -8,7 +8,7 @@
         <view class="newInput">
         	<view class="newInputItem">
         		<view class="inputName ">手机号</view>
-        		<u-input v-model="phone" type="number" placeholder="请输入手机号" border="true" />
+        		<u-input v-model="phone" type="number" placeholder="请输入手机号" border="true" maxlength="11"/>
         	</view>
         	
 			<view class="newInputItem">
@@ -25,18 +25,24 @@
 			
 			<view class="newInputItem">
 				<view class="inputName ">身份证</view>
-				<u-input v-model="sfz" type="number" placeholder="请输入身份证号" border="true" max-length=''/>
+				<u-input v-model="sfz" type="number" placeholder="请输入身份证号" border="true" max-length='' maxlength="18"/>
 			</view>
 			
 			<view class="newInputItem">
-				<view class="inputName ">用户姓名</view>
+				<view class="inputName ">姓名</view>
 				<u-input v-model="username" type="text" placeholder="请输入昵称" border="true" />
 			</view>
 			
 			<view class="newInputItem">
 				<view class="inputName ">邀请码</view>
-				<u-input v-model="agent_id" type="number" placeholder="请输入邀请码" border="true" />
+				<u-input v-model="agent_id" type="number" placeholder="请输入邀请码" border="true" maxlength="5"/>
 			</view>
+			
+			<view class="newInputItem">
+				<view class="inputName ">验证码</view>
+					<u-input type="text" placeholder="请输入验证码" v-model="captcha" style="height: 100%;width: 270upx;padding-left: 20upx;"  border="true" maxlength="4"/>
+				<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng" ></image>
+			</view>		
 			
 			<view class="xinBtn dis" @tap="logon">注册</view>
         	
@@ -46,50 +52,7 @@
 		
 		
 		<!-- input -->
-		<view class="inputBox" v-show="false">
-			<view class="inputs">
-				<view class="title">电话</view>
-				<!-- <input type="number" placeholder="请输入电话" v-model="phone" maxlength="11"> -->
-				<u-input v-model="phone" type="number" placeholder="请输入手机号" border="true" />
-			</view>
-
-			<view class="inputs">
-				<view class="title">密码</view>
-				<!-- <input type="password" placeholder="密码最少八位" v-model="pwd" pattern="[0-9]{8,}"> -->
-				<u-input v-model="pwd" type="password" password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码"
-					border="true" />
-			</view>
-
-			<view class="inputs">
-				<view class="title">确认密码</view>
-				<!-- <input type="password" placeholder="确认密码" v-model="upwd" pattern="[0-9]{8,}"> -->
-				<u-input v-model="upwd" type="password" password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码"
-					border="true" />
-			</view>
-
-			<view class="inputs">
-				<view class="title">身份证</view>
-				<!-- <input type="number" placeholder="请输入身份证号" v-model="sfz"> -->
-				<u-input v-model="sfz" type="number" placeholder="请输入身份证号" border="true" />
-			</view>
-
-			<view class="inputs">
-				<view class="title">用户姓名</view>
-				<!-- <input type="text" placeholder="请输入昵称" v-model="username"> -->
-				<u-input v-model="username" type="text" placeholder="请输入昵称" border="true" />
-			</view>
-
-
-
-			<view class="inputs">
-				<view class="title">邀请码</view>
-				<!-- <input type="number" placeholder="请输入邀请码" v-model="agent_id"> -->
-				<u-input v-model="agent_id" type="number" placeholder="请输入邀请码" border="true" />
-			</view>
-
-
-
-		</view>
+		
 		<!-- <view class="in dis" @tap="logon" style="margin: 30upx auto;">
 			注册
 		</view> -->
@@ -100,12 +63,14 @@
 	export default {
 		data() {
 			return {
+				captcha:'',
 				phone: "",
 				pwd: "",
 				agent_id: "",
 				upwd: '',
 				sfz: '',
 				username: "",
+				herf:'',
 				res: {
 					name: "type1",
 					title: "登录",
@@ -118,8 +83,25 @@
 			if(code || code!==null ||code!==undefined){
 				this.agent_id=code
 			}
+			
+			this.yanzheng()
 		},
 		methods: {
+			yanzheng() {
+				
+				uni.request({
+					url:this.$url+'verify',
+					data:{},
+					success: (res) => {
+						console.log(res)
+						let times = 0;
+						times = new Date()
+						this.herf = this.$url + 'verify?time=' + times
+					}
+				})
+				
+				
+			},
 			fanhui() {
 				uni.navigateTo({
 					url: '/pages/login/login'
@@ -162,8 +144,8 @@
 					'upwd': this.upwd,
 					'sfz': this.sfz,
 					'user_name': this.username,
-					'agent_id': this.agent_id
-
+					'agent_id': this.agent_id,
+                    'captcha':this.captcha
 				}
 				this.$fn.request('register', 'POST', data).then(res => {
 					console.log(res.data.msg)

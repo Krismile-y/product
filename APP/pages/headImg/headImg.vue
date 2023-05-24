@@ -96,6 +96,10 @@
 							name: 'file',
 							formData: data,
 							success: (uploadFileRes) => {
+                _this.$refs.success.showTips({
+                	msg: '头像上传成功',
+                	duration: 2000
+                })
 								console.log('上传成功返回--', uploadFileRes.data);
 							}
 						});

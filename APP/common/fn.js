@@ -35,16 +35,16 @@ export default {
 					
 					
 					if (res.data.code == 0) {
-						uni.showToast({
-							title: res.data.msg,
-							icon: 'error'
-						})
+						// uni.showToast({
+						// 	title: res.data.msg,
+						// 	icon: 'error'
+						// })
 					}
 					if(res.data.code == 204){
-						uni.showToast({
-							title: res.data.msg,
-							icon:'error'				
-						})
+						// uni.showToast({
+						// 	title: res.data.msg,
+						// 	icon:'error'				
+						// })
 						setTimeout(()=>{
 							uni.navigateTo({
 								url:'/pages/login/login'
@@ -60,9 +60,9 @@ export default {
 				err: (err) => {
 					reject(err)
 					if (err.data.code == '0') {
-						uni.showToast({
-							title: err.data.msg
-						})
+						// uni.showToast({
+						// 	title: err.data.msg
+						// })
 					}
 				},
 			})

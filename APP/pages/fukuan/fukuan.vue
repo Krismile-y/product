@@ -51,7 +51,7 @@
 				dataObj: {},
 				defaultImg,
 				checkedImg,
-				checkedNum: 0, //选中
+				checkedNum: -1, //选中
 				mid: '',
 				payList: [], //支付方式列表
 				backpageId: '' //支付完成后返回到的页面
@@ -83,7 +83,7 @@
 			},
 			pay() {
 				// 选择支付方式提示
-				if (this.checkedNum == 0) {
+				if (this.checkedNum == -1) {
 
 					this.$refs.error.showTips({
 						msg: '请选择支付方式',

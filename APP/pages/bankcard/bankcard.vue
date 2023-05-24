@@ -141,8 +141,9 @@
 						this.init()
 						this.close()
 					} else {
+            this.close()
 						this.$refs.error.showTips({
-							msg: '添加银行卡失败',
+							msg: res.data.msg,
 							duration: 2000
 						})
 					}

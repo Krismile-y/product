@@ -6,11 +6,11 @@
 		<view class="newInput">
 			<view class="newInputItem">
 				<view class="inputName ">手机号</view>
-				<u-input v-model="phone" type="number"   placeholder="请输入手机号" border="true"/>
+				<u-input v-model="phone" type="number"   placeholder="请输入手机号" border="true" maxlength="11"/>
 			</view>
 			<view class="newInputItem">
 				<view class="inputName ">身份证号</view>
-				 	<u-input v-model="sfz" type="number"   placeholder="请输入身份证号" border="true"/>
+				 	<u-input v-model="sfz" type="number"   placeholder="请输入身份证号" border="true" maxlength="18"/>
 			</view>
 			
 			<view class="newInputItem">
@@ -20,11 +20,11 @@
 			
 			<view class="newInputItem">
 				<view class="inputName ">验证码</view>
-					<u-input v-model="captcha" type="number"   placeholder="请输入验证码" border="true"/>
+					<u-input v-model="captcha" type="number"   placeholder="请输入验证码" border="true" maxlength="4"/>
 				<image :src="herf" mode="" style="width: 40%;height: 100%;" @tap='change()'></image>
 			</view>
 			
-			<view class="xinBtn dis" @tap="xiugai()" style="margin-top: 90upx;">提交</view>
+			<view class="xinBtn dis" @tap="xiugai()" style="margin-top: 90rpx;">提交</view>
 		</view>
 		
 		
@@ -64,27 +64,27 @@
 				
 			},
 			xiugai(){
-				if (this.phone.length !== 11) {
+				// if (this.phone.length !== 11) {
 					
-					this.$refs.error.showTips({
-					msg: '手机号必须是11位',
-					duration: 2000
-						})
-					return
-				} else if (this.pwd.length < 8) {
+				// 	this.$refs.error.showTips({
+				// 	msg: '手机号必须是11位',
+				// 	duration: 2000
+				// 		})
+				// 	return
+				// } else if (this.pwd.length < 8) {
 					
-					this.$refs.error.showTips({
-					msg: '密码最少八位',
-					duration: 2000
-						})
-					return
-				}else if(this.sfz.length !==18){
-					this.$refs.error.showTips({
-					msg: '身份证必须是18位',
-					duration: 2000
-						})
-					return
-				}
+				// 	this.$refs.error.showTips({
+				// 	msg: '密码最少八位',
+				// 	duration: 2000
+				// 		})
+				// 	return
+				// }else if(this.sfz.length !==18){
+				// 	this.$refs.error.showTips({
+				// 	msg: '身份证必须是18位',
+				// 	duration: 2000
+				// 		})
+				// 	return
+				// }
 				
 				let data={
 					'phone':this.phone,
@@ -92,6 +92,11 @@
 					'captcha':this.captcha,
 					'sfz':this.sfz
 				}
+        this.$refs.error.showTips({
+        	msg: '请联系客服进行操作',
+        	duration: 2000
+        })
+        return ;
 				this.$fn.request('forget','POST',data).then(res=>{
 					console.log(res.data.msg)
 					if(res.data.code == 1){
@@ -104,7 +109,6 @@
 							url:'/pages/login/login'
 						})
 					}else{
-						
 						this.$refs.error.showTips({
 						msg: res.data.msg,
 						duration: 2000
@@ -123,12 +127,12 @@
 	background-color: #fff;
 	.item{
 		width: 95%;
-		height: 100upx;
+		height: 100rpx;
 		background-color: #ffffff;
 		display: flex;
 		align-items: center;
 		box-sizing: border-box;
-		border-bottom: 1upx solid #ccc;
+		border-bottom: 1rpx solid #ccc;
 		margin: 0 auto;
 		
 		position: relative;
@@ -137,7 +141,7 @@
 			height: 100%;
 			display: flex;
 			align-items: center;
-			// border-right: 1upx solid #ccc;
+			// border-right: 1rpx solid #ccc;
 		}
 		.right{
 			width: 65%;
@@ -146,7 +150,7 @@
 			input{
 				width: 100%;
 				height: 100%;
-				padding-left: 20upx;
+				padding-left: 20rpx;
 			}
 		}
 		.yanzheng{
@@ -165,8 +169,8 @@
 
 .in{
 		width: 95%;
-		height: 130upx;
-		margin-top: 30upx;
+		height: 130rpx;
+		margin-top: 30rpx;
 	// 	background-color: #4bc93e;
 	// 	// background-image: linear-gradient(to left bottom, red 60%, green 10%) ;
  //  //       background-image: linear-gradient(to left bottom,'#abe345', '#4bc93e');
@@ -176,8 +180,8 @@
         background-repeat: no-repeat;
 		background-size: 100% 100%;
 		color: #fff;
-		font-size: 40upx;
-		border-radius: 20upx;
+		font-size: 40rpx;
+		border-radius: 20rpx;
 	}
 	
 	.newInput{
@@ -185,13 +189,13 @@
 		width: 686rpx;
 		.newInputItem{
 			width: 100%;
-			height: 90upx;
+			height: 90rpx;
 			border-bottom: 1rpx solid #E5E5E5;
 			display: flex;
 			align-items: center;
 			.inputName{
 				font-family: PingFangSC-Regular, PingFang SC;
-				width: 140upx;
+				width: 140rpx;
 				height: 100%;
 				display: flex;
 				align-items: center;
@@ -199,12 +203,12 @@
 			}
 			input{
 				height:100% ;
-				width: 546upx;
+				width: 546rpx;
 			}
 		}
 		.two{
 			width: 100%;
-			height: 90upx;
+			height: 90rpx;
 			display: flex;
 			align-items: center;
 			position: relative;
@@ -214,7 +218,7 @@
 			}
 			.wangji{
 				position: absolute;
-				width: 160upx;
+				width: 160rpx;
 				height: 100%;
 				right: 0;
 				top: 0;
@@ -228,7 +232,7 @@
 		background: #02AE71;
 		border-radius: 100rpx;
 		margin: 0 auto;
-		margin-top: 30upx;
+		margin-top: 30rpx;
 		color: #fff;
 	}
 </style>

@@ -1,6 +1,8 @@
 <template>
 	<view class="help-page">
-    <airel-floatball  />
+    <view class="">
+      <airel-floatball  />
+    </view>
 	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
     <image src="../../static/common/back.png" mode="widthFix" class="back-img" @tap="back"></image>

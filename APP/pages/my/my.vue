@@ -240,6 +240,7 @@
 			this.$fn.request('user','GET',info).then(res=>{
 				// console.log(res.data.data,'用户信息')
 				uni.setStorageSync('user_info',res.data.data)
+        this.info = res.data.data
 			})
 			
 			
