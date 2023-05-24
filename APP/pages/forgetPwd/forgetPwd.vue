@@ -121,11 +121,7 @@
 					'captcha':this.captcha,
 					'sfz':this.sfz
 				}
-        // this.$refs.error.showTips({
-        // 	msg: '请联系客服进行操作',
-        // 	duration: 2000
-        // })
-        // return ;
+       
 				this.$fn.request('forget','POST',data).then(res=>{
 					console.log(res.data.msg)
 					if(res.data.code == 1){
