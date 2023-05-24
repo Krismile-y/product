@@ -109,9 +109,26 @@
 				})
 			},
 			logon() {
+				// 手机号验证
+				let reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
+				console.log(reg_tel.test(this.phone))
+				
+				// 身份证验证
+				let testsfz = /^[1-9]\d{5}(19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/
+				console.log(testsfz.test(this.sfz))
+				
+				if(reg_tel.test(this.phone) == true){
+					
+				}else{
+					this.$refs.error.showTips({
+					msg: '请输入正确的手机号',
+					duration: 2000
+						})
+					return
+				}
+				
+				
 				if (this.phone.length !== 11) {
-					
-					
 					this.$refs.error.showTips({
 					msg: '手机号必须是11位',
 					duration: 2000
@@ -125,13 +142,13 @@
 					return
 				}else if(this.upwd.length < 8){
 					this.$refs.error.showTips({
-					msg: '手机号必须是11位',
+					msg: '密码最少8位',
 					duration: 2000
 						})
 					return
-				}else if(this.sfz.length !==18){
+				}else if( testsfz.test(this.sfz) == false){
 					this.$refs.error.showTips({
-					msg: '身份证必须是18位',
+					msg: '请输入正确的身份证号',
 					duration: 2000
 						})
 					return
@@ -161,7 +178,6 @@
 							})
 						},2000)
 					} else {
-						console.log('wnti')
 						this.$refs.error.showTips({
 						msg:res.data.msg,
 						duration: 2000

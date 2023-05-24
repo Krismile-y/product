@@ -114,6 +114,14 @@
 			},
 			
 			address(){
+				// 手机号验证
+				let reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
+				console.log(reg_tel.test(this.phone))
+				
+				// 身份证验证
+				let testsfz = /^[1-9]\d{5}(19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/
+				
+				
 				if(this.user_name.length==0){
 					
 					this.$refs.error.showTips({
@@ -129,6 +137,12 @@
 					duration: 2000
 						})
 		
+					return
+				}else if(reg_tel.test(this.phone) == false){
+					this.$refs.error.showTips({
+					msg: '请输入正确的手机号',
+					duration: 2000
+						})
 					return
 				}
 				

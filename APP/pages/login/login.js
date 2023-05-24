@@ -106,6 +106,8 @@ export default {
 			// 	'pwd':'12345678',
 			// 	'captcha':'12312'
 			// }
+			
+			let reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
 			console.log(this.phone.length)
 			if (this.phone.length !== 11) {
 				
@@ -115,7 +117,15 @@ export default {
 				duration: 2000
 					})
 				return
-			} else if (this.pwd.length < 8) {
+			}else if(reg_tel.test(this.phone) == false){
+				this.$refs.error.showTips({
+				msg: '请输入正确的手机号',
+				duration: 2000
+					})
+				return
+			}
+			 
+			 else if (this.pwd.length < 8) {
 				
 				this.$refs.error.showTips({
 				msg: '密码最少8位',
