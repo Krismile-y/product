@@ -38,7 +38,7 @@ export default {
 
 	},
 	onLoad() {
-
+        this.yanzheng() 
 		this.$fn.request('verify', "GET", {}).then(res => {
 			// console.log(res,'验证码')
 		})
@@ -174,15 +174,7 @@ export default {
 					// this.phone = ''
 					this.captcha=''
 					this.yanzheng()
-					// uni.showToast({
-					// 	duration: 1000,
-					// 	icon: "error",
-					// 	title: res.data.msg,
-					// 	success() {
-					// 		this.pwd = ''
-					// 		this.phone = ''
-					// 	}
-					// })
+					
 				}
 			})
 		},

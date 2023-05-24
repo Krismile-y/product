@@ -233,6 +233,7 @@
 		},
 
 		onShow() {
+			this.$store.commit('pageOutfn',1)// 控制重复点击参数
 			// 用户信息
 			let info={
 				"is_whole":"1"

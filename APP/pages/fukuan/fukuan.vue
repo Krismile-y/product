@@ -29,7 +29,8 @@
 		</view>
 		<view class="bottom-fixd">
 			<view class="bot-btn" @tap="pay">
-				确认支付
+				<!-- 确认支付 -->
+				{{font}}
 			</view>
 		</view>
 	</view>
@@ -54,7 +55,8 @@
 				checkedNum: -1, //选中
 				mid: '',
 				payList: [], //支付方式列表
-				backpageId: '' //支付完成后返回到的页面
+				backpageId: '' ,//支付完成后返回到的页面
+				font:'确认支付'
 			};
 		},
 		onLoad(option) {
@@ -91,13 +93,16 @@
 					})
 					return
 				}
+				this.font='支付中...'
 				this.dataObj.pid = this.checkedNum
 				this.$fn.request('/pay/order', 'POST', this.dataObj).then(res => {
+					
 					if (res.data.code == 1) {
 						this.$refs.success.showTips({
 							msg: '购买成功',
 							duration: 2000
 						})
+						this.font='确认支付'
 						if (this.backpageId == 'xinshou') {
 							// 回到新手体验
 
@@ -148,6 +153,7 @@
 						msg: res.data.msg,
 						duration: 2000
 							})
+						this.font='确认支付'	
 					}
 				})
 			}

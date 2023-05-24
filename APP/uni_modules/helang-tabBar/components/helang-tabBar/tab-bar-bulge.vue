@@ -117,6 +117,7 @@
     
 		data() {
 			return {
+				
 				prevIndex:-1,
 				current:uni.getStorageSync('current'),
 				tabList:[
@@ -181,7 +182,7 @@
         
 			},
       go(name,index) {
-        
+        console.log(name,index)
         let nowIndex = this.$store.state.current
         // 防止重复点击发请求
         if(nowIndex == name) {

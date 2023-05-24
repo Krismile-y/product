@@ -14,6 +14,7 @@ const store = new Vuex.Store({
 		x:"",
 		y:"",
 		kefu:"",
+		pageOut:0,
     // 底部导航栏样式改变控制，默认选中首页
     current: 0,
     // 横向scroll的下标
@@ -30,6 +31,9 @@ const store = new Vuex.Store({
 		kefu(state,data){
 			state.kefu=data
 		},
+		pageOutfn(state,data){
+			state.pageOut=data
+		}
 	},
     actions: {
 		//相当于异步的操作,不能直接改变state的值，只能通过触发mutations的方法才能改变
