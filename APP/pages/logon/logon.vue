@@ -185,6 +185,8 @@
 						duration: 2000
 							})
 						this.yanzheng()
+						
+						// 刷新验证码
 					}
 				})
 
