@@ -71,6 +71,15 @@
 				
 			})
 		},
+    onBackPress(e) {
+    // 这里可以自定义返回逻辑，比如下面跳转其他页面
+      
+    	uni.navigateTo({
+    		url: '/pages/shop/shop'
+    	});
+    	// return true 表示禁止默认返回
+    	return true
+    }, 
 		methods:{
 			add(){//新增地址
 				uni.navigateTo({

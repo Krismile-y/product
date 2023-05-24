@@ -212,7 +212,7 @@
 						},500)
 					} else {
 						this.$refs.error.showTips({
-							msg: res.data.msg,
+							msg: res.data.data,
 							duration: 2000
 						})
 					}

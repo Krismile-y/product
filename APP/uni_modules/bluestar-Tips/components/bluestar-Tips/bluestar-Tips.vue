@@ -66,7 +66,7 @@ export default {
   padding: 18rpx 30rpx;
   box-sizing: border-box;
   position: fixed;
-  z-index: 9999;
+  z-index: 999999;
   left: 0;
   top: 0;
   display: flex;
@@ -93,7 +93,7 @@ export default {
   opacity: 0;
   left: 50%;
   transition: all 0.3s ease-in-out;
-  z-index: 9999;
+  z-index: 999999;
   display: flex;
   align-items: center;
   justify-content: center;

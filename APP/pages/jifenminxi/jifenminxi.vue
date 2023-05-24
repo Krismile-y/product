@@ -25,7 +25,7 @@
 
       <view class="" style="margin-top: 20upx;">
         <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
-          <uni-card :title="item" :extra="'+1'" v-for="(item,index) in tableData" :key="index">
+          <uni-card :title="item" :extra="'+10'" v-for="(item,index) in tableData" :key="index">
             <text class="uni-body">已签到</text>
           </uni-card>
         </scroll-list>
