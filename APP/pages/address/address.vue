@@ -104,7 +104,7 @@
 							 })
 						}else{
 							this.$refs.error.showTips({
-							   msg: '删除地址失败	',
+							   msg: '删除地址失败',
 							   duration: 2000
 							 })
 						}	

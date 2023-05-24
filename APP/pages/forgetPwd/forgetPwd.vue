@@ -134,14 +134,17 @@
 						    msg: res.data.msg,
 						    duration: 2000
 						  })
-						uni.navigateTo({
-							url:'/pages/login/login'
-						})
+						setTimeout(()=>{
+							uni.navigateTo({
+								url:'/pages/login/login'
+							})
+						},2100)
 					}else{
 						this.$refs.error.showTips({
 						msg: res.data.msg,
 						duration: 2000
 							})
+						this.change()	
 					}
 				})
 			}

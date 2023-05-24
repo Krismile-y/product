@@ -111,6 +111,7 @@
 				let res = e.data
 				this.res=e.data
 				 this.diqu = res[0] + res[1] + res[2]
+				 // this.wenben=res[0] + res[1] + res[2]
 			},
 			
 			address(){
