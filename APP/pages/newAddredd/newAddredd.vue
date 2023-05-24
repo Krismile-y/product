@@ -28,19 +28,19 @@
 			<view class="right dis" style="position: relative;">
 				
 				<pickerAddress @change="change"style="background-color: #f0f0f0;width: 100%;height: 60%;border-radius: 20upx;" class="dis">
-				<view style="color: #ccc;">点击选择</view>
+				<view>{{diqu}}</view>
 				</pickerAddress>
 			</view>
 		</view>
 		
-		<view class="item" v-show="diqu==''?false:true">
+		<!-- <view class="item" v-show="diqu==''?false:true">
 			<view class="left dis">
 				
 			</view>
 			<view class="right dis" style="position: relative;">
-				{{diqu}}
+				
 			</view>
-		</view>
+		</view> -->
 
 		<view class="item" style="margin-top: 20upx;">
 			<view class="left dis">
@@ -93,7 +93,7 @@
 				candidates: ['北京', '南京', '东京', '武汉', '天津', '上海', '海口'],
 				suozaidiqu: '555',
 				user_info:{},
-				diqu:'',//所在地区
+				diqu:'点击选择',//所在地区
 				phone:"",
 				user_name:""
 			};
@@ -110,7 +110,7 @@
 				console.log(e.data)
 				let res = e.data
 				this.res=e.data
-				 this.diqu = res[0] + res[1] + res[2]
+				 this.diqu = res[0] +'/'+ res[1] +'/'+ res[2]
 				 // this.wenben=res[0] + res[1] + res[2]
 			},
 			
@@ -182,9 +182,11 @@
 						    duration: 2000
 						  })
 
-						// setTimeout(()=>{
-						// 	uni.navigateBack(1)
-						// },1000)
+						setTimeout(()=>{
+							uni.navigateTo({
+								url:'/pages/address/address'
+							})
+						},500)
 					}else{
 						this.$refs.error.showTips({
 						msg: res.data.msg,

@@ -127,6 +127,7 @@
     onLoad() {
       this.getDateList()
       this.initNowDay()
+      this.getuserMsg()
     },
 		methods: {
       initNowDay() {

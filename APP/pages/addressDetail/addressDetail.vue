@@ -30,19 +30,21 @@
 
 				<pickerAddress @change="change"
 					style="background-color: #f0f0f0;width: 100%;height: 60%;border-radius: 20upx;" class="dis">
-					选择地点
+					<view>
+					  {{diqu}}
+					</view>
 				</pickerAddress>
 			</view>
 		</view>
 
-		<view class="item" v-show="diqu==''?false:true">
+		<!-- <view class="item" v-show="diqu==''?false:true">
 			<view class="left dis">
 
 			</view>
 			<view class="right dis" style="">
 				{{diqu}}
 			</view>
-		</view>
+		</view> -->
 
 		<view class="item" style="margin-top: 20upx;">
 			<view class="left dis">
@@ -136,7 +138,7 @@
 				console.log(e.data)
 				let res = e.data
 				this.res = e.data
-				this.diqu = res[0] + res[1] + res[2]
+				this.diqu = res[0] +'/'+ res[1] +'/'+  res[2]
 				this.province = res[0]
 				this.city = res[1]
 				this.county = res[2]
@@ -199,15 +201,15 @@
 					if (res.data.code == 1) {
 
 						this.$refs.success.showTips({
-							msg: res.data.msg,
+							msg: '修改地址成功',
 							duration: 2000
 						})
 
-						// setTimeout(()=>{
-						// 	uni.navigateTo({
-						// 		url:'/pages/address/address'
-						// 	})
-						// },500)
+						setTimeout(()=>{
+							uni.navigateTo({
+								url:'/pages/address/address'
+							})
+						},500)
 					} else {
 						this.$refs.error.showTips({
 							msg: res.data.msg,
