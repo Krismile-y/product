@@ -139,7 +139,7 @@
 		align-items: center;
 		.inputName{
 			font-family: PingFangSC-Regular, PingFang SC;
-			width: 140upx;
+			width: 160upx;
 			height: 100%;
 			display: flex;
 			align-items: center;
@@ -147,7 +147,7 @@
 		}
 		input{
 			height:100% ;
-			width: 546upx;
+			width: 506upx;
 		}
 	}
 	.two{

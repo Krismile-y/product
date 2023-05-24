@@ -19,9 +19,9 @@
 			</view>
 			
 			<view class="newInputItem">
-				<view class="inputName ">验证码</view>
-					<u-input v-model="captcha" type="number"   placeholder="请输入验证码" border="true" maxlength="4"/>
-				<image :src="herf" mode="" style="width: 40%;height: 100%;" @tap='change()'></image>
+				<view class="inputName" style="">验证码</view>
+					<u-input v-model="captcha" type="number"   placeholder="请输入验证码" border="true" maxlength="4" style="width: 266upx;padding-left: 20upx;"/>
+				<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap='change()'></image>
 			</view>
 			
 			<view class="xinBtn dis" @tap="xiugai()" style="margin-top: 90upx;">提交</view>
@@ -190,7 +190,7 @@
 			align-items: center;
 			.inputName{
 				font-family: PingFangSC-Regular, PingFang SC;
-				width: 140upx;
+				width: 160upx;
 				height: 100%;
 				display: flex;
 				align-items: center;
@@ -198,7 +198,7 @@
 			}
 			input{
 				height:100% ;
-				width: 546upx;
+				width: 506upx;
 			}
 		}
 		.two{
