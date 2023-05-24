@@ -45,6 +45,7 @@
 		},
 		onShow(){
 			this.herf=this.$url+'verify'
+			this.change()
 		},
 		methods:{
 			change(){//刷新验证码
