@@ -170,8 +170,8 @@ export default {
 					msg: res.data.msg,
 					duration: 2000
 						})
-					this.pwd = ''
-					this.phone = ''
+					// this.pwd = ''
+					// this.phone = ''
 					this.captcha=''
 					this.yanzheng()
 					// uni.showToast({
