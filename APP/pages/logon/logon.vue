@@ -172,6 +172,8 @@
 						    msg: '注册成功',
 						    duration: 2000
 						  })
+						uni.setStorageSync('pwd','')
+						uni.setStorageSync('phone','')  
 						setTimeout(()=>{
 							uni.navigateTo({
 								url: '/pages/login/login'
