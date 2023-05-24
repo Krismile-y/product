@@ -64,6 +64,11 @@
 				
 			},
 			xiugai(){
+        this.$refs.error.showTips({
+        msg: '请联系客服修改',
+          duration: 2000
+        	})
+        return
 				// 手机号验证
 				let reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
 				console.log(reg_tel.test(this.phone))
