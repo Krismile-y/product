@@ -116,7 +116,7 @@
 			this.res = uni.getStorageSync('exit')
 			console.log(this.res)
 			this.id = this.res.id
-
+            
 			this.user_name = this.res.username //用户名
 			this.phone = this.res.phone //电话
 			this.diqu = this.res.province + this.res.city + this.res.county //用于显示的连续地址
@@ -140,6 +140,7 @@
 				this.province = res[0]
 				this.city = res[1]
 				this.county = res[2]
+				 // this.wenben=res[0] + res[1] + res[2]
 			},
 
 			Addaddress() {

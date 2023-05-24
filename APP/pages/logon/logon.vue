@@ -184,7 +184,7 @@
 						msg:res.data.msg,
 						duration: 2000
 							})
-						
+						this.yanzheng()
 					}
 				})
 
