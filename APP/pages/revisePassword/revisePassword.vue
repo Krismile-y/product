@@ -106,14 +106,16 @@
 					console.log(res.data.code)
 					if(res.data.code == 1){
 						uni.removeStorageSync('pwd')
-						
+						uni.removeStorageSync('token')
 						this.$refs.success.showTips({
 						    msg: '修改成功',
 						    duration: 2000
 						  })
-						uni.navigateTo({
-							url:'/pages/login/login'
-						})
+						setTimeout(()=>{
+							uni.navigateTo({
+								url:'/pages/login/login'
+							})
+						},2100)
 					}else{
 						this.$refs.error.showTips({
 						msg: res.data.msg,
