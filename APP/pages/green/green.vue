@@ -31,7 +31,7 @@
 			
 			<view class="title">{{item.title}}</view>
 			
-			<image :src="item.img_path" mode="" class="bigImage"></image>
+			<image :src="item.img_path" mode="widthFix" class="bigImage"></image>
 			
 			<view class="time">{{item.initiate_time}}</view>
 		</view>

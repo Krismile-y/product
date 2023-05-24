@@ -35,7 +35,7 @@
 				
 			</view>
 			
-			<image :src="item.img_path"  mode="" class="bigImage"></image>
+			<image :src="item.img_path"  mode="widthFix" class="bigImage"></image>
 			
 			<view class="time">{{item.record_no}}</view>
 		</view>

@@ -81,8 +81,8 @@
 					</view>
 					<view v-else :class="{
 						'active': (current == item.name)
-					}">
-						<view class="h-flex-x h-flex-center" @tap="go(item.name,index)">
+					}" @tap="go(item.name,index)">
+						<view class="h-flex-x h-flex-center">
 							<view class="icon">
 								<uni-icons :type="item.icon" size="48rpx" color="#b4b3b8"></uni-icons>
 							</view>

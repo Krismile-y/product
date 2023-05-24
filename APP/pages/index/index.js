@@ -129,6 +129,7 @@ export default {
   },
   
 	onLoad() {
+    this.$store.state.current = 'index'
     uni.setStorageSync('current','index')
 		// 最新官方消息接口
 		this.$fn.request('notice/count', "GET", {"type":"1"}).then(res => {
