@@ -45,7 +45,7 @@
 			<!-- #ifdef H5-->
 			<view class="item disc" >
 				<view class="img-box">
-					<a :href=" $lastUrl" class="dis"><image src="../../static/newIndex/guanwang.png"></image></a>
+					<a :href=" $lastUrl" class="dis"><image style="transform: scale(1.6);" src="../../static/newIndex/newEarth.png"></image></a>
 					
 				</view>
 				<view class="title">
@@ -58,7 +58,7 @@
 			<!-- #ifdef APP -->
 			<view class="item disc" @tap="guanwang">
 				<view class="img-box">
-					<image src="../../static/newIndex/guanwang.png"></image>
+					<image style="transform: scale(1.6);" src="../../static/newIndex/newEarth.png"></image>
 				</view>
 				<view class="title">
 					
