@@ -16,7 +16,7 @@
 				<image :src="item.img_path"  ></image>
 				<view class="shangRight disc">
 					<view class="biaoti">
-						<view class="gr dis">标签内容</view>
+						<view class="gr dis">{{item.labels}}</view>
 						<view class="gDetail">
 							{{item.title}}
 						</view>

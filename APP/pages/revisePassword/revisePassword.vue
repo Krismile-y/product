@@ -7,8 +7,18 @@
 		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<view  v-show="type==1?true:false">
 			<view class="item">
-				<view class="shimingLeft">状态</view>
-				<view class="shimingRight">{{shiming}}</view>
+				<image src="../../static/newMy/shimingBg.png" mode=""></image>
+        <view class="shiming-text">
+          {{shimingText}}
+        </view>
+        <view class="shiming-card" v-show="this.info.is_real_name=='2'">
+          <view class="shiming-p">
+            姓名：{{this.info.user_name}}
+          </view>
+          <view class="shiming-p">
+            身份证：{{setCardNum(this.info.sfz)}}
+          </view>
+        </view>
 			</view>
 		</view>
 		
@@ -48,13 +58,13 @@
 			this.info=uni.getStorageSync('user_info')
       let z = this.info.is_real_name
       if(z == 0){
-      	this.shiming='未实名'
+      	this.shimingText='未实名'
       }else if( z == 1){
-      	this.shiming='提交申请'
+      	this.shimingText='您的认证正在申请！'
       }else if( z == 2){
-      	this.shiming='已实名'
+      	this.shimingText='您的实名认证已成功！'
       }else if( z == 3){
-      	this.shiming='拒绝申请'
+      	this.shimingText='拒绝申请'
       }
 			// if(this.info.is_real_name==0){
 			// 	this.shiming='未实名'
@@ -68,10 +78,22 @@
 				  xin:'',
 				  jiu:"",
 				  queren:''	 ,
-				   shiming:""
+				  shiming:"",
+          shimingText: ''
 			};
 		},
 		methods:{
+      // 保留前四位和后六位，中间用******显示
+      setCardNum(str) {
+        let newStr = ''
+        if(str == '') {
+          return
+        }
+        let str1 = str.slice(0,4)
+        let str2 = str.slice(str.length-6,str.length)
+        newStr = str1 + `********` + str2
+        return newStr
+      },
 			change(){
 				// 修改密码接口
 				if(this.jiu.length <8){
@@ -189,41 +211,51 @@
 
 .item{
 	width: 100%;
-	display: flex;
-	height: 90upx;
-	border-bottom: 1upx solid #e5e5e5;
-	.shimingLeft{
-		width: 50%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		padding-left: 25upx;
-	}
-	.shimingRight{
-		width: 50%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: right;
-		color: #999;
-		padding-right: 25upx;
-		
-	}
-	.left{
-		width: 30%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		padding-left: 25upx;
-	}
-	.right{
-		width: 70%;
-		height: 100%;
-		input{
-			width: 100%;
-			height: 100%;
-		}
-	}
+	height: 100vh;
+  box-sizing: border-box;
+  background-color: #F4F4F6;
+  padding-top: 134rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+	image {
+    width: 466rpx;
+    height: 285rpx;
+  }
+  .shiming-text {
+    width: 100%;
+    height: 48rpx;
+    text-align: center;
+    font-size: 34rpx;
+    line-height: 48rpx;
+    // font-family: PingFang SC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #05BC7B;
+    line-height: 0rpx;
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
+    margin: 70rpx 0 36rpx;
+  }
+  .shiming-card {
+    width: 608rpx;
+    height: 152rpx;
+    background: #FFFFFF;
+    box-shadow: 0rpx 6rpx 12rpx 2rpx rgba(174,174,174,0.16);
+    border-radius: 20rpx 20rpx 20rpx 20rpx;
+    opacity: 1;
+    box-sizing: border-box;
+    padding: 32rpx 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .shiming-p {
+      font-size: 28rpx;
+      // font-family: .PingFang SC-Regular, PingFang SC;
+      font-weight: 500;
+      color: #242831;
+      text-indent: 78rpx;
+    }
+  }
 }
 .btn{
 	width: 90%;
