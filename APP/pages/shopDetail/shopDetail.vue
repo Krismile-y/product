@@ -28,7 +28,7 @@
 			</image>
 			<view class="btn dis">
 				<view class="font" @tap="duihuan">
-					立即兑换
+					{{font}}
 				</view>
 			</view>
 
@@ -43,6 +43,7 @@
 			return {
 				item: {},
 				addressID: "",
+				font:'立即兑换'
 			};
 		},
 		onLoad(options) {
@@ -61,7 +62,7 @@
 
 		methods: {
 			duihuan() {
-
+                this.font="兑换中..."
 
 
 				let addressID = '' //默认地址id
@@ -89,7 +90,7 @@
 						this.$fn.request('wares/order', "POST", data).then(res => {
 							// console.log(res.data.msg, '积分兑换商品接口')
 							if (res.data.code == 1) {
-								
+								this.font="立即兑换"
 								this.$refs.success.showTips({
 								    msg: '兑换成功',
 								    duration: 2000
@@ -109,7 +110,7 @@
 								duration: 2000
 									})
 			
-								
+								this.font="立即兑换"
 							}
 						})
 						return
@@ -128,7 +129,7 @@
 							   this.sub_token = res.data.sub_token
 						   	// console.log(res.data.msg, '积分兑换商品接口')
 						   	if (res.data.code == 1) {
-						   		
+						   		this.font="立即兑换"
 						   		this.$refs.success.showTips({
 						   		    msg: '兑换成功',
 						   		    duration: 2000
@@ -149,7 +150,7 @@
 								msg:res.data.msg,
 								duration: 2000
 									})
-						   		
+						   		this.font="立即兑换"
 						   	}
 						   })
 						   
@@ -157,7 +158,7 @@
 					   //-----------------------------------没有选择地址
 					   else if(this.addressID.length <=0){
 					   console.log(9999)
-					     
+					    this.font="立即兑换"
 						 this.$refs.error.showTips({
 						 msg: '您还没选择地址',
 						 duration: 2000

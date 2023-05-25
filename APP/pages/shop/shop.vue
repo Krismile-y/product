@@ -1,8 +1,8 @@
 <template>
 	
-	<view class="content" style="position: relative;">
+	<view class="content" style="position: relative;background-color: #f7f8fa;">
 		<!-- 头部 -->
-		<airel-floatball  />
+		<view><airel-floatball  /></view>
 		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 			<view class="xintop disc">
@@ -14,27 +14,48 @@
 				</view>
 				
 			</view>
-	
+	   
 		
 		<!-- 商品盒子 -->
 		<view class="itemBox">
-			
-			
+					
 			<view class="box">
-				<view class="title">
-					<view class="shu"></view>
-					积分商城
+				<view class="title" style="position: relative;">
+					<!-- <view class="shu"></view> -->
+					<view style="width: 50%;height: 100%;" class="dis" @tap="qiehuan(0)"  :class="{yanse:qiehuanIndex==0?true:false}">积分商城</view>
+					<view class="titlePOS dis" style="width: 50%;height: 100%;" @tap="qiehuan(1)" :class="{yanse:qiehuanIndex==1?true:false}">我的商品</view>
 				</view>
-				<view class="boxItem" v-for="(item,index) in list" @tap="shopDetail(item)">
+				<!-- 商品列表 -->
+				<view class="boxItem" v-for="(item,index) in list" @tap="shopDetail(item)" 
+				v-if="qiehuanIndex==0?true:false" >
 					<image :src="item.head_img"></image>
 				 <view class="name">{{item.wares_name}} </view>
 				<view class="juse">
 					<view style="font-size: 34upx;">{{item.wares_money}}</view>
 					<view style="font-size: 22upx;padding-top: 10upx;margin-left: 10upx;">积分</view>
-				</view>	
-				 
+				</view>					 
 				</view>
 				
+				<!-- 我的商品 -->
+				<view style="margin-top: 30upx;width: 100%;" v-if="qiehuanIndex==1?true:false" >
+					<view v-for="(item,index) in myShop" :key="index"
+					 class="" 
+					 style="background-color: #fff;margin: 20upx auto;display: flex;width: 640upx;height: 200upx;border-radius: 16upx;padding-top: 10upx;padding-bottom: 10upx;">
+							<image :src="item.head_img" mode="" style="width: 200upx;height: 200upx;border-radius: 16upx;margin-left: 10upx;"></image>
+							<view style="width: 430upx;height: 100%;position: relative;">
+								<view style="display: flex;position: relative;box-sizing: border-box;">
+									<view style="padding-left: 40upx;">{{item.wares_spec}}</view>
+									<view style="position: absolute;top: 0;right: 20upx;">{{item.wares_money}}积分</view>
+								</view>
+								<view style="text-align: right;padding-right: 20upx;">x1</view>
+								<view style="position: absolute;bottom: 10upx;right: 20upx;color: #FF5A00;">{{item.status_text}}</view>
+							</view>
+					</view>
+					
+				</view>
+				<view style="width: 100%;" class="dis">
+					<u-empty text="此分类暂时没有数据" mode="order" v-show="kong&&qiehuanIndex == 1"></u-empty>
+				</view>
 			</view>
 		</view>
 		
@@ -42,108 +63,7 @@
 		  <helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
 		</view>
 		
-		<view class="content" style="min-height: 120vh; padding-bottom: 100upx;" v-show="false">
-		
-			<!-- 弹出层 -->
-			<view>
-				<u-popup :show="show" @close="close" @open="open" round="60">
-					<view class="popup " style="margin-top: 50px;">
-						<scroll-view scroll-y="true" style="width: 100%;height: 100%; ">
-							<view class="shopDetail">
-								<view style="background-color: #fff; padding-bottom: 30upx;">
-									<view class="back">
-										<view class="backBtn dis" @tap="backBtn"><</view>
-									</view>
-									<image
-										:src="item.head_img" style="margin-top: 30upx;">
-									</image>
-									<view class="biaoti">
-										<view class="left dis">绿色商品</view>
-										<text>{{item.wares_name}}</text>
-									</view>
-									<!-- <view class="tishi">
-										温馨提示：冬季暖心必备，家用小型电水壶
-									</view> -->
-		
-									<!-- <view class="buy dis">
-										您可以使用能量兑换商品
-									</view> -->
-								</view>
-		
-								<!-- <view class="de">
-									{{item}}
-								</view> -->
-		
-								<view class="btn dis" @tap='duihuan'>
-									兑换
-								</view>
-		
-							</view>
-						</scroll-view>
-					</view>
-				</u-popup>
-		
-			</view>
-		
-		    <!-- 滑动 -->
-			
-			    <!-- <scroll-view scroll-y="true" style="width: 100%;height: calc(100vh - 96upx);">
-			    	<view></view>
-			    </scroll-view> -->
-			
-				<view class="top" style="position: relative;">
-				<view class="toAddress">
-					<view class="item disc">
-						<view>我的积分</view>
-						<view>{{info.money_integral}}</view>
-					</view>
-					<view class="item dis">
-						<image src="../../static/common/weizhi.png" mode="" @tap='address'></image>
-					</view>
-				</view>
-				</view>
-				
-				<view class="av" v-show="false">
-					
-					<view class="left">
-						<view>我的 推荐人：mr:li</view>
-						<view>我的积分：{{info.money_integral}}</view>
-					</view>
-					<view class="right dis">
-						<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465"
-							mode=""></image>
-					</view>
-				</view>
-				<view class="newTop " v-show="false">
-					<view>可提现：0.00</view>
-					<view>每日收益：0.00</view>
-					<view>总收益：0.00</view>
-					<view>绿币：0.00</view>
-					<view>碳票：0.00</view>
-					<view>积分：0.00</view>
-				</view>
-				
-				<!-- ********** -->
-				<view class="box" style="margin-top: 60upx;">
-					<view class="shop disc" v-for="item in list" @tap="go(item)" style="margin-left: 10upx;">
-						<image @tap="show=true"
-							:src="item.head_img"
-							mode=""></image>
-						<view class="title">{{item.wares_name}}</view>
-						<view class="detail">{{item.wares_money}}元</view>
-					</view>
-				
-				</view>
-			
-		
-			<view class="bottom-box">
-			  <helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
-			</view>
-		</view>
 	</view>
-	
-	
-	
 	
 </template>
 
@@ -161,6 +81,13 @@
 				list: [], //商品列表
 				info:{},//用户信息
 				top:"",
+				qiehuanIndex:0,//两个标题切换
+				myShop:[],
+				kong:false,
+				page:1,
+				last_page:'',
+				total:[],
+				lastList:[],
 			};
 		},
 		onBackPress(event) {
@@ -189,6 +116,8 @@
 		        
 		  },
 		onShow() {
+			// this.qiehuan(0)
+			// this.x()
 			this.out=0
 			this.info=uni.getStorageSync('user_info')
 			if (uni.getStorageSync('name') == 'shop') {
@@ -208,22 +137,52 @@
 			// 积分兑换商品列表
 			let wares = {}
 			this.$fn.request('wares/list', "GET", wares).then(res => {
-				console.log(res.data.data.data, '积分兑换商品列表')
+				// console.log(res.data.data.data, '积分兑换商品列表')
 				
 				this.list = res.data.data.data
 			})
 
 
-			// 积分兑换商品下单
-			// let order={}
-			// this.$fn.request('wares/order',"POST",order).then(res=>{
-			// 	console.log(res,'积分兑换商品下单')
-			// })
-
-
-
 		},
+		onReachBottom(){
+				console.log('已触底')
+				if(this.page >this.last_page  ){
+					return
+					
+				}
+				this.x()
+		    },
 		methods: {
+			x(){
+				let data={
+					page:this.page,
+					limit:10
+				}
+				// 我的商品
+				this.$fn.request('wares/my',"GET",data).then(res=>{
+					if(res.data.code == 1){
+						// console.log(res.data.data.data,'我的商品')
+								this.myShop.push(...res.data.data.data)
+								this.last_page=res.data.data.last_page
+								this.lastList=this.myShop.reverse()
+								this.page ++
+					            console.log(this.myShop,'zongshuju')
+					if(res.data.data.total == 0 && this.qiehuanIndex==1){
+						this.kong=true
+					}else{
+						this.kong=false
+					}			
+					}
+				})
+			},
+			qiehuan(index){
+				console.log(index)
+				this.qiehuanIndex=index
+				
+				if(this.qiehuanIndex == 1){
+					this.x()
+				}
+			},
 			backBtn(){//商品详情页返回
 				this.close()
 			},
@@ -337,6 +296,9 @@
 
 </style> -->
 
-<style lang="less" src='./new.less'>
+<style lang="less" src='./new.less' scoped>
+.yanse{
+		color: red;
 
+	}
 </style>

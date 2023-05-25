@@ -174,7 +174,9 @@
 			"path": "pages/myShop/myShop",
 			"style": {
 				"navigationBarTitleText": "我的商品",
-				"enablePullDownRefresh": false,
+
+				"enablePullDownRefresh": true,
+				"onReachBottomDistance":0 ,//距离底部多远时触发 单位为px
 				"navigationStyle": "custom",
 				"app-plus": {
 					"titleView": false
