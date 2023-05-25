@@ -51,7 +51,7 @@
 			console.log(this.item)
 
 			// 传过来的地址id
-			if (options.id.length >0 ) {
+			if (options.id ) {
 				// console.log(typeof options.id)
 				this.addressID = options.id
 				console.log(this.addressID, '5.15日')
@@ -70,10 +70,10 @@
 				this.$fn.request('my_address', "GET", {
 					'default': '1'
 				}).then(r => {
-					console.log(r.data.data.length)
+					// console.log(r.data.data.length)
                     this.sub_token=r.data.sub_token
 					
-					console.log(r.data.data.length, '地址')
+					// console.log(r.data.data.length, '地址')
 					
 					//------------------------------有默认地址
 					if (r.data.data.length == 1) { 
