@@ -126,7 +126,7 @@
 				if(this.user_name.length==0){
 					
 					this.$refs.error.showTips({
-					msg: '请输入用户名',
+					msg: '请输入收货人',
 					duration: 2000
 						})
 					return
@@ -182,11 +182,11 @@
 						    duration: 2000
 						  })
 
-						setTimeout(()=>{
-							uni.navigateTo({
-								url:'/pages/address/address'
-							})
-						},500)
+						// setTimeout(()=>{
+						// 	uni.navigateTo({
+						// 		url:'/pages/address/address'
+						// 	})
+						// },500)
 					}else{
 						this.$refs.error.showTips({
 						msg: res.data.data,

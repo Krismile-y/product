@@ -63,7 +63,7 @@
 		methods:{
 			add(){//新增地址
 				uni.navigateTo({
-					url:'/pages/newAddredd/newAddredd'
+					url:'/pages/newAddredd/newAddredd?id=0'
 				})
 			},
 			itemtap(item,index){
@@ -103,7 +103,7 @@
 			exit(item){//修改地址
 				uni.setStorageSync('exit',item)
 				uni.navigateTo({
-					url:'/pages/addressDetail/addressDetail'
+					url:'/pages/addressDetail/addressDetail?id=0'
 				})
 			}
 		}
