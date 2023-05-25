@@ -145,11 +145,16 @@
 
 		},
 		onReachBottom(){
-				console.log('已触底')
+			
+				if(this.qiehuanIndex == 0){
+					return
+				}
+				
 				if(this.page >this.last_page  ){
 					return
 					
 				}
+				console.log('已触底')
 				this.x()
 		    },
 		methods: {
