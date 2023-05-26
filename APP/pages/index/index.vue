@@ -207,10 +207,10 @@
 
 		<!-- 合作伙伴 -->
     <view class="hezuo-title">
-    	<image src="../../static/hezuo/hezuodanwei.png" mode="heightFix"></image>
+    	<image src="../../static/newIndex/jianguan.png" mode="heightFix"></image>
     </view>
     <view class="hezuo-box">
-      <image src="../../static/hezuo/hezuoAll.png" mode="widthFix"></image>
+      <image src="../../static/newIndex/xieban.png" mode="widthFix"></image>
     </view>
 		<!-- <view class="kuaijie">
 			<view class="shu"></view>
