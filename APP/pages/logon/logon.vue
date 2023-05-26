@@ -166,7 +166,7 @@
                     'captcha':this.captcha
 				}
 				this.$fn.request('register', 'POST', data).then(res => {
-					console.log(res.data.msg)
+					console.log(res.data)
 					if (res.data.code == 1) {
 						this.$refs.success.showTips({
 						    msg: '注册成功',
@@ -180,6 +180,7 @@
 							})
 						},2000)
 					} else {
+            console.log(res.data,'res.data注册');
 						this.$refs.error.showTips({
 						msg:res.data.msg,
 						duration: 2000
