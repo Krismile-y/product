@@ -1,56 +1,78 @@
 <template>
 	<view class="msg">
-		 <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-		 <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<view class="item" @tap="go(0)">
-			<!-- <view class="left dis">
-				<image src="../../static/my/xitongtongtongzhi.png" mode=""></image>
-			</view> -->
-			<view class="right ">
-				<view class="tit">系统通知</view>
-				<view class="de">
-					官方系统消息通知,请注意查看!
+		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+
+		<view class="newBox" @tap="go(0)">
+			<view class="shang">
+				<image src="./one.png" mode=""></image>
+				系统通知
+			</view>
+			<view class="xia">
+				<view class="none dis">
+					<view class="yuan" v-if="one == 1?true:false"></view>
+				</view>
+				官方系统消息通知,请注意查看!
+				<view class="pos dis">
+					<image src="./right.png" mode=""></image>
 				</view>
 			</view>
 		</view>
 
-		<view class="item" @tap="go(1)">
-			<!-- <view class="left dis"  >
-				<image src="../../static/my/zuixinhuodong.png" mode=""></image>
-			</view> -->
-			<view class="right ">
-				<view class="tit">最新活动</view>
-				<view class="de">
-					<view class="text">
-						官方活动消息通知,请注意查看!
-					</view>
+
+		<view class="newBox" @tap="go(1)">
+			<view class="shang">
+				<image src="./two.png" mode=""></image>
+				最新活动
+			</view>
+			<view class="xia">
+				<view class="none dis">
+					<view class="yuan" v-if="two == 1?true:false"></view>
+				</view>
+				官方活动消息通知,请注意查看!
+				<view class="pos dis">
+					<image src="./right.png" mode=""></image>
 				</view>
 			</view>
 		</view>
 
-		<view class="item" @tap="go(2)">
-			<!-- <view class="left dis"  >
-				<image src="../../static/my/pingtaigonggao.png" mode=""></image>
-			</view> -->
-			<view class="right ">
-				<view class="tit">平台公告</view>
-				<view class="de">
-					最新平台通知,请注意查看!
+		<view class="newBox" @tap="go(2)">
+			<view class="shang">
+				<image src="./three.png" mode=""></image>
+				平台公告
+			</view>
+			<view class="xia">
+				<view class="none dis">
+					<view class="yuan" v-if="three == 1?true:false"></view>
+				</view>
+				最新平台通知,请注意查看!
+				<view class="pos dis">
+					<image src="./right.png" mode=""></image>
 				</view>
 			</view>
 		</view>
 
-		<view class="item" @tap="go(3)">
-			<!-- <view class="left dis">
-				<image src="../../static/my/zhanneixin.png" mode=""></image>
-			</view> -->
-			<view class="right ">
-				<view class="tit">站内信</view>
-				<view class="de">
-					关于绿色中国
+
+		<view class="newBox" @tap="go(2)">
+			<view class="shang">
+				<image src="./four.png" mode=""></image>
+				站内信
+			</view>
+			<view class="xia">
+				<view class="none dis">
+					<view class="yuan" v-if="four == 1?true:false"></view>
+				</view>
+				关于绿色中国
+				<view class="pos dis">
+					<image src="./right.png" mode=""></image>
 				</view>
 			</view>
 		</view>
+
+
+
+
+
 
 		<view><airel-floatball /></view>
 	</view>
@@ -61,23 +83,58 @@
 	import Tips from '@/uni_modules/bluestar-Tips/components/bluestar-Tips/bluestar-Tips.vue'
 	export default {
 		onReady() {
-			 // this.$refs.success.showTips({
-			 //    msg: '成功消息提示',
-			 //    duration: 2000
-			 //  })
-			  
-			 //  this.$refs.error.showTips({
-			 //     msg: '失败消息提示',
-			 //     duration: 2000
-			 //   })
+			// this.$refs.success.showTips({
+			//    msg: '成功消息提示',
+			//    duration: 2000
+			//  })
+
+			//  this.$refs.error.showTips({
+			//     msg: '失败消息提示',
+			//     duration: 2000
+			//   })
 		},
-		components:{
+		components: {
 			Tips
 		},
 		data() {
 			return {
-
+              one:'',
+			  two:'',
+			  three:"",
+			  four:""
 			};
+		},
+		onLoad() {
+			this.$fn.request('notice', "GET", {"type":"4"}).then(res => {
+				console.log(res.data.data[0].new,'系统通知')
+				if(res.data.data[0].new){
+					this.one=res.data.data[0].new
+				}
+			    
+			})
+			
+			this.$fn.request('notice', "GET", {"type":"5"}).then(res => {
+				console.log(res.data.data[0].new,'系统通知')
+				if(res.data.data[0].new){
+				  this.two=res.data.data[0].new	
+				}
+			     
+			})
+			
+			this.$fn.request('notice', "GET", {"type":"6"}).then(res => {
+				console.log(res.data.data[0].new,'平台公告')
+			     
+				 if(res.data.data[0].new){
+					this.three=res.data.data[0].new 
+				 }
+			})
+			this.$fn.request('notice', "GET", {"type":"7"}).then(res => {
+				console.log(res.data.data[0].new,'站内信')
+				if(res.data.data[0].new){
+					 this.four=res.data.data[0].new
+				}
+			    
+			})
 		},
 		methods: {
 			go(index) {
@@ -85,12 +142,74 @@
 					url: '/pages/msgCenter/msgCenter?id=' + index
 				})
 			},
-			
+
 		}
 	}
 </script>
 
 <style lang="less">
+	.newBox {
+		margin: 30upx auto;
+		width: 686upx;
+		height: 146upx;
+		background-color: #FFFFFF;
+		border-radius: 20rpx 20rpx 20rpx 20rpx;
+		box-sizing: border-box;
+		color: #242831;
+
+		.shang {
+			font-size: 32rpx;
+			font-family: PingFangSC-Medium, PingFang SC;
+			font-weight: 550;
+			width: 100%;
+			height: 50%;
+			border-bottom: 1upx solid #EFEFEF;
+			display: flex;
+			align-items: center;
+
+			image {
+				width: 28upx;
+				height: 26upx;
+				margin-left: 30upx;
+				margin-right: 20upx;
+			}
+		}
+
+		.xia {
+			width: 100%;
+			height: 50%;
+			display: flex;
+			align-items: center;
+			position: relative;
+
+			.none {
+				height: 100%;
+				width: 76upx;
+
+				.yuan {
+					background-color: red;
+					width: 10upx;
+					height: 10upx;
+					margin-left: 10upx;
+					border-radius: 50%;
+				}
+			}
+
+			.pos {
+				width: 100upx;
+				height: 100%;
+				position: absolute;
+				right: 0;
+				top: 0;
+
+				image {
+					width: 15upx;
+					height: 15upx;
+				}
+			}
+		}
+	}
+
 	.msg {
 		width: 100%;
 		height: 100vh;
