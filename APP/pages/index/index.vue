@@ -206,11 +206,18 @@
 
 
 		<!-- 合作伙伴 -->
-    <view class="hezuo-title">
-    	<image src="../../static/newIndex/jianguan.png" mode="heightFix"></image>
-    </view>
     <view class="hezuo-box">
       <image src="../../static/newIndex/xieban.png" mode="widthFix"></image>
+    </view>
+    <view class="jianguan-box">
+      <view class="jianguanbumen">
+        <view class="jianguanbumen1">
+          <image src="../../static/newIndex/jianguanbumen.png" mode="widthFix"></image>
+        </view>
+      </view>
+      <view class="bumen-name">
+        <text v-for="(item,index) in bumenItems" :key="index" @tap="bumenJump(index)">{{item}}</text>
+      </view>
     </view>
 		<!-- <view class="kuaijie">
 			<view class="shu"></view>

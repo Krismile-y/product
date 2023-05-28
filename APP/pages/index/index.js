@@ -24,6 +24,15 @@ export default {
 				type: 'index',
 				index: 0,
 			},
+      bumenItems:[
+        '中华人民共和国国家发展和改革委员会',
+        '国家航天局\n',
+        '中华人民共和国住房和城乡建设部',
+        '国家林业和草原局',
+        '中华人民共和国生态环境部',
+        '国家能源局',
+        '自然资源部',
+      ], //监管部门
 			banner: [], //轮播图
 			article: [], //新闻
 			text1: '',
@@ -213,6 +222,12 @@ export default {
 		income() {
 
 		},
+    // 部门点击事件
+    bumenJump(index) {
+      uni.navigateTo({
+        url:`/pages/tousuyujianyi/tousuyujianyi?id=${index}`
+      })
+    },
 		down() { //app下载
 			this.$fn.request('v', "GET", {}).then(res => {
 				// console.log(res.data.data.apk,'安卓')

@@ -532,7 +532,16 @@
             "path" : "pages/payPassword/payPassword",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "设置支付密码",
+                "navigationBarTitleText": "设置提现密码",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/tousuyujianyi/tousuyujianyi",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "反馈与建议",
                 "enablePullDownRefresh": false
             }
             

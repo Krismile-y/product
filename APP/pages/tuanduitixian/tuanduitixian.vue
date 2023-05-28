@@ -196,6 +196,21 @@
         }
       }
     },
+    onReady() {
+      if(this.info.withdraw_pwd == 1) {
+        
+      }else {
+        this.$refs.error.showTips({
+          msg: '未设置提现密码',
+          duration: 1500
+        })
+        setTimeout(()=> {
+          uni.navigateTo({
+            url:'/pages/payPassword/payPassword'
+          })
+        },2000)
+      }
+    },
     onLoad() {
       this.init()
       this.getuserMsg()
@@ -404,20 +419,7 @@
           return
         }
         // 打开数字输入键盘
-        // 有提现密码才打开，没密码跳转到提现密码设置
-        if(this.info.withdraw_pwd == 1) {
-          this.$refs.numberJpan.open()
-        }else {
-          this.$refs.error.showTips({
-            msg: '未设置提现密码',
-            duration: 500
-          })
-          setTimeout(()=> {
-            uni.navigateTo({
-              url:'/pages/payPassword/payPassword'
-            })
-          },1000)
-        }
+        this.$refs.numberJpan.open()
       }
     }
   }
