@@ -30,7 +30,7 @@
 			
 			<view class="newInputItem">
 				<view class="inputName ">姓名</view>
-				<u-input v-model="username" type="text" placeholder="请输入昵称" border="true" />
+				<u-input v-model="username" type="text" placeholder="请输入姓名" border="true" />
 			</view>
 			
 			<view class="newInputItem">
@@ -149,6 +149,12 @@
 				}else if( testsfz.test(this.sfz) == false){
 					this.$refs.error.showTips({
 					msg: '请输入正确的身份证号',
+					duration: 2000
+						})
+					return
+				}else if(this.username.length == 0){
+					this.$refs.error.showTips({
+					msg: '请输入昵称',
 					duration: 2000
 						})
 					return

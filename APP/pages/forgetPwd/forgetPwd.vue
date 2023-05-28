@@ -9,7 +9,7 @@
 				<u-input v-model="phone" type="number"   placeholder="请输入手机号" border="true" maxlength="11"/>
 			</view>
 			<view class="newInputItem">
-				<view class="inputName ">身份证号</view>
+				<view class="inputName ">身份证</view>
 				 	<u-input v-model="sfz" type="number"   placeholder="请输入身份证号" border="true" maxlength="18"/>
 			</view>
 			

@@ -38,14 +38,14 @@ export default {
 
 	},
 	onLoad() {
-        this.yanzheng() 
-		this.$fn.request('verify', "GET", {}).then(res => {
-			// console.log(res,'验证码')
-		})
+        
+		// this.$fn.request('verify', "GET", {}).then(res => {
+		// 	// console.log(res,'验证码')
+		// })
 	},
 	onShow() {
-		this.herf = this.$url + 'verify'
-
+		// this.herf = this.$url + 'verify'
+        this.yanzheng()  
 		this.value = uni.getStorageSync('remember')//记住密码的本地状态
 		if (uni.getStorageSync('pwd') && uni.getStorageSync('phone')) {
 			this.pwd = uni.getStorageSync('pwd')

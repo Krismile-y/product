@@ -14,7 +14,7 @@
 			"path": "pages/my/my",
 			"style": {
 				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false,
+				"enablePullDownRefresh": true,
 				"app-plus": {
 					"titleNView": false
 				}
@@ -187,7 +187,7 @@
 			"path": "pages/shop/shop",
 			"style": {
 				"navigationBarTitleText": "商城",
-				"enablePullDownRefresh": false,
+				"enablePullDownRefresh": true,
 				"app-plus": {
 					"titleNView": false
 				}
@@ -283,7 +283,7 @@
 			"path": "pages/community/community",
 			"style": {
 				"navigationBarTitleText": "社区",
-				"enablePullDownRefresh": false,
+				"enablePullDownRefresh": true,
 				"app-plus": {
 					"titleNView": false
 				}
