@@ -1,59 +1,59 @@
 <template>
 	<view style="padding-bottom: 0upx;padding-top: 70upx;background-color: #f7f8fa;min-height: 100vh;">
-      <airel-floatball  />
-	  <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-	  <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-        <view class="zongshouyi">
-        	<view class="one disc">
-        		<view style="color: #fff;">团队可提现金额</view>
-        		<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{parseInt(info.money_team)+parseInt(info.money_hire)}}</view>
-        	</view>
-        	<view class="two disc">
-        		<view class="t" style="width: 100%;height: 60%;display: flex;">
-        			<view class="twoItem disc">
-        				<view>下级人数</view>
-        				<view>{{peopleData.subordinate}}</view>
-        			</view>
-        			<view class="twoItem disc">
-        				<view>已购人数</view>
-        				<view>{{peopleData.purchased}}</view>
-        			</view>
+		<airel-floatball />
+		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		<view class="zongshouyi">
+			<view class="one disc">
+				<view style="color: #fff;">团队可提现金额</view>
+				<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{parseInt(info.money_team)+parseInt(info.money_hire) }}</view>
+			</view>
+			<view class="two disc">
+				<view class="t" style="width: 100%;height: 60%;display: flex;">
+					<view class="twoItem disc">
+						<view>下级人数</view>
+						<view>{{peopleData.subordinate}}</view>
+					</view>
+					<view class="twoItem disc">
+						<view>已购人数</view>
+						<view>{{peopleData.purchased}}</view>
+					</view>
 					<!-- <view class="twoItem disc">
 						<view>返佣金额</view>
 						<view>{{info.money_hire}}</view>
 					</view> -->
-        		</view>
-        		<view class="last dis" style="margin-top: -30upx;" @tap="go('tuanduitixian')">
-        			团队提现
-        		</view>
-        	</view>
-        	
-        </view>
+				</view>
+				<view class="last dis" style="margin-top: -30upx;" @tap="go('tuanduitixian')">
+					团队提现
+				</view>
+			</view>
 
-        <!-- 活动标题 -->
-        <view class="title" style="margin-top: 30upx;">
-        	<view class="shu"></view>
-        	团队活动中心
-        </view>
-        <view class="huodongBox dis">	
-        		<view class="huodongItem disc" v-for="item in huodongList"  @tap="go(item.go)">
-        			<view class="yuan dis">
-        				<image :src="item.url" mode=""></image>
-        			</view>
-        			<view style="margin-top: 0upx;">{{item.name}}</view>
-        		</view>		
-        </view>
+		</view>
 
-        <!-- 团队津贴 -->
+		<!-- 活动标题 -->
+		<view class="title" style="margin-top: 30upx;">
+			<view class="shu"></view>
+			团队活动中心
+		</view>
+		<view class="huodongBox dis">
+			<view class="huodongItem disc" v-for="item in huodongList" @tap="go(item.go)">
+				<view class="yuan dis">
+					<image :src="item.url" mode=""></image>
+				</view>
+				<view style="margin-top: 0upx;">{{item.name}}</view>
+			</view>
+		</view>
+
+		<!-- 团队津贴 -->
 		<view class="jintie" @tap="go('group')">
 			<view style="font-weight: 600;padding-top: 30upx;font-size: 34upx;">团队津贴</view>
 			<view style="font-size: 28upx;">超多津贴</view>
 		</view>
 
 
-        <!-- 下面是旧的 -->
+		<!-- 下面是旧的 -->
 
-		<view class="av"v-show="false">
+		<view class="av" v-show="false">
 			<view class="left" style="position: relative;">
 				<!-- 	<view style="font-weight: 700;font-family: inherit;font-size: 42upx;">{{info.user_name}}</view> -->
 				<view
@@ -65,12 +65,12 @@
 					style=" padding: 10upx; background-color: greenyellow;color: #fff; font-size: 36upx;border-radius: 20upx;position: absolute;right: 120upx;top: 0;">
 					提现</view>
 			</view>
-			<view class="right dis"v-show="false">
+			<view class="right dis" v-show="false">
 				<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465"
 					mode=""></image>
 			</view>
 		</view>
-		<view class="newTop "v-show="false">
+		<view class="newTop " v-show="false">
 			<view style="font-weight: 700;font-size: 40upx;margin-bottom: 20upx;">团队收益</view>
 			<view style="font-size: 50upx;font-family: inherit;font-weight: 700;letter-spacing: 0upx;">{{money_team}}
 			</view>
@@ -137,6 +137,8 @@
 		},
 		data() {
 			return {
+				getPeopleNumstate:false,
+				
 				currentIndex: 0,
 				tableData: [], //表格数据
 				showPagination: false, //总数据小于单页展示数据，不显示分页条
@@ -144,10 +146,10 @@
 				pageSize: 3,
 				// 团队收益
 				money_team: '',
-        peopleData: {
-          subordinate:'', //下级人数
-          purchased: '', //购买人数
-        },
+				peopleData: {
+					subordinate: '', //下级人数
+					purchased: '', //购买人数
+				},
 				// 当前页
 				pageCurrent: 1,
 				// 数据总量
@@ -157,40 +159,50 @@
 				moneyColor: null,
 				payImg,
 				paymentImg,
-				today:"",
-				huodongList:[
-					{
-						name:'收益介绍',
-						url:'../../static/c/shouyijieshao.png',
-						go:'shouyijieshao'
+				today: "",
+				huodongList: [{
+						name: '收益介绍',
+						url: '../../static/c/shouyijieshao.png',
+						go: 'shouyijieshao'
 					},
 					{
-						name:'团队详情',
-						url:'../../static/c/tuanduixiangqing.png',
-						go:'myGroup'
+						name: '团队详情',
+						url: '../../static/c/tuanduixiangqing.png',
+						go: 'myGroup'
 					},
 					{
-						name:'团队收益',
-						url:'../../static/c/shouyijilu.png',
-						go:'fanyong'
+						name: '团队收益',
+						url: '../../static/c/shouyijilu.png',
+						go: 'fanyong'
 					},
 					{
-						name:'提现记录',
-						url:'../../static/c/tixian.png',
-						go:'twithdrawal',
+						name: '提现记录',
+						url: '../../static/c/tixian.png',
+						go: 'twithdrawal',
 					},
-					
+
 				]
 			};
+		},
+		onPullDownRefresh() { //下拉转圈圈刷新
+			setTimeout(() => {
+				this.getPeopleNum()
+				if(this.getPeopleNumstate == true){
+					// this.$refs.success.showTips({
+					// 	msg: '已刷新',
+					// 	duration: 2000
+					// })
+				}
+			}, 50)
 		},
 		onBackPress(event) {
 			if (this.out == 0) {
 				this.out++
-				
+
 				this.$refs.success.showTips({
-				    msg: '在按一次退出程序',
-				    duration: 2000
-				  })
+					msg: '在按一次退出程序',
+					duration: 2000
+				})
 			} else if (this.out >= 1) {
 				plus.runtime.quit();
 				if (plus.os.name.toLowerCase() === 'android') {
@@ -209,21 +221,12 @@
 
 		},
 		onShow() {
-      this.getPeopleNum()
-			//用户今日收益
-			let data = {
-				"is_whole": "1"
-			}
-			this.$fn.request('income', "GET", data).then(res => {
-				// console.log(res.data, '用户今日收益')
-				
-				this.today = res.data.data.today
-			})
-		
-			
+			this.getPeopleNum()
+
+
 			this.out = 0
 			this.info = uni.getStorageSync('user_info')
-			console.log(this.info,'用户信息')
+			console.log(this.info, '用户信息')
 			this.money_team = this.info.money_team
 			if (uni.getStorageSync('name') == 'community') {
 				this.$store.state.one = true
@@ -234,7 +237,7 @@
 		},
 		onLoad() {
 			this.getData()
-			
+
 		},
 		methods: {
 			bian(index) {
@@ -246,15 +249,21 @@
 				})
 				uni.setStorageSync('name', 'shop')
 			},
-      // 下级人数接口
-      getPeopleNum() {
-        this.$fn.request('subordinate', "POST").then(res => {
-          console.log(res);
-          if(res.data.code == 1) {
-            this.peopleData = res.data.data
-          }
-        })
-      },
+			// 下级人数接口
+			getPeopleNum() {
+				this.$fn.request('subordinate', "POST").then(res => {
+					console.log(res);
+					this.peopleData=[]
+					if (res.data.code == 1) {				
+						setTimeout(()=>{
+							this.peopleData = res.data.data
+							this.getPeopleNumstate=true
+							uni.hideNavigationBarLoading();
+							uni.stopPullDownRefresh();
+						},1000)
+					}
+				})
+			},
 			getData(page, time) {
 				let params = {
 					'page': '1',

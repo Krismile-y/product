@@ -1,6 +1,9 @@
 <template>
 	<view class="invite disc">
-		<view><airel-floatball /></view>
+		<view :style="{'position':'fixed','top':y+'upx','left':x+'upx'}">
+			<airel-floatball />
+		</view>
+		 
 		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<view class="newBox disc">
@@ -36,12 +39,16 @@
 				info: {},
 				code: "", //二维码图片
 				title: '',
-				qr_url: ""
+				qr_url: "",
+				x:'',
+				y:""
 			};
 		},
 		onLoad() {
-
-
+            // 客服位置
+			this.x=uni.getStorageSync('x')
+            this.y=uni.getStorageSync('y') 
+			
 			this.info = uni.getStorageSync('user_info')
 			this.$fn.request('qrcode', "GET", {}).then(res => {
 				console.log(res.data.data.qr_url, '复制二维码链接地址')
