@@ -6,7 +6,7 @@
         <view class="zongshouyi">
         	<view class="one disc">
         		<view style="color: #fff;">团队可提现金额</view>
-        		<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{info.money_team}}</view>
+        		<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{parseInt(info.money_team)+parseInt(info.money_hire)}}</view>
         	</view>
         	<view class="two disc">
         		<view class="t" style="width: 100%;height: 60%;display: flex;">
@@ -296,9 +296,16 @@
 			},
 			go(name, currentIndex) {
 				console.log(name)
-				uni.navigateTo({
-					url: `/pages/${name}/${name}?index=${currentIndex}`
-				})
+        // 跳转到团队提现记录
+        if(name == 'twithdrawal') {
+          uni.navigateTo({
+          	url: `/pages/${name}/${name}?type=2`
+          })
+        }else {
+          uni.navigateTo({
+          	url: `/pages/${name}/${name}?index=${currentIndex}`
+          })
+        }
       }
 		}
 	}

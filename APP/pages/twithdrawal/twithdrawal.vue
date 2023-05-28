@@ -15,7 +15,7 @@
         </view>
         <view class="head-content">
           <view class="head-title">
-            项目提现总金额
+            {{totalMoney()}}
           </view>
           <view class="price">{{priceTotal}}</view>
         </view>
@@ -24,7 +24,7 @@
 
       <view class="" style="margin-top: 20upx;">
         <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
-          <uni-card title="提现金额" :extra="item.money" v-for="(item,index) in tableData" :key="index">
+          <uni-card :title="item.msg" :extra="item.money" v-for="(item,index) in tableData" :key="index">
             <text class="uni-body">{{item.create_time}}</text>
           </uni-card>
         </scroll-list>
@@ -99,9 +99,12 @@
         loading: false,
         showPagination: false, //总数据小于单页展示数据，不显示分页条
         option: defaultOption,
+        type: 1, //1表示个人提现,2表示团队提现
       };
     },
-    onLoad() {
+    onLoad(option) {
+      this.type = option.type
+      console.log(option.type,'option.type');
       this.init()
     },
     // onReady() {
@@ -138,7 +141,16 @@
         })
         return data
       },
-      
+      // 团队、个人提现总金额
+      totalMoney() {
+        let str = ''
+        if(this.type==1) {
+          str = '个人提现总金额'
+        }else {
+          str = '团队提现总金额'
+        }
+        return str
+      },
       // 年份选择确认
       pickerConfirm(e) {
         // 更改展示的年月
@@ -167,6 +179,7 @@
         params.time = this.dateText
         params.page = page
         params.limit = this.pageSize
+        params.type = this.type  //用于区别团队提现和个人提现明细
         // debugger
         let promiseObj = await this.getData(params).then(res=> {
           data = res

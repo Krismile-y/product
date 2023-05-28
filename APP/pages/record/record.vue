@@ -25,8 +25,12 @@
 
 			<view class="" style="margin-top: 20upx;">
         <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
-          <uni-card :title="item.goods_name" :extra="item.order_money" v-for="(item,index) in tableData" :key="index">
-            <text class="uni-body">{{item.create_time}}</text>
+          <uni-card :title="`${item.goods_name} x${item.order_number}`" :extra="item.order_money" v-for="(item,index) in tableData" :key="index">
+            <!--  -->
+            <view class="item-down uni-body">
+              <text>{{item.create_time}}</text>
+              <text>{{'单价：'+item.one_money}}</text>
+            </view>
           </uni-card>
         </scroll-list>
 				
@@ -272,6 +276,10 @@
     /deep/ .uni-card__header-extra-text {
         font-size: 18px !important;
         color: #111 !important;
+      }
+      .item-down {
+        display: flex;
+        justify-content: space-between;
       }
   }
 </style>

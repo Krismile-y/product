@@ -85,7 +85,7 @@
 		<view class="huodongBox dis"
       :class="{'huodongBox1': shousuoType}"
     >	
-				<view class="huodongItem disc" v-for="item in huodongList"  @tap="go(item.go,)">
+				<view class="huodongItem disc" v-for="item in huodongList"  @tap="go(item.go)">
 					<view class="yuan dis">
 						<image :src="item.url" mode=""></image>
 					</view>
@@ -292,14 +292,19 @@
 					  url: '/pages/webview/webview?url=http://gw.tzhreefvg.top/'
 					})
 					return
-				}if(name == 'revisePassword'){
+				}
+        if(name == 'revisePassword'){
 					console.log('999')
 				uni.navigateTo({
 					url:'/pages/revisePassword/revisePassword?type=1'
 				})
 				 return	
-				}
-				 else{
+				}else if(name == 'twithdrawal'){
+          // 这个是个人提现的进入
+          uni.navigateTo({
+          	url: `/pages/${name}/${name}?type=1`
+          })
+        }else{
 					uni.navigateTo({
 						url: `/pages/${name}/${name}`
 					})

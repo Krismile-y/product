@@ -1,8 +1,8 @@
 <template>
   <view class="withdrawal">
-    <airel-floatball  />
-	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+    <airel-floatball />
+    <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+    <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
     <view class="head-box">
       <view class="head-text">
         可提现余额
@@ -19,12 +19,7 @@
         </view>
       </view>
       <view class="money-num">
-        <u--input
-          placeholder="请输入提现金额"
-          border="bottom"
-          v-model="money"
-          clearable
-        >
+        <u--input placeholder="请输入提现金额" border="bottom" v-model="money">
           <!-- <u--text
             text="￥"
             slot="prefix"
@@ -103,11 +98,14 @@
         </view>
       </view>
     </u-popup>
+    <numberJpan :length="6" @closeChange="closeChange($event)" :showNum="false" ref="numberJpan"></numberJpan>
   </view>
 </template>
 
 <script>
+  import numberJpan from "@/uni_modules/number-jpan/number-jpan/components/numberJpan/numberJpan.vue"
   export default {
+    components: {numberJpan},
     data() {
       return {
         show: false,
@@ -121,6 +119,7 @@
         nowCard: {}, //当前选中的银行卡
         cardText: '请选择',
         cardTextColor: false,
+        tiXianpsw: '', //提现密码
         // 校验表单数据
         valiFormData: {
           u_back_card: '',
@@ -153,24 +152,24 @@
           }
         },
         sexs: [{
-        					text: '否',
-        					value: 0
-        				}, {
-        					text: '是',
-        					value: 1
-        				}],
+          text: '否',
+          value: 0
+        }, {
+          text: '是',
+          value: 1
+        }],
       };
     },
     watch: {
       cardText(newVal) {
-        if(newVal!='请选择') {
+        if (newVal != '请选择') {
           this.cardTextColor = true
         }
       },
       info: {
         handler(newVal) {
-          this.$nextTick(()=> {
-            this.moneyRemake = this.moneyRemake==0? 1:0
+          this.$nextTick(() => {
+            this.moneyRemake = this.moneyRemake == 0 ? 1 : 0
             this.$forceUpdate();
           })
         },
@@ -187,16 +186,16 @@
         this.cardList = []
         // 获取用户已绑定的银行卡
         let params = {
-          
+
         }
         const that = this
         this.$fn.request('my_bank', "POST", params).then(res => {
-          console.log(res,'我的银行卡');
-          res.data.data.forEach((item,index) => {
+          console.log(res, '我的银行卡');
+          res.data.data.forEach((item, index) => {
             let cardStr = this.noSpace(item.card)
             item.card = that.newCardNum(cardStr)
             that.cardList.push(item)
-            if(item.is_default == 1) {
+            if (item.is_default == 1) {
               this.cardText = item.card
               this.nowCard = item
             }
@@ -208,13 +207,13 @@
           is_whole: 1
         }
         this.$fn.request('user', "GET", params).then(res => {
-          console.log(res,'个人信息');
+          console.log(res, '个人信息');
           this.info = res.data.data
         })
       },
       // 选择银行卡
       checkCard(item) {
-        console.log(item,'信息');
+        console.log(item, '信息');
         this.cardText = this.noSpace(item.card)
         this.cardText = this.newCardNum(this.cardText)
         let params = {
@@ -229,11 +228,11 @@
       addCard(params) {
         // 新增银行卡
         this.$fn.request('bank', "POST", params).then(res => {
-         
-		  this.$refs.success.showTips({
-		      msg: '添加银行卡成功',
-		      duration: 2000
-		    })
+
+          this.$refs.success.showTips({
+            msg: '添加银行卡成功',
+            duration: 2000
+          })
           this.init()
           this.$forceUpdate()
           this.close()
@@ -243,11 +242,11 @@
       editCard(params) {
         // 修改银行卡
         this.$fn.request('edit_bank', "POST", params).then(res => {
-          
-		  this.$refs.success.showTips({
-		      msg: '修改银行卡成功',
-		      duration: 2000
-		    })
+
+          this.$refs.success.showTips({
+            msg: '修改银行卡成功',
+            duration: 2000
+          })
 
           this.init()
           this.close()
@@ -286,32 +285,63 @@
         let newStr = numArr.join('')
         return newStr
       },
+      closeChange(e) {
+        console.log(e,'数字的回调');
+        this.tiXianpsw = e
+        let params = {
+          money: this.money,
+          u_bank_name: this.nowCard.name,
+          u_back_card: this.nowCard.card,
+          u_back_user_name: this.nowCard.account_name,
+          pwd: this.tiXianpsw
+        }
+        console.log(params, 'money');
+        this.$fn.request('withdrawal', "POST", params).then(res => {
+          console.log(res.data)
+          if (res.data.code == 1) {
+        
+            this.$refs.success.showTips({
+              msg: '申请成功',
+              duration: 2000
+            })
+        
+            // this.info = uni.getStorageSync('user_info')
+            this.getuserMsg()
+            this.init()
+          }else {
+            this.$refs.error.showTips({
+              msg: res.data.msg,
+              duration: 2000
+            })
+          }
+        
+        })
+      },
       submitForm(ref) {
         // 非中文字符的正则表达式
         const reg = /[^\u4e00-\u9fa5]/g
         this.$refs[ref].validate().then(res => {
           let cardStr = this.noSpace(res.u_back_card)
-          console.log('success',res ,cardStr);
-          if(cardStr.length <= 15 || cardStr.length >19 ) {
-           
-			this.$refs.error.showTips({
-			msg: '请检查银行卡号输入是否正确',
-			duration: 2000
-				})
-          }else if (reg.test(res.u_bank_name) || reg.test(res.u_back_user_name)) {
-            
-			this.$refs.error.showTips({
-			msg: '请检查银行名称或卡用户名',
-			duration: 2000
-				})
-          }else if(res.u_back_user_name !== this.info.user_name) {
-            
-			this.$refs.error.showTips({
-			msg: '请检查卡用户名是否正确',
-			duration: 2000
-				})
-          }
-          else {
+          console.log('success', res, cardStr);
+          if (cardStr.length <= 15 || cardStr.length > 19) {
+
+            this.$refs.error.showTips({
+              msg: '请检查银行卡号输入是否正确',
+              duration: 2000
+            })
+          } else if (reg.test(res.u_bank_name) || reg.test(res.u_back_user_name)) {
+
+            this.$refs.error.showTips({
+              msg: '请检查银行名称或卡用户名',
+              duration: 2000
+            })
+          } else if (res.u_back_user_name !== this.info.user_name) {
+
+            this.$refs.error.showTips({
+              msg: '请检查卡用户名是否正确',
+              duration: 2000
+            })
+          } else {
             let params = {
               name: '',
               card: '',
@@ -329,46 +359,41 @@
         })
         // this.close()
       },
+      
       // 提交申请
       tixian() {
-        if(this.money == 0) {
-          
-		  this.$refs.error.showTips({
-		  msg: '请输入提现金额',
-		  duration: 2000
-		  	})
-		  		
-          return
-        }
-        if(this.info.money_approve < this.money ) {
-         this.$refs.error.showTips({
-         msg: '可提现余额不足',
-         duration: 2000
-         	})
-          return
-        }
-        let params = {
-          money: this.money,
-          u_bank_name: this.nowCard.name,
-          u_back_card: this.nowCard.card,
-          u_back_user_name: this.nowCard.account_name
-        }
-        console.log(params,'money');
-        this.$fn.request('withdrawal', "POST", params).then(res => {
-			console.log(res.data)
-			if(res.data.code == 1){
-				
-				this.$refs.success.showTips({
-				    msg: '申请成功',
-				    duration: 2000
-				  })
+        if (this.money == 0) {
 
-        // this.info = uni.getStorageSync('user_info')
-        this.getuserMsg()
-				this.init()
-			}
-          
-        })
+          this.$refs.error.showTips({
+            msg: '请输入提现金额',
+            duration: 2000
+          })
+
+          return
+        }
+        if (this.info.money_approve < this.money) {
+          this.$refs.error.showTips({
+            msg: '可提现余额不足',
+            duration: 2000
+          })
+          return
+        }
+        // 打开数字输入键盘
+        // 有提现密码才打开，没密码跳转到提现密码设置
+        if(this.info.withdraw_pwd == 1) {
+          this.$refs.numberJpan.open()
+        }else {
+          this.$refs.error.showTips({
+            msg: '未设置提现密码',
+            duration: 500
+          })
+          setTimeout(()=> {
+            uni.navigateTo({
+              url:'/pages/payPassword/payPassword'
+            })
+          },1000)
+        }
+        
       }
     }
   }
@@ -377,6 +402,7 @@
 <style lang="less">
   .withdrawal {
     width: 100%;
+
     .head-box {
       width: 100%;
       height: 344rpx;
@@ -385,6 +411,7 @@
       background-size: 100% 100%;
       box-sizing: border-box;
       padding: 67rpx 0 0;
+
       .head-text {
         width: 100%;
         font-size: 28rpx;
@@ -395,6 +422,7 @@
         opacity: .95;
         text-align: center;
       }
+
       .head-num {
         width: 100%;
         text-align: center;
@@ -406,6 +434,7 @@
         margin-top: 24rpx;
       }
     }
+
     .content-box {
       width: 100%;
       margin-top: -86rpx;
@@ -414,11 +443,13 @@
       border-radius: 32rpx 32rpx 0rpx 0rpx;
       box-sizing: border-box;
       padding: 40rpx 24rpx 0;
+
       .content-title {
         display: flex;
         align-items: center;
         margin-bottom: 36rpx;
         width: 100%;
+
         .shu {
           width: 10rpx;
           height: 24rpx;
@@ -426,6 +457,7 @@
           border-radius: 5rpx;
           margin-right: 12rpx;
         }
+
         .title-text {
           height: 40rpx;
           font-size: 28rpx;
@@ -435,6 +467,7 @@
           line-height: 40rpx;
         }
       }
+
       .money-num {
         /deep/ .u-text__value {
           font-size: 64rpx !important;
@@ -442,14 +475,20 @@
           font-weight: 550;
           color: #272727;
         }
+
+        /deep/ .u-input {
+          padding: 0 !important;
+        }
+
         /deep/ .uni-input-input {
           font-size: 54rpx !important;
           font-family: PingFangSC-Medium, PingFang SC;
           font-weight: 550;
-          color: #272727; 
+          color: #272727;
         }
       }
     }
+
     .cardChange {
       width: 100%;
       height: 102rpx;
@@ -457,12 +496,14 @@
       border-bottom: 1upx solid #E5E5E5;
       display: flex;
       align-items: center;
+
       .left {
         font-size: 28rpx;
         font-family: PingFangSC-Regular, PingFang SC;
         font-weight: 400;
         color: #272727;
       }
+
       .center {
         flex: 1;
         text-align: right;
@@ -471,21 +512,24 @@
         font-weight: 400;
         color: #8E8E8E;
       }
+
       // 有选择银行卡时的样式
-      .cardNumcolor{
+      .cardNumcolor {
         font-size: 28rpx;
         font-family: PingFangSC-Regular, PingFang SC;
         font-weight: 400;
         color: #272727;
       }
+
       image {
         width: 32rpx;
         height: 32rpx;
         transform: rotate(270deg);
         margin-left: 10rpx;
       }
-      
+
     }
+
     .bottom-fixd {
       position: fixed;
       bottom: 0;
@@ -493,6 +537,7 @@
       width: 100%;
       height: 180rpx;
       background: #FFFFFF;
+
       .bot-btn {
         width: 686rpx;
         height: 80rpx;
@@ -507,6 +552,7 @@
         text-align: center;
       }
     }
+
     .popupBox {
       width: 100%;
       height: 836rpx;
@@ -516,6 +562,7 @@
       padding: 24rpx 24rpx 0;
       position: relative;
       overflow-y: scroll;
+
       .popupBox-title {
         width: 100%;
         text-align: center;
@@ -525,6 +572,7 @@
         color: #272727;
         margin-bottom: 24rpx;
       }
+
       .btn-group {
         width: 100%;
         position: fixed;
@@ -532,6 +580,7 @@
         left: 0%;
         display: flex;
         justify-content: space-evenly;
+
         .quxiao {
           width: 327rpx;
           height: 80rpx;
@@ -544,6 +593,7 @@
           line-height: 80rpx;
           text-align: center;
         }
+
         .wancheng {
           width: 327rpx;
           height: 80rpx;
@@ -557,62 +607,69 @@
           text-align: center;
         }
       }
+
       .card-item {
-          background: linear-gradient(to bottom, #34D099 0%, #07c07e 100%);
-          margin-bottom: 20upx;
-          border-radius: 25upx;
-          width: 100%;
-          height: 200upx;
-          box-sizing: border-box;
-          padding: 20upx 40upx;
-          color: #fff;
-          position: relative;
-          .card-name {
-            font-size: 16px;
-            margin-bottom: 10upx;
-          }
-          
-          .username {
-            font-size: 14px;
-            margin-bottom: 10upx;
-          }
-          .card-number {
-            font-size: 18px;
-            margin-bottom: 10upx;
-          }
-          .defaultText {
-            border: 1upx solid #fff;
-            border-radius: 12upx;
-            box-sizing: border-box;
-            padding: 2upx 8upx 6upx;
-            color: #fff;
-            position: absolute;
-            font-size: 20rpx;
-            bottom: 12rpx;
-            right: 12rpx;
-          }
+        background: linear-gradient(to bottom, #34D099 0%, #07c07e 100%);
+        margin-bottom: 20upx;
+        border-radius: 25upx;
+        width: 100%;
+        height: 200upx;
+        box-sizing: border-box;
+        padding: 20upx 40upx;
+        color: #fff;
+        position: relative;
+
+        .card-name {
+          font-size: 16px;
+          margin-bottom: 10upx;
         }
-        .addCard {
-          width: 100%;
-          height: 160rpx;
-          background-color: #fff;
+
+        .username {
+          font-size: 14px;
+          margin-bottom: 10upx;
+        }
+
+        .card-number {
+          font-size: 18px;
+          margin-bottom: 10upx;
+        }
+
+        .defaultText {
+          border: 1upx solid #fff;
+          border-radius: 12upx;
           box-sizing: border-box;
-          padding: 10rpx 20rpx;
-          display: flex;
-          align-items: center;
-          border-radius: 25rpx;
-          image {
-            width: 80rpx;
-            height: 80rpx;
-          }
-          .addtext {
-            flex: 1;
-            line-height: 160rpx;
-            color: #5e6570;
-            font-size: 16px;
-            margin-left: 20rpx;
-          }
+          padding: 2upx 8upx 6upx;
+          color: #fff;
+          position: absolute;
+          font-size: 20rpx;
+          bottom: 12rpx;
+          right: 12rpx;
         }
       }
+
+      .addCard {
+        width: 100%;
+        height: 160rpx;
+        background-color: #fff;
+        box-sizing: border-box;
+        padding: 10rpx 20rpx;
+        display: flex;
+        align-items: center;
+        border-radius: 25rpx;
+
+        image {
+          width: 80rpx;
+          height: 80rpx;
+        }
+
+        .addtext {
+          flex: 1;
+          line-height: 160rpx;
+          color: #5e6570;
+          font-size: 16px;
+          margin-left: 20rpx;
+        }
+      }
+    }
   }
 </style>

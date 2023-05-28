@@ -528,6 +528,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/payPassword/payPassword",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "设置支付密码",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationStyle": "default",

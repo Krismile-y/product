@@ -36,6 +36,14 @@
       		<text class="right-jiantou">></text>
       	</view>
       </view>
+      <view class="item" style="margin-top: 0upx;" @tap="goPayPassword()">
+      	<image src="../../static/common/repay.png" mode=""></image>
+      	提现密码
+      	
+      	<view class="right">
+      		<text class="right-jiantou">></text>
+      	</view>
+      </view>
       
     </view>
 		<view>
@@ -98,6 +106,11 @@
       			url:'/pages/headImg/headImg'
       		})
       	
+      },
+      goPayPassword() {
+        uni.navigateTo({
+        	url:'/pages/payPassword/payPassword'
+        })
       }
 		}
 	}
