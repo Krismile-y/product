@@ -160,6 +160,7 @@
           console.log(res,'个人信息');
           this.userInfo = res.data.data
           this.totaljifen = this.userInfo.money_integral
+          uni.setStorageSync('user_info',res.data.data)
           console.log(this.totaljifen);
         })
       },

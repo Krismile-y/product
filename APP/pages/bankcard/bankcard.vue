@@ -35,8 +35,8 @@
 					<uni-forms-item label="银行卡号" name="u_back_card" required>
 						<uni-easyinput type="text" v-model="valiFormData.u_back_card" placeholder="请输入银行卡号(只能输入数字)" />
 					</uni-forms-item>
-					<uni-forms-item required name="u_bank_name" label="开户行">
-						<uni-easyinput type="text" v-model="valiFormData.u_bank_name" placeholder="请输入开户行" />
+					<uni-forms-item required name="u_bank_name" label="银行名称">
+						<uni-easyinput type="text" v-model="valiFormData.u_bank_name" placeholder="请输入银行名称" />
 					</uni-forms-item>
 					<uni-forms-item required name="u_back_user_name" label="卡用户名">
 						<uni-easyinput type="text" v-model="valiFormData.u_back_user_name" placeholder="请输入卡用户名" />
@@ -93,7 +93,7 @@
 					u_bank_name: {
 						rules: [{
 							required: true,
-							errorMessage: '开户行不能为空'
+							errorMessage: '银行名称不能为空'
 						}]
 					},
 					u_back_user_name: {
@@ -263,7 +263,7 @@
 
 
 						this.$refs.error.showTips({
-							msg: '请检查开户行或卡用户名',
+							msg: '请检查银行名称或卡用户名',
 							duration: 2000
 						})
 

@@ -19,7 +19,7 @@
 								</view>
 						</view>
 						<view class="code">
-							我的推荐码:{{info.agent_id}}
+							我的推荐码:{{info.id}}
 						</view>
 					</view>
 				</view>

@@ -110,7 +110,7 @@
 			chakan(item){
         // 我的团队查询下一级信息
 				console.log(item)
-        if(this.lv>3) {
+        if(this.lv>=3) {
           return
         }
         // 记录第一层下钻,用于返回3返2

@@ -119,7 +119,7 @@
 			// this.qiehuan(0)
 			// this.x()
 			this.out=0
-			this.info=uni.getStorageSync('user_info')
+      this.getuserMsg()
 			if (uni.getStorageSync('name') == 'shop') {
 				this.$store.state.one = true
 				this.$store.state.two = true
@@ -188,6 +188,16 @@
 					this.x()
 				}
 			},
+      // 获取用户信息，刷新总积分
+      getuserMsg() {
+        let params = {
+          is_whole: 1
+        }
+        this.$fn.request('user', "GET", params).then(res => {
+          console.log(res,'个人信息');
+          this.info = res.data.data
+        })
+      },
 			backBtn(){//商品详情页返回
 				this.close()
 			},

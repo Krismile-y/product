@@ -15,7 +15,7 @@
         </view>
         <view class="head-content">
           <view class="head-title">
-            返佣总金额
+            收益总金额
           </view>
           <view class="price">{{priceTotal}}</view>
         </view>
@@ -29,6 +29,7 @@
         </view>
 				<uni-card :title="item.money_type_text" :extra="item.money_amount" v-for="(item,index) in tableData" :key="index">
           <text class="uni-body">{{item.create_time}}</text>
+          <!-- 收益来源 -->
         </uni-card>
 				<view class="uni-pagination-box" v-if="showPagination"><uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total" @change="change" /></view>
 			</view>
