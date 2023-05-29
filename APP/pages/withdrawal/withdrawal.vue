@@ -177,23 +177,25 @@
       }
     },
     onReady() {
-      if(this.info.withdraw_pwd == 1) {
-        
-      }else {
-        this.$refs.error.showTips({
-          msg: '未设置提现密码',
-          duration: 1500
-        })
-        setTimeout(()=> {
-          uni.navigateTo({
-            url:'/pages/payPassword/payPassword'
+      this.getuserMsg().then(()=> {
+        if(this.info.withdraw_pwd == 1) {
+          
+        }else {
+          this.$refs.error.showTips({
+            msg: '未设置提现密码',
+            duration: 1500
           })
-        },2000)
-      }
+          setTimeout(()=> {
+            uni.navigateTo({
+              url:'/pages/payPassword/payPassword'
+            })
+          },2000)
+        }
+      })
     },
     onLoad() {
       this.init()
-      this.getuserMsg()
+      
     },
     methods: {
       // 获取银行卡列表
@@ -217,11 +219,11 @@
           })
         })
       },
-      getuserMsg() {
+      async getuserMsg() {
         let params = {
           is_whole: 1
         }
-        this.$fn.request('user', "GET", params).then(res => {
+        await this.$fn.request('user', "GET", params).then(res => {
           console.log(res, '个人信息');
           this.info = res.data.data
         })

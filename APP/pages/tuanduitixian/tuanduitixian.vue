@@ -131,7 +131,8 @@
         cardList: [],
         info: {
           money_approve: 0,
-          money_team: 0
+          money_team: 0,
+          withdraw_pwd: 0,
         }, //用户信息
         nowCard: {}, //当前选中的银行卡
         cardText: '请选择',
@@ -197,23 +198,30 @@
       }
     },
     onReady() {
-      if(this.info.withdraw_pwd == 1) {
-        
-      }else {
-        this.$refs.error.showTips({
-          msg: '未设置提现密码',
-          duration: 1500
-        })
-        setTimeout(()=> {
-          uni.navigateTo({
-            url:'/pages/payPassword/payPassword'
-          })
-        },2000)
-      }
+      
     },
     onLoad() {
       this.init()
-      this.getuserMsg()
+    },
+    mounted() {
+      const that = this
+      this.getuserMsg().then(()=> {
+        if(that.info.withdraw_pwd == 1) {
+          console.log(that.info.withdraw_pwd,'pwd');
+        }else {
+          console.log(that.info.withdraw_pwd,'pwd');
+          that.$refs.error.showTips({
+            msg: '未设置提现密码',
+            duration: 1500
+          })
+          setTimeout(()=> {
+            uni.navigateTo({
+              url:'/pages/payPassword/payPassword'
+            })
+          },2000)
+        }
+      })
+      
     },
     methods: {
       // 获取银行卡列表
@@ -270,11 +278,11 @@
         })
       },
       // 获取用户信息
-      getuserMsg() {
+      async getuserMsg() {
         let params = {
           is_whole: 1
         }
-        this.$fn.request('user', "GET", params).then(res => {
+        await this.$fn.request('user', "GET", params).then(res => {
           console.log(res, '个人信息');
           this.info = res.data.data
         })

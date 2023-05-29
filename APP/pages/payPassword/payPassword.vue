@@ -14,7 +14,7 @@
         </view>
       	<view class="newInputItem">
       		<view class="inputName ">新密码</view>
-      		<u-input v-model="xin" type="password"  password-icon="true" pattern="[0-9]{6,}" placeholder="请输入密码" border="true"/>
+      		<u-input v-model="xin" type="password"  password-icon="true" pattern="[0-9]{6,}" placeholder="请输入密码(不能是123456)" border="true"/>
       	</view>
       	
       	<view class="newInputItem">

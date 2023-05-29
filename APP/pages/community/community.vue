@@ -223,10 +223,10 @@
 		onShow() {
 			this.getPeopleNum()
 
-
+      this.getuserMsg().then(()=> {
+        
+      })
 			this.out = 0
-			this.info = uni.getStorageSync('user_info')
-			console.log(this.info, '用户信息')
 			this.money_team = this.info.money_team
 			if (uni.getStorageSync('name') == 'community') {
 				this.$store.state.one = true
@@ -249,6 +249,16 @@
 				})
 				uni.setStorageSync('name', 'shop')
 			},
+      // 获取用户信息
+      async getuserMsg() {
+        let params = {
+          is_whole: 1
+        }
+        await this.$fn.request('user', "GET", params).then(res => {
+          console.log(res, '个人信息');
+          this.info = res.data.data
+        })
+      },
 			// 下级人数接口
 			getPeopleNum() {
 				this.$fn.request('subordinate', "POST").then(res => {
