@@ -124,7 +124,6 @@
 			logon() {
         // this.checkInput()
 				// 手机号验证
-        top.location.href = this.downHerf
 				let reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
 				console.log(reg_tel.test(this.phone))
 				
