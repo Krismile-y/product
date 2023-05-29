@@ -6,7 +6,7 @@
 		
 		<!-- 新的 -->
 		<view class="newTop disc">
-			<image src="../../static/login/logo.jpg" mode="" style="border-radius: 50%;"></image>
+			<image src="../../static/login/logo.png" mode=""></image>
 			<view class="font">绿色中国</view>
 		</view>
 		
