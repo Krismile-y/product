@@ -80,6 +80,15 @@ export default {
 		uni.setStorageSync('gengxin',false)
 	},
 	onShow() {
+		
+		// 海报接口
+		this.nowNum=0
+		
+		this.$fn.request('banner', "GET", {"type":"5"}).then(res => {
+			console.log(res.data.data,'海报')
+			 this.posterList = res.data.data
+		})
+		
 		// 判断手机型号
 		uni.getSystemInfo({
 			success: (res) => {
@@ -146,11 +155,7 @@ export default {
 			this.newMSG=res.data.data.count
 		})
 		
-		// 海报接口
-		this.$fn.request('banner', "GET", {"type":"5"}).then(res => {
-			console.log(res.data.data,'海报')
-			 this.posterList = res.data.data
-		})
+		
 		
 
 		// 轮播图接口
@@ -315,7 +320,7 @@ export default {
 			this.nowNum++
 
 			if (this.nowNum >= this.posterList.length - 1) {
-				this.posterShow = false
+				// this.posterShow = false
 				//  #ifdef APP
 				if(uni.getStorageSync('gengxin') == true){
 					this.$refs.down.upgrade() //检查更新

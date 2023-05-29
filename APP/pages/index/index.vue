@@ -235,7 +235,7 @@
 
 		<!-- 海报 -->
 		<view class=" dis" v-for="(value,key,i) in posterList" :class="{poster:posterList.length==nowNum?false:true}"
-			v-show="true">
+			>
 			<view class="box disc">
 				<view style="width: 100%;height: 100%;" class="disc" v-for="(item,index) in posterList"
 					v-show="index==nowNum?true:false">
