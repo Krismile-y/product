@@ -8,7 +8,7 @@
         团队可提现余额
       </view>
       <view class="head-num">
-        {{parseInt(info.money_team)+parseInt(info.money_hire)+'.00'}}
+        {{zongTiXian()}}
       </view>
     </view>
     <view class="content-box">
@@ -225,6 +225,12 @@
       
     },
     methods: {
+      // 团队可提现金额保留两位小数
+      zongTiXian() {
+        let newNum = parseFloat(this.info.money_team)+parseFloat(this.info.money_hire)
+        newNum = newNum.toFixed(2)
+        return newNum
+      },
       // 获取银行卡列表
       init() {
         this.cardList = []

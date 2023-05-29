@@ -6,7 +6,7 @@
 		<view class="zongshouyi">
 			<view class="one disc">
 				<view style="color: #fff;">团队可提现金额</view>
-				<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{parseInt(info.money_team)+parseInt(info.money_hire) }}</view>
+				<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{zongTiXian() }}</view>
 			</view>
 			<view class="two disc">
 				<view class="t" style="width: 100%;height: 60%;display: flex;">
@@ -258,6 +258,12 @@
           console.log(res, '个人信息');
           this.info = res.data.data
         })
+      },
+      // 团队可提现金额保留两位小数
+      zongTiXian() {
+        let newNum = parseFloat(this.info.money_team)+parseFloat(this.info.money_hire)
+        newNum = newNum.toFixed(2)
+        return newNum
       },
 			// 下级人数接口
 			getPeopleNum() {
