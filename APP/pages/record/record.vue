@@ -346,7 +346,8 @@
       }
       .line {
         width: 100%;
-        border: 1rpx solid #dcdcdc;
+        height: 0;
+        border-bottom: 2rpx solid #dcdcdc;
       }
       .card-body {
         box-sizing: border-box;
