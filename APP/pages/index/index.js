@@ -163,18 +163,17 @@ export default {
 		
 			this.newMSG=res.data.data.count
 		})
-	
-		  const searchParams = new URLSearchParams(window.location.search);
-
-      console.log(window.location.origin)
-		  const params = {};
-		  for (const pair of searchParams.entries()) {
-		    params[pair[0]] = pair[1];
-		  }
+    if(window.location.search) {
+      const searchParams = new URLSearchParams(window.location.search);
       
-		  let code = params['code']; // 返回 "123"
+      console.log(window.location.origin)
+      const params = {};
+      for (const pair of searchParams.entries()) {
+        params[pair[0]] = pair[1];
+      }
+      let code = params['code']; // 返回 "123"
       console.log(code)
-			if(parseInt(code) >0 && code.length >1){
+      if(parseInt(code) >0 && code.length >1){
         uni.setStorageSync('code', code)
         window.location.href = window.location.origin+'/#/pages/login/login?='+code
         // uni.navigateTo({
@@ -182,7 +181,8 @@ export default {
         // })
         return;
       }
-			
+    }
+		  
 			
 
 		// 轮播图接口
@@ -199,12 +199,12 @@ export default {
 					img: img
 				})
 			})
-			// console.log(this.banner,'轮播图');
+			console.log(this.banner,'轮播图');
 		})
 
 		// 新闻接口
 		this.$fn.request('article', "GET", {}).then(res => {
-			// console.log(res.data.data,'新闻')
+			console.log(res.data.data,'新闻')
 			this.article = res.data.data
 		})
 
@@ -213,7 +213,7 @@ export default {
 			"type": "1"
 		}
 		this.$fn.request('notice', "GET", info).then(res => {
-			// console.log(res.data.data,'公告')
+			console.log(res.data.data,'公告')
 			let data = res.data.data;
 			let i = 0;
 			setInterval(() => {
