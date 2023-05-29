@@ -122,6 +122,7 @@
 			},
 			tuichu() {
         this.$store.state.current = ''
+		uni.removeStorageSync('kefu');
 				uni.removeStorageSync('token');
 				uni.removeStorageSync('address');
 				uni.removeStorageSync('current');
