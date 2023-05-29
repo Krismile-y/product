@@ -38,6 +38,7 @@ export default {
 			text1: '',
 			nowNum: 0, //控制海报显示,
 			posterShow: true,
+			lastLength:'',
 			posterList: [
 				
 					// {
@@ -85,8 +86,9 @@ export default {
 		this.nowNum=0
 		
 		this.$fn.request('banner', "GET", {"type":"5"}).then(res => {
-			console.log(res.data.data,'海报')
+			console.log(res.data.data.length,'海报')
 			 this.posterList = res.data.data
+			 this.lastLength=res.data.data.length
 		})
 		
 		// 判断手机型号
@@ -319,8 +321,10 @@ export default {
 		},
 		close() { //关闭海报
 			this.nowNum++
-
-			if (this.nowNum >= this.posterList.length - 1) {
+			console.log(this.nowNum,'现在的index')
+            console.log(this.posterList.length ,'海报的长度')
+			if (this.nowNum == this.posterList.length ) {
+				console.log('999')
 				// this.posterShow = false
 				//  #ifdef APP
 				if(uni.getStorageSync('gengxin') == true){
