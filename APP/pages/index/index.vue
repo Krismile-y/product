@@ -237,7 +237,12 @@
 			<view class="box disc">
 				<view style="width: 100%;height: 100%;" class="disc" v-for="(item,index) in posterList"
 					v-show="index==nowNum?true:false">
-					<image :src="item.img" mode="" style="width: 100%;height: 700upx;border-radius: 20upx;"></image>
+					
+					<!-- 展示的内容 -->
+					<scroll-view scroll-y="true" style="width: 100%;height: 700upx;">
+						<image :src="item.img" mode="" style="width: 100%;height: 700upx;border-radius: 20upx;"></image>
+					</scroll-view>
+					
 					<image src="../../static/index/guanbi.png" mode=""
 						style="width: 60upx;height: 60upx;margin-top: 30upx;" @tap='close'></image>
 				</view>

@@ -26,10 +26,17 @@
 
 			<image :src="item.head_img" style="width: 686upx;height: 678upx;margin-top: 30upx;border-radius: 20upx;">
 			</image>
-			<view class="btn dis">
+			
+			<view class="btn dis" v-show="btnSHOW==0?true:false">
 				<view class="font" @tap="duihuan">
 					{{font}}
-				</view>
+				</view>			
+			</view>
+			
+			<view class="btn dis"  v-show="btnSHOW==1?true:false">
+				<view class="font" @tap="changeBTN">
+					{{font}}
+				</view>			
 			</view>
 
 		</view>
@@ -43,7 +50,8 @@
 			return {
 				item: {},
 				addressID: "",
-				font:'立即兑换'
+				font:'立即兑换',
+				btnSHOW:0,
 			};
 		},
     onBackPress(e) {
@@ -70,10 +78,11 @@
 		},
 
 		methods: {
+			changeBTN(){
+				
+			},
 			duihuan() {
                 this.font="兑换中..."
-
-
 				let addressID = '' //默认地址id
 				// ------------------获取默认地址
 				this.$fn.request('my_address', "GET", {
@@ -86,6 +95,7 @@
 					
 					//------------------------------有默认地址
 					if (r.data.data.length == 1) { 
+						this.btnSHOW=1
 					    console.log('默认地址下单')
 						addressID = r.data.data[0].id
 						console.log(addressID)
@@ -99,6 +109,7 @@
 						this.$fn.request('wares/order', "POST", data).then(res => {
 							// console.log(res.data.msg, '积分兑换商品接口')
 							if (res.data.code == 1) {
+								this.btnSHOW=0
 								this.font="立即兑换"
 								this.$refs.success.showTips({
 								    msg: '兑换成功',
@@ -114,12 +125,14 @@
 									uni.setStorageSync('user_info', res.data.data)
 								})
 							} else {
+								
 								this.$refs.error.showTips({
 								msg:  res.data.msg,
 								duration: 2000
 									})
 			
 								this.font="立即兑换"
+								this.btnSHOW=0
 							}
 						})
 						return
@@ -128,6 +141,7 @@
 					else if (r.data.data.length == 0) {
                       // ------------------------------已经选择了地址
                        if(this.addressID.length >0){//
+					    this.btnSHOW=1
 						   console.log('选择了地址下单,',this.sub_token)
 						   let data = {
 						   	wid: this.item.id.toString(),
@@ -138,6 +152,7 @@
 							   this.sub_token = res.data.sub_token
 						   	// console.log(res.data.msg, '积分兑换商品接口')
 						   	if (res.data.code == 1) {
+								this.btnSHOW=0
 						   		this.font="立即兑换"
 						   		this.$refs.success.showTips({
 						   		    msg: '兑换成功',
@@ -154,6 +169,7 @@
 						   			uni.setStorageSync('user_info', res.data.data)
 						   		})
 						   	} else {
+								this.btnSHOW=0
 								console.log('失败')
 								this.$refs.error.showTips({
 								msg:res.data.msg,
