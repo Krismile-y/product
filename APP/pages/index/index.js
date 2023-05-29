@@ -122,8 +122,64 @@ export default {
 			this.$store.state.three = true
 			this.$store.state.four = true
 		}
+    this.$store.state.current = 'index'
+    uni.setStorageSync('current','index')
+    // 最新官方消息接口
+    this.$fn.request('notice/count', "GET", {"type":"1"}).then(res => {
+    
+    	this.newMSG=res.data.data.count
+    })
 		// console.log(uni.getStorageSync('token'),'')
-
+    // 轮播图接口
+    let data = {
+    	"type": "1",
+    }
+    this.$fn.request('banner', "GET", data).then(res => {
+    	let arr = res.data.data
+    	
+    	arr.forEach((item, index) => {
+    		let strArr = item.img.split('\\')
+    		let img = strArr.join('//')
+    		this.banner.push({
+    			img: img
+    		})
+    	})
+    	console.log(this.banner,'轮播图');
+    })
+    
+    // 新闻接口
+    this.$fn.request('article', "GET", {}).then(res => {
+    	console.log(res.data.data,'新闻')
+    	this.article = res.data.data
+    })
+    
+    // 公告接口
+    let info = {
+    	"type": "1"
+    }
+    this.$fn.request('notice', "GET", info).then(res => {
+    	console.log(res.data.data,'公告')
+    	let data = res.data.data;
+    	let i = 0;
+    	setInterval(() => {
+    		if (i < data.length) {
+    			this.text1 = data[i].content
+    			i++;
+    		} else {
+    			i = 0
+    		}
+    
+    	}, 3000)
+    })
+    
+    let kefu = {
+    	"sid": "1"
+    }
+    this.$fn.request('customer', "GET", kefu, ).then(res => {
+    	console.log(res.data.data[0].url,'客服')
+    	uni.setStorageSync('kefu', res.data.data[0].url)
+    	this.$store.commit('kefu', res.data.data[0].url)
+    })
 	},
   
 	onBackPress(event) {
@@ -156,13 +212,7 @@ export default {
   },
   
 	onLoad() {
-    this.$store.state.current = 'index'
-    uni.setStorageSync('current','index')
-		// 最新官方消息接口
-		this.$fn.request('notice/count', "GET", {"type":"1"}).then(res => {
-		
-			this.newMSG=res.data.data.count
-		})
+    
     if(window.location.search) {
       const searchParams = new URLSearchParams(window.location.search);
       
@@ -185,56 +235,7 @@ export default {
 		  
 			
 
-		// 轮播图接口
-		let data = {
-			"type": "1",
-		}
-		this.$fn.request('banner', "GET", data).then(res => {
-			let arr = res.data.data
-			
-			arr.forEach((item, index) => {
-				let strArr = item.img.split('\\')
-				let img = strArr.join('//')
-				this.banner.push({
-					img: img
-				})
-			})
-			console.log(this.banner,'轮播图');
-		})
-
-		// 新闻接口
-		this.$fn.request('article', "GET", {}).then(res => {
-			console.log(res.data.data,'新闻')
-			this.article = res.data.data
-		})
-
-		// 公告接口
-		let info = {
-			"type": "1"
-		}
-		this.$fn.request('notice', "GET", info).then(res => {
-			console.log(res.data.data,'公告')
-			let data = res.data.data;
-			let i = 0;
-			setInterval(() => {
-				if (i < data.length) {
-					this.text1 = data[i].content
-					i++;
-				} else {
-					i = 0
-				}
-
-			}, 3000)
-		})
-
-		let kefu = {
-			"sid": "1"
-		}
-		this.$fn.request('customer', "GET", kefu, ).then(res => {
-			console.log(res.data.data[0].url,'客服')
-			uni.setStorageSync('kefu', res.data.data[0].url)
-			this.$store.commit('kefu', res.data.data[0].url)
-		})
+		
 	},
 	methods: {
 		guanwang(){//进入官网
