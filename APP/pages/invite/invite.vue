@@ -66,12 +66,14 @@
 				this.info = uni.getStorageSync('user_info')
 				console.log(this.info.id)
 				let xx = this.info.id
+        const that = this
 				uni.setStorageSync('code', xx)
+        // 隐藏默认提示框
 				uni.setClipboardData({
 					data: this.qr_url,
 					success: function() {
-						
-						this.$refs.success.showTips({
+						uni.hideToast()
+						that.$refs.success.showTips({
 						    msg: '复制成功',
 						    duration: 2000
 						  })
@@ -80,7 +82,7 @@
 			},
 			fenxiang() {
 
-
+        const that = this
 				// #ifdef APP-PLUS 
 				uni.downloadFile({
 					url: this.code,
@@ -90,13 +92,13 @@
 								filePath: res.tempFilePath,
 								success: () => {
 									
-									this.$refs.success.showTips({
+									that.$refs.success.showTips({
 									    msg: '保存相册成功',
 									    duration: 2000
 									  })
 								},
 								fail: () => {
-									this.$refs.error.showTips({
+									that.$refs.error.showTips({
 									msg: '保存相册失败',
 									duration: 2000
 										})
@@ -104,14 +106,14 @@
 							})
 						} else {
 							
-							this.$refs.error.showTips({
+							that.$refs.error.showTips({
 							msg: '下载失败',
 							duration: 2000
 								})
 						}
 					},
 					fail: () => {
-						this.$refs.error.showTips({
+						that.$refs.error.showTips({
 						msg: '下载失败',
 						duration: 2000
 							})

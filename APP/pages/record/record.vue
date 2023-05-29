@@ -25,13 +25,43 @@
 
 			<view class="" style="margin-top: 20upx;">
         <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
-          <uni-card :title="`${item.goods_name} ${item.one_money}x${item.order_number}`" :extra="item.order_money" v-for="(item,index) in tableData" :key="index">
-            <!--  -->
+          <!-- <uni-card :title="`${item.goods_name}`" :extra="`${item.day}天 ${item.order_money}`" v-for="(item,index) in tableData" :key="index">
             <view class="item-down uni-body">
               <text>{{item.create_time}}</text>
-              <text></text>
+              <text>{{`${item.one_money}x${item.order_number}`}}</text>
             </view>
-          </uni-card>
+          </uni-card> -->
+          <view class="cardItems"  v-for="(item,index) in tableData" :key="index">
+            <view class="card-item-top">
+              <view class="top-title">
+                <!-- 商品标题 -->
+                <view class="title">
+                  {{item.goods_name}}
+                </view>
+                <!-- 天数 -->
+                <view class="day">
+                  {{item.day}}天
+                </view>
+              </view>
+              <!-- 总金额 -->
+              <view class="total-money">
+                {{item.order_money}}
+              </view>
+            </view>
+            <view class="line">
+              
+            </view>
+            <view class="card-body">
+              <!-- 时间 -->
+              <view class="card-body-left">
+                {{item.create_time}}
+              </view>
+              <!-- 单价和数量 -->
+              <view class="card-body-right">
+                {{`${item.one_money}x${item.order_number}`}}
+              </view>
+            </view>
+          </view>
         </scroll-list>
 				
 			</view>
@@ -178,6 +208,7 @@
         let promiseObj = await this.getData(params).then(res=> {
           data = res
         })
+        console.log(data,'data');
         list = data.data
         this.priceTotal = data.count_money
         this.pageCurrent = data.current_page
@@ -268,18 +299,65 @@
       width: 100%;
       text-align: center;
     }
-    /deep/ .uni-card {
-      margin: 30upx 0 !important;
-      border-radius: 20upx;
-    }
+    // /deep/ .uni-card {
+    //   margin: 30upx 0 !important;
+    //   border-radius: 20upx;
+    // }
     
-    /deep/ .uni-card__header-extra-text {
-        font-size: 18px !important;
-        color: #111 !important;
+    // /deep/ .uni-card__header-extra-text {
+    //     font-size: 18px !important;
+    //     color: #111 !important;
+    //   }
+    //   .item-down {
+    //     display: flex;
+    //     justify-content: space-between;
+    //   }
+    .cardItems {
+      width: 100%;
+      // height: ;
+      border-radius: 25rpx;
+      box-sizing: border-box;
+      padding: 0rpx 20rpx;
+      box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 3px 1px;
+      margin: 30rpx 0;
+      border: 2rpx solid #dcdadc;
+      .card-item-top {
+        width: 100%;
+        display: flex;
+        box-sizing: border-box;
+        padding: 20rpx;
+        .top-title {
+          flex: 1;
+          font-size: 30rpx;
+          color: #3a3a3a;
+          display: flex;
+          .title {
+            flex: 1;
+          }
+          .day {
+            
+          }
+        }
+        .total-money {
+          margin-left: 1em;
+          font-size: 36rpx;
+          color: #111;
+        }
       }
-      .item-down {
+      .line {
+        width: 100%;
+        border: 1rpx solid #dcdcdc;
+      }
+      .card-body {
+        box-sizing: border-box;
+        padding: 20rpx;
+        width: 100%;
         display: flex;
         justify-content: space-between;
+        font-size: 28rpx;
+        color: #6a6a6a;
+        font-weight: 400;
       }
+    }
   }
 </style>

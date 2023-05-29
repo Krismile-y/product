@@ -41,12 +41,12 @@
 				}
 			})
 
-			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
-					'token')) {
-				uni.navigateTo({
-					url: '/pages/login/login'
-				})
-			}
+			// if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
+			// 		'token')) {
+			// 	uni.navigateTo({
+			// 		url: '/pages/login/login'
+			// 	})
+			// }
 			// #ifdef APP
 			plus.runtime.getProperty(plus.runtime.appid, (appInfo) => {
 				// appInfo为当前应用程序的所有信息
@@ -162,9 +162,6 @@
 					complete: () => {}
 				});
 			},
-		},
-		onShow: function() {
-			console.log('App Show')
 		},
 		onHide: function() {
 			console.log('App Hide')
