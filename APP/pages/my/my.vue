@@ -134,7 +134,7 @@
 					//   go:'eight',
 					// },
 					{
-						name: "安全保障",
+						name: "个人信息",
 						url: '../../static/newMy/anquanbaozhang.png',
 						go: 'safe',
 					},

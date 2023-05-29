@@ -207,7 +207,9 @@
 
 		<!-- 合作伙伴 -->
     <view class="hezuo-box">
-      <image src="../../static/newIndex/xieban.png" mode="widthFix"></image>
+      <view class="hezuo-box1">
+        <image src="../../static/newIndex/xieban.png" mode="widthFix"></image>
+      </view>
     </view>
     <view class="jianguan-box">
       <view class="jianguanbumen">
@@ -216,7 +218,7 @@
         </view>
       </view>
       <view class="bumen-name">
-        <text v-for="(item,index) in bumenItems" :key="index" @tap="bumenJump(index)">{{item}}</text>
+        <text class="text1" v-for="(item,index) in bumenItems" :key="index" @tap="bumenJump(index)">{{item}}</text>
       </view>
     </view>
 		<!-- <view class="kuaijie">

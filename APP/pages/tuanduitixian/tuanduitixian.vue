@@ -8,7 +8,7 @@
         团队可提现余额
       </view>
       <view class="head-num">
-        {{parseInt(info.money_team)+parseInt(info.money_hire)}}
+        {{parseInt(info.money_team)+parseInt(info.money_hire)+'.00'}}
       </view>
     </view>
     <view class="content-box">
@@ -28,7 +28,7 @@
           ></u--text> -->
         </u--input>
       </view>
-      <view class="uni-list">
+      <!-- <view class="uni-list">
         <view class="content-title radioTitle">
           <view class="shu"></view>
           <view class="title-text">
@@ -44,7 +44,7 @@
             </view>
           </label>
         </radio-group>
-      </view>
+      </view> -->
       <view class="cardChange" @tap="open()">
         <view class="left">
           银行卡
@@ -127,11 +127,12 @@
       return {
         show: false,
         addShow: false,
-        money: 0,
+        money: '',
         cardList: [],
         info: {
           money_approve: 0,
           money_team: 0,
+          money_hire: 0,
           withdraw_pwd: 0,
         }, //用户信息
         nowCard: {}, //当前选中的银行卡
@@ -254,7 +255,7 @@
           u_bank_name: this.nowCard.name,
           u_back_card: this.nowCard.card,
           u_back_user_name: this.nowCard.account_name,
-          u_bank_type: this.moneyType,
+          // u_bank_type: this.moneyType,
           pwd: this.tiXianpsw
         }
         console.log(params, 'money');

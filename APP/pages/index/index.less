@@ -322,17 +322,25 @@
 .hezuo-box {
   box-sizing: border-box;
   width: 100%;
-  padding: 0 32rpx;
+  padding: 0 24rpx;
   margin-top: 30rpx;
-  background-color: #fff;
-  image {
+  .hezuo-box1 {
     width: 100%;
+    border-radius: 25rpx 25rpx 0 0;
+    background-color: #fff;
+    overflow: hidden;
+    image {
+      width: 100%;
+    }
   }
+  
 
 }
 // 监管部门
 .jianguan-box {
   width:100%;
+  box-sizing: border-box;
+  padding: 0 24rpx;
   .jianguanbumen {
     width: 100%;
     background-color: #fff;
@@ -340,6 +348,7 @@
       width: 220rpx;
       height: 84rpx;
       margin: 0 auto;
+      
       image {
         width: 100%;
         height: 100%;
@@ -350,11 +359,17 @@
     width: 100%;
     background-color: #fff;
     text-align: center;
-    font-size: 20rpx;
+    font-size: 28rpx;
     box-sizing: border-box;
-    padding: 0 38px;
+    padding: 0 16rpx;
+    border-radius: 0 0 25rpx 25rpx ;
+    overflow: hidden;
     text {
-      margin: 0 1.5em 0 0;
+      margin: 0 1em 0 0;
+    }
+    .text1:nth-of-type(2),.text1:nth-of-type(4),.text1:nth-of-type(7) 
+    {
+      margin-right: 0;
     }
   }
 }

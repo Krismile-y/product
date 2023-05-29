@@ -1,9 +1,11 @@
 <template>
   <view class="tousuyujianyi">
+    <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+    <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
     <!-- 投诉与建议 -->
     <view class="bumen-title">
       <view class="bumen-img">
-        
+        <image src="../../static/common/guohui.jpeg" mode="widthFix"></image>
       </view>
       <view class="bumen-title-text">
         <view class="text">
@@ -37,7 +39,7 @@
       <view class="ps">
         请留下您的联系方式，以使我们能更方便了解问题以及您的反馈问题结果。
       </view>
-      <view class="bot-btn">
+      <view class="bot-btn" @tap="tijiao">
         提交建议
       </view>
     </view>
@@ -51,26 +53,34 @@
         itemIndex: '',
         bumenItems:[
           '国家发展和改革委员会',
-          '国家航天局',
-          '住房和城乡建设部',
+          '国家生态环境部',
+          '国家住房和城乡建设部',
           '国家林业和草原局',
-          '生态环境部',
+          '国家航天局',
           '国家能源局',
           '自然资源部',
         ], //监管部门
         enList: [
-          'englishName',
-          'englishName',
-          'englishName',
-          'englishName',
-          'englishName',
-          'englishName',
-          'englishName',
+          'National Development and Reform Commission',
+          'Ministry of Ecology and Environment',
+          'Ministry of Housing and Urban-Rural Development',
+          'Forestry and Grassland Administration',
+          'National space administration',
+          'National Energy Administration',
+          'Department of Natural Resources',
         ]
       };
     },
     onLoad(option) {
       this.itemIndex = option.id
+    },
+    methods: {
+      tijiao() {
+        this.$refs.success.showTips({
+          msg: '感谢您的建议！',
+          duration: 2000
+        })
+      }
     }
   }
 </script>
@@ -80,24 +90,33 @@
   width: 100%;
   height: 100vh;
   box-sizing: border-box;
-  padding: 0 32rpx;
+  padding: 40rpx 32rpx 0rpx;
   .bumen-title {
     width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
     .bumen-img {
-      width: 80rpx;
-      height: 80rpx;
+      width: 100rpx;
+      height: 100rpx;
+      image {
+        width: 100%;
+        height: 100%;
+      }
     }
     .bumen-title-text {
-      flex: 1;
+      // flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      box-sizing: border-box;
+      padding-top: 20rpx;
       .text {
         font-size: 54rpx;
         color: darkred;
         font-weight: 600;
         line-height: 54rpx;
+        margin-bottom: 10rpx;
       }
       .en-text {
         font-size: 20rpx;

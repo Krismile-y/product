@@ -11,10 +11,10 @@
 				安全与服务
 				</view> -->
 			<view class="msg">
-				<view class="item disc" @tap="go('safe')">
+				<!-- <view class="item disc" @tap="go('safe')">
 					<image src="../../static/setting/grrenxinxi.png" mode=""></image>
 					个人信息
-				</view>
+				</view> -->
 				<view class="item disc">
 					<a :href="kefu" style="width: 100%;height: 100%;color: black;" class="disc">
 						<image src="../../static/c/erji.png" mode=""></image>
