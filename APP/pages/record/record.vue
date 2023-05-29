@@ -25,11 +25,11 @@
 
 			<view class="" style="margin-top: 20upx;">
         <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
-          <uni-card :title="`${item.goods_name} x${item.order_number}`" :extra="item.order_money" v-for="(item,index) in tableData" :key="index">
+          <uni-card :title="`${item.goods_name} ${item.one_money}x${item.order_number}`" :extra="item.order_money" v-for="(item,index) in tableData" :key="index">
             <!--  -->
             <view class="item-down uni-body">
               <text>{{item.create_time}}</text>
-              <text>{{'单价：'+item.one_money}}</text>
+              <text></text>
             </view>
           </uni-card>
         </scroll-list>
