@@ -95,9 +95,9 @@ export default {
     this.nowNum = 0
 		uni.getSystemInfo({
 			success: (res) => {
-				console.log(res.platform);
 				this.$fn.request('v', "GET", {}).then(r => {
-					console.log(r.data.data)
+					console.log(r,'v');
+          uni.setStorageSync('lowDown',r.data.data.down)
 					if (res.platform = 'android') {
 						this.phoneDown = r.data.data.apk
 					} else {
@@ -154,12 +154,30 @@ export default {
     uni.setStorageSync('current','index')
 		// 最新官方消息接口
 		this.$fn.request('notice/count', "GET", {"type":"1"}).then(res => {
-			console.log(res.data.data.count,'最新消息')
+		
 			this.newMSG=res.data.data.count
 		})
-		
-		
-		
+	
+		  const searchParams = new URLSearchParams(window.location.search);
+
+      console.log(window.location.origin)
+		  const params = {};
+		  for (const pair of searchParams.entries()) {
+		    params[pair[0]] = pair[1];
+		  }
+      
+		  let code = params['code']; // 返回 "123"
+      console.log(code)
+			if(parseInt(code) >0 && code.length >1){
+        uni.setStorageSync('code', code)
+        window.location.href = window.location.origin+'/#/pages/login/login?='+code
+        // uni.navigateTo({
+        //   url:
+        // })
+        return;
+      }
+			
+			
 
 		// 轮播图接口
 		let data = {

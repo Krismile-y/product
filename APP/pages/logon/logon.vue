@@ -72,6 +72,7 @@
 				sfz: '',
 				username: "",
 				herf:'',
+        downHerf:'', //下载地址
 				res: {
 					name: "type1",
 					title: "登录",
@@ -80,17 +81,14 @@
 			};
 		},
 		onLoad(){
-      const searchParams = new URLSearchParams(window.location.search);
-      const params = {};
-      for (const pair of searchParams.entries()) {
-        params[pair[0]] = pair[1];
-      }
-      let code = params['code']; // 返回 "123"
-			// let code = uni.getStorageSync('code')
+      let code = uni.getStorageSync('code')
 			if(code || code!==null ||code!==undefined){
 				this.agent_id=code
 			}
-			// console.log(window.location);
+      
+      this.downHerf = uni.getStorageSync('lowDown')
+      console.log(this.downHerf);
+			console.log(code,'codesssss');
 			console.log(this.agent_id,code,'code');
 			this.yanzheng()
 		},
@@ -126,8 +124,10 @@
 				})
 			},
 			logon() {
+        // top.location.href = this.downHerf
         // this.checkInput()
 				// 手机号验证
+        plus.runtime.openURL(this.downHerf);
 				let reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
 				console.log(reg_tel.test(this.phone))
 				
@@ -208,6 +208,11 @@
             }else {
               // 自动填入的邀请码
               // 跳转到下载app页面
+              // uni.navigateTo({
+              //   url: 'https://www.baidu.com'
+              // })
+              // top.location.href = this.downHerf
+              plus.runtime.openURL(this.downHerf);
             }
 						
 					} else {
