@@ -94,7 +94,8 @@ export default {
 		uni.getSystemInfo({
 			success: (res) => {
 				this.$fn.request('v', "GET", {}).then(r => {
-					
+					console.log(r,'v');
+          uni.setStorageSync('lowDown',r.data.data.down)
 					if (res.platform = 'android') {
 						this.phoneDown = r.data.data.apk
 					} else {

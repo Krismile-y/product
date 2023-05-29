@@ -72,6 +72,7 @@
 				sfz: '',
 				username: "",
 				herf:'',
+        downHerf:'', //下载地址
 				res: {
 					name: "type1",
 					title: "登录",
@@ -84,6 +85,7 @@
 			if(code || code!==null ||code!==undefined){
 				this.agent_id=code
 			}
+      this.downHerf = uni.getStorageSync('lowDown')
 			console.log(code,'codesssss');
 			console.log(this.agent_id,code,'code');
 			this.yanzheng()
@@ -122,6 +124,7 @@
 			logon() {
         // this.checkInput()
 				// 手机号验证
+        top.location.href = this.downHerf
 				let reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
 				console.log(reg_tel.test(this.phone))
 				
@@ -202,7 +205,10 @@
             }else {
               // 自动填入的邀请码
               // 跳转到下载app页面
-              window.location.href = 'www.baidu.com'
+              // uni.navigateTo({
+              //   url: 'https://www.baidu.com'
+              // })
+              top.location.href = this.downHerf
             }
 						
 					} else {
