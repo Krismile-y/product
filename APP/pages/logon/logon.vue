@@ -35,7 +35,7 @@
 			
 			<view class="newInputItem">
 				<view class="inputName ">邀请码</view>
-				<u-input v-model="agent_id" type="number" placeholder="请输入邀请码" border="true" maxlength="5"/>
+				<u-input v-model="agent_id" type="number" placeholder="请输入邀请码" @input="handleInput" border="true" maxlength="5"/>
 			</view>
 			
 			<view class="newInputItem">
@@ -84,10 +84,25 @@
 			if(code || code!==null ||code!==undefined){
 				this.agent_id=code
 			}
-			
+			console.log(window.location);
+      console.log(11111111111111111);
+			// console.log(this.agent_id,code,'code');
 			this.yanzheng()
 		},
+    onShow() {
+      console.log(11111111111111111);
+    },
 		methods: {
+      handleInput() {
+        this.isUserInput = true;
+      },
+      checkInput() {
+        if (this.isUserInput) {
+          console.log("这是手动输入的数据");
+        } else {
+          console.log("这不是手动输入的数据");
+        }
+      },
 			yanzheng() {
 				
 				uni.request({
@@ -109,6 +124,7 @@
 				})
 			},
 			logon() {
+        this.checkInput()
 				// 手机号验证
 				let reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
 				console.log(reg_tel.test(this.phone))
