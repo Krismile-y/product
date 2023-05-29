@@ -98,7 +98,7 @@ export default {
 		})
 		
 		// 判断手机型号
-    this.nowNum = 0
+ 
 		uni.getSystemInfo({
 			success: (res) => {
 				this.$fn.request('v', "GET", {}).then(r => {
@@ -191,6 +191,7 @@ export default {
 		}
 		this.$fn.request('banner', "GET", data).then(res => {
 			let arr = res.data.data
+			
 			arr.forEach((item, index) => {
 				let strArr = item.img.split('\\')
 				let img = strArr.join('//')

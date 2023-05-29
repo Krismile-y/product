@@ -44,8 +44,8 @@ export default {
 		// })
 	},
 	onShow() {
-		// this.herf = this.$url + 'verify'
-        this.yanzheng()  
+		this.herf = this.$url + 'verify'
+        // this.yanzheng()  
 		this.value = uni.getStorageSync('remember')//记住密码的本地状态
 		if (uni.getStorageSync('pwd') && uni.getStorageSync('phone')) {
 			this.pwd = uni.getStorageSync('pwd')
