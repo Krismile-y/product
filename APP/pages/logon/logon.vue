@@ -80,18 +80,20 @@
 			};
 		},
 		onLoad(){
-			let code = uni.getStorageSync('code')
+      const searchParams = new URLSearchParams(window.location.search);
+      const params = {};
+      for (const pair of searchParams.entries()) {
+        params[pair[0]] = pair[1];
+      }
+      let code = params['code']; // 返回 "123"
+			// let code = uni.getStorageSync('code')
 			if(code || code!==null ||code!==undefined){
 				this.agent_id=code
 			}
-			console.log(window.location);
-      console.log(11111111111111111);
-			// console.log(this.agent_id,code,'code');
+			// console.log(window.location);
+			console.log(this.agent_id,code,'code');
 			this.yanzheng()
 		},
-    onShow() {
-      console.log(11111111111111111);
-    },
 		methods: {
       handleInput() {
         this.isUserInput = true;
@@ -124,7 +126,7 @@
 				})
 			},
 			logon() {
-        this.checkInput()
+        // this.checkInput()
 				// 手机号验证
 				let reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
 				console.log(reg_tel.test(this.phone))
@@ -194,13 +196,20 @@
 						    msg: '注册成功',
 						    duration: 2000
 						  })
-						uni.setStorageSync('pwd','')
-						uni.setStorageSync('phone','')  
-						setTimeout(()=>{
-							uni.navigateTo({
-								url: '/pages/login/login'
-							})
-						},2000)
+            if(this.isUserInput) {
+              // 手动输入的邀请码
+              uni.setStorageSync('pwd','')
+              uni.setStorageSync('phone','')  
+              setTimeout(()=>{
+              	uni.navigateTo({
+              		url: '/pages/login/login'
+              	})
+              },2000)
+            }else {
+              // 自动填入的邀请码
+              // 跳转到下载app页面
+            }
+						
 					} else {
             console.log(res.data,'res.data注册');
 						this.$refs.error.showTips({
