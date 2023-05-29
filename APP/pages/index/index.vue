@@ -242,7 +242,8 @@
 					
 					<!-- 展示的内容 -->
 					<scroll-view scroll-y="true" style="width: 100%;height: 700upx;">
-						<image :src="item.img" mode="" style="width: 100%;height: 700upx;border-radius: 20upx;"></image>
+						<view v-html="item.content" v-show="item.is_type==1?true:false"></view>
+						<image :src="item.img" mode=""  v-show="item.is_type==0?true:false" style="width: 100%;height: 700upx;border-radius: 20upx;"></image>
 					</scroll-view>
 					
 					<image src="../../static/index/guanbi.png" mode=""
