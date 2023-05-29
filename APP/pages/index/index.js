@@ -81,6 +81,7 @@ export default {
 	},
 	onShow() {
 		// 判断手机型号
+    this.nowNum = 0
 		uni.getSystemInfo({
 			success: (res) => {
 				console.log(res.platform);

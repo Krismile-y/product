@@ -23,14 +23,14 @@
 					border="true" />
 			</view>
 			
+      <view class="newInputItem">
+      	<view class="inputName ">姓名</view>
+      	<u-input v-model="username" type="text" placeholder="请输入姓名" border="true" />
+      </view>
+      
 			<view class="newInputItem">
 				<view class="inputName ">身份证</view>
 				<u-input v-model="sfz" type="number" placeholder="请输入身份证号" border="true" max-length='' maxlength="18"/>
-			</view>
-			
-			<view class="newInputItem">
-				<view class="inputName ">姓名</view>
-				<u-input v-model="username" type="text" placeholder="请输入姓名" border="true" />
 			</view>
 			
 			<view class="newInputItem">
