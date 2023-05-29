@@ -56,6 +56,11 @@ export default {
 								url:'/pages/login/login'
 							})
 							uni.removeStorageSync('token')
+							this.$store.state.current = ''
+							    uni.removeStorageSync('token');
+							    uni.removeStorageSync('address');
+							    uni.removeStorageSync('current');
+							    uni.setStorageSync('gengxin', false)
 						},1000)
 					}else if(res.data.code == 1){
 						

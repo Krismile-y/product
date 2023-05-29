@@ -81,6 +81,12 @@ export default {
 		uni.setStorageSync('gengxin',false)
 	},
 	onShow() {
+		// if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
+		// 		'token')) {
+		// 	uni.navigateTo({
+		// 		url: '/pages/login/login'
+		// 	})
+		// }
 		
 		// 海报接口
 		this.nowNum=0
