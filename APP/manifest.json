@@ -8,12 +8,12 @@
     "permissions" : {
         "clipboard" : {}
     },
-	"compatible":{
-		"ignoreVersion":true
-	},
-	
+    
     "app-plus" : {
         /* 5+App特有相关 */
+        "compatible" : {
+            "ignoreVersion" : true
+        },
         "usingComponents" : true,
         "popGesture" : "none",
         "nvueCompiler" : "uni-app",
