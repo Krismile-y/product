@@ -34,7 +34,8 @@
 			</view>
 		</view>
 		
-		<view class="xinBtn dis" @tap="login">登录</view>
+		<view class="xinBtn dis" @tap="login" v-show="loginSHOW==0?true:false">登录</view>
+		<view class="xinBtn dis" v-show="loginSHOW==1?true:false">登录中...</view>
 		
 		<view class="last">
 			<view class="wangjimima dis" @tap="forgetPwd">忘记密码?找回密码</view>

@@ -27,7 +27,8 @@
       			style="height: 100%;width: 266upx;"  border="true" maxlength="4"/>
       		<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng" ></image>
       	</view>	
-      	<view class="xinBtn dis" @tap="change" style="margin-top: 90upx;">设置密码</view>
+      	<view class="xinBtn dis" @tap="change" style="margin-top: 90upx;" v-show="show==0?true:false">设置密码</view>
+		<view class="xinBtn dis"  style="margin-top: 90upx;"v-show="show==1?true:false">设置密码中...</view>
       </view>
     </view>
   </view>
@@ -37,6 +38,7 @@
   export default {
     data() {
       return {
+		  show:0,
         xin:'', //新密码
         queren:'', //确认密码
         sfz: '', //身份证
@@ -65,29 +67,34 @@
       	
       },
       change(){
+		  this.show=1
+		  // return
       	// 修改密码接口
         let testsfz = /^(?:[1-9]\d{5})((?:19|20)\d{2})(?:(?:(?:0[1-9])|(?:1[0-2]))(?:(?:0[1-9])|(?:[1-2][0-9])|(?:3[0-1])))(?:\d{3}[0-9Xx])$/
         console.log(this.sfz,'身份证',testsfz.test(this.sfz));
       	if(this.xin.length !== 6){
-      		
+      		 this.show=0
       		this.$refs.error.showTips({
       		msg: '新密码必须是6位数字',
       		duration: 2000
       			})
       		return
       	}else if(this.queren.length !== 6){
+			this.show=0
       		this.$refs.error.showTips({
       		msg: '密码必须是6位数字',
       		duration: 2000
       			})
       		return
       	}else if(this.queren !== this.xin){
+			this.show=0
       		this.$refs.error.showTips({
       		msg: '两次密码不一致',
       		duration: 2000
       			})
       		return
       	}else if(!testsfz.test(this.sfz)){
+			this.show=0
 					this.$refs.error.showTips({
 					msg: '请输入正确的身份证号',
 					duration: 2000
@@ -104,14 +111,16 @@
       	this.$fn.request('withdraw_pwd', 'POST',pwd).then(res => {
       		console.log(res.data.code)
       		if(res.data.code == 1){
+				this.show=0
       			this.$refs.success.showTips({
       			    msg: '修改成功',
       			    duration: 2000
       			  })
       			setTimeout(()=>{
       				uni.navigateBack()
-      			},2100)
+      			},10)
       		}else{
+				this.show=0
       			this.$refs.error.showTips({
       			msg: res.data.msg,
       			duration: 2000
