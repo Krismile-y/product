@@ -85,7 +85,7 @@
 			}else if( z == 1){
 				this.shiming='提交申请'
 			}else if( z == 2){
-				this.shiming='通过申请'
+				this.shiming='已实名'
 			}else if( z == 3){
 				this.shiming='拒绝申请'
 			}
@@ -108,9 +108,17 @@
       	
       },
       goPayPassword() {
-        uni.navigateTo({
-        	url:'/pages/payPassword/payPassword'
-        })
+        if(this.info.is_real_name == 2) {
+          uni.navigateTo({
+          	url:'/pages/payPassword/payPassword'
+          })
+        }else {
+          this.$refs.error.showTips({
+            msg: '请完成实名认证',
+            duration: 2000
+          })
+        }
+        
       }
 		}
 	}

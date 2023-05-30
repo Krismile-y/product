@@ -323,9 +323,19 @@
 				console.log(name)
         // 跳转到团队提现记录
         if(name == 'twithdrawal') {
-          uni.navigateTo({
-          	url: `/pages/${name}/${name}?type=2`
-          })
+          if(this.info.is_real_name == 2) {
+            // 已实名，跳转到团队提现页面
+            uni.navigateTo({
+            	url: `/pages/${name}/${name}?type=2`
+            })
+          }else {
+            // 未实名或已提交
+            this.$refs.error.showTips({
+              msg: '请完成实名认证',
+              duration: 2000
+            })
+          }
+          
         }else {
           uni.navigateTo({
           	url: `/pages/${name}/${name}?index=${currentIndex}`

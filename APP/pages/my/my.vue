@@ -328,10 +328,20 @@
 				})
 				 return	
 				}else if(name == 'twithdrawal'){
-          // 这个是个人提现的进入
-          uni.navigateTo({
-          	url: `/pages/${name}/${name}?type=1`
-          })
+          if(this.info.is_real_name == 2) {
+            // 已实名，跳转到团队提现页面
+            // 这个是个人提现的进入
+            uni.navigateTo({
+            	url: `/pages/${name}/${name}?type=1`
+            })
+          }else {
+            // 未实名或已提交
+            this.$refs.error.showTips({
+              msg: '请完成实名认证',
+              duration: 2000
+            })
+          }
+          
         }else{
 					uni.navigateTo({
 						url: `/pages/${name}/${name}`
