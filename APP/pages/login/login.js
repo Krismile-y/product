@@ -56,10 +56,13 @@ export default {
 			// console.log(this.pwd)
 
 		}
-
+    if(uni.getStorageSync('remember')=='') {
+      this.value = false
+    }
 		if (uni.getStorageSync('remember') == true) {
 			this.value == true
-		} else if (uni.getStorageSync('remember') == false) {
+      console.log(uni.getStorageSync('remember'),'this.value1');
+		} else if (uni.getStorageSync('remember') == false || uni.getStorageSync('remember')) {
 			this.value == false
 		}
 	},

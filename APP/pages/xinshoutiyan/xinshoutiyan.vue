@@ -8,7 +8,9 @@
 				<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 				<!-- 单个产品 -->
 				<view class="items" v-for="(item,index) in goods_list">
-					<image :src="item.head_img"></image>
+          <view class="img-box">
+            <image :src="item.head_img" mode="widthFix"></image>
+          </view>
 					<view class="tit">{{item.goods_name}}</view>
           <view class="touzimin">最低投资：</view>
 					<view class="buy">
@@ -75,17 +77,20 @@ export default {
 <style lang="less" scoped>
   .items{
   	width: 702rpx;
-    height: 520rpx;
+    // height: 520rpx;
   	margin: 0 auto;
   	padding-bottom: 10upx;
   	margin-bottom: 20upx;
     background: #FFFFFF;
     border-radius: 16rpx;
     overflow: hidden;
-  	image{
-  		width: 100%;
-  		height: 339rpx;
-  	}
+    .img-box {
+      width: 100%;
+      image{
+      	width: 100%;
+      }
+    }
+  	
   	.tit{
   		font-size: 28rpx;
   		font-family: PingFangSC-Regular, PingFang SC;

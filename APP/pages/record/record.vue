@@ -36,11 +36,11 @@
               <view class="top-title">
                 <!-- 商品标题 -->
                 <view class="title">
-                  {{item.goods_name}}
+                  {{`${item.goods_name} ${item.one_money} x${item.order_number}`}}
                 </view>
                 <!-- 天数 -->
                 <view class="day">
-                  {{item.day}}天
+                  
                 </view>
               </view>
               <!-- 总金额 -->
@@ -48,9 +48,7 @@
                 {{item.order_money}}
               </view>
             </view>
-            <view class="line">
-              
-            </view>
+            <view class="line"></view>
             <view class="card-body">
               <!-- 时间 -->
               <view class="card-body-left">
@@ -58,7 +56,7 @@
               </view>
               <!-- 单价和数量 -->
               <view class="card-body-right">
-                {{`${item.one_money}x${item.order_number}`}}
+                选择天数:{{item.day}}天
               </view>
             </view>
           </view>
