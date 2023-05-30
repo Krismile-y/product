@@ -23,10 +23,10 @@
               </view>
               <view class="details" v-if="!upgrading" style="width: 100%;">
                 <view class="item"  style="width: 100%;height: 40upx;margin-top: -20upx;">
-				  <view style="width: 300upx;margin-right: 50upx;">1.问题1111111</view>
+				  <view style="width: 300upx;margin-right: 50upx;">1.新增了一些功能</view>
                 </view>
 				<view class="item"  style="width: 100%;height: 40upx;margin-top: 10upx;">
-				  <view style="width: 300upx;margin-right: 50upx;">1.问题1111111</view>
+				  <view style="width: 300upx;margin-right: 50upx;">2.调高了客户端运行效率</view>
 				</view>
 				
               </view>
