@@ -8,7 +8,6 @@
     "permissions" : {
         "clipboard" : {}
     },
-    
     "app-plus" : {
         /* 5+App特有相关 */
         "compatible" : {
