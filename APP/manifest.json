@@ -8,12 +8,11 @@
     "permissions" : {
         "clipboard" : {}
     },
-	
-	"app-launch-params":"H5PLUS_RUNTIME",
+    "app-launch-params" : "H5PLUS_RUNTIME",
     "app-plus" : {
-         "compatible":{
-         	"ignoreVersion":true
-         },
+        "compatible" : {
+            "ignoreVersion" : true
+        },
         /* 5+App特有相关 */
         "usingComponents" : true,
         "popGesture" : "none",
@@ -47,7 +46,8 @@
                     "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
                     "<uses-feature android:name=\"android.hardware.camera\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
-                ]
+                ],
+                "abiFilters" : [ "armeabi-v7a", "arm64-v8a", "x86" ]
             },
             "ios" : {
                 "dSYMs" : false
