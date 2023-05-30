@@ -379,7 +379,7 @@
       
       // 提交申请
       tixian() {
-        if (this.money == 0) {
+        if (this.money == ''||this.money==0) {
 
           this.$refs.error.showTips({
             msg: '请输入提现金额',

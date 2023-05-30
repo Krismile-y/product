@@ -12,7 +12,7 @@
 				<view class="t" style="width: 100%;height: 60%;display: flex;">
 					<view class="twoItem disc">
 						<view>共计直推人数</view>
-						<view>{{dataObj.people}}</view>
+						<view>{{dataObj.purchased}}</view>
 					</view>
 					<view class="twoItem disc">
 						<view>共计完成任务</view>
@@ -29,6 +29,10 @@
 				<view class="font ">
 					{{item.title}}
 				</view>
+        <!-- 领取时间 -->
+        <view class="linquTime">
+          领取时间：每月**日 00:00:00
+        </view>
 				<view :class="{
           'gray': btnType == '2',
           'btn': btnType == '0',

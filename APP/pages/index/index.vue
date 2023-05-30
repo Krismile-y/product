@@ -218,7 +218,7 @@
         </view>
       </view>
       <view class="bumen-name">
-        <text class="text1" v-for="(item,index) in bumenItems" :key="index" @tap="bumenJump(index)">{{item}}</text>
+        <view class="text1" v-for="(item,index) in bumenItems" :key="index" @tap="bumenJump(index)">{{item}}</view>
       </view>
     </view>
 		<!-- <view class="kuaijie">
