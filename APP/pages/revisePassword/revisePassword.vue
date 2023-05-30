@@ -47,15 +47,17 @@
 					<view class="inputName ">身份证</view>
 					<u-input v-model="sfz" type="number" placeholder="请输入身份证号" border="true" />
 				</view>
-				
+
 				<view class="newInputItem">
 					<view class="inputName ">验证码</view>
-						<u-input type="text" placeholder="请输入验证码" v-model="captcha" 
-						style="height: 100%;width: 266upx;"  border="true" maxlength="4"/>
-					<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng" ></image>
-				</view>	
+					<u-input type="text" placeholder="请输入验证码" v-model="captcha" style="height: 100%;width: 266upx;"
+						border="true" maxlength="4" />
+					<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng"></image>
+				</view>
 
-				<view class="xinBtn dis" @tap="change" style="margin-top: 90upx;">修改密码</view>
+				<view class="xinBtn dis" @tap="change" style="margin-top: 90upx;" v-show="show==0?true:false">修改密码
+				</view>
+				<view class="xinBtn dis" style="margin-top: 90upx;" v-show="show==1?true:false">修改密码中...</view>
 			</view>
 
 
@@ -90,6 +92,7 @@
 		},
 		data() {
 			return {
+				show: 0,
 				type: '',
 				xin: '',
 				jiu: "",
@@ -97,16 +100,16 @@
 				shiming: "",
 				sfz: '',
 				shimingText: '',
-				herf:'',
-				captcha:''
+				herf: '',
+				captcha: ''
 			};
 		},
 		methods: {
 			yanzheng() {
-				
+
 				uni.request({
-					url:this.$url+'verify',
-					data:{},
+					url: this.$url + 'verify',
+					data: {},
 					success: (res) => {
 						console.log(res)
 						let times = 0;
@@ -114,10 +117,10 @@
 						this.herf = this.$url + 'verify?time=' + times
 					}
 				})
-				
-				
+
+
 			},
-			
+
 			// 保留前四位和后六位，中间用******显示
 			setCardNum(str) {
 				let newStr = ''
@@ -130,11 +133,11 @@
 				return newStr
 			},
 			change() {
-				
+				this.show = 1
 				// 身份证验证
 				let testsfz = /^[1-9]\d{5}(19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/
 				console.log(testsfz.test(this.sfz))
-				
+
 				// 修改密码接口
 				if (this.jiu.length < 8) {
 
@@ -142,21 +145,24 @@
 						msg: '密码必须最少8位',
 						duration: 2000
 					})
+					this.show = 0
 					return
 				} else if (this.xin.length < 8) {
-
+					this.show = 0
 					this.$refs.error.showTips({
 						msg: '新密码必须最少8位',
 						duration: 2000
 					})
 					return
 				} else if (this.queren.length < 8) {
+					this.show = 0
 					this.$refs.error.showTips({
 						msg: '密码必须最少8位',
 						duration: 2000
 					})
 					return
-				}else if(testsfz.test(this.sfz)== false){
+				} else if (testsfz.test(this.sfz) == false) {
+					this.show = 0
 					this.$refs.error.showTips({
 						msg: '请输入正确的身份证号',
 						duration: 2000
@@ -169,12 +175,13 @@
 					'past_pwd': this.jiu,
 					'pwd': this.xin,
 					'upwd': this.queren,
-					'sfz':this.sfz,
-					'captcha':this.captcha
+					'sfz': this.sfz,
+					'captcha': this.captcha
 				}
 				this.$fn.request('pwd', 'POST', pwd).then(res => {
 					console.log(res.data.code)
 					if (res.data.code == 1) {
+						this.show = 0
 						uni.removeStorageSync('pwd')
 						uni.removeStorageSync('token')
 						this.$refs.success.showTips({
@@ -185,8 +192,9 @@
 							uni.navigateTo({
 								url: '/pages/login/login'
 							})
-						}, 2100)
+						}, 10)
 					} else {
+						this.show = 0
 						this.$refs.error.showTips({
 							msg: res.data.msg,
 							duration: 2000

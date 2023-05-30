@@ -11,6 +11,7 @@ export default {
 			captcha: '', //验证码
 			value: false, //记住密码
 			herf: "", //验证码
+			loginSHOW:0,
 		};
 	},
 	onBackPress(event) {
@@ -38,17 +39,14 @@ export default {
 
 	},
 	onLoad() {
-        
-		// this.$fn.request('verify', "GET", {}).then(res => {
-		// 	// console.log(res,'验证码')
-		// })
+		 this.yanzheng() 
 	},
 	onShow() {
-		let times = 0;
-		times = new Date()
-		this.herf = this.$url + 'verify?time=' + times
+		// let times = 0;
+		// times = new Date()
+		// this.herf = this.$url + 'verify?time=' + times
 		
-        // this.yanzheng()  
+        
 		this.value = uni.getStorageSync('remember')//记住密码的本地状态
 		if (uni.getStorageSync('pwd') && uni.getStorageSync('phone')) {
 			this.pwd = uni.getStorageSync('pwd')
@@ -112,11 +110,11 @@ export default {
 			// 	'pwd':'12345678',
 			// 	'captcha':'12312'
 			// }
-			
+			this.loginSHOW=1
 			let reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
 			console.log(this.phone.length)
 			if (this.phone.length !== 11) {
-				
+				this.loginSHOW=0
 				
 				this.$refs.error.showTips({
 				msg: '手机号必须是11位',
@@ -124,6 +122,7 @@ export default {
 					})
 				return
 			}else if(reg_tel.test(this.phone) == false){
+				this.loginSHOW=0
 				this.$refs.error.showTips({
 				msg: '请输入正确的手机号',
 				duration: 2000
@@ -132,7 +131,7 @@ export default {
 			}
 			 
 			 else if (this.pwd.length < 8) {
-				
+				this.loginSHOW=0
 				this.$refs.error.showTips({
 				msg: '密码最少8位',
 				duration: 2000
@@ -146,7 +145,9 @@ export default {
 				'captcha': this.captcha
 			}
 			this.$fn.request('login', 'POST', data).then(res => {
+				
 				if (res.data.code == 1) {
+					this.loginSHOW=0
 					uni.setStorageSync('gengxin',true)//app首页更新一次的状态
 					uni.setStorageSync('token', res.data.data.token)
 					uni.setStorageSync('name', 'index')
@@ -159,7 +160,7 @@ export default {
 						uni.navigateTo({
 							url: '/pages/index/index'
 						})
-					}, 1000)
+					}, 10)
 
 					// 用户信息
 					let info = {
@@ -170,6 +171,7 @@ export default {
 						uni.setStorageSync('user_info', res.data.data)
 					})
 				} else if (res.data.code !== 1) {
+					this.loginSHOW=0
 					console.log(res.data.msg)
 					
 					this.$refs.error.showTips({
