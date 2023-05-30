@@ -28,7 +28,11 @@
 			</view>
 		</view>
 		<view class="bottom-fixd">
-			<view class="bot-btn" @tap="pay">
+			<view class="bot-btn" @tap="pay" v-show="show==0?true:false">
+				<!-- 确认支付 -->
+				{{font}}
+			</view>
+			<view class="bot-btn" v-show="show==1?true:false">
 				<!-- 确认支付 -->
 				{{font}}
 			</view>
@@ -42,6 +46,7 @@
 	export default {
 		data() {
 			return {
+				show:0,
 				icons: [
 					'../../static/common/weixin.png',
 					'../../static/common/zhifubao.png',
@@ -94,10 +99,12 @@
 					return
 				}
 				this.font='支付中...'
+				this.show=1
 				this.dataObj.pid = this.checkedNum
 				this.$fn.request('/pay/order', 'POST', this.dataObj).then(res => {
 					
 					if (res.data.code == 1) {
+						this.show=0
 						this.$refs.success.showTips({
 							msg: '购买成功',
 							duration: 2000
@@ -154,6 +161,7 @@
 						duration: 2000
 							})
 						this.font='确认支付'	
+						this.show=0
 					}
 				})
 			}

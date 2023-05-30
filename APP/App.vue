@@ -11,15 +11,21 @@
 			}
 		},
 		onShow() {
-          if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
-          		'token')) {
-          	uni.navigateTo({
-          		url: '/pages/login/login'
-          	})
-          }
+         
 
 		},
+		onLoad() {
+			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
+					'token')) {
+				uni.navigateTo({
+					url: '/pages/login/login'
+				})
+			}
+		},
 		onLaunch: function() {
+			
+			
+			
 			uni.setStorageSync('gengxin',true)//app更新首页显示状态
 			// 客服接口
 			let kefu = {

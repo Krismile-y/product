@@ -39,8 +39,9 @@ export default {
 
 	},
 	onLoad() {
-		 this.yanzheng() 
+		this.yanzheng()  
 	},
+	
 	onShow() {
 		// let times = 0;
 		// times = new Date()

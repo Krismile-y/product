@@ -6,7 +6,7 @@
 		<view class="zongshouyi">
 			<view class="one disc">
 				<view style="color: #fff;">团队可提现金额</view>
-				<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{zongTiXian() }}</view>
+				<view style="font-weight: 600;font-size: 42upx;color: #fff;" v-show="nightSHOW">{{zongTiXian() }}</view>
 			</view>
 			<view class="two disc">
 				<view class="t" style="width: 100%;height: 60%;display: flex;">
@@ -137,6 +137,7 @@
 		},
 		data() {
 			return {
+				nightSHOW:true,
 				getPeopleNumstate:false,
 				
 				currentIndex: 0,
@@ -185,15 +186,18 @@
 			};
 		},
 		onPullDownRefresh() { //下拉转圈圈刷新
+		   this.nightSHOW=false
 			setTimeout(() => {
 				this.getPeopleNum()
+				this.zongTiXian()
+				
 				if(this.getPeopleNumstate == true){
 					// this.$refs.success.showTips({
 					// 	msg: '已刷新',
 					// 	duration: 2000
 					// })
 				}
-			}, 50)
+			}, 10)
 		},
 		onBackPress(event) {
 			if (this.out == 0) {
@@ -223,9 +227,9 @@
 		onShow() {
 			this.getPeopleNum()
 
-      this.getuserMsg().then(()=> {
+      // this.getuserMsg().then(()=> {
         
-      })
+      // })
 			this.out = 0
 			this.money_team = this.info.money_team
 			if (uni.getStorageSync('name') == 'community') {
@@ -237,7 +241,9 @@
 		},
 		onLoad() {
 			this.getData()
-
+           this.getuserMsg().then(()=> {
+             
+           })
 		},
 		methods: {
 			bian(index) {
@@ -263,6 +269,8 @@
       zongTiXian() {
         let newNum = parseFloat(this.info.money_team)+parseFloat(this.info.money_hire)
         newNum = newNum.toFixed(2)
+		// newNum = newNum.toFixed(2)
+		console.log(newNum)
         return newNum
       },
 			// 下级人数接口
@@ -274,6 +282,7 @@
 						setTimeout(()=>{
 							this.peopleData = res.data.data
 							this.getPeopleNumstate=true
+							this.nightSHOW=!false
 							uni.hideNavigationBarLoading();
 							uni.stopPullDownRefresh();
 						},1000)
