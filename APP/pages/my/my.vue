@@ -205,7 +205,8 @@
 		// // #endif
 		// },
 		onPullDownRefresh() {
-		  
+		  this.info=''
+		  this.zhuangtai=''
            // 用户信息
            let info = {
            	"is_whole": "1"
@@ -221,6 +222,17 @@
 					uni.setStorageSync('user_info', res.data.data)
 					uni.hideNavigationBarLoading();
 					uni.stopPullDownRefresh();
+					this.info=uni.getStorageSync('user_info')
+					let z = this.info.is_real_name
+					if (z == 0) {
+						this.zhuangtai = '未实名'
+					} else if (z == 1) {
+						this.zhuangtai = '提交申请'
+					} else if (z == 2) {
+						this.zhuangtai = '已实名'
+					} else if (z == 3) {
+						this.zhuangtai = '拒绝申请'
+					}
 				},1000)
 				console.log(this.info)
 			}
