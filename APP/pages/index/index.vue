@@ -1,11 +1,14 @@
 <template>
 	<view class="content" style="padding-bottom: 200upx; background-color: #F4F4F6;">
 		
-		<scroll-view scroll-y="true" style="height: 100vh;width: 100%;">
+		
 			<view>
 				<!-- 	<navs></navs>	 -->
 					<down ref='down'></down>
-				    <airel-floatball  />
+				   <!-- <airel-floatball  /> -->
+				   <view >
+				   	<airel-floatball />
+				   </view>
 					<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 					<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 					<view class="tops disc" style="height: 400upx;">
@@ -272,7 +275,7 @@
 						<helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
 					</view>
 			</view>
-		</scroll-view>
+		
 		
 		
 	</view>
