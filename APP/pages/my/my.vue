@@ -346,7 +346,7 @@
 					url:'/pages/revisePassword/revisePassword?type=1'
 				})
 				 return	
-				}else if(name == 'twithdrawal'){
+				}else if(name == 'withdrawal'){
           if(this.info.is_real_name == 2) {
             // 已实名，跳转到团队提现页面
             // 这个是个人提现的进入
