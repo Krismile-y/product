@@ -7,6 +7,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
 		//公共的变量，这里的变量不能随便修改，只能通过触发mutations的方法才能改变
+		downSHOW:true,
 		one:true,
 		two:false,
 		three:false,
@@ -33,6 +34,9 @@ const store = new Vuex.Store({
 		},
 		pageOutfn(state,data){
 			state.pageOut=data
+		},
+		down(state,data){
+			state.downSHOW=data
 		}
 	},
     actions: {

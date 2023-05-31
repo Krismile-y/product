@@ -1,5 +1,8 @@
 <template>
 	<view class="invite disc">
+		
+		
+		
 		<view :style="{'position':'fixed','top':y+'upx','left':x+'upx'}">
 			<airel-floatball />
 		</view>

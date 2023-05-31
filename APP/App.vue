@@ -7,11 +7,11 @@
 	export default {
 		data: function() {
 			return {
-				version: "1.5.4" //版本号
+				version: "1.5.3" //版本号
 			}
 		},
 		onShow() {
-         
+         // uni.setStorageSync('gengxin',!false)
 
 		},
 		onLoad() {
@@ -171,6 +171,7 @@
 		},
 		onHide: function() {
 			console.log('App Hide')
+			uni.setStorageSync('gengxin',false)
 		}
 	}
 </script>

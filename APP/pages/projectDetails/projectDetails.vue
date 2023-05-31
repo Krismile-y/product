@@ -1,70 +1,76 @@
 <template>
   <view class="projectDetails" ref="projectDetails">
-    <airel-floatball  />
-	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-    <!-- 项目详情 -->
-    <!-- 商品详情图片 -->
-    <image class="detailsImg" :src="detail.head_img" mode="widthFix"></image>
-    <!-- 商品信息 -->
-    <view class="project-content">
-      <view class="project-title">
-        {{detail.goods_name}}
-      </view>
-      <view class="items">
-        <view class="item-left">
-          项目规模
-        </view>
-        <view class="item-right">
-          <text class="orange">{{detail.project_scale}}</text>万元
-        </view>
-      </view>
-      <view class="items">
-        <view class="item-left">
-          每日分红
-        </view>
-        <view class="item-right">
-          <text class="orange">{{detail.day_red}}</text>元
-        </view>
-      </view>
-      <view class="items">
-        <view class="item-left">
-          投资周期
-        </view>
-        <view class="item-right">
-          <text class="orange">{{detail.period}}</text>天
-        </view>
-      </view>
-      <view class="items">
-        <view class="item-left">
-          分红方式
-        </view>
-        <view class="item-right">
-          到期还息
-        </view>
-      </view>
-      <view class="items" style="border-bottom: 0px;">
-        <view class="item-left">
-          担保机构
-        </view>
-        <view class="item-right">
-          {{detail.warrant}}
-        </view>
-      </view>
-    </view>
-    <view class="opcity-bottom">
-      <!-- 用于支撑fixed的空白盒子 -->
-    </view>
-    <view class="bottom-fixd" :class="{'fixed': fixedType}">
-      <view class="bottom-text">
-        <text class="qitou">认购金额：</text>
-        <text class="orange">￥{{parseInt(moneyData[0].money)}}</text>
-        <text class="orange small">.00</text>
-      </view>
-      <view class="bottom-btn" @tap="go(detail.id)">
-        马上认购
-      </view>
-    </view>
+	  
+	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	     <view>
+	     	<airel-floatball  />
+	     </view>
+	     <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	     <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+	     <!-- 项目详情 -->
+	     <!-- 商品详情图片 -->
+	     <image class="detailsImg" :src="detail.head_img" mode="widthFix"></image>
+	     <!-- 商品信息 -->
+	     <view class="project-content">
+	       <view class="project-title">
+	         {{detail.goods_name}}
+	       </view>
+	       <view class="items">
+	         <view class="item-left">
+	           项目规模
+	         </view>
+	         <view class="item-right">
+	           <text class="orange">{{detail.project_scale}}</text>万元
+	         </view>
+	       </view>
+	       <view class="items">
+	         <view class="item-left">
+	           每日分红
+	         </view>
+	         <view class="item-right">
+	           <text class="orange">{{detail.day_red}}</text>元
+	         </view>
+	       </view>
+	       <view class="items">
+	         <view class="item-left">
+	           投资周期
+	         </view>
+	         <view class="item-right">
+	           <text class="orange">{{detail.period}}</text>天
+	         </view>
+	       </view>
+	       <view class="items">
+	         <view class="item-left">
+	           分红方式
+	         </view>
+	         <view class="item-right">
+	           到期还息
+	         </view>
+	       </view>
+	       <view class="items" style="border-bottom: 0px;">
+	         <view class="item-left">
+	           担保机构
+	         </view>
+	         <view class="item-right">
+	           {{detail.warrant}}
+	         </view>
+	       </view>
+	     </view>
+	     <view class="opcity-bottom">
+	       <!-- 用于支撑fixed的空白盒子 -->
+	     </view>
+	     <view class="bottom-fixd" :class="{'fixed': fixedType}">
+	       <view class="bottom-text">
+	         <text class="qitou">认购金额：</text>
+	         <text class="orange">￥{{parseInt(moneyData[0].money)}}</text>
+	         <text class="orange small">.00</text>
+	       </view>
+	       <view class="bottom-btn" @tap="go(detail.id)">
+	         马上认购
+	       </view>
+	     </view>
+	    </scroll-view>
+    
   </view>
 </template>
 

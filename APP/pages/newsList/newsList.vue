@@ -1,22 +1,29 @@
 <template>
 	<view>
-    <airel-floatball  />
-		<!-- <view class="zhengce">
-			<image src="../../static/common/ocean.jpg"></image>
-		  <view class="zhengce-txt">
-		    政策解读
-		  </view>
-		</view> -->
-        <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-        <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<view class="xinwen" v-for="(item,index) in listData" :key="index" @tap="go(index)">
-			<view class="left">
-				{{index+1}}.{{item.title}}
+
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+			<view>
+				<airel-floatball />
 			</view>
-			<view class="right dis" v-show="false">
-				<!-- <image src="../../static/my/jilu.png" mode=""></image> -->
+			<!-- <view class="zhengce">
+		   			<image src="../../static/common/ocean.jpg"></image>
+		   		  <view class="zhengce-txt">
+		   		    政策解读
+		   		  </view>
+		   		</view> -->
+			<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+			<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+			<view class="xinwen" v-for="(item,index) in listData" :key="index" @tap="go(index)">
+				<view class="left">
+					{{index+1}}.{{item.title}}
+				</view>
+				<view class="right dis" v-show="false">
+					<!-- <image src="../../static/my/jilu.png" mode=""></image> -->
+				</view>
 			</view>
-		</view>
+		</scroll-view>
+
+
 	</view>
 </template>
 
@@ -24,8 +31,7 @@
 	export default {
 		data() {
 			return {
-				listData: [
-					{
+				listData: [{
 						title: '​国家林业和草原局关于印发《国家储备林建设管理办法（试行）》的通知'
 					},
 
@@ -33,7 +39,9 @@
 			};
 		},
 		onLoad() {
-			this.$fn.request('introduction','GET',{'tid':"25"}).then(res=>{
+			this.$fn.request('introduction', 'GET', {
+				'tid': "25"
+			}).then(res => {
 				console.log(res.data.data)
 			})
 		},
