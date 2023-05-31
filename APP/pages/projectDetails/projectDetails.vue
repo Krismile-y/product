@@ -56,6 +56,9 @@
 	         </view>
 	       </view>
 	     </view>
+       <view class="bottom-img" @click="previewImage">
+         <image :src="detail.bottom_img" mode="widthFix"></image>
+       </view>
 	     <view class="opcity-bottom">
 	       <!-- 用于支撑fixed的空白盒子 -->
 	     </view>
@@ -131,7 +134,7 @@
       // 加个列表图片预览
       previewImage() {
         uni.previewImage({
-          urls: ['../../static/common/money_table.png'] // 这里填写需要预览的图片地址列表
+          urls: [this.detail.bottom_img] // 这里填写需要预览的图片地址列表
         })
       }
     }
@@ -182,6 +185,13 @@
           margin-right: .2em
         }
       }
+    }
+  }
+  
+  .bottom-img {
+    width: 100%;
+    image {
+      width: 100%;
     }
   }
   .money-table-img {
