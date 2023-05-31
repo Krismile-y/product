@@ -1,105 +1,111 @@
 <template>
 	<view class="greenDetail" style="">
-		<airel-floatball  />
-		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<view style="width: 100%;height:30upx;"></view>
-		
-		<view class="box disc" >
-			<view class="shang">
-				<image :src="item.img_path"  ></image>
-				<view class="shangRight disc">
-					<view class="biaoti">
-						<!-- <view class="gr dis">标签内容</view> -->
-						<view class="gDetail">
-						  {{item.title}}
-						</view>
-					</view>
-					<!-- <view class="line"></view> -->
-					
-					<view class="detail">
-						已经有{{item.people}}人参与了捐赠
-					</view>
-					
-					<view class="address">
-						<view>地址：海南</view>
-						<view class="aixin dis" @tap="open">捐献爱心</view>
-					</view>
-					
-				</view>
-			</view>
-			
-			<view class="title">{{item.title}}</view>
-			
-			<view class="neirong" v-html="item.content">
-				
-			</view>
-			
-			<image :src="item.img_path"  mode="widthFix" class="bigImage"></image>
-			
-			<view class="time">{{item.record_no}}</view>
-		</view>
 		
 		
-		<!-- 下面小框框 -->
-		<view class="last disc">
-			<view class="lastItem">
-				<view class="name">收款机构:</view>
-				<view class="nameDetail">{{item.collection_agency}}</view>
-			</view>
-			<view class="lastItem">
-				<view class="name">执行机构:</view>
-				<view class="nameDetail">{{item.executing_agency}}</view>
-			</view>
-			<view class="lastItem">
-				<view class="name">公益进展:</view>
-				<view class="nameDetail" style="color: #02AE71;" @tap="chakanxiangqing">
-					查看详情
-				</view>
-			</view>
-			<view class="lastItem">
-				<view class="name">已筹款人数:</view>
-				<view class="nameDetail">{{item.people}}</view>
-			</view>
-			<view class="lastItem">
-				<view class="name">已筹善款:</view>
-				<view class="nameDetail">{{item.amount}}</view>
-			</view>
-		</view>
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		   <view><airel-floatball  /></view>
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   <view style="width: 100%;height:30upx;"></view>
+		   
+		   <view class="box disc" >
+		   	<view class="shang">
+		   		<image :src="item.img_path"  ></image>
+		   		<view class="shangRight disc">
+		   			<view class="biaoti">
+		   				<!-- <view class="gr dis">标签内容</view> -->
+		   				<view class="gDetail">
+		   				  {{item.title}}
+		   				</view>
+		   			</view>
+		   			<!-- <view class="line"></view> -->
+		   			
+		   			<view class="detail">
+		   				已经有{{item.people}}人参与了捐赠
+		   			</view>
+		   			
+		   			<view class="address">
+		   				<view>地址：海南</view>
+		   				<view class="aixin dis" @tap="open">捐献爱心</view>
+		   			</view>
+		   			
+		   		</view>
+		   	</view>
+		   	
+		   	<view class="title">{{item.title}}</view>
+		   	
+		   	<view class="neirong" v-html="item.content">
+		   		
+		   	</view>
+		   	
+		   	<image :src="item.img_path"  mode="widthFix" class="bigImage"></image>
+		   	
+		   	<view class="time">{{item.record_no}}</view>
+		   </view>
+		   
+		   
+		   <!-- 下面小框框 -->
+		   <view class="last disc">
+		   	<view class="lastItem">
+		   		<view class="name">收款机构:</view>
+		   		<view class="nameDetail">{{item.collection_agency}}</view>
+		   	</view>
+		   	<view class="lastItem">
+		   		<view class="name">执行机构:</view>
+		   		<view class="nameDetail">{{item.executing_agency}}</view>
+		   	</view>
+		   	<view class="lastItem">
+		   		<view class="name">公益进展:</view>
+		   		<view class="nameDetail" style="color: #02AE71;" @tap="chakanxiangqing">
+		   			查看详情
+		   		</view>
+		   	</view>
+		   	<view class="lastItem">
+		   		<view class="name">已筹款人数:</view>
+		   		<view class="nameDetail">{{item.people}}</view>
+		   	</view>
+		   	<view class="lastItem">
+		   		<view class="name">已筹善款:</view>
+		   		<view class="nameDetail">{{item.amount}}</view>
+		   	</view>
+		   </view>
+		   
+		   <!-- 弹出层 -->
+		   <u-popup :show="show" mode="bottom" @close="close" :round="16" @open="open">
+		     <view style="width: 100%;height: 800upx;">
+		   	  
+		   	  <view class="infoBox">
+		   		  <view class="infoTitle dis">我要捐款</view>
+		   		  <view class="shankuan">
+		   			  <view class="sDetail">善款接收：{{item.executing_agency}}</view>
+		   		  </view>
+		   		  <view class="three">
+		   			  <view class="threeItem dis" @tap="chooseMoney(set_amount[0],0)" :class="{color:currentIndex==0?true:false}">{{set_amount[0]}}元</view>
+		   			  <view class="threeItem dis" @tap="chooseMoney(set_amount[1],1)" :class="{color:currentIndex==1?true:false}">{{set_amount[1]}}元</view>
+		   			  <view class="threeItem dis"  @tap="chooseMoney(set_amount[2],2)" :class="{color:currentIndex==2?true:false}">{{set_amount[2]}}元</view>
+		   			   
+		   		  </view>
+		   		  
+		   		  <view class="zidingyi">
+		   			  <view class="jine dis">自定义金额</view>
+		   			  <input type="number" placeholder="请输入金额" v-model="zidingyijine" @input='change'>
+		   			  <view class="font dis">元</view>
+		   		  </view>
+		   		  
+		   		  <view class="line"></view>
+		   		  
+		   		  <view class="ketixian">可提现金额：{{info.money_approve}}</view>
+		   		  
+		   		  <view class="btnBox dis">
+		   			  <view class="btn dis" @tap="agree">同意并捐赠</view>
+		   		  </view>
+		   	  </view>
+		   	  
+		     </view>
+		   </u-popup>
+		  </scroll-view>
 		
-		<!-- 弹出层 -->
-		<u-popup :show="show" mode="bottom" @close="close" :round="16" @open="open">
-		  <view style="width: 100%;height: 800upx;">
-			  
-			  <view class="infoBox">
-				  <view class="infoTitle dis">我要捐款</view>
-				  <view class="shankuan">
-					  <view class="sDetail">善款接收：{{item.executing_agency}}</view>
-				  </view>
-				  <view class="three">
-					  <view class="threeItem dis" @tap="chooseMoney(set_amount[0],0)" :class="{color:currentIndex==0?true:false}">{{set_amount[0]}}元</view>
-					  <view class="threeItem dis" @tap="chooseMoney(set_amount[1],1)" :class="{color:currentIndex==1?true:false}">{{set_amount[1]}}元</view>
-					  <view class="threeItem dis"  @tap="chooseMoney(set_amount[2],2)" :class="{color:currentIndex==2?true:false}">{{set_amount[2]}}元</view>
-					   
-				  </view>
-				  
-				  <view class="zidingyi">
-					  <view class="jine dis">自定义金额</view>
-					  <input type="number" placeholder="请输入金额" v-model="zidingyijine" @input='change'>
-					  <view class="font dis">元</view>
-				  </view>
-				  
-				  <view class="line"></view>
-				  
-				  <view class="ketixian">可提现金额：{{info.money_approve}}</view>
-				  
-				  <view class="btnBox dis">
-					  <view class="btn dis" @tap="agree">同意并捐赠</view>
-				  </view>
-			  </view>
-			  
-		  </view>
-		</u-popup>
+		
 		
 	</view>
 </template>

@@ -1,61 +1,67 @@
 <template>
   <view class="rengou">
-    <airel-floatball  />
-	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-    <!-- 商品详情图片 -->
-    <image class="detailsImg" :src="head_img" mode=""></image>
-    <view class="project-title">
-      选择数量和天数
-    </view>
-    <!-- 内容选择 -->
-    <view class="check-box">
-      <view class="check-num">
-        <view class="check-title">
-          数量：
-        </view>
-        <u-number-box 
-            v-model="value"
-            integer
-            :min="1"
-        ></u-number-box>
-      </view>
-      <view class="check-day">
-        <text class="check-title">选择天数：</text>
-        <text class="check-title">请选择</text>
-      </view>
-      <!-- 因为现在距离够了，不用收起列表，所以常态展开 -->
-      <view class="list-item" v-for="(item,index) in dayID" :key="index" @tap="checkItem(index)" :class="{'checked-list':checked==index}">
-        <view class="item-text">
-          项目名称：{{item.goods_name}}
-        </view>
-        <view class="item-text">
-          项目对应天数：{{item.project_day}}天
-        </view>
-        <view class="item-text">
-          项目收益：{{item.income}}
-        </view>
-        <view class="item-text">
-          项目总收益：{{item.total_red_money}}
-        </view>
-        <view class="img-right">
-          <image :src="checked==index? checkedImg: defaultImg" mode=""></image>
-        </view>
-      </view>
-    </view>
-    <view class="opcity-bottom">
-      
-    </view>
-    <view class="bottom-fixd" :class="{'fixed': fixedType}">
-      <view class="bottom-text">
-        <text class="qitou">订单价格：</text>
-        <text class="orange">￥{{zhifuMoney}}</text>
-        <text class="orange small">.00</text>
-      </view>
-      <view class="bottom-btn" @tap="go">
-        去支付
-      </view>
-    </view>
+	  
+	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	     <view>
+	     	<airel-floatball  />
+	     </view>
+	     <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	     <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+	     <!-- 商品详情图片 -->
+	     <image class="detailsImg" :src="head_img" mode=""></image>
+	     <view class="project-title">
+	       选择数量和天数
+	     </view>
+	     <!-- 内容选择 -->
+	     <view class="check-box">
+	       <view class="check-num">
+	         <view class="check-title">
+	           数量：
+	         </view>
+	         <u-number-box 
+	             v-model="value"
+	             integer
+	             :min="1"
+	         ></u-number-box>
+	       </view>
+	       <view class="check-day">
+	         <text class="check-title">选择天数：</text>
+	         <text class="check-title">请选择</text>
+	       </view>
+	       <!-- 因为现在距离够了，不用收起列表，所以常态展开 -->
+	       <view class="list-item" v-for="(item,index) in dayID" :key="index" @tap="checkItem(index)" :class="{'checked-list':checked==index}">
+	         <view class="item-text">
+	           项目名称：{{item.goods_name}}
+	         </view>
+	         <view class="item-text">
+	           项目对应天数：{{item.project_day}}天
+	         </view>
+	         <view class="item-text">
+	           项目收益：{{item.income}}
+	         </view>
+	         <view class="item-text">
+	           项目总收益：{{item.total_red_money}}
+	         </view>
+	         <view class="img-right">
+	           <image :src="checked==index? checkedImg: defaultImg" mode=""></image>
+	         </view>
+	       </view>
+	     </view>
+	     <view class="opcity-bottom">
+	       
+	     </view>
+	     <view class="bottom-fixd" :class="{'fixed': fixedType}">
+	       <view class="bottom-text">
+	         <text class="qitou">订单价格：</text>
+	         <text class="orange">￥{{zhifuMoney}}</text>
+	         <text class="orange small">.00</text>
+	       </view>
+	       <view class="bottom-btn" @tap="go">
+	         去支付
+	       </view>
+	     </view>
+	    </scroll-view>
+    
   </view>
 </template>
 

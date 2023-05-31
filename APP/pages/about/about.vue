@@ -32,6 +32,9 @@
 				<image src="./about/18.png" mode=""></image>
 				<image src="./about/19.png" mode=""></image>
 				<image src="./about/20.png" mode=""></image>
+				<image src="./about/21.png" mode=""></image>
+				<image src="./about/22.png" mode=""></image>
+				<image src="./about/23.png" mode=""></image>
 			</scroll-view>
 		</view>
 

@@ -1,6 +1,6 @@
 <template>
   <view class="webview" >
-    <airel-floatball  />
+    
     <web-view :src="url" :scroll-x="true" :scroll-y="true" style="height:100%" v-if="url!==''"></web-view>
   </view>
 </template>

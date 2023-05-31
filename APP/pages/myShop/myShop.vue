@@ -1,53 +1,61 @@
 <template>
 	<view class="myShop-page">
-    <airel-floatball  />
-	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-    <backgroundPage :title="title">
-      <view class="box">
-        <view class="change-address"  @tap="go">
-          <view class="add-box">
-            <image src="../../static/common/addition.png" mode=""></image>
-          </view>
-          <view class="add-txt">
-            新增或选择收货地址
-          </view>
-        </view>
-        <view class="shop" v-for="item in list" >
-          <view class="image-box">
-            <image @tap="show=true" :src="item.head_img==''? defaultImg: item.head_img" mode=""></image>
-            <!-- :src="item.head_img" -->
-          </view>
-          <!-- 商品信息 -->
-          <view class="msg-connect">
-            <view class="msg-no">
-              {{item.wares_no}}
-            </view>
-            <view class="msg-address">
-              {{item.address}}
-            </view>
-          </view>
-          <!-- 金额以及下单状态 -->
-          <view class="money-status">
-            <view class="shop-money">
-              {{item.wares_money}}
-            </view>
-            <view class="shop-status">
-              {{item.status_text}}
-            </view>
-          </view>
-          
-          <!-- <view class="font">
-            <view class="info"></view>
-            <view class="info youbian"></view>
-          </view>
-          <view class="de"></view> -->
-          
-          
-        </view>
-      
-      </view>
-    </backgroundPage>
+		
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		   <view>
+		   	 <airel-floatball  />
+		   </view>
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   <backgroundPage :title="title">
+		     <view class="box">
+		       <view class="change-address"  @tap="go">
+		         <view class="add-box">
+		           <image src="../../static/common/addition.png" mode=""></image>
+		         </view>
+		         <view class="add-txt">
+		           新增或选择收货地址
+		         </view>
+		       </view>
+		       <view class="shop" v-for="item in list" >
+		         <view class="image-box">
+		           <image @tap="show=true" :src="item.head_img==''? defaultImg: item.head_img" mode=""></image>
+		           <!-- :src="item.head_img" -->
+		         </view>
+		         <!-- 商品信息 -->
+		         <view class="msg-connect">
+		           <view class="msg-no">
+		             {{item.wares_no}}
+		           </view>
+		           <view class="msg-address">
+		             {{item.address}}
+		           </view>
+		         </view>
+		         <!-- 金额以及下单状态 -->
+		         <view class="money-status">
+		           <view class="shop-money">
+		             {{item.wares_money}}
+		           </view>
+		           <view class="shop-status">
+		             {{item.status_text}}
+		           </view>
+		         </view>
+		         
+		         <!-- <view class="font">
+		           <view class="info"></view>
+		           <view class="info youbian"></view>
+		         </view>
+		         <view class="de"></view> -->
+		         
+		         
+		       </view>
+		     
+		     </view>
+		   </backgroundPage>
+		  </scroll-view>
+		
+		
+ 
 	</view>
 </template>
 

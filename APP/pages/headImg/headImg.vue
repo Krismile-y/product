@@ -1,20 +1,25 @@
 <template>
 	<view class="headImg">
-    <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-    <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-    <view class="headImg-box">
-      <image :src="imageSrc" mode="" class="img-head"></image>
-    </view>
-		<view class="bottom-btn">
-			<view class="bbtn" @tap="chooseImage()">
-				从相册选择一张
-			</view>
-
-			<!-- <view class="bbtn">
-				拍一张照片
-			</view> -->
-		</view>
-		<view><airel-floatball  /></view>
+		
+	<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+	   <view class="headImg-box">
+	     <image :src="imageSrc" mode="" class="img-head"></image>
+	   </view>
+	   	<view class="bottom-btn">
+	   		<view class="bbtn" @tap="chooseImage()">
+	   			从相册选择一张
+	   		</view>
+	   
+	   		<!-- <view class="bbtn">
+	   			拍一张照片
+	   		</view> -->
+	   	</view>
+	   	<view><airel-floatball  /></view>
+	  </scroll-view>	
+		
+   
 	</view>
 </template>
 

@@ -1,104 +1,109 @@
 <template>
   <view class="withdrawal">
-    <airel-floatball />
-    <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-    <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-    <view class="head-box">
-      <view class="head-text">
-        可提现余额
-      </view>
-      <view class="head-num" :key="moneyRemake">
-        {{info.money_approve}}
-      </view>
-    </view>
-    <view class="content-box">
-      <view class="content-title">
-        <view class="shu"></view>
-        <view class="title-text">
-          提现金额
-        </view>
-      </view>
-      <view class="money-num">
-        <u--input placeholder="请输入提现金额" border="bottom" v-model="money">
-          <!-- <u--text
-            text="￥"
-            slot="prefix"
-            margin="0 3px 0 0"
-            type="tips"
-          ></u--text> -->
-        </u--input>
-      </view>
-      <view class="cardChange" @tap="open()">
-        <view class="left">
-          银行卡
-        </view>
-        <view class="center" :class="{
-          'cardNumcolor': cardTextColor
-        }">
-          {{cardText}}
-        </view>
-        <image src="../../static/my/xia.png" mode=""></image>
-      </view>
-    </view>
-    <view class="bottom-fixd">
-      <view class="bot-btn" @tap="tixian">
-        提交申请
-      </view>
-    </view>
-    <u-popup :show="show" mode="bottom" @close="close" :round="16" @open="open">
-      <view class="popupBox">
-        <view class="popupBox-title">
-          银行卡选择
-        </view>
-        <view class="card-item" v-for="(item,index) in cardList" :key="index" @tap="checkCard(item)">
-          <view class="card-name">
-            {{item.name}}
-          </view>
-          <view class="username">
-            {{item.account_name}}
-          </view>
-          <view class="card-number">
-            {{item.card}}
-          </view>
-          <view class="defaultText" v-show="(item.is_default==1)">
-            当前选中
-          </view>
-        </view>
-        <view class="addCard" @tap="openAgain()">
-          <image src="../../static/newIndex/add.png" mode=""></image>
-          <view class="addtext">
-            添加银行卡
-          </view>
-        </view>
-      </view>
-    </u-popup>
-    <u-popup :show="addShow" mode="bottom" @close="closeAgain" :round="16" @open="openAgain">
-      <view class="popupBox">
-        <view class="popupBox-title">
-          银行卡填写
-        </view>
-        <uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData" :label-width='80'>
-          <uni-forms-item label="银行卡号" name="u_back_card" required>
-            <uni-easyinput type="text" v-model="valiFormData.u_back_card" placeholder="请输入银行卡号(只能输入数字)" />
-          </uni-forms-item>
-          <uni-forms-item required name="u_bank_name" label="银行名称">
-            <uni-easyinput type="text" v-model="valiFormData.u_bank_name" placeholder="请输入银行名称" />
-          </uni-forms-item>
-          <uni-forms-item required name="u_back_user_name" label="卡用户名">
-            <uni-easyinput type="text" v-model="valiFormData.u_back_user_name" placeholder="请输入卡用户名" />
-          </uni-forms-item>
-        </uni-forms>
-        <view class="btn-group">
-          <view class="quxiao" @tap="closeAgain">
-            取消
-          </view>
-          <view class="wancheng" @tap="submitForm('valiForm')">
-            填写完成
-          </view>
-        </view>
-      </view>
-    </u-popup>
-    <numberJpan :length="6" @closeChange="closeChange($event)" :showNum="false" ref="numberJpan"></numberJpan>
+	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	     <view>
+	     	<airel-floatball />
+	     </view>
+	     <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	     <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+	     <view class="head-box">
+	       <view class="head-text">
+	         可提现余额
+	       </view>
+	       <view class="head-num" :key="moneyRemake">
+	         {{info.money_approve}}
+	       </view>
+	     </view>
+	     <view class="content-box">
+	       <view class="content-title">
+	         <view class="shu"></view>
+	         <view class="title-text">
+	           提现金额
+	         </view>
+	       </view>
+	       <view class="money-num">
+	         <u--input placeholder="请输入提现金额" border="bottom" v-model="money">
+	           <!-- <u--text
+	             text="￥"
+	             slot="prefix"
+	             margin="0 3px 0 0"
+	             type="tips"
+	           ></u--text> -->
+	         </u--input>
+	       </view>
+	       <view class="cardChange" @tap="open()">
+	         <view class="left">
+	           银行卡
+	         </view>
+	         <view class="center" :class="{
+	           'cardNumcolor': cardTextColor
+	         }">
+	           {{cardText}}
+	         </view>
+	         <image src="../../static/my/xia.png" mode=""></image>
+	       </view>
+	     </view>
+	     <view class="bottom-fixd">
+	       <view class="bot-btn" @tap="tixian">
+	         提交申请
+	       </view>
+	     </view>
+	     <u-popup :show="show" mode="bottom" @close="close" :round="16" @open="open">
+	       <view class="popupBox">
+	         <view class="popupBox-title">
+	           银行卡选择
+	         </view>
+	         <view class="card-item" v-for="(item,index) in cardList" :key="index" @tap="checkCard(item)">
+	           <view class="card-name">
+	             {{item.name}}
+	           </view>
+	           <view class="username">
+	             {{item.account_name}}
+	           </view>
+	           <view class="card-number">
+	             {{item.card}}
+	           </view>
+	           <view class="defaultText" v-show="(item.is_default==1)">
+	             当前选中
+	           </view>
+	         </view>
+	         <view class="addCard" @tap="openAgain()">
+	           <image src="../../static/newIndex/add.png" mode=""></image>
+	           <view class="addtext">
+	             添加银行卡
+	           </view>
+	         </view>
+	       </view>
+	     </u-popup>
+	     <u-popup :show="addShow" mode="bottom" @close="closeAgain" :round="16" @open="openAgain">
+	       <view class="popupBox">
+	         <view class="popupBox-title">
+	           银行卡填写
+	         </view>
+	         <uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData" :label-width='80'>
+	           <uni-forms-item label="银行卡号" name="u_back_card" required>
+	             <uni-easyinput type="text" v-model="valiFormData.u_back_card" placeholder="请输入银行卡号(只能输入数字)" />
+	           </uni-forms-item>
+	           <uni-forms-item required name="u_bank_name" label="银行名称">
+	             <uni-easyinput type="text" v-model="valiFormData.u_bank_name" placeholder="请输入银行名称" />
+	           </uni-forms-item>
+	           <uni-forms-item required name="u_back_user_name" label="卡用户名">
+	             <uni-easyinput type="text" v-model="valiFormData.u_back_user_name" placeholder="请输入卡用户名" />
+	           </uni-forms-item>
+	         </uni-forms>
+	         <view class="btn-group">
+	           <view class="quxiao" @tap="closeAgain">
+	             取消
+	           </view>
+	           <view class="wancheng" @tap="submitForm('valiForm')">
+	             填写完成
+	           </view>
+	         </view>
+	       </view>
+	     </u-popup>
+	     <numberJpan :length="6" @closeChange="closeChange($event)" :showNum="false" ref="numberJpan"></numberJpan>
+	    </scroll-view>
+    
   </view>
 </template>
 

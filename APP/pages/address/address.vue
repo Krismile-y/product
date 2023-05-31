@@ -1,44 +1,48 @@
 <template>
 	<view class="address">
-		<view><airel-floatball  /></view>
-		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<scroll-view scroll-y="true" style="width: 100%;height: calc(100vh - 300upx);padding-bottom: 160upx;">
-			<view class="item" v-for="(item,index) in list" :key="index"  :class="{color:item.is_default==1?true:false}">
-				<view class="pos disc">
-					<image src="../../static/common/xiugai.png" mode="" @tap="exit(item)"></image>
-					<image src="../../static/common/del.png" mode="" @tap="del(item)"></image>
-				</view>
-				<view class="left dis" @tap="itemtap(item,index)">
-					<image
-						src="../../common/user.webp"
-						mode=""></image>
-				</view>
-				<view class="right" @tap="itemtap(item,index)">
-					<view class="title">
-						<view class="name">{{item.username}}</view>
-						<view class="phone">{{item.phone}}</view>
-						<view class="moren dis" v-show="item.is_default==1?true:false">默认</view>
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+			<view><airel-floatball  /></view>
+			<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+			<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+			<scroll-view scroll-y="true" style="width: 100%;height: calc(100vh - 300upx);padding-bottom: 160upx;">
+				<view class="item" v-for="(item,index) in list" :key="index"  :class="{color:item.is_default==1?true:false}">
+					<view class="pos disc">
+						<image src="../../static/common/xiugai.png" mode="" @tap="exit(item)"></image>
+						<image src="../../static/common/del.png" mode="" @tap="del(item)"></image>
 					</view>
-					<view class="detail">
-						{{item.province}}{{item.city}}{{item.county}}{{item.address}}
+					<view class="left dis" @tap="itemtap(item,index)">
+						<image
+							src="../../common/user.webp"
+							mode=""></image>
 					</view>
+					<view class="right" @tap="itemtap(item,index)">
+						<view class="title">
+							<view class="name">{{item.username}}</view>
+							<view class="phone">{{item.phone}}</view>
+							<view class="moren dis" v-show="item.is_default==1?true:false">默认</view>
+						</view>
+						<view class="detail">
+							{{item.province}}{{item.city}}{{item.county}}{{item.address}}
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+			
+			<!-- <view class="add dis">
+				<view class="f dis">添加地址</view>
+			</view> -->
+			
+			<view class="bottom dis">
+				<!-- <view class="in dis" @tap="add" >
+				   添加地址
+				</view> -->
+				<view class="xinBtn dis" @tap="add">
+					添加地址
 				</view>
 			</view>
+			
 		</scroll-view>
 		
-		<!-- <view class="add dis">
-			<view class="f dis">添加地址</view>
-		</view> -->
-		
-		<view class="bottom dis">
-			<!-- <view class="in dis" @tap="add" >
-			   添加地址
-			</view> -->
-			<view class="xinBtn dis" @tap="add">
-				添加地址
-			</view>
-		</view>
 		
 	</view>
 </template>

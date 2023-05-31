@@ -1,65 +1,72 @@
 <template>
 	<view>
-    <airel-floatball  />
-	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<view class="box">
-      <view class="head-box">
-        <view class="picker-view" @tap="changeYear">
-          <view class="picker-p">
-            {{dateText}}
-          </view>
-          <view class="down-img">
-            <image src="../../static/common/down.png" mode="widthFix"></image>
-          </view>
-        </view>
-        <view class="head-content">
-          <view class="head-title">
-            收益总金额
-          </view>
-          <view class="price">{{priceTotal}}</view>
-        </view>
-      </view>
-      
-      
-
-			<view class="" style="margin-top: 20upx;">
-        <view class="noneData" v-show="tableData.length==0">
-          暂无数据
-        </view>
-        <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
-          <uni-card :title="item.money_type_text" :extra="item.money_amount" v-for="(item,index) in tableData" :key="index">
-            <text class="uni-body">{{item.create_time}}</text>
-          </uni-card>
-        </scroll-list>
-				<!-- <uni-card :title="item.money_type_text" :extra="item.money_amount" v-for="(item,index) in tableData" :key="index">
-          <text class="uni-body">{{item.create_time}}</text>
-        </uni-card>
-				<view class="uni-pagination-box" v-if="showPagination"><uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total" @change="change" /></view> -->
-			</view>
-
-		<!-- 	<view class="daiding dis">
-				<uni-load-more status="more" :content-text="contentText" />
-			</view> -->
-      <!-- 年月选择弹框 -->
-      <template>
-        <view>
-          <u-datetime-picker
-            :show="show"
-            v-model="value1"
-            mode="year-month"
-            @confirm="pickerConfirm"
-            @close="pickerClose"
-            @cancel="pickerCancel"
-          ></u-datetime-picker>
-        </view>
-      </template>
-
-
-
-
-
-		</view>
+		
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		   <view>
+		   	 <airel-floatball  />
+		   </view>
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   	<view class="box">
+		     <view class="head-box">
+		       <view class="picker-view" @tap="changeYear">
+		         <view class="picker-p">
+		           {{dateText}}
+		         </view>
+		         <view class="down-img">
+		           <image src="../../static/common/down.png" mode="widthFix"></image>
+		         </view>
+		       </view>
+		       <view class="head-content">
+		         <view class="head-title">
+		           收益总金额
+		         </view>
+		         <view class="price">{{priceTotal}}</view>
+		       </view>
+		     </view>
+		     
+		     
+		   
+		   		<view class="" style="margin-top: 20upx;">
+		       <view class="noneData" v-show="tableData.length==0">
+		         暂无数据
+		       </view>
+		       <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
+		         <uni-card :title="item.money_type_text" :extra="item.money_amount" v-for="(item,index) in tableData" :key="index">
+		           <text class="uni-body">{{item.create_time}}</text>
+		         </uni-card>
+		       </scroll-list>
+		   			<!-- <uni-card :title="item.money_type_text" :extra="item.money_amount" v-for="(item,index) in tableData" :key="index">
+		         <text class="uni-body">{{item.create_time}}</text>
+		       </uni-card>
+		   			<view class="uni-pagination-box" v-if="showPagination"><uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total" @change="change" /></view> -->
+		   		</view>
+		   
+		   	<!-- 	<view class="daiding dis">
+		   			<uni-load-more status="more" :content-text="contentText" />
+		   		</view> -->
+		     <!-- 年月选择弹框 -->
+		     <template>
+		       <view>
+		         <u-datetime-picker
+		           :show="show"
+		           v-model="value1"
+		           mode="year-month"
+		           @confirm="pickerConfirm"
+		           @close="pickerClose"
+		           @cancel="pickerCancel"
+		         ></u-datetime-picker>
+		       </view>
+		     </template>
+		   
+		   
+		   
+		   
+		   
+		   	</view>
+		  </scroll-view>
+		
+    
 
 	</view>
 </template>

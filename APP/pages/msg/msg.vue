@@ -1,80 +1,80 @@
 <template>
 	<view class="msg">
-		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-
-		<view class="newBox" @tap="go(0)">
-			<view class="shang">
-				<image src="./one.png" mode=""></image>
-				系统通知
-			</view>
-			<view class="xia">
-				<view class="none dis">
-					<view class="yuan" v-if="one == 1?true:false"></view>
-				</view>
-				官方系统消息通知,请注意查看!
-				<view class="pos dis">
-					<image src="./right.png" mode=""></image>
-				</view>
-			</view>
-		</view>
-
-
-		<view class="newBox" @tap="go(1)">
-			<view class="shang">
-				<image src="./two.png" mode=""></image>
-				最新活动
-			</view>
-			<view class="xia">
-				<view class="none dis">
-					<view class="yuan" v-if="two == 1?true:false"></view>
-				</view>
-				官方活动消息通知,请注意查看!
-				<view class="pos dis">
-					<image src="./right.png" mode=""></image>
-				</view>
-			</view>
-		</view>
-
-		<view class="newBox" @tap="go(2)">
-			<view class="shang">
-				<image src="./three.png" mode=""></image>
-				平台公告
-			</view>
-			<view class="xia">
-				<view class="none dis">
-					<view class="yuan" v-if="three == 1?true:false"></view>
-				</view>
-				最新平台通知,请注意查看!
-				<view class="pos dis">
-					<image src="./right.png" mode=""></image>
-				</view>
-			</view>
-		</view>
-
-
-		<view class="newBox" @tap="go(2)">
-			<view class="shang">
-				<image src="./four.png" mode=""></image>
-				站内信
-			</view>
-			<view class="xia">
-				<view class="none dis">
-					<view class="yuan" v-if="four == 1?true:false"></view>
-				</view>
-				关于绿色中国
-				<view class="pos dis">
-					<image src="./right.png" mode=""></image>
-				</view>
-			</view>
-		</view>
-
-
-
-
-
-
-		<view><airel-floatball /></view>
+		
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   
+		   <view class="newBox" @tap="go(0)">
+		   	<view class="shang">
+		   		<image src="./one.png" mode=""></image>
+		   		系统通知
+		   	</view>
+		   	<view class="xia">
+		   		<view class="none dis">
+		   			<view class="yuan" v-if="one == 1?true:false"></view>
+		   		</view>
+		   		官方系统消息通知,请注意查看!
+		   		<view class="pos dis">
+		   			<image src="./right.png" mode=""></image>
+		   		</view>
+		   	</view>
+		   </view>
+		   
+		   
+		   <view class="newBox" @tap="go(1)">
+		   	<view class="shang">
+		   		<image src="./two.png" mode=""></image>
+		   		最新活动
+		   	</view>
+		   	<view class="xia">
+		   		<view class="none dis">
+		   			<view class="yuan" v-if="two == 1?true:false"></view>
+		   		</view>
+		   		官方活动消息通知,请注意查看!
+		   		<view class="pos dis">
+		   			<image src="./right.png" mode=""></image>
+		   		</view>
+		   	</view>
+		   </view>
+		   
+		   <view class="newBox" @tap="go(2)">
+		   	<view class="shang">
+		   		<image src="./three.png" mode=""></image>
+		   		平台公告
+		   	</view>
+		   	<view class="xia">
+		   		<view class="none dis">
+		   			<view class="yuan" v-if="three == 1?true:false"></view>
+		   		</view>
+		   		最新平台通知,请注意查看!
+		   		<view class="pos dis">
+		   			<image src="./right.png" mode=""></image>
+		   		</view>
+		   	</view>
+		   </view>
+		   
+		   
+		   <view class="newBox" @tap="go(2)">
+		   	<view class="shang">
+		   		<image src="./four.png" mode=""></image>
+		   		站内信
+		   	</view>
+		   	<view class="xia">
+		   		<view class="none dis">
+		   			<view class="yuan" v-if="four == 1?true:false"></view>
+		   		</view>
+		   		关于绿色中国
+		   		<view class="pos dis">
+		   			<image src="./right.png" mode=""></image>
+		   		</view>
+		   	</view>
+		   </view>
+		   	   
+		   <view><airel-floatball /></view>
+		  </scroll-view>
+		
+		
 	</view>
 </template>
 

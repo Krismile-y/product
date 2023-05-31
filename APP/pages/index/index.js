@@ -9,49 +9,49 @@ import hezuoImg2 from "@/static/hezuo/hezuoAll.png"
 export default {
 	components: {
 		down,
-    "helang-tab-bar-bulge": tabBarBulge,
+		"helang-tab-bar-bulge": tabBarBulge,
 	},
 	data() {
 		return {
-      hezuoImg: [
-        hezuoImg1,
-        hezuoImg2,
-      ],
-			newMSG:0,//官方最新消息
+			hezuoImg: [
+				hezuoImg1,
+				hezuoImg2,
+			],
+			newMSG: 0, //官方最新消息
 			phoneDown: "",
 			out: 0,
 			obj: {
 				type: 'index',
 				index: 0,
 			},
-      bumenItems:[
-        '中华人民共和国国家发展和改革委员会',
-        '中华人民共和国住房和城乡建设部',
-        '中华人民共和国国家林业和草原局',
-        '中华人民共和国生态环境部',
-        '中华人民共和国国家航天局',
-        '中华人民共和国国家能源局',
-        '中华人民共和国自然资源部',
-      ], //监管部门
+			bumenItems: [
+				'中华人民共和国国家发展和改革委员会',
+				'中华人民共和国住房和城乡建设部',
+				'中华人民共和国国家林业和草原局',
+				'中华人民共和国生态环境部',
+				'中华人民共和国国家航天局',
+				'中华人民共和国国家能源局',
+				'中华人民共和国自然资源部',
+			], //监管部门
 			banner: [], //轮播图
 			article: [], //新闻
 			text1: '',
 			nowNum: 0, //控制海报显示,
 			posterShow: true,
-			lastLength:'',
+			lastLength: '',
 			posterList: [
-				
-					// {
-					// 	img: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
-					// },
-					// {
-					// 	img: "https://img0.baidu.com/it/u=2616180438,3555003891&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500"
-					// },
-					// {
-					// 	img: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
-					// },
-					
-				
+
+				// {
+				// 	img: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
+				// },
+				// {
+				// 	img: "https://img0.baidu.com/it/u=2616180438,3555003891&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500"
+				// },
+				// {
+				// 	img: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
+				// },
+
+
 			]
 			// posterList: {
 			// 	one: [
@@ -64,7 +64,7 @@ export default {
 			// 		{
 			// 			src: "https://img1.baidu.com/it/u=1821594903,3982007259&fm=253&fmt=auto&app=120&f=JPEG?w=1000&h=471"
 			// 		},
-					
+
 			// 	]
 			// }
 		}
@@ -77,33 +77,36 @@ export default {
 		// // #endif
 
 	},
-	onHide(){
-		uni.setStorageSync('gengxin',false)
+	onHide() {
+	
 	},
 	onShow() {
+		// uni.setStorageSync('gengxin', !false)
 		// if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
 		// 		'token')) {
 		// 	uni.navigateTo({
 		// 		url: '/pages/login/login'
 		// 	})
 		// }
-		
+
 		// 海报接口
-		this.nowNum=0
-		
-		this.$fn.request('banner', "GET", {"type":"5"}).then(res => {
-			console.log(res.data.data.length,'海报')
-			 this.posterList = res.data.data
-			 this.lastLength=res.data.data.length
+		this.nowNum = 0
+
+		this.$fn.request('banner', "GET", {
+			"type": "5"
+		}).then(res => {
+			console.log(res.data.data.length, '海报')
+			this.posterList = res.data.data
+			this.lastLength = res.data.data.length
 		})
-		
+
 		// 判断手机型号
- 
+
 		uni.getSystemInfo({
 			success: (res) => {
 				this.$fn.request('v', "GET", {}).then(r => {
-					console.log(r,'v');
-          uni.setStorageSync('lowDown',r.data.data.down)
+					console.log(r, 'v');
+					uni.setStorageSync('lowDown', r.data.data.down)
 					if (res.platform = 'android') {
 						this.phoneDown = r.data.data.apk
 					} else {
@@ -122,74 +125,76 @@ export default {
 			this.$store.state.three = true
 			this.$store.state.four = true
 		}
-    this.$store.state.current = 'index'
-    uni.setStorageSync('current','index')
-    // 最新官方消息接口
-    this.$fn.request('notice/count', "GET", {"type":"1"}).then(res => {
-    
-    	this.newMSG=res.data.data.count
-    })
+		this.$store.state.current = 'index'
+		uni.setStorageSync('current', 'index')
+		// 最新官方消息接口
+		this.$fn.request('notice/count', "GET", {
+			"type": "1"
+		}).then(res => {
+
+			this.newMSG = res.data.data.count
+		})
 		// console.log(uni.getStorageSync('token'),'')
-    // 轮播图接口
-    let data = {
-    	"type": "1",
-    }
-    this.$fn.request('banner', "GET", data).then(res => {
-    	let arr = res.data.data
-    	
-    	arr.forEach((item, index) => {
-    		let strArr = item.img.split('\\')
-    		let img = strArr.join('//')
-    		this.banner.push({
-    			img: img
-    		})
-    	})
-    	console.log(this.banner,'轮播图');
-    })
-    
-    // 新闻接口
-    this.$fn.request('article', "GET", {}).then(res => {
-    	console.log(res.data.data,'新闻')
-    	this.article = res.data.data
-    })
-    
-    // 公告接口
-    let info = {
-    	"type": "1"
-    }
-    this.$fn.request('notice', "GET", info).then(res => {
-    	console.log(res.data.data,'公告')
-    	let data = res.data.data;
-    	let i = 0;
-    	setInterval(() => {
-    		if (i < data.length) {
-    			this.text1 = data[i].content
-    			i++;
-    		} else {
-    			i = 0
-    		}
-    
-    	}, 3000)
-    })
-    
-    let kefu = {
-    	"sid": "1"
-    }
-    this.$fn.request('customer', "GET", kefu, ).then(res => {
-    	console.log(res.data.data[0].url,'客服')
-    	uni.setStorageSync('kefu', res.data.data[0].url)
-    	this.$store.commit('kefu', res.data.data[0].url)
-    })
+		// 轮播图接口
+		let data = {
+			"type": "1",
+		}
+		this.$fn.request('banner', "GET", data).then(res => {
+			let arr = res.data.data
+
+			arr.forEach((item, index) => {
+				let strArr = item.img.split('\\')
+				let img = strArr.join('//')
+				this.banner.push({
+					img: img
+				})
+			})
+			console.log(this.banner, '轮播图');
+		})
+
+		// 新闻接口
+		this.$fn.request('article', "GET", {}).then(res => {
+			console.log(res.data.data, '新闻')
+			this.article = res.data.data
+		})
+
+		// 公告接口
+		let info = {
+			"type": "1"
+		}
+		this.$fn.request('notice', "GET", info).then(res => {
+			console.log(res.data.data, '公告')
+			let data = res.data.data;
+			let i = 0;
+			setInterval(() => {
+				if (i < data.length) {
+					this.text1 = data[i].content
+					i++;
+				} else {
+					i = 0
+				}
+
+			}, 3000)
+		})
+
+		let kefu = {
+			"sid": "1"
+		}
+		this.$fn.request('customer', "GET", kefu, ).then(res => {
+			console.log(res.data.data[0].url, '客服')
+			uni.setStorageSync('kefu', res.data.data[0].url)
+			this.$store.commit('kefu', res.data.data[0].url)
+		})
 	},
-  
+
 	onBackPress(event) {
 		if (this.out == 0) {
 			this.out++
-			
+
 			this.$refs.success.showTips({
-			    msg: '在按一次退出程序',
-			    duration: 2000
-			  })
+				msg: '在按一次退出程序',
+				duration: 2000
+			})
 		} else if (this.out >= 1) {
 			plus.runtime.quit();
 			// if (plus.os.name.toLowerCase() === 'android') {
@@ -207,47 +212,47 @@ export default {
 		}
 
 	},
-  onReady(){
-	 
-  },
-  
-	onLoad() {
-    
-    if(window.location.search) {
-      const searchParams = new URLSearchParams(window.location.search);
-      
-      console.log(window.location.origin)
-      const params = {};
-      for (const pair of searchParams.entries()) {
-        params[pair[0]] = pair[1];
-      }
-      let code = params['code']; // 返回 "123"
-      console.log(code)
-      if(parseInt(code) >0 && code.length >1){
-        uni.setStorageSync('code', code)
-        window.location.href = window.location.origin+'/#/pages/login/login?='+code
-        // uni.navigateTo({
-        //   url:
-        // })
-        return;
-      }
-    }
-		  
-			
+	onReady() {
+		// uni.setStorageSync('gengxin',!false)
+	},
 
-		
+	onLoad() {
+         
+		if (window.location.search) {
+			const searchParams = new URLSearchParams(window.location.search);
+
+			console.log(window.location.origin)
+			const params = {};
+			for (const pair of searchParams.entries()) {
+				params[pair[0]] = pair[1];
+			}
+			let code = params['code']; // 返回 "123"
+			console.log(code)
+			if (parseInt(code) > 0 && code.length > 1) {
+				uni.setStorageSync('code', code)
+				window.location.href = window.location.origin + '/#/pages/login/login?=' + code
+				// uni.navigateTo({
+				//   url:
+				// })
+				return;
+			}
+		}
+
+
+
+
 	},
 	methods: {
-		guanwang(){//进入官网
-		
-		uni.navigateTo({
-		  url: '/pages/webview/webview?url='+this.$lastUrl
-		})
-			
+		guanwang() { //进入官网
+
+			uni.navigateTo({
+				url: '/pages/webview/webview?url=' + this.$lastUrl
+			})
+
 		},
-		check(){
+		check() {
 			//  #ifdef APP
-			this.$refs.down.upgrade()  //检查更新
+			this.$refs.down.upgrade() //检查更新
 			// #endif
 		},
 		ceshi() {
@@ -256,12 +261,12 @@ export default {
 		income() {
 
 		},
-    // 部门点击事件
-    bumenJump(index) {
-      uni.navigateTo({
-        url:`/pages/tousuyujianyi/tousuyujianyi?id=${index}`
-      })
-    },
+		// 部门点击事件
+		bumenJump(index) {
+			uni.navigateTo({
+				url: `/pages/tousuyujianyi/tousuyujianyi?id=${index}`
+			})
+		},
 		down() { //app下载
 			this.$fn.request('v', "GET", {}).then(res => {
 				// console.log(res.data.data.apk,'安卓')
@@ -309,15 +314,15 @@ export default {
 			})
 		},
 		goHome(name) {
-      // 跳转到社区或者积分商城,切换底部标签
-      if(name == 'community') {
-        uni.setStorageSync('current','community')
-        this.$store.state.current = 'community'
-      }
-      if(name == 'shop') {
-        uni.setStorageSync('current','shop')
-        this.$store.state.current = 'shop'
-      }
+			// 跳转到社区或者积分商城,切换底部标签
+			if (name == 'community') {
+				uni.setStorageSync('current', 'community')
+				this.$store.state.current = 'community'
+			}
+			if (name == 'shop') {
+				uni.setStorageSync('current', 'shop')
+				this.$store.state.current = 'shop'
+			}
 			uni.navigateTo({
 				url: `/pages/${name}/${name}`
 			})
@@ -347,15 +352,19 @@ export default {
 		},
 		close() { //关闭海报
 			this.nowNum++
-			console.log(this.nowNum,'现在的index')
-            console.log(this.posterList.length ,'海报的长度')
-			if (this.nowNum == this.posterList.length ) {
+			console.log(this.nowNum, '现在的index')
+			console.log(this.posterList.length, '海报的长度')
+			if (this.nowNum == this.posterList.length) {
 				console.log('999')
 				// this.posterShow = false
 				//  #ifdef APP
-				if(uni.getStorageSync('gengxin') == true){
+				// if (uni.getStorageSync('gengxin') == true) {
+				// 	this.$refs.down.upgrade() //检查更新
+				// }
+				if (this.$store.state.downSHOW==true) {
 					this.$refs.down.upgrade() //检查更新
-				}	
+					this.$store.commit('down',false)
+				}
 				// #endif
 			}
 		}

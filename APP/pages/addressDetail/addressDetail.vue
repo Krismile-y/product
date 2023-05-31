@@ -1,83 +1,88 @@
 <template>
 	<view>
-		<!-- 这个是编辑地址 -->
-		<view class="item">
-			<view> <airel-floatball /></view>
-			<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-			<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-			<view class="left dis">
-				收货人
-			</view>
-			<view class="right dis">
-				<input type="text" v-model="user_name">
-			</view>
-		</view>
-
-		<view class="item">
-			<view class="left dis">
-				手机号码
-			</view>
-			<view class="right dis">
-				<input type="text" v-model="phone" maxlength="11">
-			</view>
-		</view>
-
-		<view class="item" style="">
-			<view class="left dis">
-				所在地区
-			</view>
-			<view class="right dis" style="position: relative;">
-
-				<pickerAddress @change="change"
-					style="background-color: #f0f0f0;width: 100%;height: 60%;border-radius: 20upx;" class="dis">
-					<view>
-					  {{diqu}}
-					</view>
-				</pickerAddress>
-			</view>
-		</view>
-
-		<!-- <view class="item" v-show="diqu==''?false:true">
-			<view class="left dis">
-
-			</view>
-			<view class="right dis" style="">
-				{{diqu}}
-			</view>
-		</view> -->
-
-		<view class="item" style="margin-top: 20upx;">
-			<view class="left dis">
-				详细地址
-			</view>
-			<view class="right dis">
-				<view class="uni-textarea"
-					style="width: 100%;height: 150upx;background-color: #f0f0f0;border-radius: 20upx;overflow: hidden;">
-					<textarea placeholder-style="color:#F76260" placeholder="" v-model="wenben" />
-				</view>
-
-			</view>
-		</view>
-
-		<view class="item">
-			<view class="left dis" style="width: 50%;">
-				设为默认收货地址
-			</view>
-			<view class="right dis" style="width: 50%;">
-				<view class="pos dis">
-					<u-switch v-model="value1" activeColor="#02AE71"></u-switch>
-				</view>
-			</view>
-		</view>
-
-		<!-- <view class="bottom dis"> -->
-		<!-- <view class="in dis" @tap="Addaddress" style="">
-				确认
-			</view> -->
-		<view class="xinBtn dis" @tap="Addaddress">
-			确认
-		</view>
-		<!-- </view> -->
+		
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		   <!-- 这个是编辑地址 -->
+		   <view class="item">
+		   	<view> <airel-floatball /></view>
+		   	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   	<view class="left dis">
+		   		收货人
+		   	</view>
+		   	<view class="right dis">
+		   		<input type="text" v-model="user_name">
+		   	</view>
+		   </view>
+		   
+		   <view class="item">
+		   	<view class="left dis">
+		   		手机号码
+		   	</view>
+		   	<view class="right dis">
+		   		<input type="text" v-model="phone" maxlength="11">
+		   	</view>
+		   </view>
+		   
+		   <view class="item" style="">
+		   	<view class="left dis">
+		   		所在地区
+		   	</view>
+		   	<view class="right dis" style="position: relative;">
+		   
+		   		<pickerAddress @change="change"
+		   			style="background-color: #f0f0f0;width: 100%;height: 60%;border-radius: 20upx;" class="dis">
+		   			<view>
+		   			  {{diqu}}
+		   			</view>
+		   		</pickerAddress>
+		   	</view>
+		   </view>
+		   
+		   <!-- <view class="item" v-show="diqu==''?false:true">
+		   	<view class="left dis">
+		   
+		   	</view>
+		   	<view class="right dis" style="">
+		   		{{diqu}}
+		   	</view>
+		   </view> -->
+		   
+		   <view class="item" style="margin-top: 20upx;">
+		   	<view class="left dis">
+		   		详细地址
+		   	</view>
+		   	<view class="right dis">
+		   		<view class="uni-textarea"
+		   			style="width: 100%;height: 150upx;background-color: #f0f0f0;border-radius: 20upx;overflow: hidden;">
+		   			<textarea placeholder-style="color:#F76260" placeholder="" v-model="wenben" />
+		   		</view>
+		   
+		   	</view>
+		   </view>
+		   
+		   <view class="item">
+		   	<view class="left dis" style="width: 50%;">
+		   		设为默认收货地址
+		   	</view>
+		   	<view class="right dis" style="width: 50%;">
+		   		<view class="pos dis">
+		   			<u-switch v-model="value1" activeColor="#02AE71"></u-switch>
+		   		</view>
+		   	</view>
+		   </view>
+		   
+		   <!-- <view class="bottom dis"> -->
+		   <!-- <view class="in dis" @tap="Addaddress" style="">
+		   		确认
+		   	</view> -->
+		   <view class="xinBtn dis" @tap="Addaddress">
+		   	确认
+		   </view>
+		   <!-- </view> -->
+		  </scroll-view>
+		
+		
 
 	</view>
 </template>
