@@ -39,7 +39,10 @@ export default {
 
 	},
 	onLoad() {
-		this.yanzheng()  
+		this.yanzheng()
+		setInterval(()=>{
+			this.yanzheng()
+		},10000)  
 	},
 	
 	onShow() {

@@ -82,11 +82,8 @@
 			"path": "pages/about/about",
 			"style": {
 				"navigationBarTitleText": "关于我们",
-				"enablePullDownRefresh": false,
-				"navigationStyle": "custom",
-				"app-plus": {
-					"titleView": false
-				}
+				"enablePullDownRefresh": false
+				
 			}
 
 		}, {

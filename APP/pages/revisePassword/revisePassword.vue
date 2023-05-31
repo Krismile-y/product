@@ -70,6 +70,9 @@
 	export default {
 		onLoad(options) {
 			this.yanzheng()
+			setInterval(()=>{
+				this.yanzheng()
+			},10000)
 			console.log(options.type)
 			this.type = options.type
 
