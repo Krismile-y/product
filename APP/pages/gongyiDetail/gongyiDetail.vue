@@ -41,11 +41,6 @@
 				<uni-load-more status="more" :content-text="contentText" />
 			</view> -->
 
-
-
-
-
-
     </view>
 
   </view>
@@ -136,7 +131,8 @@
       },
       // 获取数据
       async getData(params) {
-        let data = await this.$fn.request('welfare/donate_log', "GET", params).then(res => {
+        let data = await this.$fn.request('welfare/user_donate_log', "GET", params).then(res => {
+          console.log(res,999999);
           let list = null
           list = res.data.data
           return list
@@ -173,7 +169,9 @@
         params.page = page
         params.limit = this.pageSize
         // debugger
-        let promiseObj = await this.getData(params).then(res=> {
+        console.log(params,'params');
+        let promiseObj = await this.getData().then(res=> {
+          console.log(res,'ressss');
           data = res
         })
         list = data.data
