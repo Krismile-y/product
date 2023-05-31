@@ -82,19 +82,19 @@
           },
           {
             title:'生态环境部',
-            size: {fontSize: '76rpx'},
+            size: {fontSize: '76rpx',fontWeight:'600'},
           },
           {
             title:'国家航天局',
-            size: {fontSize: '76rpx'},
+            size: {fontSize: '76rpx',fontWeight:'600'},
           },
           {
             title:'国家能源局',
-            size: {fontSize: '76rpx'},
+            size: {fontSize: '76rpx',fontWeight:'600'},
           },
           {
             title:'自然资源部',
-            size: {fontSize: '76rpx'},
+            size: {fontSize: '76rpx',fontWeight:'600'},
           },
         ], //监管部门
         enList: [
@@ -119,6 +119,7 @@
         })
       },
       tijiao() {
+        const regExp = /^1[3456789]\d{9}$/;
         if(this.jianyiText=='') {
           this.$refs.error.showTips({
             msg: '未输入建议！',
@@ -127,6 +128,11 @@
         }else if (this.phone == ''){
           this.$refs.error.showTips({
             msg: '未输入手机号！',
+            duration: 2000
+          })
+        }else if(!(regExp.test(this.phone))) {
+          this.$refs.error.showTips({
+            msg: '请输入正确手机号！',
             duration: 2000
           })
         }else {
@@ -205,15 +211,16 @@
     }
     .bumen-title-text {
       // flex: 1;
+      height: 116rpx;
+      margin-top: -20rpx;
       display: flex;
       flex-direction: column;
-      // justify-content: center;
+      justify-content: center;
       .text {
         // height: 62rpx;
         // font-size: 50rpx;
         color: #ff0000;
         font-weight: 600;
-        margin-bottom: 30rpx;
         // line-height: 72rpx;
       }
       .en-text {
