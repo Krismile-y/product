@@ -66,14 +66,15 @@
 				let left = this.left;
 				let top = this.top;
 				let style = {
-					left: (this.left === undefined & this.x>0? this.x:this.left)+'px',
-					top: (this.top === undefined & this.y>0? y:this.top)+'px',
+					left:2* (this.left === undefined & this.x>0? this.x:this.left)+'upx',
+					top: 2*(this.top === undefined & this.y>0? y:this.top)+'upx',
 					transition: this.transition
 				}
 				return style;
 			}
 		},
 		methods:{
+			show(){},
             blur: function(){
                 console.log('blur');
             },

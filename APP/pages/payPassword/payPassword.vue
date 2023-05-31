@@ -48,11 +48,13 @@
     },
     onLoad() {
       this.yanzheng()
+	  setInterval(()=>{
+	  	this.yanzheng()
+	  },10000)
     },
     methods: {
       // 验证码
       yanzheng() {
-      	
       	uni.request({
       		url:this.$url+'verify',
       		data:{},
