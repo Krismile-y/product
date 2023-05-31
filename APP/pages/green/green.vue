@@ -48,6 +48,12 @@
               {{item.title}}
             </view>
           </view>
+		  <view class="item-title">
+            <view class="title-text">
+			姓名：
+              {{item.user_name}}
+            </view>
+          </view>
           <view class="item-money">
             捐赠金额：￥{{item.amount}}
           </view>
