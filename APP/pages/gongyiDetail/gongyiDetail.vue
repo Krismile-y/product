@@ -55,7 +55,7 @@
 	  
 
 
-<<<<<<< HEAD
+
       <view class="" style="margin-top: 20upx;">
         <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
           <uni-card :title="item.title" :extra="amounted(item.amount)" v-for="(item,index) in tableData" :key="index">
@@ -76,8 +76,7 @@
 
     </view>
 
-=======
->>>>>>> 1136d4b044c9a26d6adb5ecb11911ba266410096
+
   </view>
 </template>
 
