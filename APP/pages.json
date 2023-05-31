@@ -542,7 +542,11 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "反馈与建议",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+                "navigationStyle": "custom",
+                "app-plus": {
+                	"titleView": false
+                }
             }
             
         }
