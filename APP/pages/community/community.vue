@@ -1,129 +1,136 @@
 <template>
 	<view style="padding-bottom: 0upx;padding-top: 70upx;background-color: #f7f8fa;min-height: 100vh;">
-		<airel-floatball />
-		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<view class="zongshouyi">
-			<view class="one disc">
-				<view style="color: #fff;">团队可提现金额</view>
-				<view style="font-weight: 600;font-size: 42upx;color: #fff;" v-show="nightSHOW">{{zongTiXian() }}</view>
-			</view>
-			<view class="two disc">
-				<view class="t" style="width: 100%;height: 60%;display: flex;">
-					<view class="twoItem disc">
-						<view>下级人数</view>
-						<view>{{peopleData.subordinate}}</view>
-					</view>
-					<view class="twoItem disc">
-						<view>已购人数</view>
-						<view>{{peopleData.purchased}}</view>
-					</view>
-					<!-- <view class="twoItem disc">
-						<view>返佣金额</view>
-						<view>{{info.money_hire}}</view>
-					</view> -->
-				</view>
-				<view class="last dis" style="margin-top: -30upx;" @tap="go('tuanduitixian')">
-					团队提现
-				</view>
-			</view>
-
-		</view>
-
-		<!-- 活动标题 -->
-		<view class="title" style="margin-top: 30upx;">
-			<view class="shu"></view>
-			团队活动中心
-		</view>
-		<view class="huodongBox dis">
-			<view class="huodongItem disc" v-for="item in huodongList" @tap="go(item.go)">
-				<view class="yuan dis">
-					<image :src="item.url" mode=""></image>
-				</view>
-				<view style="margin-top: 0upx;">{{item.name}}</view>
-			</view>
-		</view>
-
-		<!-- 团队津贴 -->
-		<view class="jintie" @tap="go('group')">
-			<view style="font-weight: 600;padding-top: 30upx;font-size: 34upx;">团队津贴</view>
-			<view style="font-size: 28upx;">超多津贴</view>
-		</view>
-
-
-		<!-- 下面是旧的 -->
-
-		<view class="av" v-show="false">
-			<view class="left" style="position: relative;">
-				<!-- 	<view style="font-weight: 700;font-family: inherit;font-size: 42upx;">{{info.user_name}}</view> -->
-				<view
-					style="font-size: 42upx; font-weight: 600;display: flex;align-items: center;position: absolute;left: 0;top: 0;">
-					{{info.user_name}}
-
-				</view>
-				<view class="chakan" @tap="chakan"
-					style=" padding: 10upx; background-color: greenyellow;color: #fff; font-size: 36upx;border-radius: 20upx;position: absolute;right: 120upx;top: 0;">
-					提现</view>
-			</view>
-			<view class="right dis" v-show="false">
-				<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465"
-					mode=""></image>
-			</view>
-		</view>
-		<view class="newTop " v-show="false">
-			<view style="font-weight: 700;font-size: 40upx;margin-bottom: 20upx;">团队收益</view>
-			<view style="font-size: 50upx;font-family: inherit;font-weight: 700;letter-spacing: 0upx;">{{money_team}}
-			</view>
-			<view style="margin-top: 60upx;font-size: 30upx;font-weight: 700;">我的推荐码</view>
-			<view style="font-weight: 700;">{{info.id}}</view>
-
-			<!--   -->
-		</view>
-
-
-		<view class="team-box" v-show="false">
-			<!-- <myGroup ref="myGroup" /> -->
-			<view class="list">
-				<view class="item" @tap="go('myGroup',0)">
-					<view class="left">团队详情</view>
-					<view class="right">></view>
-				</view>
-			</view>
-			<view class="list">
-				<view class="item" @tap="go('fanyong',1)">
-					<view class="left">返佣记录</view>
-					<view class="right">></view>
-				</view>
-			</view>
-			<view class="overview">
-				返佣记录概览
-			</view>
-			<view class="" style="margin-top: 10upx;">
-				<view class="item-box" v-for="(item,index) in tableData" :key="index">
-					<!-- 图标 -->
-					<view class="item-icon">
-						<image :src="moneyColor? payImg: paymentImg" mode="widthFix"></image>
-					</view>
-					<!-- 中间内容 -->
-					<view class="item-content">
-						<view class="item-source">
-							{{item.money_type_text}}
-						</view>
-						<view class="item-time">
-							{{item.create_time}}
-						</view>
-					</view>
-					<!-- 金额 -->
-					<view class="item-money" :style="moneyColor? {color:'#54C869'}: {color:'#EF8080'}">
-						{{item.money_amount}}
-					</view>
-				</view>
-			</view>
-		</view>
-
-		<view class="bottom-box">
-			<helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
-		</view>
+		
+		
+		   <view >
+		   	<airel-floatball />
+		   </view>
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   <view class="zongshouyi">
+		   	<view class="one disc">
+		   		<view style="color: #fff;">团队可提现金额</view>
+		   		<view style="font-weight: 600;font-size: 42upx;color: #fff;" v-show="nightSHOW">{{zongTiXian() }}</view>
+		   	</view>
+		   	<view class="two disc">
+		   		<view class="t" style="width: 100%;height: 60%;display: flex;">
+		   			<view class="twoItem disc">
+		   				<view>下级人数</view>
+		   				<view>{{peopleData.subordinate}}</view>
+		   			</view>
+		   			<view class="twoItem disc">
+		   				<view>已购人数</view>
+		   				<view>{{peopleData.purchased}}</view>
+		   			</view>
+		   			<!-- <view class="twoItem disc">
+		   				<view>返佣金额</view>
+		   				<view>{{info.money_hire}}</view>
+		   			</view> -->
+		   		</view>
+		   		<view class="last dis" style="margin-top: -30upx;" @tap="go('tuanduitixian')">
+		   			团队提现
+		   		</view>
+		   	</view>
+		   
+		   </view>
+		   
+		   <!-- 活动标题 -->
+		   <view class="title" style="margin-top: 30upx;">
+		   	<view class="shu"></view>
+		   	团队活动中心
+		   </view>
+		   <view class="huodongBox dis">
+		   	<view class="huodongItem disc" v-for="item in huodongList" @tap="go(item.go)">
+		   		<view class="yuan dis">
+		   			<image :src="item.url" mode=""></image>
+		   		</view>
+		   		<view style="margin-top: 0upx;">{{item.name}}</view>
+		   	</view>
+		   </view>
+		   
+		   <!-- 团队津贴 -->
+		   <view class="jintie" @tap="go('group')">
+		   	<view style="font-weight: 600;padding-top: 30upx;font-size: 34upx;">团队津贴</view>
+		   	<view style="font-size: 28upx;">超多津贴</view>
+		   </view>
+		   
+		   
+		   <!-- 下面是旧的 -->
+		   
+		   <view class="av" v-show="false">
+		   	<view class="left" style="position: relative;">
+		   		<!-- 	<view style="font-weight: 700;font-family: inherit;font-size: 42upx;">{{info.user_name}}</view> -->
+		   		<view
+		   			style="font-size: 42upx; font-weight: 600;display: flex;align-items: center;position: absolute;left: 0;top: 0;">
+		   			{{info.user_name}}
+		   
+		   		</view>
+		   		<view class="chakan" @tap="chakan"
+		   			style=" padding: 10upx; background-color: greenyellow;color: #fff; font-size: 36upx;border-radius: 20upx;position: absolute;right: 120upx;top: 0;">
+		   			提现</view>
+		   	</view>
+		   	<view class="right dis" v-show="false">
+		   		<image src="https://img1.baidu.com/it/u=208183464,243900895&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=465"
+		   			mode=""></image>
+		   	</view>
+		   </view>
+		   <view class="newTop " v-show="false">
+		   	<view style="font-weight: 700;font-size: 40upx;margin-bottom: 20upx;">团队收益</view>
+		   	<view style="font-size: 50upx;font-family: inherit;font-weight: 700;letter-spacing: 0upx;">{{money_team}}
+		   	</view>
+		   	<view style="margin-top: 60upx;font-size: 30upx;font-weight: 700;">我的推荐码</view>
+		   	<view style="font-weight: 700;">{{info.id}}</view>
+		   
+		   	<!--   -->
+		   </view>
+		   
+		   
+		   <view class="team-box" v-show="false">
+		   	<!-- <myGroup ref="myGroup" /> -->
+		   	<view class="list">
+		   		<view class="item" @tap="go('myGroup',0)">
+		   			<view class="left">团队详情</view>
+		   			<view class="right">></view>
+		   		</view>
+		   	</view>
+		   	<view class="list">
+		   		<view class="item" @tap="go('fanyong',1)">
+		   			<view class="left">返佣记录</view>
+		   			<view class="right">></view>
+		   		</view>
+		   	</view>
+		   	<view class="overview">
+		   		返佣记录概览
+		   	</view>
+		   	<view class="" style="margin-top: 10upx;">
+		   		<view class="item-box" v-for="(item,index) in tableData" :key="index">
+		   			<!-- 图标 -->
+		   			<view class="item-icon">
+		   				<image :src="moneyColor? payImg: paymentImg" mode="widthFix"></image>
+		   			</view>
+		   			<!-- 中间内容 -->
+		   			<view class="item-content">
+		   				<view class="item-source">
+		   					{{item.money_type_text}}
+		   				</view>
+		   				<view class="item-time">
+		   					{{item.create_time}}
+		   				</view>
+		   			</view>
+		   			<!-- 金额 -->
+		   			<view class="item-money" :style="moneyColor? {color:'#54C869'}: {color:'#EF8080'}">
+		   				{{item.money_amount}}
+		   			</view>
+		   		</view>
+		   	</view>
+		   </view>
+		   
+		   <view class="bottom-box">
+		   	<helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
+		   </view>
+		  
+		
+		
 	</view>
 </template>
 

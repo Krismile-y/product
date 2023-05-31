@@ -93,9 +93,7 @@
 			console.log(code, 'codesssss');
 			console.log(this.agent_id, code, 'code');
 			this.yanzheng()
-			setInterval(()=>{
-				this.yanzheng()
-			},10000)
+			
 		},
 		methods: {
 			handleInput() {

@@ -1,115 +1,122 @@
 <template>
-	<view class="content" style="padding-bottom: 0;">
-		<airel-floatball />
-		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<!-- 头部 -->
-		<view class="top">
-			<view class="topBox">
-				<view class="t ">
-					<view class="left dis">
-						<image :src="info.head_img" alt="" />
-					</view>
-					<view class="right">
-						<view class="user">
-							<view class="username">{{info.user_name}}</view>
-							<view class="shiming dis">
-								<image src="../../static/newMy/icon_people.png" mode=""
-									style="width: 20upx;height: 20upx;margin-right: 10upx;"></image>
-								{{zhuangtai}}
-							</view>
-						</view>
-						<view class="code">
-							我的推荐码:{{info.id}}
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
-
-		<!-- 总收益 -->
-		<view class="zongshouyi">
-			<view class="one disc">
-				<view style="color: #fff;">总收益</view>
-				<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{info.money_balance}}</view>
-			</view>
-			<view class="two disc">
-				<view class="t" style="width: 100%;height: 60%;display: flex;">
-					<view class="twoItem disc">
-						<view>每日收益</view>
-						<view>{{today}}</view>
-					</view>
-					<view class="twoItem disc">
-						<view>可提现金额</view>
-						<view>{{info.money_approve}}</view>
-					</view>
-				</view>
-				<view class="last dis" style="margin-top: -30upx;" @tap="go('withdrawal')">
-					提现申请
-				</view>
-			</view>
-
-		</view>
-
-		<!-- 三个-->
-		<view class="three">
-			<view class="threeItem" style="background-image: url('../../static/newMy/three.png');" @tap="goDetails(1)">
-				<view style="padding-left: 20upx;padding-top: 10upx;">我的碳汇</view>
-				<view style="padding-left: 20upx;">{{info.money_converge}}</view>
-			</view>
-			<view class="threeItem" style="background-image: url('../../static/newMy/two.png');" @tap="goDetails(2)">
-				<view style="padding-left: 20upx;padding-top: 10upx;">我的碳票</view>
-				<view style="padding-left: 20upx;">{{info.money_vote}}</view>
-			</view>
-			<view class="threeItem" style="background-image: url('../../static/newMy/lvbibg.png');" @tap="goDetails(3)">
-				<view style="padding-left: 20upx;padding-top: 10upx;">我的绿币</view>
-				<view style="padding-left: 20upx;">{{info.money_green}}</view>
-			</view>
-		</view>
-
-		<!-- 活动标题 -->
-		<view class="title">
-			<view class="shu"></view>
-			<view class="tt">
-				个人中心
-			</view>
-		</view>
-		<view class="money" @tap="shousuo">
-			<view class="moneyItem">
-				<image src="../../static/newMy/gerenmingxi.png" mode=""></image>
-				个人明细
-				<view class="pos dis">
-					<image src="../../static/newMy/youjiantou.png" mode=""></image>
-				</view>
-			</view>
-		</view>
-		<view class="huodongBox dis" :class="{'huodongBox1': shousuoType}">
-			<view class="huodongItem disc" v-for="item in huodongList" @tap="go(item.go,)">
-				<view class="yuan dis">
-					<image :src="item.url" mode=""></image>
-				</view>
-				<view style="margin-top: 10upx;">{{item.name}}</view>
-			</view>
-		</view>
-
-
-		<!-- 个人中心 -->
-		<!-- <view class="title" style="margin-bottom: 30upx;">
-			<view class="shu"></view>
-			个人中心
-		</view> -->
-
-		<view class="money" v-for="(item,index) in jiluList">
-			<view class="moneyItem" @tap="go(item.go,index)">
-				<image :src="item.url" mode=""></image>
-				{{item.name}}
-				<view class="pos dis">
-					<image src="../../static/newMy/youjiantou.png" mode=""></image>
-				</view>
-			</view>
-		</view>
-
-		<helang-tab-bar-bulge></helang-tab-bar-bulge>
+	<view class="content" style="padding-bottom: 40upx;">
+		
+		
+		   <view>
+		   	<airel-floatball />
+		   </view>
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   <!-- 头部 -->
+		   <view class="top">
+		   	<view class="topBox">
+		   		<view class="t ">
+		   			<view class="left dis">
+		   				<image :src="info.head_img" alt="" />
+		   			</view>
+		   			<view class="right">
+		   				<view class="user">
+		   					<view class="username">{{info.user_name}}</view>
+		   					<view class="shiming dis">
+		   						<image src="../../static/newMy/icon_people.png" mode=""
+		   							style="width: 20upx;height: 20upx;margin-right: 10upx;"></image>
+		   						{{zhuangtai}}
+		   					</view>
+		   				</view>
+		   				<view class="code">
+		   					我的推荐码:{{info.id}}
+		   				</view>
+		   			</view>
+		   		</view>
+		   	</view>
+		   </view>
+		   
+		   <!-- 总收益 -->
+		   <view class="zongshouyi">
+		   	<view class="one disc">
+		   		<view style="color: #fff;">总收益</view>
+		   		<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{info.money_balance}}</view>
+		   	</view>
+		   	<view class="two disc">
+		   		<view class="t" style="width: 100%;height: 60%;display: flex;">
+		   			<view class="twoItem disc">
+		   				<view>每日收益</view>
+		   				<view>{{today}}</view>
+		   			</view>
+		   			<view class="twoItem disc">
+		   				<view>可提现金额</view>
+		   				<view>{{info.money_approve}}</view>
+		   			</view>
+		   		</view>
+		   		<view class="last dis" style="margin-top: -30upx;" @tap="go('withdrawal')">
+		   			提现申请
+		   		</view>
+		   	</view>
+		   
+		   </view>
+		   
+		   <!-- 三个-->
+		   <view class="three">
+		   	<view class="threeItem" style="background-image: url('../../static/newMy/three.png');" @tap="goDetails(1)">
+		   		<view style="padding-left: 20upx;padding-top: 10upx;">我的碳汇</view>
+		   		<view style="padding-left: 20upx;">{{info.money_converge}}</view>
+		   	</view>
+		   	<view class="threeItem" style="background-image: url('../../static/newMy/two.png');" @tap="goDetails(2)">
+		   		<view style="padding-left: 20upx;padding-top: 10upx;">我的碳票</view>
+		   		<view style="padding-left: 20upx;">{{info.money_vote}}</view>
+		   	</view>
+		   	<view class="threeItem" style="background-image: url('../../static/newMy/lvbibg.png');" @tap="goDetails(3)">
+		   		<view style="padding-left: 20upx;padding-top: 10upx;">我的绿币</view>
+		   		<view style="padding-left: 20upx;">{{info.money_green}}</view>
+		   	</view>
+		   </view>
+		   
+		   <!-- 活动标题 -->
+		   <view class="title">
+		   	<view class="shu"></view>
+		   	<view class="tt">
+		   		个人中心
+		   	</view>
+		   </view>
+		   <view class="money" @tap="shousuo">
+		   	<view class="moneyItem">
+		   		<image src="../../static/newMy/gerenmingxi.png" mode=""></image>
+		   		个人明细
+		   		<view class="pos dis">
+		   			<image src="../../static/newMy/youjiantou.png" mode=""></image>
+		   		</view>
+		   	</view>
+		   </view>
+		   <view class="huodongBox dis" :class="{'huodongBox1': shousuoType}">
+		   	<view class="huodongItem disc" v-for="item in huodongList" @tap="go(item.go,)">
+		   		<view class="yuan dis">
+		   			<image :src="item.url" mode=""></image>
+		   		</view>
+		   		<view style="margin-top: 10upx;">{{item.name}}</view>
+		   	</view>
+		   </view>
+		   
+		   
+		   <!-- 个人中心 -->
+		   <!-- <view class="title" style="margin-bottom: 30upx;">
+		   	<view class="shu"></view>
+		   	个人中心
+		   </view> -->
+		   
+		   <view class="money" v-for="(item,index) in jiluList">
+		   	<view class="moneyItem" @tap="go(item.go,index)">
+		   		<image :src="item.url" mode=""></image>
+		   		{{item.name}}
+		   		<view class="pos dis">
+		   			<image src="../../static/newMy/youjiantou.png" mode=""></image>
+		   		</view>
+		   	</view>
+		   </view>
+		   
+		   <helang-tab-bar-bulge></helang-tab-bar-bulge>
+		  
+		
+		
 	</view>
 </template>
 

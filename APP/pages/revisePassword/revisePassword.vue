@@ -1,67 +1,72 @@
 <template>
 	<view class="revisePassword" style="width: 100%;height: 100vh;background-color: #fff;">
-		<view>
-			<airel-floatball />
-		</view>
-		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<view v-show="type==1?true:false">
-			<view class="item">
-				<image src="../../static/newMy/shimingBg.png" mode=""></image>
-				<view class="shiming-text">
-					{{shimingText}}
-				</view>
-				<view class="shiming-card" v-show="this.info.is_real_name=='2'">
-					<view class="shiming-p">
-						姓名：{{this.info.user_name}}
-					</view>
-					<view class="shiming-p">
-						身份证：{{setCardNum(this.info.sfz)}}
-					</view>
-				</view>
-			</view>
-		</view>
-
-		<!-- 修改密码 -->
-		<view v-show="type==2?true:false">
-			<view class="newInput">
-				<view class="newInputItem">
-					<view class="inputName ">旧密码</view>
-					<u-input v-model="jiu" type="password" password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码"
-						border="true" />
-				</view>
-
-				<view class="newInputItem">
-					<view class="inputName ">新密码</view>
-					<u-input v-model="xin" type="password" password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码"
-						border="true" />
-				</view>
-
-				<view class="newInputItem">
-					<view class="inputName ">确认密码</view>
-					<u-input v-model="queren" type="password" password-icon="true" pattern="[0-9]{8,}"
-						placeholder="请输入密码" border="true" />
-				</view>
-
-				<view class="newInputItem">
-					<view class="inputName ">身份证</view>
-					<u-input v-model="sfz" type="number" placeholder="请输入身份证号" border="true" />
-				</view>
-
-				<view class="newInputItem">
-					<view class="inputName ">验证码</view>
-					<u-input type="text" placeholder="请输入验证码" v-model="captcha" style="height: 100%;width: 266upx;"
-						border="true" maxlength="4" />
-					<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng"></image>
-				</view>
-
-				<view class="xinBtn dis" @tap="change" style="margin-top: 90upx;" v-show="show==0?true:false">修改密码
-				</view>
-				<view class="xinBtn dis" style="margin-top: 90upx;" v-show="show==1?true:false">修改密码中...</view>
-			</view>
-
-
-		</view>
+		
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		   <view>
+		   	<airel-floatball />
+		   </view>
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   <view v-show="type==1?true:false">
+		   	<view class="item">
+		   		<image src="../../static/newMy/shimingBg.png" mode=""></image>
+		   		<view class="shiming-text">
+		   			{{shimingText}}
+		   		</view>
+		   		<view class="shiming-card" v-show="this.info.is_real_name=='2'">
+		   			<view class="shiming-p">
+		   				姓名：{{this.info.user_name}}
+		   			</view>
+		   			<view class="shiming-p">
+		   				身份证：{{setCardNum(this.info.sfz)}}
+		   			</view>
+		   		</view>
+		   	</view>
+		   </view>
+		   
+		   <!-- 修改密码 -->
+		   <view v-show="type==2?true:false">
+		   	<view class="newInput">
+		   		<view class="newInputItem">
+		   			<view class="inputName ">旧密码</view>
+		   			<u-input v-model="jiu" type="password" password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码"
+		   				border="true" />
+		   		</view>
+		   
+		   		<view class="newInputItem">
+		   			<view class="inputName ">新密码</view>
+		   			<u-input v-model="xin" type="password" password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码"
+		   				border="true" />
+		   		</view>
+		   
+		   		<view class="newInputItem">
+		   			<view class="inputName ">确认密码</view>
+		   			<u-input v-model="queren" type="password" password-icon="true" pattern="[0-9]{8,}"
+		   				placeholder="请输入密码" border="true" />
+		   		</view>
+		   
+		   		<view class="newInputItem">
+		   			<view class="inputName ">身份证</view>
+		   			<u-input v-model="sfz" type="number" placeholder="请输入身份证号" border="true" />
+		   		</view>
+		   
+		   		<view class="newInputItem">
+		   			<view class="inputName ">验证码</view>
+		   			<u-input type="text" placeholder="请输入验证码" v-model="captcha" style="height: 100%;width: 266upx;"
+		   				border="true" maxlength="4" />
+		   			<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng"></image>
+		   		</view>
+		   
+		   		<view class="xinBtn dis" @tap="change" style="margin-top: 90upx;" v-show="show==0?true:false">修改密码
+		   		</view>
+		   		<view class="xinBtn dis" style="margin-top: 90upx;" v-show="show==1?true:false">修改密码中...</view>
+		   	</view>
+		   
+		   
+		   </view>
+		  </scroll-view>
+		
+		
 
 	</view>
 </template>
@@ -70,9 +75,7 @@
 	export default {
 		onLoad(options) {
 			this.yanzheng()
-			setInterval(()=>{
-				this.yanzheng()
-			},10000)
+			
 			console.log(options.type)
 			this.type = options.type
 
@@ -114,7 +117,7 @@
 					url: this.$url + 'verify',
 					data: {},
 					success: (res) => {
-						console.log(res)
+						// console.log(res)
 						let times = 0;
 						times = new Date()
 						this.herf = this.$url + 'verify?time=' + times

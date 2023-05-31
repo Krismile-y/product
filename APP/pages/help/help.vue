@@ -1,23 +1,28 @@
 <template>
 	<view class="help-page">
-    <view class="">
-      <airel-floatball  />
-    </view>
-	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-    <image src="../../static/common/back.png" mode="widthFix" class="back-img" @tap="back"></image>
-		<image src="../../static/common/forest.jpg" mode="widthFix" class="help-img"></image>
-    <view class="help-title">
-      反馈与帮助
-    </view>
-    <view class="form">
-      <view class="uni-title uni-common-pl">{{txt}}</view>
-    </view>
-    <view class="bottom dis zbottom">
-    	<view class="in dis" @tap="tuichu">
-    		联系客服
-    	</view>
-    </view>
+		
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		   <view class="">
+		     <airel-floatball  />
+		   </view>
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   <image src="../../static/common/back.png" mode="widthFix" class="back-img" @tap="back"></image>
+		   	<image src="../../static/common/forest.jpg" mode="widthFix" class="help-img"></image>
+		   <view class="help-title">
+		     反馈与帮助
+		   </view>
+		   <view class="form">
+		     <view class="uni-title uni-common-pl">{{txt}}</view>
+		   </view>
+		   <view class="bottom dis zbottom">
+		   	<view class="in dis" @tap="tuichu">
+		   		联系客服
+		   	</view>
+		   </view>
+		  </scroll-view>
+		
+    
 	</view>
 </template>
 

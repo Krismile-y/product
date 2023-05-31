@@ -1,26 +1,59 @@
 <template>
   <view>
-<airel-floatball  />
- <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-		 <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-<!-- 公益明细 -->
-    <view class="box">
-      <view class="head-box">
-        <view class="picker-view" @tap="changeYear">
-          <view class="picker-p">
-            {{dateText}}
-          </view>
-          <view class="down-img">
-            <image src="../../static/common/down.png" mode="widthFix"></image>
-          </view>
-        </view>
-        <view class="head-content">
-          <view class="head-title">
-            公益捐赠总金额
-          </view>
-          <view class="price">{{priceTotal}}</view>
-        </view>
-      </view>
+	  
+	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	     <view>
+	     	<airel-floatball  />
+	     </view>
+	      <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	     		 <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+	     <!-- 公益明细 -->
+	         <view class="box">
+	           <view class="head-box">
+	             <view class="picker-view" @tap="changeYear">
+	               <view class="picker-p">
+	                 {{dateText}}
+	               </view>
+	               <view class="down-img">
+	                 <image src="../../static/common/down.png" mode="widthFix"></image>
+	               </view>
+	             </view>
+	             <view class="head-content">
+	               <view class="head-title">
+	                 公益捐赠总金额
+	               </view>
+	               <view class="price">{{priceTotal}}</view>
+	             </view>
+	           </view>
+	     
+	     
+	           <view class="" style="margin-top: 20upx;">
+	             <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
+	               <uni-card :title="item.title" :extra="amounted(item.amount)" v-for="(item,index) in tableData" :key="index">
+	                 <text class="uni-body">{{item.create_time}}</text>
+	               </uni-card>
+	             </scroll-list>
+	           </view>
+	           <template>
+	             <view>
+	               <u-datetime-picker :show="show" v-model="value1" mode="year-month" @confirm="pickerConfirm"
+	                 @close="pickerClose" @cancel="pickerCancel"></u-datetime-picker>
+	             </view>
+	           </template>
+	     
+	           <!-- 	<view class="daiding dis">
+	     				<uni-load-more status="more" :content-text="contentText" />
+	     			</view> -->
+	     
+	     
+	     
+	     
+	     
+	     
+	         </view>
+	    </scroll-view>
+	  
+
 
 
       <view class="" style="margin-top: 20upx;">
@@ -41,12 +74,8 @@
 				<uni-load-more status="more" :content-text="contentText" />
 			</view> -->
 
-
-
-
-
-
     </view>
+
 
   </view>
 </template>
@@ -136,7 +165,8 @@
       },
       // 获取数据
       async getData(params) {
-        let data = await this.$fn.request('welfare/donate_log', "GET", params).then(res => {
+        let data = await this.$fn.request('welfare/user_donate_log', "GET", params).then(res => {
+          console.log(res,999999);
           let list = null
           list = res.data.data
           return list
@@ -173,7 +203,9 @@
         params.page = page
         params.limit = this.pageSize
         // debugger
-        let promiseObj = await this.getData(params).then(res=> {
+        console.log(params,'params');
+        let promiseObj = await this.getData().then(res=> {
+          console.log(res,'ressss');
           data = res
         })
         list = data.data

@@ -1,25 +1,30 @@
 <template>
   <view class="newsListDetails">
-    <airel-floatball  />
-	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-    <!-- <view class="details-title" v-html="dataObj.title"></view>
-    <view class="warpHtml" v-html="dataObj.content"></view> -->
-    <view class="head-name">
-      {{info.author}}
-    </view>
-	<view v-html="info.content"> 
-		
-	</view>
-    <!-- <view class="childItem" v-for="(item,index) in dataObj.child" :key="index">
-      <view class="child-head">
-        {{item.head}}
-      </view>
-      <view class="child-content" v-for="(item1,index1) in item.children" :key="index1">
-        <text class="sortSpan">{{item1.sortSpan}}</text>
-        {{item1.contentText}}
-      </view>
-    </view> -->
+	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	     <view>
+	     	<airel-floatball  />
+	     </view>
+	     <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	     <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+	     <!-- <view class="details-title" v-html="dataObj.title"></view>
+	     <view class="warpHtml" v-html="dataObj.content"></view> -->
+	     <view class="head-name">
+	       {{info.author}}
+	     </view>
+	     <view v-html="info.content"> 
+	     	
+	     </view>
+	     <!-- <view class="childItem" v-for="(item,index) in dataObj.child" :key="index">
+	       <view class="child-head">
+	         {{item.head}}
+	       </view>
+	       <view class="child-content" v-for="(item1,index1) in item.children" :key="index1">
+	         <text class="sortSpan">{{item1.sortSpan}}</text>
+	         {{item1.contentText}}
+	       </view>
+	     </view> -->
+	    </scroll-view>
+   
   </view>
 </template>
 

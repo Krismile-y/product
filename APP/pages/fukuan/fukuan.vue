@@ -1,42 +1,47 @@
 <template>
 	<view class="fukuan">
-		<airel-floatball />
-		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<!-- 付款 -->
-		<view class="header">
-			<view class="head-money">
-				￥{{dataObj.money}}
-			</view>
-			<view class="head-ps">
-				待支付金额
-			</view>
-		</view>
-		<view class="fangshi">
-			<view class="fangshi-title">
-				支付方式
-			</view>
-			<view class="yu_e" @tap="payCheck(index)" v-for="(item,index) in payList" :key="index"
-				style="border-bottom: 1rpx solid #E5E5E5;">
-				<image class="zhifuImg" :src="icons[index]" mode=""></image>
-				<view class="zhifuName">
-					{{item}}
-				</view>
-				<view class="littleImg">
-					<image :src="checkedNum==index?checkedImg:defaultImg" mode=""></image>
-				</view>
-			</view>
-		</view>
-		<view class="bottom-fixd">
-			<view class="bot-btn" @tap="pay" v-show="show==0?true:false">
-				<!-- 确认支付 -->
-				{{font}}
-			</view>
-			<view class="bot-btn" v-show="show==1?true:false">
-				<!-- 确认支付 -->
-				{{font}}
-			</view>
-		</view>
+		
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		   <view><airel-floatball /></view>
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   <!-- 付款 -->
+		   <view class="header">
+		   	<view class="head-money">
+		   		￥{{dataObj.money}}
+		   	</view>
+		   	<view class="head-ps">
+		   		待支付金额
+		   	</view>
+		   </view>
+		   <view class="fangshi">
+		   	<view class="fangshi-title">
+		   		支付方式
+		   	</view>
+		   	<view class="yu_e" @tap="payCheck(index)" v-for="(item,index) in payList" :key="index"
+		   		style="border-bottom: 1rpx solid #E5E5E5;">
+		   		<image class="zhifuImg" :src="icons[index]" mode=""></image>
+		   		<view class="zhifuName">
+		   			{{item}}
+		   		</view>
+		   		<view class="littleImg">
+		   			<image :src="checkedNum==index?checkedImg:defaultImg" mode=""></image>
+		   		</view>
+		   	</view>
+		   </view>
+		   <view class="bottom-fixd">
+		   	<view class="bot-btn" @tap="pay" v-show="show==0?true:false">
+		   		<!-- 确认支付 -->
+		   		{{font}}
+		   	</view>
+		   	<view class="bot-btn" v-show="show==1?true:false">
+		   		<!-- 确认支付 -->
+		   		{{font}}
+		   	</view>
+		   </view>
+		  </scroll-view>
+		
+		
 	</view>
 </template>
 

@@ -1,45 +1,52 @@
 <template>
 	<view class="shopDetail">
-    <airel-floatball  />
-	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<image :src="item.head_img" style="width: 750upx;height: 750upx;margin: 0 auto;border-radius: 20upx;"
-			mode="widthFix"></image>
-		<view class="shopInfo">
-			<view class="frist">
-				<view>{{item.wares_money}}</view>
-				<view style="font-size: 28upx;margin-left: 10upx;padding-top: 10upx;">积分</view>
-			</view>
-			<view class="detail">{{item.wares_name}}</view>
-			<view class="lvse dis">
-				<view class="zi dis">
-					绿色商品
-				</view>
-			</view>
-		</view>
-
-		<view class="duihuan disc">
-			<view class="title">
-				<view class="shu"></view>
-				商品介绍
-			</view>
-
-			<image :src="item.head_img" style="width: 686upx;height: 678upx;margin-top: 30upx;border-radius: 20upx;">
-			</image>
-			
-			<view class="btn dis" v-show="btnSHOW==0?true:false">
-				<view class="font" @tap="duihuan">
-					{{font}}
-				</view>			
-			</view>
-			
-			<view class="btn dis"  v-show="btnSHOW==1?true:false">
-				<view class="font" @tap="changeBTN">
-					{{font}}
-				</view>			
-			</view>
-
-		</view>
+		
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		   
+		   <view>
+		   	<airel-floatball  />
+		   </view>
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   	<image :src="item.head_img" style="width: 750upx;height: 750upx;margin: 0 auto;border-radius: 20upx;"
+		   		mode="widthFix"></image>
+		   	<view class="shopInfo">
+		   		<view class="frist">
+		   			<view>{{item.wares_money}}</view>
+		   			<view style="font-size: 28upx;margin-left: 10upx;padding-top: 10upx;">积分</view>
+		   		</view>
+		   		<view class="detail">{{item.wares_name}}</view>
+		   		<view class="lvse dis">
+		   			<view class="zi dis">
+		   				绿色商品
+		   			</view>
+		   		</view>
+		   	</view>
+		   
+		   	<view class="duihuan disc">
+		   		<view class="title">
+		   			<view class="shu"></view>
+		   			商品介绍
+		   		</view>
+		   
+		   		<image :src="item.head_img" style="width: 686upx;height: 678upx;margin-top: 30upx;border-radius: 20upx;">
+		   		</image>
+		   		
+		   		<view class="btn dis" v-show="btnSHOW==0?true:false">
+		   			<view class="font" @tap="duihuan">
+		   				{{font}}
+		   			</view>			
+		   		</view>
+		   		
+		   		<view class="btn dis"  v-show="btnSHOW==1?true:false">
+		   			<view class="font" @tap="changeBTN">
+		   				{{font}}
+		   			</view>			
+		   		</view>
+		   
+		   	</view>
+		  </scroll-view>
+	
 
 	</view>
 </template>

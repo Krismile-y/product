@@ -1,47 +1,54 @@
 <template>
 	<view>
-		<airel-floatball  />
-		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<view class="zongshouyi">
-			<view class="one disc">
-				<view style="color: #fff;">共计获得津贴</view>
-				<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{dataObj.allowance}}</view>
-			</view>
-			<view class="two disc">
-				<view class="t" style="width: 100%;height: 60%;display: flex;">
-					<view class="twoItem disc">
-						<view>共计直推人数</view>
-						<view>{{dataObj.purchased}}</view>
-					</view>
-					<view class="twoItem disc">
-						<view>共计完成任务</view>
-						<view>{{dataObj.task}}</view>
-					</view>
-				</view>
-			</view>
-			
-		</view>
 		
-		<!--  -->
-		<view style="margin-top: 30upx;">
-			<view class="item" v-for="(item,index) in list" :key="index">
-				<view class="font ">
-					{{item.title}}
-				</view>
-        <!-- 领取时间 -->
-        <view class="linquTime">
-          领取时间：每月**日 00:00:00
-        </view>
-				<view :class="{
-          'gray': btnType == '2',
-          'btn': btnType == '0',
-          'pink': btnType == '1',
-        }" @tap="linquClick(item)">
-          {{linquSet(item)}}
-        </view>
-			</view>
-		</view>
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		   <view>
+		   	<airel-floatball  />
+		   </view>
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   <view class="zongshouyi">
+		   	<view class="one disc">
+		   		<view style="color: #fff;">共计获得津贴</view>
+		   		<view style="font-weight: 600;font-size: 42upx;color: #fff;">{{dataObj.allowance}}</view>
+		   	</view>
+		   	<view class="two disc">
+		   		<view class="t" style="width: 100%;height: 60%;display: flex;">
+		   			<view class="twoItem disc">
+		   				<view>共计直推人数</view>
+		   				<view>{{dataObj.purchased}}</view>
+		   			</view>
+		   			<view class="twoItem disc">
+		   				<view>共计完成任务</view>
+		   				<view>{{dataObj.task}}</view>
+		   			</view>
+		   		</view>
+		   	</view>
+		   	
+		   </view>
+		   
+		   <!--  -->
+		   <view style="margin-top: 30upx;">
+		   	<view class="item" v-for="(item,index) in list" :key="index">
+		   		<view class="font ">
+		   			{{item.title}}
+		   		</view>
+		   <!-- 领取时间 -->
+		   <view class="linquTime">
+		     领取时间：每月**日 00:00:00
+		   </view>
+		   		<view :class="{
+		     'gray': btnType == '2',
+		     'btn': btnType == '0',
+		     'pink': btnType == '1',
+		   }" @tap="linquClick(item)">
+		     {{linquSet(item)}}
+		   </view>
+		   	</view>
+		   </view>
+		  </scroll-view>
+		
+	
 		
 	</view>
 </template>

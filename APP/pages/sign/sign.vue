@@ -1,37 +1,42 @@
 <template>
 	<view class="sign">
-    <view class="">
-      <airel-floatball  />
-    </view>
-	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<view class="calendar-content" v-if="showCalendar">
-			<view>
-				<!-- 插入模式 -->
-				<uni-calendar class="uni-calendar--hook" :selected="info.selected" :startDate="nowDate" :endDate="nowDate" :showMonth="false" @change="change" @monthSwitch="monthSwitch" />
-			</view>
-			<!-- <uni-section class="hideOnPc" title="弹出模式" type="line"></uni-section> -->
-			<!-- <view class="example-body hideOnPc">
-				<button class="calendar-button" type="button" @tap="open">打开日历</button>
-			</view> -->
-		</view>
-		<view class="jifenminxi">
-      <!-- 积分明细 -->
-		  <view class="totaljifem">
-        <!-- 总积分 -->
-		    总积分:{{totaljifen}}
-		  </view>
-      <view class="jifen-table" @tap="gominxi">
-        查看签到详情>>>
-      </view>
-		</view>
 		
-		<view class="bottom dis">
-			<!-- <view class="in dis" @tap="go">
-				使用积分
-			</view> -->
-			<view class="xinBtn dis" @tap="go">使用积分</view>
-		</view>
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		   <view class="">
+		     <airel-floatball  />
+		   </view>
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   	<view class="calendar-content" v-if="showCalendar">
+		   		<view>
+		   			<!-- 插入模式 -->
+		   			<uni-calendar class="uni-calendar--hook" :selected="info.selected" :startDate="nowDate" :endDate="nowDate" :showMonth="false" @change="change" @monthSwitch="monthSwitch" />
+		   		</view>
+		   		<!-- <uni-section class="hideOnPc" title="弹出模式" type="line"></uni-section> -->
+		   		<!-- <view class="example-body hideOnPc">
+		   			<button class="calendar-button" type="button" @tap="open">打开日历</button>
+		   		</view> -->
+		   	</view>
+		   	<view class="jifenminxi">
+		     <!-- 积分明细 -->
+		   	  <view class="totaljifem">
+		       <!-- 总积分 -->
+		   	    总积分:{{totaljifen}}
+		   	  </view>
+		     <view class="jifen-table" @tap="gominxi">
+		       查看签到详情>>>
+		     </view>
+		   	</view>
+		   	
+		   	<view class="bottom dis">
+		   		<!-- <view class="in dis" @tap="go">
+		   			使用积分
+		   		</view> -->
+		   		<view class="xinBtn dis" @tap="go">使用积分</view>
+		   	</view>
+		  </scroll-view>
+		
+   
 		
 	</view>
 </template>

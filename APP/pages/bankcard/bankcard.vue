@@ -1,62 +1,70 @@
 <template>
 	<view class="bankCard">
-		<airel-floatball />
-		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<view class="card-item" v-for="(item,index) in cardList" :key="index">
-			<view class="card-name">
-				{{item.account_name}}
-			</view>
-			<view class="username">
-				{{item.name}}
-			</view>
-			<view class="card-number">
-				{{item.card}}
-			</view>
-			<image class="editImg" src="../../static/newIndex/edit.png" mode="" @tap="open(2,index)"></image>
-			<image class="deleteImg" src="../../static/newIndex/delete_light.png" mode="" @tap="openModel(index)">
-			</image>
-			<view class="defaultText" v-show="(item.is_default==1)">
-				默认
-			</view>
-		</view>
-		<view class="addCard" @tap="open(1,-1)">
-			<image src="../../static/newIndex/add.png" mode=""></image>
-			<view class="addtext">
-				添加银行卡
-			</view>
-		</view>
-		<u-popup :show="show" mode="bottom" @close="close" :round="16" @open="open">
-			<view class="popupBox">
-				<view class="popupBox-title">
-					银行卡填写
-				</view>
-				<uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData" :label-width='80'>
-					<uni-forms-item label="银行卡号" name="u_back_card" required>
-						<uni-easyinput type="text" v-model="valiFormData.u_back_card" placeholder="请输入银行卡号(只能输入数字)" />
-					</uni-forms-item>
-					<uni-forms-item required name="u_bank_name" label="银行名称">
-						<uni-easyinput type="text" v-model="valiFormData.u_bank_name" placeholder="请输入银行名称" />
-					</uni-forms-item>
-					<uni-forms-item required name="u_back_user_name" label="卡用户名">
-						<uni-easyinput type="text" v-model="valiFormData.u_back_user_name" placeholder="请输入卡用户名" />
-					</uni-forms-item>
-					<uni-forms-item label="是否默认" name="is_default">
-						<uni-data-checkbox v-model="valiFormData.is_default" :localdata="sexs" />
-					</uni-forms-item>
-				</uni-forms>
-				<view class="btn-group">
-					<view class="quxiao" @tap="close">
-						取消
-					</view>
-					<view class="wancheng" @tap="submitForm('valiForm')">
-						填写完成
-					</view>
-				</view>
-			</view>
-		</u-popup>
-		<u-modal :show="delCardType" title="系统消息" :content='content' :showCancelButton="true" @confirm="confirm"
-			@cancel="cancel"></u-modal>
+		
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		   <view>
+		   	<airel-floatball />
+		   </view>
+		   
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   <view class="card-item" v-for="(item,index) in cardList" :key="index">
+		   	<view class="card-name">
+		   		{{item.account_name}}
+		   	</view>
+		   	<view class="username">
+		   		{{item.name}}
+		   	</view>
+		   	<view class="card-number">
+		   		{{item.card}}
+		   	</view>
+		   	<image class="editImg" src="../../static/newIndex/edit.png" mode="" @tap="open(2,index)"></image>
+		   	<image class="deleteImg" src="../../static/newIndex/delete_light.png" mode="" @tap="openModel(index)">
+		   	</image>
+		   	<view class="defaultText" v-show="(item.is_default==1)">
+		   		默认
+		   	</view>
+		   </view>
+		   <view class="addCard" @tap="open(1,-1)">
+		   	<image src="../../static/newIndex/add.png" mode=""></image>
+		   	<view class="addtext">
+		   		添加银行卡
+		   	</view>
+		   </view>
+		   <u-popup :show="show" mode="bottom" @close="close" :round="16" @open="open">
+		   	<view class="popupBox">
+		   		<view class="popupBox-title">
+		   			银行卡填写
+		   		</view>
+		   		<uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData" :label-width='80'>
+		   			<uni-forms-item label="银行卡号" name="u_back_card" required>
+		   				<uni-easyinput type="text" v-model="valiFormData.u_back_card" placeholder="请输入银行卡号(只能输入数字)" />
+		   			</uni-forms-item>
+		   			<uni-forms-item required name="u_bank_name" label="银行名称">
+		   				<uni-easyinput type="text" v-model="valiFormData.u_bank_name" placeholder="请输入银行名称" />
+		   			</uni-forms-item>
+		   			<uni-forms-item required name="u_back_user_name" label="卡用户名">
+		   				<uni-easyinput type="text" v-model="valiFormData.u_back_user_name" placeholder="请输入卡用户名" />
+		   			</uni-forms-item>
+		   			<uni-forms-item label="是否默认" name="is_default">
+		   				<uni-data-checkbox v-model="valiFormData.is_default" :localdata="sexs" />
+		   			</uni-forms-item>
+		   		</uni-forms>
+		   		<view class="btn-group">
+		   			<view class="quxiao" @tap="close">
+		   				取消
+		   			</view>
+		   			<view class="wancheng" @tap="submitForm('valiForm')">
+		   				填写完成
+		   			</view>
+		   		</view>
+		   	</view>
+		   </u-popup>
+		   <u-modal :show="delCardType" title="系统消息" :content='content' :showCancelButton="true" @confirm="confirm"
+		   	@cancel="cancel"></u-modal>
+		  </scroll-view>
+		
+		
 	</view>
 </template>
 

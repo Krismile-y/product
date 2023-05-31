@@ -1,34 +1,39 @@
 <template>
 	<view class="safe">
-		<view><airel-floatball /></view>
-		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<view class="newInput">
-			<view class="newInputItem">
-				<view class="inputName ">手机号</view>
-				<u-input v-model="phone" type="number" placeholder="请输入手机号" border="true" maxlength="11" />
-			</view>
-			<view class="newInputItem">
-				<view class="inputName ">身份证</view>
-				<u-input v-model="sfz" type="number" placeholder="请输入身份证号" border="true" maxlength="18" />
-			</view>
-
-			<view class="newInputItem">
-				<view class="inputName ">新密码</view>
-				<u-input v-model="pwd" type="password" password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码"
-					border="true" />
-			</view>
-
-			<view class="newInputItem">
-				<view class="inputName" style="">验证码</view>
-				<u-input v-model="captcha" type="number" placeholder="请输入验证码" border="true" maxlength="4"
-					style="width: 266upx;padding-left: 20upx;" />
-				<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap='change()'></image>
-			</view>
-
-			<view class="xinBtn dis" @tap="xiugai()" style="margin-top: 90rpx;" v-show="show==0?true:false">提交</view>
-			<view class="xinBtn dis" style="margin-top: 90rpx;" v-show="show==1?true:false">提交中...</view>
-		</view>
+		
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		   <view><airel-floatball /></view>
+		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+		   <view class="newInput">
+		   	<view class="newInputItem">
+		   		<view class="inputName ">手机号</view>
+		   		<u-input v-model="phone" type="number" placeholder="请输入手机号" border="true" maxlength="11" />
+		   	</view>
+		   	<view class="newInputItem">
+		   		<view class="inputName ">身份证</view>
+		   		<u-input v-model="sfz" type="number" placeholder="请输入身份证号" border="true" maxlength="18" />
+		   	</view>
+		   
+		   	<view class="newInputItem">
+		   		<view class="inputName ">新密码</view>
+		   		<u-input v-model="pwd" type="password" password-icon="true" pattern="[0-9]{8,}" placeholder="请输入密码"
+		   			border="true" />
+		   	</view>
+		   
+		   	<view class="newInputItem">
+		   		<view class="inputName" style="">验证码</view>
+		   		<u-input v-model="captcha" type="number" placeholder="请输入验证码" border="true" maxlength="4"
+		   			style="width: 266upx;padding-left: 20upx;" />
+		   		<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap='change()'></image>
+		   	</view>
+		   
+		   	<view class="xinBtn dis" @tap="xiugai()" style="margin-top: 90rpx;" v-show="show==0?true:false">提交</view>
+		   	<view class="xinBtn dis" style="margin-top: 90rpx;" v-show="show==1?true:false">提交中...</view>
+		   </view>
+		  </scroll-view>
+		
+		
 
 
 
@@ -53,9 +58,7 @@
 		},
 		onLoad(){
 			this.change()
-			setInterval(()=>{
-				this.change()
-			},10000)
+			
 		},
 		methods: {
 			change() { //刷新验证码

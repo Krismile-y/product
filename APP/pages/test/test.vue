@@ -1,28 +1,33 @@
 <template>
   <view class="container">
-    <airel-floatball  />
-	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-    <backgroundPage :title="title" :imgUrl="forestBg">
-      <view class="chongzhi">
-        <view class="input-box">
-          <view class="input-title">充值金额：</view>
-          <input class="input" type="number" placeholder="请输入充值金额" v-model="amount" />
-        </view>
-        <view class="input-box">
-          <view class="input-title">支付方式：</view>
-          <radio-group class="radio-group" v-model="paymentMethod">
-            <radio class="radio" value="alipay">支付宝</radio>
-            <radio class="radio" value="wechat">微信</radio>
-          </radio-group>
-        </view>
-        <view class="bottom dis zbottom">
-        	<view class="in dis" @tap="submit">
-        		确认充值
-        	</view>
-        </view>
-      </view>
-    </backgroundPage>
+	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	     <view>
+	     	    <airel-floatball  />
+	     </view>
+	     	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+	     	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+	      <backgroundPage :title="title" :imgUrl="forestBg">
+	        <view class="chongzhi">
+	          <view class="input-box">
+	            <view class="input-title">充值金额：</view>
+	            <input class="input" type="number" placeholder="请输入充值金额" v-model="amount" />
+	          </view>
+	          <view class="input-box">
+	            <view class="input-title">支付方式：</view>
+	            <radio-group class="radio-group" v-model="paymentMethod">
+	              <radio class="radio" value="alipay">支付宝</radio>
+	              <radio class="radio" value="wechat">微信</radio>
+	            </radio-group>
+	          </view>
+	          <view class="bottom dis zbottom">
+	          	<view class="in dis" @tap="submit">
+	          		确认充值
+	          	</view>
+	          </view>
+	        </view>
+	      </backgroundPage>
+	    </scroll-view>
+  
   </view>
 </template>
 
