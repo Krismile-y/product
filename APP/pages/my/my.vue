@@ -235,7 +235,7 @@
 					} else if (z == 2) {
 						this.zhuangtai = '已实名'
 					} else if (z == 3) {
-						this.zhuangtai = '拒绝申请'
+						this.zhuangtai = '实名失败'
 					}
 				},1000)
 				console.log(this.info)
@@ -301,7 +301,7 @@
 			} else if (z == 2) {
 				this.zhuangtai = '已实名'
 			} else if (z == 3) {
-				this.zhuangtai = '拒绝申请'
+				this.zhuangtai = '实名失败'
 			}
 			//用户今日收益	
 			let data = {

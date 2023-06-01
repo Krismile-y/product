@@ -140,6 +140,11 @@
             msg: '感谢您的建议！',
             duration: 2000
           })
+          setTimeout(()=>{
+            uni.navigateTo({
+              url:'/pages/index/index'
+            })
+          },2000)
         }
         
       }
