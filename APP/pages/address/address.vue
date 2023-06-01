@@ -12,7 +12,7 @@
 					</view>
 					<view class="left dis" @tap="itemtap(item,index)">
 						<image
-							src="../../common/user.webp"
+							:src="info.head_img"
 							mode=""></image>
 					</view>
 					<view class="right" @tap="itemtap(item,index)">
@@ -53,6 +53,7 @@
 			return {
 				list:[],
 			    currentIndex:"",
+				info:{}
 			};
 		},
 		onBackPress(event) {
@@ -74,6 +75,8 @@
 				this.list=r.data.data
 				
 			})
+			
+			this.info=uni.getStorageSync('user_info')
 		},
     onBackPress(e) {
     // 这里可以自定义返回逻辑，比如下面跳转其他页面

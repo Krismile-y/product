@@ -107,6 +107,7 @@ export default {
 			success: (res) => {
 				this.$fn.request('v', "GET", {}).then(r => {
 					console.log(r, 'v');
+					console.log(r.data.data.renew,'更新的信息')
 					uni.setStorageSync('lowDown', r.data.data.down)
 					if (res.platform = 'android') {
 						this.phoneDown = r.data.data.apk
