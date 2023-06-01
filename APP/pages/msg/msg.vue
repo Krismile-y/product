@@ -55,7 +55,7 @@
 		   </view>
 		   
 		   
-		   <view class="newBox" @tap="go(2)">
+		   <view class="newBox" @tap="go(3)">
 		   	<view class="shang">
 		   		<image src="./four.png" mode=""></image>
 		   		站内信
