@@ -1,6 +1,6 @@
 <template>
   <view class="withdrawal">
-<<<<<<< HEAD
+
     <airel-floatball />
     <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
     <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
@@ -100,8 +100,8 @@
       </view>
     </u-popup>
     <numberJpan :length="6" @closeChange="closeChange($event)" :showNum="false" ref="numberJpan"></numberJpan>
-=======
-	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+
+	 
 	     <view>
 	     	<airel-floatball />
 	     </view>
@@ -203,9 +203,9 @@
 	       </view>
 	     </u-popup>
 	     <numberJpan :length="6" @closeChange="closeChange($event)" :showNum="false" ref="numberJpan"></numberJpan>
-	    </scroll-view>
+	   
     
->>>>>>> a8364c2931f4428b4d84e9e3648cbee110e70b22
+
   </view>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <view class="payPassword">
 	  
-	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	 
 	     <view>
 	     	<airel-floatball  />
 	     </view>
@@ -33,7 +33,7 @@
 	     	<view class="xinBtn dis"  style="margin-top: 90upx;"v-show="show==1?true:false">设置密码中...</view>
 	       </view>
 	     </view>
-	    </scroll-view>
+	    
 	  
     
   </view>

@@ -1,6 +1,6 @@
 <template>
 	<view class="address">
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	
 			<view><airel-floatball  /></view>
 			<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 			<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
@@ -41,7 +41,7 @@
 				</view>
 			</view>
 			
-		</scroll-view>
+		
 		
 		
 	</view>

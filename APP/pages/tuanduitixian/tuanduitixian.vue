@@ -1,6 +1,6 @@
 <template>
   <view class="withdrawal">
-	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	 
 	     <view>
 	     	    <airel-floatball />
 	     </view>
@@ -119,7 +119,7 @@
 	        </view>
 	      </u-popup>
 	      <numberJpan :length="6" @closeChange="closeChange($event)" :showNum="false" ref="numberJpan"></numberJpan>
-	    </scroll-view>
+	  
  
   </view>
 </template>

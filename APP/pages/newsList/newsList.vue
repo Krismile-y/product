@@ -1,7 +1,7 @@
 <template>
 	<view>
 
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 			<view>
 				<airel-floatball />
 			</view>
@@ -21,7 +21,7 @@
 					<!-- <image src="../../static/my/jilu.png" mode=""></image> -->
 				</view>
 			</view>
-		</scroll-view>
+	
 
 
 	</view>

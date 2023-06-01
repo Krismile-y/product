@@ -1,6 +1,6 @@
 <template>
 	<view style="width: 100%;height: 100vh;">
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 			<view>
 				<airel-floatball />
 			</view>
@@ -66,7 +66,7 @@
     </a> -->
 
 			</view>
-		</scroll-view>
+	
 
 	</view>
 </template>

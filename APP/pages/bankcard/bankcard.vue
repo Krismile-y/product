@@ -1,7 +1,7 @@
 <template>
 	<view class="bankCard">
 		
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 		   <view>
 		   	<airel-floatball />
 		   </view>
@@ -62,7 +62,7 @@
 		   </u-popup>
 		   <u-modal :show="delCardType" title="系统消息" :content='content' :showCancelButton="true" @confirm="confirm"
 		   	@cancel="cancel"></u-modal>
-		  </scroll-view>
+		
 		
 		
 	</view>

@@ -1,7 +1,7 @@
 <template>
 	<view class="headImg">
 		
-	<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	
 	   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 	   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 	   <view class="headImg-box">
@@ -17,7 +17,7 @@
 	   		</view> -->
 	   	</view>
 	   	<view><airel-floatball  /></view>
-	  </scroll-view>	
+	 	
 		
    
 	</view>

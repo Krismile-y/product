@@ -1,7 +1,7 @@
 <template>
 	<view class="help-page">
 		
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 		   <view class="">
 		     <airel-floatball  />
 		   </view>
@@ -20,7 +20,7 @@
 		   		联系客服
 		   	</view>
 		   </view>
-		  </scroll-view>
+		
 		
     
 	</view>

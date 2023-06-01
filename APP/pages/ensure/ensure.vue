@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 		   <view><airel-floatball  /></view>
 		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
@@ -10,6 +10,7 @@
 		   </view>
 		   <image src="../../static/safety/shanlin.jpg" mode="widthFix"></image>
 		   <view class="remarks">
+			   
 		     ↑江西省永丰县官山林场大山分场楠木纯林
 		   </view>
 		   <view class="zhengwen">
@@ -27,7 +28,7 @@
 		   <view class="zhengwen">
 		     为确保国家储备林建设规范运作和持续健康发展，国家林草局还同步出台了《国家储备林建设管理办法(试行)》。
 		   </view>
-		  </scroll-view>
+		
    
 	</view>
 </template>
