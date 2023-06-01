@@ -37,16 +37,20 @@
 	           项目对应天数：{{item.project_day}}天
 	         </view>
 	         <view class="item-text">
-	           项目收益：{{item.income}}
+	           项目日收益：{{item.income}}
 	         </view>
 	         <view class="item-text">
 	           项目总收益：{{item.total_red_money}}
 	         </view>
+           <view class="item-text">
+             项目可提现：{{item.withdrawable_money}}
+           </view>
 	         <view class="img-right">
 	           <image :src="checked==index? checkedImg: defaultImg" mode=""></image>
 	         </view>
 	       </view>
 	     </view>
+       
 	     <view class="opcity-bottom">
 	       
 	     </view>

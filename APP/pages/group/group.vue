@@ -162,7 +162,7 @@
 
 .item{
 	width: 90%;
-  height: 160upx;
+  height: 200upx;
 	margin: 20upx auto;
   box-sizing: border-box;
   padding: 10upx 20upx;
@@ -174,6 +174,14 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   position: relative;
+  .linquTime {
+    position: absolute;
+    right: 15upx;
+    bottom: 0upx;
+    text-align: left;
+    font-size: 24rpx;
+    
+  }
 	.font{
 		width: 100%;
     text-align: center;
@@ -186,7 +194,7 @@
     box-sizing: border-box;
     padding: 10upx 20upx 15upx;
     position: absolute;
-    bottom: 15upx;
+    bottom: 55upx;
     right: 15upx;
 	}
   .gray {

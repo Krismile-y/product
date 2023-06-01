@@ -54,6 +54,10 @@
 	  
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3b371529626f6ebd08767b5c2f5cc29937a86816
       <view class="" style="margin-top: 20upx;">
         <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
           <uni-card :title="item.title" :extra="amounted(item.amount)" v-for="(item,index) in tableData" :key="index">
@@ -74,6 +78,10 @@
 
     </view>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3b371529626f6ebd08767b5c2f5cc29937a86816
   </view>
 </template>
 

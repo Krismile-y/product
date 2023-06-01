@@ -58,9 +58,7 @@
 		},
 		onLoad(){
 			this.change()
-			setInterval(()=>{
-				this.change()
-			},10000)
+			
 		},
 		methods: {
 			change() { //刷新验证码

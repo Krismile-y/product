@@ -2,7 +2,9 @@
 	<view style="padding-bottom: 0upx;padding-top: 70upx;background-color: #f7f8fa;min-height: 100vh;">
 		
 		
-		   <view><airel-floatball  /></view>
+		   <view >
+		   	<airel-floatball />
+		   </view>
 		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		   <view class="zongshouyi">
@@ -336,7 +338,7 @@
 			go(name, currentIndex) {
 				console.log(name)
         // 跳转到团队提现记录
-        if(name == 'twithdrawal') {
+        if(name == 'tuanduitixian') {
           if(this.info.is_real_name == 2) {
             // 已实名，跳转到团队提现页面
             uni.navigateTo({

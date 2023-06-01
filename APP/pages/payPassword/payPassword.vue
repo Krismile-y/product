@@ -53,9 +53,7 @@
     },
     onLoad() {
       this.yanzheng()
-	  setInterval(()=>{
-	  	this.yanzheng()
-	  },10000)
+	  
     },
     methods: {
       // 验证码

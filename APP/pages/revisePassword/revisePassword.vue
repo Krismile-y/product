@@ -9,7 +9,8 @@
 		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		   <view v-show="type==1?true:false">
 		   	<view class="item">
-		   		<image src="../../static/newMy/shimingBg.png" mode=""></image>
+		   		<image src="../../static/newMy/shimingBg.png" mode="" v-show="(this.info.is_real_name==1||this.info.is_real_name==2)"></image>
+		   		<image src="../../static/newMy/jujueshenqing.png" mode="" v-show="this.info.is_real_name==3"></image>
 		   		<view class="shiming-text">
 		   			{{shimingText}}
 		   		</view>
@@ -75,9 +76,7 @@
 	export default {
 		onLoad(options) {
 			this.yanzheng()
-			setInterval(()=>{
-				this.yanzheng()
-			},10000)
+			
 			console.log(options.type)
 			this.type = options.type
 
@@ -90,7 +89,7 @@
 			} else if (z == 2) {
 				this.shimingText = '您的实名认证已成功！'
 			} else if (z == 3) {
-				this.shimingText = '拒绝申请'
+				this.shimingText = '实名失败,请联系客服!'
 			}
 			// if(this.info.is_real_name==0){
 			// 	this.shiming='未实名'

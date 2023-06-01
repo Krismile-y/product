@@ -98,7 +98,17 @@ export default {
 				this.list = res.data.data
         this.getchanpin(this.list[options.id].id)
 				setTimeout(()=>{
-					this.left = options.id * 145
+					uni.getSystemInfo({
+						success: (res) => {
+							this.systemInfo = res
+							console.log(res.safeArea.width*0.4*0.2)
+							// let last = res.safeArea.width*0.4 -this.xxx
+							//  let last = res.safeArea.width
+							// this.left=index*last
+							this.left = options.id * res.safeArea.width*0.95*0.5
+						}
+					})
+					
 				},100)
 			}
 			
@@ -218,24 +228,26 @@ export default {
 		},
 
 		bian(index, id) { //切换产品列表接口
-		if(index==0  ){
-			this.xxx=0
-		}
-		if(index==this.changdu ){
-			this.xxx=20
-		}
-			this.xxx++
+		
+		// if(index==0  ){
+		// 	this.xxx=0
+		// }
+		// if(index==this.changdu ){
+		// 	this.xxx=20
+		// }
+		// 	this.xxx++
 			uni.getSystemInfo({
 				success: (res) => {
 					this.systemInfo = res
 					console.log(res.safeArea.width*0.4*0.95 - 18)
-					let last = res.safeArea.width*0.4 -this.xxx
-					this.left=index*last
+					// let last = res.safeArea.width*0.4 -this.xxx
+					//  let last = res.safeArea.width
+					// this.left=index*last
 					
 				}
 			})
 			this.currentIndex = index
-			this.$store.state.scrollIndex = index
+			// this.$store.state.scrollIndex = index
 			// 产品列表接口
 			console.log(id)
 			let goods_list = {
