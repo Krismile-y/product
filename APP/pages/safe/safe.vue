@@ -88,7 +88,7 @@
 			}else if( z == 2){
 				this.shiming='已实名'
 			}else if( z == 3){
-				this.shiming='拒绝申请'
+				this.shiming='实名失败'
 			}
 		},
 		methods:{

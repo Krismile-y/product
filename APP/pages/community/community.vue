@@ -338,7 +338,7 @@
 			go(name, currentIndex) {
 				console.log(name)
         // 跳转到团队提现记录
-        if(name == 'twithdrawal') {
+        if(name == 'tuanduitixian') {
           if(this.info.is_real_name == 2) {
             // 已实名，跳转到团队提现页面
             uni.navigateTo({

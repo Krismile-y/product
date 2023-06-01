@@ -210,11 +210,10 @@
 						</view>
 					</view>
 				
-				
 					<!-- 合作伙伴 -->
 				<view class="hezuo-box">
 				  <view class="hezuo-box1">
-				    <image src="../../static/newIndex/xieban.png" mode="widthFix"></image>
+				    <image src="../../static/newIndex/xieban.jpg" mode="widthFix"></image>
 				  </view>
 				</view>
 				<view class="jianguan-box">
@@ -258,14 +257,14 @@
 						</view>
 					</view>
 				<view class="foot">
-				  <!-- <view class="foot-text1">
-				    批准单位：中华人民共和国工业信息部 国家工商管理总局 指导单位：国家发改委 环境保护部 国家能源局 各地环境能源交易所
-				  </view> -->
 				  <view class="foot-text2">
-				    电信与信息服务业务经营许可证：京ICP证060152号
+				    Copyright@2008-2020 All rights reserved<br/>国家发展改革委员会&nbsp;&nbsp;|&nbsp;&nbsp;京ICP备05070218号
 				  </view>
 				  <view class="foot-text2">
-				     国新网许可证：1012006051&nbsp;&nbsp;&nbsp;&nbsp;京ICP备12007936号-3
+				    国新网许可证:1012006051&nbsp;&nbsp;|&nbsp;&nbsp;京ICP证060152号
+				  </view>
+				  <view class="foot-text2">
+				     电信与信息服务业务经营许可证&nbsp;&nbsp;|&nbsp;&nbsp;京ICP备12007936号-3
 				  </view>
 				  <view class="foot-text2">
 				    京公网安备11010502031076号
