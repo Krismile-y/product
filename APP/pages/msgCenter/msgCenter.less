@@ -95,16 +95,19 @@
 		margin-top: 20upx;
 		width: 90%;
 		text-indent: 60upx;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
       // 只要超过宽度就换行，不论中文还是英文
     word-break: break-all;
     //最多展示两行
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-height: 1.5em;
-    max-height: 4.5em;
+    // display: -webkit-box;
+    // -webkit-box-orient: vertical;
+    // -webkit-line-clamp: 3;
+    // line-height: 1.5em;
+    // max-height: 4.5em;
+    /deep/ img {
+      width: 100%;
+    }
 	}
 }
 
