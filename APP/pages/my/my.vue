@@ -358,6 +358,10 @@
             })
           }
           
+        }else if(name == 'twithdrawal') {
+          uni.navigateTo({
+          	url: `/pages/${name}/${name}?type=1`
+          })
         }else{
 					uni.navigateTo({
 						url: `/pages/${name}/${name}`

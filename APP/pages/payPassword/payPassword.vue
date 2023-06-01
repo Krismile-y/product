@@ -118,12 +118,12 @@
       		if(res.data.code == 1){
 				this.show=0
       			this.$refs.success.showTips({
-      			    msg: '修改成功',
-      			    duration: 2000
+      			    msg: '设置成功',
+      			    duration: 1000
       			  })
       			setTimeout(()=>{
       				uni.navigateBack()
-      			},10)
+      			},1000)
       		}else{
 				this.show=0
       			this.$refs.error.showTips({
