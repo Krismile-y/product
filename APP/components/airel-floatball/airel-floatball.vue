@@ -1,8 +1,10 @@
 <template>
 	<view>
 		<movable-area class="movable-area">
-			<movable-view class="movable-view" :x="x" :y="y" direction="all">
-				<image src="../../static/c/erji.png"></image>
+			<movable-view class="movable-view" :x="x()" :y="y()" direction="all">
+				<a :href="herf()">
+					<image src="../../static/c/erji.png"></image>
+				</a>
 			</movable-view>
 		</movable-area>
 	</view>
@@ -12,8 +14,19 @@
 	export default {
 		data() {
 			return {
-				x: 0,		//x坐标
-				y: 320,		//y坐标
+				// x: 0,		//x坐标
+				// y: 320,		//y坐标
+			}
+		},
+		methods:{
+			herf(){
+				return uni.getStorageSync('kefu')
+			},
+			x(){
+				return uni.getStorageSync('x')
+			},
+			y(){
+				return uni.getStorageSync('y')
 			}
 		}
 	}
