@@ -214,7 +214,7 @@
 					<!-- 合作伙伴 -->
 				<view class="hezuo-box">
 				  <view class="hezuo-box1">
-				    <image src="../../static/newIndex/xieban.jpg" mode="widthFix"></image>
+				    <image src="../../static/newIndex/xieban.png" mode="widthFix"></image>
 				  </view>
 				</view>
 				<view class="jianguan-box">
