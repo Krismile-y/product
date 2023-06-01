@@ -1,6 +1,6 @@
 <template>
   <view class="newsListDetails">
-	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	  
 	     <view>
 	     	<airel-floatball  />
 	     </view>
@@ -23,7 +23,7 @@
 	         {{item1.contentText}}
 	       </view>
 	     </view> -->
-	    </scroll-view>
+	   
    
   </view>
 </template>

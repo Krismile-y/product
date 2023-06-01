@@ -1,7 +1,7 @@
 <template>
 	<view class="shopDetail">
 		
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 		   
 		   <view>
 		   	<airel-floatball  />
@@ -45,7 +45,7 @@
 		   		</view>
 		   
 		   	</view>
-		  </scroll-view>
+		
 	
 
 	</view>

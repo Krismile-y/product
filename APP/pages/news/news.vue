@@ -1,7 +1,7 @@
 <template>
 	<view class="news-page">
 		
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 		   <view>
 		   	<airel-floatball  />
 		   </view>
@@ -18,7 +18,7 @@
 		   	<view class="detail" v-html="article.content">
 		   		<!-- {{article.content}} -->
 		   	</view>
-		  </scroll-view>
+		  
 		
    
 	</view>

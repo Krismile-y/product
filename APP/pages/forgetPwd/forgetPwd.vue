@@ -1,7 +1,7 @@
 <template>
 	<view class="safe">
 		
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 		   <view><airel-floatball /></view>
 		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
@@ -31,7 +31,7 @@
 		   	<view class="xinBtn dis" @tap="xiugai()" style="margin-top: 90rpx;" v-show="show==0?true:false">提交</view>
 		   	<view class="xinBtn dis" style="margin-top: 90rpx;" v-show="show==1?true:false">提交中...</view>
 		   </view>
-		  </scroll-view>
+		  
 		
 		
 

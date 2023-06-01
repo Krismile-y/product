@@ -1,7 +1,7 @@
 <template>
   <view class="tanhuiDetails">
 	  
-	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+
 	     <view class="">
 	       <airel-floatball  />
 	     </view>
@@ -17,7 +17,7 @@
 	     <view class="tp">
 	       2020年10月28日，《自然》科学期刊上一个国际团队的研究报告也再次表示，中国的西南地区和东北地区的“碳汇”，占了中国整体陆地的35％左右
 	     </view>
-	    </scroll-view>
+	   
 	  
    
   </view>

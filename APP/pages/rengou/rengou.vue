@@ -1,7 +1,7 @@
 <template>
   <view class="rengou">
 	  
-	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	  
 	     <view>
 	     	<airel-floatball  />
 	     </view>
@@ -64,7 +64,7 @@
 	         去支付
 	       </view>
 	     </view>
-	    </scroll-view>
+	    
     
   </view>
 </template>

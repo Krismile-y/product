@@ -1,7 +1,7 @@
 <template>
 	<view class="investDetail"> 
 	
-	<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+
 	   <view>
 	   	<airel-floatball  />
 	   </view>	
@@ -40,7 +40,7 @@
 	   <view class="btn dis">
 	   	马上认购
 	   </view>
-	  </scroll-view>
+
 		
 		
 	</view>

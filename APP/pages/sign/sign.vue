@@ -1,7 +1,7 @@
 <template>
 	<view class="sign">
 		
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 		   <view class="">
 		     <airel-floatball  />
 		   </view>
@@ -34,7 +34,7 @@
 		   		</view> -->
 		   		<view class="xinBtn dis" @tap="go">使用积分</view>
 		   	</view>
-		  </scroll-view>
+		  
 		
    
 		

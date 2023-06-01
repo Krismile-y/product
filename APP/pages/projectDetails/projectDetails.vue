@@ -1,7 +1,7 @@
 <template>
   <view class="projectDetails" ref="projectDetails">
 	  
-	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	
 	     <view>
 	     	<airel-floatball  />
 	     </view>
@@ -72,7 +72,7 @@
 	         马上认购
 	       </view>
 	     </view>
-	    </scroll-view>
+	 
     
   </view>
 </template>

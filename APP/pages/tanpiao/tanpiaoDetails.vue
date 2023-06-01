@@ -1,7 +1,7 @@
 <template>
   <view class="tanpiaoDetails">
 	  
-	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	 
 	     <view class="">
 	       <airel-floatball  />
 	     </view>
@@ -11,7 +11,7 @@
 	     <view class="tp">
 	       “碳票”就是林地林木碳减排量收益权的凭证，相当于一片森林的固碳释氧功能作为资产交易的“身份证”。形象地说，一片林子每年吸收多少吨二氧化碳、释放多少吨氧气，经第三方机构监测核算、专家审查、林业和相关部门审定，最终制发具有收益权的凭证。该凭证被赋予交易、质押、兑现、抵消等权能。
 	     </view>
-	    </scroll-view>
+	  
   
   </view>
 </template>
