@@ -1,7 +1,7 @@
 <template>
 	<view class="content" style="min-height: 120vh; padding-bottom: 100upx;">
 		
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 		   <!-- 客服 -->
 		   <view class="">
 		   	<airel-floatball />
@@ -41,7 +41,7 @@
 		   <view class="bottom-box">
 		   	<helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
 		   </view>
-		  </scroll-view>
+		
 		
 		
 
