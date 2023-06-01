@@ -47,7 +47,7 @@
 						</view>
 					</view>
 					<view class="item-title">
-						<view class="title-text">姓名：{{ item.user_name }}</view>
+						<view class="title-text">捐赠人：{{ item.user_name }}</view>
 					</view>
 					<view class="item-money">捐赠金额：￥{{ item.amount }}</view>
 					<view class="item-time">捐赠时间：{{ item.create_time }}</view>
