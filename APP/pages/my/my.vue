@@ -95,15 +95,11 @@
 		   		<view style="margin-top: 10upx;">{{item.name}}</view>
 		   	</view>
 		   </view>
+		  
 		   
 		   
-		   <!-- 个人中心 -->
-		   <!-- <view class="title" style="margin-bottom: 30upx;">
-		   	<view class="shu"></view>
-		   	个人中心
-		   </view> -->
 		   
-		   <view class="money" v-for="(item,index) in jiluList">
+		  <view class="money" v-for="(item,index) in jiluList" >
 		   	<view class="moneyItem" @tap="go(item.go,index)">
 		   		<image :src="item.url" mode=""></image>
 		   		{{item.name}}
@@ -112,9 +108,9 @@
 		   		</view>
 		   	</view>
 		   </view>
-		   
+		 
 		   <helang-tab-bar-bulge></helang-tab-bar-bulge>
-		  
+		   
 		
 		
 	</view>
@@ -122,9 +118,10 @@
 
 <script>
 	import tabBarBulge from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-bulge";
+	
 	export default {
 		components: {
-			"helang-tab-bar-bulge": tabBarBulge,
+			"helang-tab-bar-bulge": tabBarBulge, 
 		},
 		data() {
 			return {

@@ -6,10 +6,11 @@ import uniPopupMessage from "../../components/down/updatepage/uni-popup/uni-popu
 import uniPopupDialog from "../../components/down/updatepage/uni-popup/uni-popup-dialog.vue";
 import hezuoImg1 from "@/static/hezuo/hezuodanwei.png"
 import hezuoImg2 from "@/static/hezuo/hezuoAll.png"
+ 
 export default {
 	components: {
 		down,
-		"helang-tab-bar-bulge": tabBarBulge,
+		"helang-tab-bar-bulge": tabBarBulge, 
 	},
 	data() {
 		return {

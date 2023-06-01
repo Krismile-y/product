@@ -239,10 +239,10 @@ export default {
 			uni.getSystemInfo({
 				success: (res) => {
 					this.systemInfo = res
-					console.log(res.safeArea.width*0.4*0.95 - 18)
+					console.log(res.safeArea.width*0.5*0.95 )
 					// let last = res.safeArea.width*0.4 -this.xxx
 					//  let last = res.safeArea.width
-					// this.left=index*last
+					// this.left=index*res.safeArea.width*0.5*0.95
 					
 				}
 			})
