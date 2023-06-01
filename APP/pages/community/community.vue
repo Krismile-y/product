@@ -352,6 +352,11 @@
             })
           }
           
+        }else if(name == 'twithdrawal') {
+          // 跳转到团队提现记录
+          uni.navigateTo({
+          	url: `/pages/${name}/${name}?type=2`
+          })
         }else {
           uni.navigateTo({
           	url: `/pages/${name}/${name}?index=${currentIndex}`

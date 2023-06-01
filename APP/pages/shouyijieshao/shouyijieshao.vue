@@ -1,33 +1,9 @@
 <template>
   <view class="shouyijieshao">
-	  <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-	  <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-    <!-- <view class="">
-      <airel-floatball  />
-    </view> -->
-    <view class="title">
-      收益介绍图
+    <view class="shouyibiao">
+      <image src="../../static/c/shouyitu.png" mode=""></image>
     </view>
-    <view class="text">
-      直接推荐购买得
-    </view>
-    <view class="text textMargin">
-      21%奖励
-    </view>
-    <view class="text">
-      间接推荐购买得
-    </view>
-    <view class="text textMargin">
-      5%
-    </view>
-    <view class="text">
-      次级推荐购买得
-    </view>
-    <view class="text textMargin">
-      2%
-    </view>
-    <!-- 收益介绍 -->
-  </view>
+	</view>
 </template>
 
 <script>
@@ -45,29 +21,15 @@
 .shouyijieshao {
   width: 100%;
   height: 100vh;
-  background-image: url('../../static/common/jieshao.jpg');
+  background-image: url('../../static/c/shouyi-bg.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   box-sizing: border-box;
-  padding: 100rpx 0 0;
-  .title,.text {
-    width: 100%;
-    text-align: center;
-    color: #000;
-    font-size: 66rpx;
-    letter-spacing: .2em;
-    font-weight: 600;
-    line-height: 80rpx;
-    font-family: 'SongTi';
-  }
-  .title {
-    margin-bottom: 60rpx ;
-  }
-  .text {
-    font-size: 54rpx;
-  }
-  .textMargin {
-    margin-bottom: 60rpx;
+  padding: 340rpx 0 0;
+  .shouyibiao {
+    width: 632rpx;
+    height: 574rpx;
+    margin: 0 auto;
   }
 }
 </style>

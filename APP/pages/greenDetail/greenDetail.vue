@@ -202,7 +202,7 @@
 					this.zhuangtai=9999
 					this.currentIndex=999999
 				}else{
-          this.$refs.success.showTips({
+          this.$refs.error.showTips({
               msg: res.data.msg,
               duration: 2000
             })

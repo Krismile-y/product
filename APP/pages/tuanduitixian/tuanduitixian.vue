@@ -421,13 +421,15 @@
       },
       // 提交申请
       tuanduitixian() {
-        if (this.money == 0) {
-
+        // 去除输入里面的空格
+        this.money = this.noSpace(this.money)
+        if (this.money == '' || this.money == 0) {
+        
           this.$refs.error.showTips({
             msg: '请输入提现金额',
             duration: 2000
           })
-
+        
           return
         }
         if ((parseInt(this.info.money_team) + parseInt(this.info.money_hire)) < this.money) {
