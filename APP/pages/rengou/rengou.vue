@@ -34,7 +34,7 @@
 	           项目名称：{{item.goods_name}}
 	         </view>
 	         <view class="item-text">
-	           项目对应天数：{{item.project_day}}天
+	           项目选择天数：{{item.project_day}}天
 	         </view>
 	         <view class="item-text">
 	           项目日收益：{{item.income}}

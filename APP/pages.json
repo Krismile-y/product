@@ -89,7 +89,7 @@
 		}, {
 			"path": "pages/group/group",
 			"style": {
-				"navigationBarTitleText": "团队津贴",
+				"navigationBarTitleText": "绿色守护者津贴",
 				"enablePullDownRefresh": false
 			}
 

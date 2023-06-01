@@ -12,9 +12,9 @@
     "app-plus" : {
         "compatible" : {
             //可选，JSON对象，uni-app兼容模式
-            "ignoreVersion" : true, //可选，Boolean类型，是否忽略版本兼容检查提示
+            "ignoreVersion" : false, //可选，Boolean类型，是否忽略版本兼容检查提示
             "runtimeVersion" : "1.7.1", //可选，字符串类型，兼容的uni-app运行环境版本号，多个版本使用,分割
-            "compilerVersion" : "1.7.1" //可选，字符串类型，兼容的编译器版本号
+            "compilerVersion" : "3.7.11" //可选，字符串类型，兼容的编译器版本号
         },
         /* 5+App特有相关 */
         "usingComponents" : true,

@@ -1,5 +1,5 @@
 <template>
-	<view class="content" style="padding-bottom: 200upx; background-color: #F4F4F6;">
+	<view class="content" style="background-color: #F4F4F6;">
 		
 		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
 			<view>

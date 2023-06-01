@@ -217,12 +217,13 @@
 							}, 2000)
 						} else {
 							// 自动填入的邀请码
-							// 跳转到下载app页面
 							// uni.navigateTo({
 							//   url: 'https://www.baidu.com'
 							// })
-							// top.location.href = this.downHerf
-							plus.runtime.openURL(this.downHerf);
+							// 
+              // 跳转到下载app页面
+							// plus.runtime.openURL(this.downHerf);
+              top.location.href = this.downHerf
 						}
 
 					} else {
