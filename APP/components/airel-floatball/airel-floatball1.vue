@@ -5,7 +5,9 @@
 				:style="styleBall"
 			    @blur="blur" tabindex="1" @tap="show" 
 			    @touchstart.stop="touchstart" @touchmove.stop="touchmove" @touchend="touchend">
-			    <image  :src="mainImg"  style="width: 100upx;height: 100upx;border-radius: 0%;"></image>
+			   <a :href="herf()">
+				    <image  :src="mainImg"  style="width: 100upx;height: 100upx;border-radius: 0%;"></image>
+			   </a>
 			</view>
 		</a>
     </view>
@@ -57,6 +59,7 @@
 				// 吸边动画
 				transition:'',
 				isleft:true,
+				
 			}
 		},
 		computed:{
@@ -85,6 +88,9 @@
                 console.log('tap');
             },
 			doNothing:function(){},
+			herf(){
+				return uni.getStorageSync('kefu')
+			}
 			/*
 			// 原理
 			// s：开始移动组件坐标 m：现在组件坐标 d：手指变化坐标
