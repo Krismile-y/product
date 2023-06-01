@@ -107,6 +107,7 @@ export default {
 			success: (res) => {
 				this.$fn.request('v', "GET", {}).then(r => {
 					console.log(r, 'v');
+					console.log(r.data.data.renew,'更新的信息')
 					uni.setStorageSync('lowDown', r.data.data.down)
 					if (res.platform = 'android') {
 						this.phoneDown = r.data.data.apk
@@ -218,30 +219,25 @@ export default {
 	},
 
 	onLoad() {
-         
-		if (window.location.search) {
-			const searchParams = new URLSearchParams(window.location.search);
+    if (window.location.search) {
+      const searchParams = new URLSearchParams(window.location.search);
 
-			console.log(window.location.origin)
-			const params = {};
-			for (const pair of searchParams.entries()) {
-				params[pair[0]] = pair[1];
-			}
-			let code = params['code']; // 返回 "123"
-			console.log(code)
-			if (parseInt(code) > 0 && code.length > 1) {
-				uni.setStorageSync('code', code)
-				window.location.href = window.location.origin + '/#/pages/login/login?=' + code
-				// uni.navigateTo({
-				//   url:
-				// })
-				return;
-			}
-		}
-
-
-
-
+      console.log(window.location.origin)
+      const params = {};
+      for (const pair of searchParams.entries()) {
+        params[pair[0]] = pair[1];
+      }
+      let code = params['code']; // 返回 "123"
+      console.log(code)
+      if (parseInt(code) > 0 && code.length > 1) {
+        uni.setStorageSync('code', code)
+        window.location.href = window.location.origin + '/#/pages/logon/logon?=' + code
+        // uni.navigateTo({
+        //   url:
+        // })
+        return;
+      }
+    }
 	},
 	methods: {
 		guanwang() { //进入官网

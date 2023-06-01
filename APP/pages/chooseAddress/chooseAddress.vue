@@ -13,7 +13,7 @@
 		   		</view>
 		   		<view class="left dis" @tap="itemtap(item,index)">
 		   			<image
-		   				src="../../common/user.webp"
+		   				:src="info.head_img"
 		   				mode=""></image>
 		   		</view>
 		   		<view class="right" @tap="itemtap(item,index)">
@@ -54,9 +54,12 @@
 			return {
 				list:[],
 			    currentIndex:9999,
+				info:{}
 			};
 		},
 		onShow() {
+			
+			
 			// this.currentIndex=uni.getStorageSync('addressIndex')
 			
 			this.$fn.request('my_address',"GET",{}).then(r=>{
@@ -64,6 +67,8 @@
 				this.list=r.data.data
 				
 			})
+			
+			this.info=uni.getStorageSync('user_info')
 		},
 		methods:{
 			add(){//新增地址
@@ -162,15 +167,18 @@
 			display: flex;
 			align-items: center;
 			.name{
-				
+				width: 130upx;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
 			}
 			.phone{
-				margin-left: 20upx;
+				margin-left: 10upx;
 			}
 			.moren{
 				color: #02AE71;
 				border: 1upx solid #02AE71;
-				width: 70upx;
+				width: 110upx;
 				font-size: 28upx;
 				height: 30upx;
 				margin-left: 20upx;

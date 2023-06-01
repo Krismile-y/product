@@ -85,7 +85,8 @@
 							<view class="img-box">
 								<image src="../../static/newIndex/xiazai.png"></image>
 							</view>
-							<down title='检查更新' ref='down'></down>
+							<!-- <down title='检查更新' ref='down'></down> -->
+							<view class="title ">检查更新</view>
 						</view>
 						<!--  #endif -->
 						<!-- #ifdef H5 -->
@@ -152,7 +153,7 @@
 							<image src="../../static/newIndex/icon-right.png" mode=""></image>
 						</view>
 						<view class="little-text">
-							祝你快速入门
+							入门优选
 						</view>
 					</view>
 				

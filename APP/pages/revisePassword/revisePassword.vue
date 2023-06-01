@@ -191,6 +191,7 @@
 						this.show = 0
 						uni.removeStorageSync('pwd')
 						uni.removeStorageSync('token')
+						uni.setStorageSync('remember',false)
 						this.$refs.success.showTips({
 							msg: '修改成功',
 							duration: 2000

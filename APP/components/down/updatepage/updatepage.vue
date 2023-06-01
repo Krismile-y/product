@@ -9,7 +9,7 @@
 	
     <view class="download">
       <uni-popup ref="popup" type="center">
-        <view class="upgrade " style="height: 480upx;">
+        <view class="upgrade " style="padding-bottom: 0upx;">
           <!-- <view class="logo">
             <image src="./static/upgrade.png"  style="width: 120upx;height: 120upx;"/>
           </view> -->
@@ -17,19 +17,29 @@
             <view class="title dis" style="width: 100%">
               <text>{{upgrading?"正在升级":"发现新版本"+versionStr}}</text>
             </view>
+			
             <view class="container " style="margin-top: 30upx;">
-              <view class="descriptions" style="height: 60upx;margin-top: 50upx;">
+              <view class="descriptions" style="height: 60upx;margin-top: 0upx;">
                 <text>{{upgrading?"正在为您下载,请耐心等待":"本次版本更新描述内容:"}}</text>
               </view>
+			  
               <view class="details" v-if="!upgrading" style="width: 100%;">
-                <view class="item"  style="width: 100%;height: 40upx;margin-top: -20upx;">
+				  <!-- <view class="item"  style="width: 100%;height: 20upx;">
+				   
+				  </view> -->
+                <!-- <view class="item"  style="width: 100%;height: 40upx;margin-top: -20upx;">
 				  <view style="width: 300upx;margin-right: 50upx;">1.新增了一些功能</view>
-                </view>
-				<view class="item"  style="width: 100%;height: 40upx;margin-top: 10upx;">
-				  <view style="width: 300upx;margin-right: 50upx;">2.调高了客户端运行效率</view>
-				</view>
+                </view> -->
 				
+					<view class="item"  style="width: 100%;margin-top: 10upx;" >
+					  <view style="width: 95%;margin: 0 auto;text-indent: 30upx;">{{vfont}}</view>
+					 
+					</view>	
+				
+				
+					
               </view>
+			  
               <view v-else class="prpgroess">
                 <progress
                   :percent="downloadTime"
@@ -42,7 +52,7 @@
               </view>
             </view>
             
-			<view v-if="!upgrading" class="btn-group" style="margin-top: 30upx;">
+			<view v-if="!upgrading" class="btn-group" style="margin-top:10upx;">
               <view class="cancel" @tap="hiddenUppop">
                 <text>取消</text>
               </view>
@@ -58,6 +68,7 @@
                 <text>后台下载</text>
               </view>
             </view>
+			
           </view>
         </view>
       </uni-popup>
@@ -94,7 +105,8 @@ export default {
     // 下载地址
     downloadUrl: "",
 	anzhuo:"",
-	ios:""
+	ios:"",
+	vfont:'先学习',//更新信息
   }),
   // 使用的组件
   components: {
@@ -136,6 +148,8 @@ export default {
 	  	// console.log(res.data.data.ios,'ios')
 	  	this.ios = res.data.data.ios
 	  	console.log(res.data.data.v,'版本更新')
+		this.vfont=res.data.data.renew
+		
 		if(res.data.data.v !== version){
 			this.$refs.popup.open();
 		}else{
@@ -421,5 +435,11 @@ export default {
 }
 .btn-group{
 	height: 120upx;
+}
+.download{
+	
+}
+.upgrade{
+	min-height: 500upx;
 }
 </style>

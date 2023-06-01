@@ -40,11 +40,11 @@
 								<view class="top-title">
 									<!-- 商品标题 -->
 									<view class="title">
-										{{`${item.goods_name} ${item.one_money} x${item.order_number}`}}
+										{{`${item.goods_name} ${item.one_money}`}}
 									</view>
-									<!-- 天数 -->
+									<!-- 数量 -->
 									<view class="day">
-
+                    {{`x${item.order_number}`}}
 									</view>
 								</view>
 								<!-- 总金额 -->
@@ -342,7 +342,9 @@
 						flex: 1;
 					}
 
-					.day {}
+					.day {
+            margin-right: 70rpx;
+          }
 				}
 
 				.total-money {

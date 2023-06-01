@@ -81,6 +81,10 @@ export default {
 		}
 		this.x();
 	},
+	onPullDownRefresh() {
+		uni.hideNavigationBarLoading();
+		uni.stopPullDownRefresh();
+	},
 	onShow() {
 		this.$fn.request('welfare/donate_log', 'GET', {}).then((res) => {
 			console.log(res, '捐献记录');
