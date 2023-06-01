@@ -1,4 +1,12 @@
 import tabBarBulge from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-bulge";
+// 静态图片引入，用作没数据时的展示
+import kezaisheng from '../../static/common/kezaisheng.jpg';
+import plane from '../../static/common/plane.jpg';
+import xinnengyuan from '../../static/common/xinnengyuan.jpg';
+import qingjie from '../../static/common/qingjie.jpg';
+import zhishuzaolin from '../../static/common/zhishuzaolin.jpg';
+import shuzihua from '../../static/common/shuzihua.jpg';
+import jieneng from '../../static/common/jieneng.jpg';
 import mstabs from '../../components/ms-tabs/ms-tabs.vue'
 export default {
 	components: {
@@ -33,6 +41,37 @@ export default {
 			        ],
 			        active2: 0,
 			left: 0,
+      noneDataImgs:[
+        {
+          id:1,
+          url:kezaisheng,
+        },
+        {
+          id:2,
+          url:plane,
+        },
+        {
+          id:4,
+          url:xinnengyuan,
+        },
+        {
+          id:5,
+          url:qingjie,
+        },
+        {
+          id:6,
+          url:zhishuzaolin,
+        },
+        {
+          id:7,
+          url:shuzihua,
+        },
+        {
+          id:8,
+          url:jieneng,
+        },
+      ],
+      nowNoneImg: '',
 			kong: false, //分类数据为空
 			out: 0, //退出参数
 			typeIndex: 0,
@@ -92,7 +131,7 @@ export default {
 		}
 		// 产品分类接口
 		this.$fn.request('goods/goods_type', 'GET', data).then(res => {
-			console.log(res.data.data.length, '产品分类接口')
+			console.log(res.data.data, '产品分类接口')
 			this.changdu=res.data.data.length-1
 			if(res.data.code == 1){
 				this.list = res.data.data
@@ -180,11 +219,15 @@ export default {
       	'tid': id
       }
       this.$fn.request('goods/goods_list', 'GET', goods_list).then(res => {
-      	console.log(res.data.data.data, '产品列表接口')
+      	console.log(res.data.data.data, id,'产品列表接口')
       	
       	this.goods_list = res.data.data.data
-      	
       	if (this.goods_list.length == 0) {
+          this.noneDataImgs.forEach((item)=> {
+            if(id == item.id) {
+              this.nowNoneImg = item.url
+            }
+          })
       		this.kong = true
       	} else {
       		this.kong = false
@@ -257,6 +300,11 @@ export default {
 				console.log(res.data.data.data, '产品列表接口')
 				this.goods_list = res.data.data.data
 				if (this.goods_list.length == 0) {
+          this.noneDataImgs.forEach((item)=> {
+            if(id == item.id) {
+              this.nowNoneImg = item.url
+            }
+          })
 					this.kong = true
 				} else {
 					this.kong = false
