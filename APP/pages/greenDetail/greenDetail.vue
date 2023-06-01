@@ -1,8 +1,8 @@
 <template>
-	<view class="greenDetail" style="">
+	<view class="greenDetail" style="padding-bottom: 60upx;">
 		
 		
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 		   <view><airel-floatball  /></view>
 		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
@@ -103,7 +103,7 @@
 		   	  
 		     </view>
 		   </u-popup>
-		  </scroll-view>
+		  
 		
 		
 		
@@ -202,7 +202,7 @@
 					this.zhuangtai=9999
 					this.currentIndex=999999
 				}else{
-          this.$refs.success.showTips({
+          this.$refs.error.showTips({
               msg: res.data.msg,
               duration: 2000
             })

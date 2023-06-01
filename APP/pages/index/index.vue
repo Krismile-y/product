@@ -1,11 +1,12 @@
 <template>
 	<view class="content" style="padding-bottom: 200upx; background-color: #F4F4F6;">
 		
-		
+		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
 			<view>
 				<!-- 	<navs></navs>	 -->
 					<down ref='down'></down>
 				   <!-- <airel-floatball  /> -->
+				   
 				   <view >
 				   	<airel-floatball />
 				   </view>
@@ -213,7 +214,7 @@
 					<!-- 合作伙伴 -->
 				<view class="hezuo-box">
 				  <view class="hezuo-box1">
-				    <image src="../../static/newIndex/xieban.jpg" mode="widthFix"></image>
+				    <image src="../../static/newIndex/xieban.png" mode="widthFix"></image>
 				  </view>
 				</view>
 				<view class="jianguan-box">
@@ -274,6 +275,8 @@
 						<helang-tab-bar-bulge :fixed-bottom="true"></helang-tab-bar-bulge>
 					</view>
 			</view>
+		</scroll-view>
+			
 		
 		
 		

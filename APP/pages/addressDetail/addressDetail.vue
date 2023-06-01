@@ -1,7 +1,7 @@
 <template>
 	<view>
 		
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 		   <!-- 这个是编辑地址 -->
 		   <view class="item">
 		   	<view> <airel-floatball /></view>
@@ -80,7 +80,7 @@
 		   	确认
 		   </view>
 		   <!-- </view> -->
-		  </scroll-view>
+		
 		
 		
 

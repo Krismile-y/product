@@ -1,145 +1,83 @@
 <template>
-	<view>
-		<view
-			id="_drag_button"
-			class="drag"
-			:style="'left: ' + left + 'px; top:' + top + 'px;'"
-			@touchstart="touchstart"
-			@touchmove.stop.prevent="touchmove"
-			@touchend="touchend"
-			@tap.stop.prevent="tap"
-			:class="{transition: isDock && !isMove }"
-		>
-		
-			<!-- <text>{{ text }}</text> -->
-		</view>
-	</view>
+    <view>
+        <view class="holdon">
+            <view class="ball"
+                :style="'left:'+(moveX == 0 & x>0? x+'%':moveX+'px')+';top:'+(moveY == 0 & y>0? y+'%':moveY+'px')"
+                @touchstart="drag_start" @touchmove.prevent="drag_hmove" mode="aspectFit">
+            </view>
+        </view>
+    </view>
 </template>
-
 <script>
-	export default {
-		name: 'drag-button',
-		props: {
-			isDock:{
-				type: Boolean,
-				default: false
-			},
-			existTabBar:{
-				type: Boolean,
-				default: false
-			}
-		},
-		data() {
-			return {
-				top:0,
-				left:50,
-				width: 0,
-				height: 0,
-				offsetWidth: 0,
-				offsetHeight: 0,
-				windowWidth: 0,
-				windowHeight: 0,
-				isMove: true,
-				edge: 0,
-				text: '客服'
-			}
-		},
-		mounted() {
-			const sys = uni.getSystemInfoSync();
-			
-			this.windowWidth = sys.windowWidth;
-			this.windowHeight = sys.windowHeight;
-			
-			// #ifdef APP-PLUS
-				this.existTabBar && (this.windowHeight -= 50);
-			// #endif
-			if (sys.windowTop) {
-				this.windowHeight += sys.windowTop;
-			}
-			console.log(sys)
-			
-			const query = uni.createSelectorQuery().in(this);
-			query.select('#_drag_button').boundingClientRect(data => {
-				this.width = data.width;
-				this.height = data.height;
-				this.offsetWidth = data.width / 2;
-				this.offsetHeight = data.height / 2;
-				this.left = this.windowWidth - this.width - this.edge;
-				this.top = this.windowHeight - this.height - this.edge;
-			}).exec();
-		},
-		methods: {
-			tap() {
-				this.$emit('btntap');
-			},
-			touchstart(e) {
-				this.$emit('btnTouchstart');
-			},
-			touchmove(e) {
-				// 单指触摸
-				if (e.touches.length !== 1) {
-					return false;
-				}
-				
-				this.isMove = true;
-				
-				this.left = e.touches[0].clientX - this.offsetWidth;
-				
-				let clientY = e.touches[0].clientY - this.offsetHeight;
-				// #ifdef H5
-					clientY += this.height;
-				// #endif
-				let edgeBottom = this.windowHeight - this.height - this.edge;
-
-				// 上下触及边界
-				if (clientY < this.edge) {
-					this.top = this.edge;
-				} else if (clientY > edgeBottom) {
-					this.top = edgeBottom;
-				} else {
-					this.top = clientY
-				}
-				
-			},
-			touchend(e) {
-				if (this.isDock) {
-					let edgeRigth = this.windowWidth - this.width - this.edge;
-					
-					if (this.left < this.windowWidth / 2 - this.offsetWidth) {
-						this.left = this.edge;
-					} else {
-						this.left = edgeRigth;
-					}
-					
-				}
-				
-				this.isMove = false;
-				
-				this.$emit('btnTouchend');
-			},
-		}}
+    export default {
+        //悬浮球绝对位置百分比，页面刷新会回到这个位置
+        props: {
+            x: {
+                type: Number,
+                default: 80
+            },
+            y: {
+                type: Number,
+                default: 50
+            },
+            image: {
+                type: String,
+                default: ''
+            }
+        },
+        data() {
+            return {
+                start: [0, 0],
+                moveY: 0,
+                moveX: 0,
+                windowWidth: '',
+                windowHeight: '',
+            }
+        },
+        onShow() {
+            //获取系统分辨率
+            const {
+                windowWidth,
+                windowHeight
+            } = uni.getSystemInfoSync();
+            this.windowWidth = windowWidth
+            this.windowHeight = windowHeight
+        },
+        methods: {
+            drag_start(event) {
+                this.start[0] = event.touches[0].clientX - event.target.offsetLeft;
+                this.start[1] = event.touches[0].clientY - event.target.offsetTop;
+            },
+            //判断防止悬浮球被拖出页面
+            drag_hmove(event) {
+                let tag = event.touches;
+                if (tag[0].clientX < 0) {
+                    tag[0].clientX = 0
+                }
+                if (tag[0].clientY < 0) {
+                    tag[0].clientY = 0
+                }
+                if (tag[0].clientX > this.windowWidth) {
+                    tag[0].clientX = this.windowWidth
+                }
+                if (tag[0].clientY > this.windowHeight) {
+                    tag[0].clientY = this.windowHeight
+                }
+                this.moveX = tag[0].clientX - this.start[0];
+                this.moveY = tag[0].clientY - this.start[1];
+            },
+        }
+    }
 </script>
 
-<style lang="scss">
-	.drag {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		// background-color: #4bc93e;
-		// box-shadow: 0 0 6upx rgba(0, 0, 0, 0.4);
-		color: $uni-text-color-inverse;
-		width: 120upx;
-		height: 120upx;
-		border-radius: 50%;
-		font-size: $uni-font-size-sm;
-		position: fixed;
-		z-index: 999999;
-		color: #fff;
-		background-image: url('../../static/myimg/kefu.png');
-		background-size: 100% 100%;
-		&.transition {
-			transition: left .3s ease,top .3s ease;
-		}
-	}
-	
+<style>
+    .ball {
+        width: 100rpx;
+        height: 100rpx;
+        background: linear-gradient(to bottom, #F8F8FF, #87CEFA);
+        border-radius: 50%;
+        /* 防止页面滚动条或其他事件跟着动 */
+        position: fixed !important;
+        z-index: 9999;
+    }
 </style>

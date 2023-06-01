@@ -1,6 +1,6 @@
 <template>
   <view class="withdrawal">
-	  <scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+	 
 	     <view>
 	     	    <airel-floatball />
 	     </view>
@@ -119,7 +119,7 @@
 	        </view>
 	      </u-popup>
 	      <numberJpan :length="6" @closeChange="closeChange($event)" :showNum="false" ref="numberJpan"></numberJpan>
-	    </scroll-view>
+	  
  
   </view>
 </template>
@@ -421,13 +421,15 @@
       },
       // 提交申请
       tuanduitixian() {
-        if (this.money == 0) {
-
+        // 去除输入里面的空格
+        this.money = this.noSpace(this.money)
+        if (this.money == '' || this.money == 0) {
+        
           this.$refs.error.showTips({
             msg: '请输入提现金额',
             duration: 2000
           })
-
+        
           return
         }
         if ((parseInt(this.info.money_team) + parseInt(this.info.money_hire)) < this.money) {

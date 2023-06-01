@@ -33,8 +33,8 @@
 						  			<view class="h-flex-x h-flex-3">
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
 						            <view class="items dis yuan1"  @tap="four(0)">
-                          <!-- <image src="../../../../static/newIndex/gabige.png" mode=""></image> -->
-                          <image src="../../../../static/newIndex/gray_gabige.png" mode=""></image>
+                          <image src="../../../../static/newIndex/gabige.png" mode=""></image>
+                          <!-- <image src="../../../../static/newIndex/gray_gabige.png" mode=""></image> -->
                         </view>
 						  				</view>
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">

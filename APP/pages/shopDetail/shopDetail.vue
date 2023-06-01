@@ -1,7 +1,7 @@
 <template>
 	<view class="shopDetail">
 		
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 		   
 		   <view>
 		   	<airel-floatball  />
@@ -28,9 +28,12 @@
 		   			<view class="shu"></view>
 		   			商品介绍
 		   		</view>
-		   
-		   		<image :src="item.head_img" style="width: 686upx;height: 678upx;margin-top: 30upx;border-radius: 20upx;">
-		   		</image>
+          
+          <view class="jieshao-img" v-html="item.content">
+            
+          </view>
+		   		<!-- <image :src="item.head_img" style="width: 686upx;height: 678upx;margin-top: 30upx;border-radius: 20upx;">
+		   		</image> -->
 		   		
 		   		<view class="btn dis" v-show="btnSHOW==0?true:false">
 		   			<view class="font" @tap="duihuan">
@@ -45,7 +48,7 @@
 		   		</view>
 		   
 		   	</view>
-		  </scroll-view>
+		
 	
 
 	</view>

@@ -1,7 +1,7 @@
 <template>
 	<view style="padding-bottom: 30upx;">
 		
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 		   <view>
 		   	    <airel-floatball  />
 		   </view>
@@ -130,7 +130,7 @@
 		   					</view>
 		   				</view>
 		   			</u-overlay>
-		  </scroll-view>
+		  
 		
    
 				

@@ -1,7 +1,7 @@
 <template>
 	<view class="msg">
 		
-		<scroll-view scroll-y="true" style="width: 100%;height: 100vh;">
+		
 		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		   
@@ -55,7 +55,7 @@
 		   </view>
 		   
 		   
-		   <view class="newBox" @tap="go(2)">
+		   <view class="newBox" @tap="go(3)">
 		   	<view class="shang">
 		   		<image src="./four.png" mode=""></image>
 		   		站内信
@@ -72,7 +72,7 @@
 		   </view>
 		   	   
 		   <view><airel-floatball /></view>
-		  </scroll-view>
+		
 		
 		
 	</view>
