@@ -30,6 +30,10 @@
     width: 632rpx;
     height: 574rpx;
     margin: 0 auto;
+    image {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>

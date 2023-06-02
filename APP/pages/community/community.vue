@@ -50,8 +50,8 @@
 		   
 		   <!-- 团队津贴 -->
 		   <view class="jintie" @tap="go('group')">
-		   	<view style="font-weight: 600;padding-top: 30upx;font-size: 34upx;">团队津贴</view>
-		   	<view style="font-size: 28upx;">超多津贴</view>
+		   	<view style="font-weight: 600;padding-top: 30upx;font-size: 34upx;">绿色守护计划</view>
+		   	<view style="font-size: 28upx;">超多奖励</view>
 		   </view>
 		   
 		   

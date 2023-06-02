@@ -215,6 +215,7 @@
 @import "./tab-bar.scss";
 
 .helang-tab-bar{
+  background-color: rgba(0, 0, 0, 0);
 	.item{
 		height: 100rpx;
 		position: relative;

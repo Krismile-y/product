@@ -83,15 +83,13 @@
 			};
 		},
 		onLoad() {
+      // #ifdef H5
 			let code = uni.getStorageSync('code')
 			if (code || code !== null || code !== undefined) {
 				this.agent_id = code
 			}
-
 			this.downHerf = uni.getStorageSync('lowDown')
-			console.log(this.downHerf);
-			console.log(code, 'codesssss');
-			console.log(this.agent_id, code, 'code');
+      // #endif
 			this.yanzheng()
 			
 		},
@@ -217,12 +215,20 @@
 							}, 2000)
 						} else {
 							// 自动填入的邀请码
-							// 跳转到下载app页面
-							// uni.navigateTo({
-							//   url: 'https://www.baidu.com'
-							// })
-							// top.location.href = this.downHerf
-							plus.runtime.openURL(this.downHerf);
+              // 跳转到下载app页面
+              // #ifdef H5
+              top.location.href = this.downHerf
+              // #endif
+              
+              // #ifdef APP
+                uni.setStorageSync('pwd', '')
+                uni.setStorageSync('phone', '')
+                setTimeout(() => {
+                  uni.navigateTo({
+                    url: '/pages/login/login'
+                  })
+                }, 2000)
+              // #endif
 						}
 
 					} else {
