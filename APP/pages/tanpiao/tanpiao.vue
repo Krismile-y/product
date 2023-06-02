@@ -25,7 +25,7 @@
 	             </view>
 	           </view>
 	     
-	     
+	           
 	           <view class="" style="margin-top: 20upx;">
 	             <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
 	               <uni-card :title="item.mark" :extra="item.money" v-for="(item,index) in tableData" :key="index">
@@ -182,6 +182,7 @@
         for(let item of Object.keys(data.data)) {
           if(item == 'count_money') {
             this.priceTotal = data.data[item]
+			console.log(this.priceTotal)
           }else {
             list.push(data.data[item])
           }

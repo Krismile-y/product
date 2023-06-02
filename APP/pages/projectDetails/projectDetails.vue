@@ -57,7 +57,18 @@
 	       </view>
 	     </view>
        <view class="bottom-img" @click="previewImage">
-         <image :src="detail.bottom_img" mode="widthFix"></image>
+         <!-- <image :src="detail.bottom_img" mode="widthFix"></image> -->
+		 
+		 <view class="disc">
+			 
+			 <image src="./title.png" mode="" style="width: 403upx;height: 107upx;"></image>
+			 <view>
+				 
+			 </view>
+			 
+		 </view>
+		 
+		 
        </view>
 	     <view class="opcity-bottom">
 	       <!-- 用于支撑fixed的空白盒子 -->
@@ -133,6 +144,7 @@
       },
       // 加个列表图片预览
       previewImage() {
+		  return
         uni.previewImage({
           urls: [this.detail.bottom_img] // 这里填写需要预览的图片地址列表
         })
