@@ -26,17 +26,12 @@
 		   	</view>
 		   	
 		   </view>
-		   
-		   <!--  -->
-		   <view style="margin-top: 30upx;">
-		   	<view class="item" v-for="(item,index) in list" :key="index">
-		   		<view class="font ">
-		   			{{item.title}}
-		   		</view>
 		   <!-- 领取时间 -->
 		   <view class="linquTime">
 		     领取时间：每月**日 00:00:00
 		   </view>
+		   <view style="margin-top: 30upx;">
+		   	<view class="item" v-for="(item,index) in list" :key="index">
 		   		<view :class="{
 		     'gray': btnType == '2',
 		     'btn': btnType == '0',
@@ -44,6 +39,16 @@
 		   }" @tap="linquClick(item)">
 		     {{linquSet(item)}}
 		   </view>
+       <view class="item-bottom">
+         <image src="../../static/c/peoples.png" mode="widthFix"></image>
+         <view class="zhitui">
+           直推{{item.number}}人
+         </view>
+         <image src="../../static/c/items-money.png" mode="widthFix"></image>
+         <view class="zhitui">
+           直推{{item.reward}}人
+         </view>
+       </view>
 		   	</view>
 		   </view>
 	
@@ -160,64 +165,72 @@
 	
 }
 
+.linquTime {
+  width: 100%;
+  margin-top: 32rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #00988F;
+}
 .item{
-	width: 90%;
-  height: 200upx;
-	margin: 20upx auto;
+	width: 700rpx;
+  height: 121rpx;
+	margin: 32upx auto;
   box-sizing: border-box;
   padding: 10upx 20upx;
 	display: flex;
   flex-direction: column;
 	align-items: center;
 	position: relative;
-  background-image: url('../../static/c/jintie.png');
+  background-image: url('../../static/c/items-bg.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   position: relative;
-  .linquTime {
+  .item-bottom {
+    width: 100%;
     position: absolute;
-    right: 15upx;
-    bottom: 0upx;
-    text-align: left;
+    left: 0%;
+    bottom: 0%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
     font-size: 24rpx;
-    
+    font-weight: 400;
+    color: #00988F;
+    image {
+      width: 32rpx;
+      height: 26rpx;
+    }
   }
-	.font{
-		width: 100%;
-    text-align: center;
-	}
 	.btn{
-    margin-top: 30upx;
 		background-color: #07c07e;
 		color: #fff;
-		border-radius: 15upx;
+		border-radius: 0 25upx 0 25upx;
     box-sizing: border-box;
     padding: 10upx 20upx 15upx;
     position: absolute;
-    bottom: 55upx;
-    right: 15upx;
+    top: 0;
+    right: 0;
 	}
   .gray {
-    margin-top: 30upx;
     background-color: #8e8e8e;
     color: #fff;
-    border-radius: 15upx;
+    border-radius: 0 25upx 0 25upx;
     box-sizing: border-box;
     padding: 10upx 20upx 15upx;
     position: absolute;
-    bottom: 15upx;
-    right: 15upx;
+    top: 0;
+    right: 0;
   }
   .pink {
-    margin-top: 30upx;
     background-color: #07c07e;
     color: #fff;
-    border-radius: 15upx;
+    border-radius: 0 25upx 0 25upx;
     box-sizing: border-box;
     padding: 10upx 20upx 15upx;
     position: absolute;
-    bottom: 15upx;
-    right: 15upx;
+    top: 0;
+    right: 0;
     filter: brightness(110%);
     box-shadow: 0 0 5px #fff, 0 0 10upx #fff, 0 0 15upx #fff, 0 0 10upx #fff,
         0 0 10upx #fff, 0 0 40upx #fff, 0 0 10upx #fff, 0 0 15upx #fff;

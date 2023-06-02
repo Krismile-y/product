@@ -33,44 +33,51 @@
 						  			<view class="h-flex-x h-flex-3">
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
 						            <view class="items dis yuan1"  @tap="four(0)">
-                          <image src="../../../../static/newIndex/gabige.png" mode=""></image>
-                          <!-- <image src="../../../../static/newIndex/gray_gabige.png" mode=""></image> -->
+                          <!-- 可再生资源 -->
+                          <image src="../../../../static/newIndex/gabige.png" mode="" v-show="iconTypes[0]"></image>
+                          <image src="../../../../static/newIndex/gray_gabige.png" mode="" v-show="!iconTypes[0]"></image>
                         </view>
 						  				</view>
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
 						            <view class="items dis yuan2" @tap="four(6)">
-                          <!-- <image src="../../../../static/newIndex/chuan.png" mode=""></image> -->
-                          <image src="../../../../static/newIndex/gray_chuan.png" mode=""></image>
+                          <!-- 节能减排 -->
+                          <image src="../../../../static/newIndex/chuan.png" mode="" v-show="iconTypes[7]"></image>
+                          <image src="../../../../static/newIndex/gray_chuan.png" mode="" v-show="!iconTypes[7]"></image>
                         </view>
 						  				</view>
 						  				<view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
 						            <view class="items dis yuan3" @tap="four(1)">
-                          <!-- <image src="../../../../static/newIndex/plane.png" mode=""></image> -->
-                          <image src="../../../../static/newIndex/gray_plane.png" mode=""></image>
+                          <!-- 航空航天 -->
+                          <image src="../../../../static/newIndex/plane.png" mode="" v-show="iconTypes[1]"></image>
+                          <image src="../../../../static/newIndex/gray_plane.png" mode="" v-show="!iconTypes[1]"></image>
                         </view>
 						  				</view>
 						          <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
 						            <view class="items dis yuan4" @tap="four(3)">
-                          <image src="../../../../static/newIndex/nengyuan.png" mode=""></image>
-                          <!-- <image src="../../../../static/newIndex/gray_nengyuan.png" mode=""></image> -->
+                          <!-- 清洁能源 -->
+                          <image src="../../../../static/newIndex/nengyuan.png" mode="" v-show="iconTypes[4]"></image>
+                          <image src="../../../../static/newIndex/gray_nengyuan.png" mode="" v-show="!iconTypes[4]"></image>
                         </view>
 						          </view>
 						          <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
 						            <view class="items dis yuan5" @tap="four(5)">
-                          <!-- <image src="../../../../static/newIndex/lou.png" mode=""></image> -->
-                          <image src="../../../../static/newIndex/gray_lou.png" mode=""></image>
+                          <!-- 数字化城市 -->
+                          <image src="../../../../static/newIndex/lou.png" mode="" v-show="iconTypes[6]"></image>
+                          <image src="../../../../static/newIndex/gray_lou.png" mode="" v-show="!iconTypes[6]"></image>
                         </view>
 						          </view>
                       <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
                         <view class="items dis yuan6" @tap="four(2)">
-                          <!-- <image src="../../../../static/newIndex/car.png" mode=""></image> -->
-                          <image src="../../../../static/newIndex/gray_car.png" mode=""></image>
+                          <!-- 新能源汽车 -->
+                          <image src="../../../../static/newIndex/car.png" mode="" v-show="iconTypes[3]"></image>
+                          <image src="../../../../static/newIndex/gray_car.png" mode="" v-show="!iconTypes[3]"></image>
                         </view>
                       </view>
                       <view style="padding-top: 0rpx;box-sizing: border-box;height: 100%;">
                         <view class="items dis yuan7" @tap="four(4)">
-                          <!-- <image src="../../../../static/newIndex/tree.png" mode=""></image> -->
-                          <image src="../../../../static/newIndex/gray_tree.png" mode=""></image>
+                          <!-- 植树造林 -->
+                          <image src="../../../../static/newIndex/tree.png" mode="" v-show="iconTypes[5]"></image>
+                          <image src="../../../../static/newIndex/gray_tree.png" mode="" v-show="!iconTypes[5]"></image>
                         </view>
                       </view>
 						  			</view>
@@ -120,6 +127,7 @@
 				
 				prevIndex:-1,
 				current:uni.getStorageSync('current'),
+        iconTypes:uni.getStorageSync('iconTypes'),
 				tabList:[
 					{
 						"icon":"home",

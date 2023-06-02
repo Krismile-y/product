@@ -219,6 +219,25 @@ export default {
 	},
 
 	onLoad() {
+    // 小圆图标的明暗状态
+    this.$fn.request('menu/status', "GET", {}).then(res => {
+    	console.log(res.data.data, '海报')
+      if(res.data.code ==1) {
+        let data = res.data.data
+        let iconTypes = []
+        data.forEach((item)=> {
+          let boo = null
+          if(item.cnt != 0) {
+            // 分类有数据
+            boo = true
+          }else {
+            boo = false
+          }
+          iconTypes.push(boo)
+          uni.setStorageSync('iconTypes',iconTypes)
+        })
+      }
+    })
     if (window.location.search) {
       const searchParams = new URLSearchParams(window.location.search);
 
