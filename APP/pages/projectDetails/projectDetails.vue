@@ -72,7 +72,7 @@
 					</view>
 					<!-- 第二排 -->
 					<view style="" class="nightBOXTWO ">
-						<view class="nightItem dis" >￥{{parseInt(moneyData[0].money)}}</view>
+						<view class="nightItem dis" >{{parseInt(moneyData[0].money)}}</view>
 						<view class="nightItem dis" >{{biaoge.income_day}}</view>
 						
 						<view class="nightList">
