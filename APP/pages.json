@@ -70,12 +70,7 @@
 			"path": "pages/help/help",
 			"style": {
 				"navigationBarTitleText": "反馈与帮助",
-				"enablePullDownRefresh": false,
-				"navigationStyle": "custom",
-				"app-plus": {
-					"titleView": false
-				}
-
+				"enablePullDownRefresh": false
 			}
 
 		}, {

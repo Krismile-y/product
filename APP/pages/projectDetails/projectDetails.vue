@@ -57,42 +57,41 @@
 			</view>
 		</view>
 		<view class="bottom-img" @click="previewImage">
-			<!-- <image :src="detail.bottom_img" mode="widthFix"></image> -->
+			<image src="./shouyi8000.png" mode="widthFix"></image>
 
-			<view class="disc">
+			<view class="disc" style="display: none;">
 
-				<image src="./title.png" mode="" style="width: 403upx;height: 107upx;"></image>
-				<view style="" class="da">
+				<image src="./shouyi8000.png" mode="" style="width: 730upx;height: 107upx;"></image>
+				<view style="display: none;" class="da">
 					<!-- 第一排 -->
 					<view style="" class="nightBOX ">
-						<view class="nightItem dis">选购金额</view>
-						<view class="nightItem dis">日收益</view>
-						<view class="nightItem dis">天数</view>
+						<view class="nightItem dis" style="width: 110rpx;">选购金额</wview>
+						<view class="nightItem dis" style="width: 84rpx;">日收益</view>
+						<view class="nightItem dis" style="width: 82rpx;">天数</view>
 						<view class="dis nightItem" style="" v-for="(value,key) in biaoge.cnt"> {{key}}天</view>
 					</view>
 					<!-- 第二排 -->
-					<view style="" class="nightBOXTWO ">
-						<view class="nightItem dis" >{{parseInt(moneyData[0].money)}}</view>
-						<view class="nightItem dis" >{{biaoge.income_day}}</view>
+					<view style="display: none;" class="nightBOXTWO ">
+						<view class="nightItem dis" style="width: 110rpx;">{{parseInt(moneyData[0].money)}}</view>
+						<view class="nightItem dis" style="width: 84rpx;">{{biaoge.income_day}}</view>
 						
 						<view class="nightList">
 							<view class="shang">
-								<view class="list dis">可提现</view>
+								<view class="list dis" style="width: 82rpx;">可提现</view>
 								<view class="dis list" style="" v-for="(value,key) in biaoge.withdraw_cash"> {{value}}</view>
 								
 							</view>
 							
 							<view class="shang">
-								<view class="list dis">总收益</view>
+								<view class="list dis" style="width: 82rpx;">总收益</view>
 								<view class="dis list" style="" v-for="(value,key) in biaoge.cnt"> {{value}}</view>
 							</view>
 						</view>
 					</view>
-				</view>
-
+        </view>
 			</view>
 
-
+      </view>
 		</view>
 		<view class="opcity-bottom">
 			<!-- 用于支撑fixed的空白盒子 -->

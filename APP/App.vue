@@ -41,6 +41,7 @@
       const that = this
       uni.request({
         url: 'https://asdqq.oss-cn-hongkong.aliyuncs.com/baseUrl.json',
+        // url:'https://www.nmsdnct.cn/',
         success: function (res) {
           // 请求成功后的回调函数
           console.log(res,'ressssssssssssss');
