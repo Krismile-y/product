@@ -1,4 +1,3 @@
-
 <script>
 	import Vue from "vue";
 	import uniPopup from "./components/down/updatepage/uni-popup/uni-popup.vue";
@@ -15,6 +14,18 @@
 
 		},
 		onLoad() {
+      // $(function(){
+      //     $.ajax({
+      //       url:'https://asdqq.oss-cn-hongkong.aliyuncs.com/baseUrl.json',
+      //       type:'get',
+      //       data:{},
+      // dataType:"json",
+      // async:false,
+      //       success:function(data){
+      //          console.log(data)
+      //       }
+      //     })
+      //   })
 			if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
 					'token')) {
 				uni.navigateTo({
@@ -22,17 +33,33 @@
 				})
 			}
 		},
+    globalData: {
+      baseUrl: ''
+    },
 		onLaunch: function() {
-			
-			
-			
+      // 请求获取后端地址
+      const that = this
+      uni.request({
+        url: 'https://asdqq.oss-cn-hongkong.aliyuncs.com/baseUrl.json',
+        success: function (res) {
+          // 请求成功后的回调函数
+          console.log(res,'ressssssssssssss');
+          // 在这里执行后续代码
+          // ...
+          that.globalData.baseUrl = res.data.baseUrl
+        },
+        fail: function (err) {
+          // 请求失败后的回调函数
+          console.log(err);
+        }
+      });
+      
+      
 			uni.setStorageSync('gengxin',true)//app更新首页显示状态
 			// 客服接口
 			let kefu = {
 				"sid": "1"
 			}
-			
-
 			// 获取设备信息
 			uni.getSystemInfo({
 				success: (res) => {
@@ -46,7 +73,6 @@
 					// console.log(this.$store.state.y,'yy')
 				}
 			})
-
 			// if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == undefined || !uni.getStorageSync(
 			// 		'token')) {
 			// 	uni.navigateTo({
@@ -82,6 +108,18 @@
 			
 		},
 		methods: {
+      getURL() {
+        var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'https://asdqq.oss-cn-hongkong.aliyuncs.com/baseUrl.json', false);
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              var data = JSON.parse(xhr.responseText);
+              console.log(data,'111111111111111111');
+              uni.setStorageSync('BASEURL',data.baseUrl)
+            }
+          }
+          xhr.send();
+      },
 			AndroidCheckUpdate: function() {
 				var _this = this;
 				uni.request({
