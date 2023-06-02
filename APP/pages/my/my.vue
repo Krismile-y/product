@@ -1,5 +1,5 @@
 <template>
-	<view class="content" style="padding-bottom: 40upx;">
+	<view class="content" style="padding-bottom: 40upx;padding-top: 30upx;">
 		
 		
 		   <view>

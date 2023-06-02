@@ -1,6 +1,6 @@
 <template>
 
-	<view class="content" style="position: relative;background-color: #f7f8fa;">
+	<view class="content" style="position: relative;background-color: #f7f8fa;padding-top: 30upx;">
 		<!-- 头部 -->
 		<view><airel-floatball /></view>
 		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
