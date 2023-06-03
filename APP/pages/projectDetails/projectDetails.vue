@@ -61,7 +61,11 @@
 
 			<view class="disc" style="display: none;">
 
+<<<<<<< HEAD
 				<!-- <image :src="detail.bottom_img" mode="widthFix" style="width: 730upx;height: 107upx;"></image> -->
+=======
+				<image :src="detail.bottom_img" mode="widthFix" style="width: 730upx;height: 107upx;"></image>
+>>>>>>> 298cb4dfec59293a7447cc1840348819076f08dd
 				<view style="display: none;" class="da">
 					<!-- 第一排 -->
 					<view style="" class="nightBOX ">
