@@ -95,7 +95,7 @@ export default {
 				"is_whole":"1"
 			}
 			uni.request({
-				url:'https://api.lszgfreer.top/api/user',
+				url:getApp().globalData.baseUrl+'user',
 				method:"GET",
 				data:last,
 				header: {

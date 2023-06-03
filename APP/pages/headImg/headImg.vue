@@ -90,7 +90,7 @@
 						}
 						console.log(res.tempFiles,'data里的type')
 						uni.uploadFile({
-							url: this.$url + 'upload',
+							url: getApp().globalData.baseUrl + 'upload',
 							header: {
 								'token': tokens,
 								'sign': md5(tokens + '&' + keys + '&' + times),

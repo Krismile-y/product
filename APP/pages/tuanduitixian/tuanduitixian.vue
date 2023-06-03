@@ -316,15 +316,21 @@
       addCard(params) {
         // 新增银行卡
         this.$fn.request('bank', "POST", params).then(res => {
-
-          this.$refs.success.showTips({
-            msg: '添加银行卡成功',
-            duration: 2000
-          })
-          this.init()
-          this.$forceUpdate()
-          this.close()
-          this.closeAgain()
+          if(res.data.code == 1) {
+            this.$refs.success.showTips({
+              msg: '添加银行卡成功',
+              duration: 2000
+            })
+            this.init()
+            this.$forceUpdate()
+            this.close()
+            this.closeAgain()
+          }else {
+            this.$refs.error.showTips({
+              msg: res.data.msg,
+              duration: 2000
+            })
+          }
         })
       },
       editCard(params) {
