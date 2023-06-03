@@ -147,7 +147,7 @@ export default {
     },
     // 获取数据
     async getData(params) {
-        let data = await this.$fn.request('welfare/user_donate_log', "GET", params).then(res => {
+        let data = await this.$fn.request('welfare/user_donate_log',"POST", params).then(res => {
           console.log(res,999999);
           let list = null
           list = res.data.data
@@ -186,8 +186,7 @@ export default {
         params.limit = this.pageSize
       // debugger
         console.log(params,'params');
-        let promiseObj = await this.getData().then(res=> {
-          console.log(res,'ressss111111111');
+        let promiseObj = await this.getData(params).then(res=> {
           data = res
         })
         list = data.data
