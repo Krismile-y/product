@@ -152,7 +152,7 @@ export default {
         msg: '请使用APP登录',
         duration: 2000
       })
-      return
+      // return
       // #endif
 			this.$fn.request('login', 'POST', data).then(res => {
 				
