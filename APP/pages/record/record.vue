@@ -74,7 +74,7 @@
 				<!-- 年月选择弹框 -->
 				<template>
 					<view>
-						<u-datetime-picker :show="show" v-model="value1" mode="year-month" @confirm="pickerConfirm"
+						<u-datetime-picker :show="show" v-model="value1" mode="year-month" :minDate="startDate" :maxDate="nowDate" @confirm="pickerConfirm"
 							@close="pickerClose" @cancel="pickerCancel"></u-datetime-picker>
 					</view>
 				</template>
@@ -117,6 +117,8 @@
 		pulldownText: '下拉刷新~', // 下拉中的文字
 		pulldownFinishText: '松开刷新~' // 下拉完成的文字
 	}
+  // 获取这个时间的时间戳
+  let timestamp = new Date('2018-08-01 00:00:00').getTime();
 	export default {
 		data() {
 			return {
@@ -135,6 +137,8 @@
 				total: 0,
 				loading: false,
 				option: defaultOption,
+        nowDate:'', //当前月作为可选的最后一月
+        startDate:timestamp, //开始时间限制
 			};
 		},
 		onLoad() {
@@ -160,6 +164,7 @@
 				let month = date.getMonth() + 1 > 10 ? (date.getMonth() + 1) + '' : '0' + (date.getMonth() + 1)
 				let year = date.getFullYear()
 				this.dateText = year + '-' + month
+				this.nowDate = date.getTime()
 			},
 			// 获取数据
 			async getData(params) {

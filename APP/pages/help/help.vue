@@ -28,7 +28,7 @@
       	// uni.removeStorageSync('address');
         
 		this.$refs.success.showTips({
-		    msg: '感谢您的反馈',
+		    msg: '点击客服图标即可联系客服！',
 		    duration: 2000
 		  })
       	// uni.navigateTo({

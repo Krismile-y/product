@@ -25,6 +25,7 @@ export default {
 				type: 'index',
 				index: 0,
 			},
+      userInfo: {}, //个人信息
 			bumenItems: [
 				'中华人民共和国国家发展和改革委员会',
 				'中华人民共和国住房和城乡建设部',
@@ -89,7 +90,8 @@ export default {
 		// 		url: '/pages/login/login'
 		// 	})
 		// }
-
+    // 获取用户信息bin存本地
+    this.getUserMsg()
 		// 海报接口
 		this.nowNum = 0
 
@@ -259,6 +261,17 @@ export default {
     }
 	},
 	methods: {
+    // 获取用户信息
+    getUserMsg() {
+      let params= {
+        is_whole: 1
+      }
+      this.$fn.request('user', "GET", params).then(res => {
+      	console.log(res.data.data, '个人信息')
+      	this.userInfo = res.data.data
+        uni.setStorageSync('user_info',this.userInfo)
+      })
+    },
 		guanwang() { //进入官网
 
 			uni.navigateTo({
@@ -329,6 +342,7 @@ export default {
 				url: '/pages/xinshoutiyan/xinshoutiyan'
 			})
 		},
+    
 		goHome(name) {
 			// 跳转到社区或者积分商城,切换底部标签
 			if (name == 'community') {

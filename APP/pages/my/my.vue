@@ -126,7 +126,9 @@
 		data() {
 			return {
 				show: false,
-				info: {},
+				info: {
+          head_img:'',
+        },
 				today: "",
 				out: 0,
 				zhuangtai: "",

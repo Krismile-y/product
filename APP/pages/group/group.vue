@@ -33,11 +33,11 @@
 		   <view style="margin-top: 30upx;">
 		   	<view class="item" v-for="(item,index) in list" :key="index">
 		   		<view :class="{
-		     'gray': btnType == '2',
-		     'btn': btnType == '0',
-		     'pink': btnType == '1',
+		     'gray': item.btnType == '2',
+		     'btn': item.btnType == '0',
+		     'pink': item.btnType == '1',
 		   }" @tap="linquClick(item)">
-		     {{linquSet(item)}}
+		     {{item.btnText}}
 		   </view>
        <view class="item-bottom">
          <image src="../../static/c/peoples.png" mode="widthFix"></image>
@@ -46,7 +46,7 @@
          </view>
          <image src="../../static/c/items-money.png" mode="widthFix"></image>
          <view class="zhitui">
-           直推{{item.reward}}人
+           津贴{{item.reward}}元/月
          </view>
        </view>
 		   	</view>
@@ -77,6 +77,10 @@
         	if(res.data.code ==1 ) {
             this.dataObj = res.data.data
             this.list = res.data.data.list
+            this.list.forEach((item)=> {
+              item.btnText = this.linquSet(item)
+              item.btnType = this.btnType
+            })
           }
         })
       },
@@ -110,10 +114,10 @@
           this.$fn.request('welfare/received', "POST", params).then(res => {
           	if(res.data.code ==1 ) {
              
-			  this.$refs.success.showTips({
-			      msg: '领取成功',
-			      duration: 2000
-			    })
+            this.$refs.success.showTips({
+                msg: '领取成功',
+                duration: 2000
+              })
               this.getData()
             }
           })
