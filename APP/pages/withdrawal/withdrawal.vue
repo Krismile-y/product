@@ -414,7 +414,7 @@
 
           return
         }
-        if (this.info.money_approve < this.money) {
+        if (this.info.money_approve < Number(this.money)) {
           this.$refs.error.showTips({
             msg: '可提现余额不足',
             duration: 2000

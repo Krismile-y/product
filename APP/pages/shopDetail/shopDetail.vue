@@ -35,14 +35,14 @@
 			<!-- <image :src="item.head_img" style="width: 686upx;height: 678upx;margin-top: 30upx;border-radius: 20upx;">
 		   		</image> -->
 
-			<view class="btn dis" v-show="btnSHOW==0?true:false">
-				<view class="font" @tap="duihuan">
+			<view class="btn dis" @tap="duihuan" v-show="btnSHOW==0?true:false">
+				<view class="font">
 					{{font}}
 				</view>
 			</view>
 
 			<view class="btn dis" v-show="btnSHOW==1?true:false">
-				<view class="font" @tap="changeBTN">
+				<view class="font">
 					{{font}}
 				</view>
 			</view>
