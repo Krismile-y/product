@@ -153,7 +153,7 @@
 							<image src="../../static/newIndex/icon-right.png" mode=""></image>
 						</view>
 						<view class="little-text">
-							入门优选
+							新手的启程之旅
 						</view>
 					</view>
 				

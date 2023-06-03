@@ -186,12 +186,11 @@
 						    msg: '新增地址成功',
 						    duration: 2000
 						  })
-
-						// setTimeout(()=>{
-						// 	uni.navigateTo({
-						// 		url:'/pages/address/address'
-						// 	})
-						// },500)
+						setTimeout(()=>{
+							uni.navigateTo({
+								url:'/pages/address/address'
+							})
+						},500)
 					}else{
 						this.$refs.error.showTips({
 						msg: res.data.data,

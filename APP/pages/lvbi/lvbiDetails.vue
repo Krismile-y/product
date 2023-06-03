@@ -5,7 +5,7 @@
     </view>
 	<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 	<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-    <image src="../../static/index/senlin.jpg" mode=""></image>
+    <image src="../../static/newMy/lvbi-bg.png" mode="widthFix"></image>
     <view class="tp">
       绿币（VTC）是一种可用于购买商品和服务的加密货币。它是扩展比特币协议的分散式数字货币，旨在提供更好的安全性、隐私性和去中心化的交易。 VertCoin绿币是一种开源货币，任何人都可以参与到它的开发和管理中来。它的核心开发团队包括几名高级软件开发人员，他们都是志愿者。
     </view>

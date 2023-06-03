@@ -1,10 +1,13 @@
 <template>
 	<view>
+    <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+    <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<movable-area class="movable-area">
-			<movable-view class="movable-view" :x="x()" :y="y()" direction="all">
-				<a :href="herf()">
+			<movable-view class="movable-view" :x="x()" :y="y()" direction="all" :inertia="true">
+				<a :href="herf()" v-if="info.is_real_name == '2'">
 					<image src="../../static/c/erji.png"></image>
 				</a>
+        <image src="../../static/c/erji.png" v-else @tap="dianjiTubiao"></image>
 			</movable-view>
 		</movable-area>
 	</view>
@@ -16,12 +19,19 @@
 			return {
 				// x: 0,		//x坐标
 				// y: 320,		//y坐标
+        info: uni.getStorageSync('user_info')
 			}
 		},
 		methods:{
 			herf(){
-				return uni.getStorageSync('kefu')
+          return uni.getStorageSync('kefu')
 			},
+      dianjiTubiao() {
+        this.$refs.error.showTips({
+          msg: '请完成实名认证',
+          duration: 2000
+        })
+      },
 			x(){
 				return uni.getStorageSync('x')
 			},

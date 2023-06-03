@@ -1,5 +1,6 @@
-const baseUrl = 'https://api.lszgfreer.top/api/'
-const baseUrl1 = 'https://www.api.com/api/'
+// const baseUrl = 
+// 'https://api.lszgfreer.top/api/'
+// const baseUrl1 = 'https://www.api.com/api/'
 
 import md5 from 'js-md5';
 export default {
@@ -10,9 +11,9 @@ export default {
 		// type用做请求地址判断
 		let trueURL = ''
 		if (type == 1) {
-			trueURL = baseUrl
+			trueURL = getApp().globalData.baseUrl
 		} else {
-			trueURL = baseUrl1
+			trueURL = getApp().globalData.baseUrl
 		}
 		return new Promise((reslove, reject) => {
 			let tokens = uni.getStorageSync('token') ? uni.getStorageSync('token') : '';

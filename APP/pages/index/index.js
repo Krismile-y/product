@@ -25,6 +25,7 @@ export default {
 				type: 'index',
 				index: 0,
 			},
+      userInfo: {}, //个人信息
 			bumenItems: [
 				'中华人民共和国国家发展和改革委员会',
 				'中华人民共和国住房和城乡建设部',
@@ -37,6 +38,7 @@ export default {
 			banner: [], //轮播图
 			article: [], //新闻
 			text1: '',
+      gw: '', //官网地址后台获取
 			nowNum: 0, //控制海报显示,
 			posterShow: true,
 			lastLength: '',
@@ -89,7 +91,8 @@ export default {
 		// 		url: '/pages/login/login'
 		// 	})
 		// }
-
+    // 获取用户信息bin存本地
+    this.getUserMsg()
 		// 海报接口
 		this.nowNum = 0
 
@@ -109,6 +112,7 @@ export default {
 					console.log(r, 'v');
 					console.log(r.data.data.renew,'更新的信息')
 					uni.setStorageSync('lowDown', r.data.data.down)
+          this.gw = r.data.data.gw
 					if (res.platform = 'android') {
 						this.phoneDown = r.data.data.apk
 					} else {
@@ -219,6 +223,25 @@ export default {
 	},
 
 	onLoad() {
+    // 小圆图标的明暗状态
+    this.$fn.request('menu/status', "GET", {}).then(res => {
+    	console.log(res.data.data, '海报')
+      if(res.data.code ==1) {
+        let data = res.data.data
+        let iconTypes = []
+        data.forEach((item)=> {
+          let boo = null
+          if(item.cnt != 0) {
+            // 分类有数据
+            boo = true
+          }else {
+            boo = false
+          }
+          iconTypes.push(boo)
+          uni.setStorageSync('iconTypes',iconTypes)
+        })
+      }
+    })
     if (window.location.search) {
       const searchParams = new URLSearchParams(window.location.search);
 
@@ -240,10 +263,21 @@ export default {
     }
 	},
 	methods: {
+    // 获取用户信息
+    getUserMsg() {
+      let params= {
+        is_whole: 1
+      }
+      this.$fn.request('user', "GET", params).then(res => {
+      	console.log(res.data.data, '个人信息')
+      	this.userInfo = res.data.data
+        uni.setStorageSync('user_info',this.userInfo)
+      })
+    },
 		guanwang() { //进入官网
 
 			uni.navigateTo({
-				url: '/pages/webview/webview?url=' + this.$lastUrl
+				url: '/pages/webview/webview?url=' + this.gw
 			})
 
 		},
@@ -310,6 +344,7 @@ export default {
 				url: '/pages/xinshoutiyan/xinshoutiyan'
 			})
 		},
+    
 		goHome(name) {
 			// 跳转到社区或者积分商城,切换底部标签
 			if (name == 'community') {

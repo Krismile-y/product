@@ -15,9 +15,11 @@
       <view class="item" @tap='x'>
       	<image src="../../static/common/icon_iphone.png" mode=""></image>
       	手机号
-      	<view class="right">
+      	<view class="right" style="padding-right: 0upx">
       		{{info.phone}}
-          <text class="right-jiantou">></text>
+          <!-- <text class="right-jiantou"> -->
+            <!-- > -->
+          <!-- </text> -->
       	</view>
       </view>
       

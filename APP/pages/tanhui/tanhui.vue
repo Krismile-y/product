@@ -28,15 +28,23 @@
 	     
 	           <view class="" style="margin-top: 20upx;">
 	             <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
-	               <uni-card :title="item.mark" :extra="item.money" v-for="(item,index) in tableData" :key="index">
+	               <uni-card :title="item.mark" :extra="item.money+''" v-for="(item,index) in tableData" :key="index">
 	                 <text class="uni-body">{{item.create_time}}</text>
 	               </uni-card>
 	             </scroll-list>
 	           </view>
 	           <template>
 	             <view>
-	               <u-datetime-picker :show="show" v-model="value1" mode="year-month" @confirm="pickerConfirm"
-	                 @close="pickerClose" @cancel="pickerCancel"></u-datetime-picker>
+	               <u-datetime-picker 
+                 :show="show" 
+                 v-model="value1" 
+                 mode="year-month" 
+                 :minDate="startDate"
+                 :maxDate="nowDate"
+                 @confirm="pickerConfirm"
+	               @close="pickerClose" 
+                 @cancel="pickerCancel"
+                 ></u-datetime-picker>
 	             </view>
 	           </template>
 	     
@@ -88,6 +96,7 @@
     pulldownText: '下拉刷新~', // 下拉中的文字
     pulldownFinishText: '松开刷新~' // 下拉完成的文字
   }
+  let timestamp = new Date('2018-08-01 00:00:00').getTime();
   export default {
     data() {
       return {
@@ -106,6 +115,8 @@
         loading: false,
         showPagination: false, //总数据小于单页展示数据，不显示分页条
         option: defaultOption,
+        nowDate:'', //当前月作为可选的最后一月
+        startDate:timestamp, //开始时间限制
       };
     },
     onLoad() {
@@ -135,6 +146,7 @@
         let month = date.getMonth() + 1 > 10 ? (date.getMonth() + 1) + '' : '0' + (date.getMonth() + 1)
         let year = date.getFullYear()
         this.dateText = year + '-' + month
+        this.nowDate = date.getTime()
       },
       // 获取数据
       async getData(params) {

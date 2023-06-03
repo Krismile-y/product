@@ -31,7 +31,7 @@
 
 			<image :src="item.img_path" mode="widthFix" class="bigImage"></image>
 
-			<view class="time">{{ item.initiate_time }}</view>
+			<!-- <view class="time">{{ item.initiate_time }}</view> -->
 		</view>
 
 		<!-- 捐赠记录 -->

@@ -1,28 +1,17 @@
 <template>
 	<view class="help-page">
-		
-		
-		   <view class="">
-		     <airel-floatball  />
-		   </view>
-		   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-		   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		   <image src="../../static/common/back.png" mode="widthFix" class="back-img" @tap="back"></image>
-		   	<image src="../../static/common/forest.jpg" mode="widthFix" class="help-img"></image>
-		   <view class="help-title">
-		     反馈与帮助
-		   </view>
-		   <view class="form">
-		     <view class="uni-title uni-common-pl">{{txt}}</view>
-		   </view>
-		   <view class="bottom dis zbottom">
-		   	<view class="in dis" @tap="tuichu">
-		   		联系客服
-		   	</view>
-		   </view>
-		
-		
-    
+     <view class="">
+       <airel-floatball  />
+     </view>
+     <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+     <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+      <image src="../../static/common/helpBG.png" mode="widthFix" class="help-img"></image>
+     <view class="form">
+       <view class="uni-title uni-common-pl">{{txt}}</view>
+     </view>
+     <view class="bottom" @tap="tuichu">
+       联系客服
+     </view>
 	</view>
 </template>
 
@@ -39,19 +28,13 @@
       	// uni.removeStorageSync('address');
         
 		this.$refs.success.showTips({
-		    msg: '感谢您的反馈',
+		    msg: '点击客服图标即可联系客服！',
 		    duration: 2000
 		  })
       	// uni.navigateTo({
       	// 	url:'/pages/login/login'
       	// })
       },
-      back() {
-        // uni.navigateTo({
-        // 	url:'/pages//setting/setting'
-        // })
-        uni.navigateBack()
-      }
     }
 	}
 </script>
@@ -59,21 +42,11 @@
 <style lang="less">
 .help-page {
   height: 100vh;
-  border-radius: 50upx 50upx 0 0;
+  border-radius: 0;
   background-color: #fff;
   position: relative;
   display: flex;
   flex-direction: column;
-  .back-img {
-    width: 50upx;
-    height: 50upx;
-    position: absolute;
-    z-index: 999;
-    top: 20upx;
-    left: 20upx;
-    border-radius: 50%;
-    background-color: #fff;
-  }
   .form {
     width: 100%;
     flex: 1;
@@ -93,26 +66,32 @@
     font-weight: 600;
   }
   .help-img {
-    border-radius: 50upx 50upx 0 0;
-  }
-  /deep/ uni-textarea {
-    width: 100%;
-    height: 200px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    margin-top: 20upx;
+    border-radius: 0;
   }
   /deep/ .uni-common-pl {
-    margin-top: 120upx;
-    font-size: 20px;
-    text-indent: 2em;
+    width: 638rpx;
+    margin: 60rpx auto;
+    font-size: 32rpx;
     box-sizing: border-box;
     padding: 0 16upx;
     text-align: justify;
-    line-height: 40px;
+    line-height: 60rpx;
   }
-  .zbottom {
+  .bottom {
+    width: 686rpx;
+    height: 76rpx;
+    position: absolute;
+    bottom: 100rpx;
+    left: 50%;
+    text-align: center;
+    line-height: 76rpx;
+    transform: translate(-50%,0);
+    background: #02AE72;
+    font-weight: 550;
+    color: #FFFFFF;
+    font-size: 32rpx;
+    border-radius: 58rpx 58rpx 58rpx 58rpx;
+    opacity: 1;
     z-index: 999;
   }
 }
