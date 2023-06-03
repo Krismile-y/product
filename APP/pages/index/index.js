@@ -38,6 +38,7 @@ export default {
 			banner: [], //轮播图
 			article: [], //新闻
 			text1: '',
+      gw: '', //官网地址后台获取
 			nowNum: 0, //控制海报显示,
 			posterShow: true,
 			lastLength: '',
@@ -111,6 +112,7 @@ export default {
 					console.log(r, 'v');
 					console.log(r.data.data.renew,'更新的信息')
 					uni.setStorageSync('lowDown', r.data.data.down)
+          this.gw = r.data.data.gw
 					if (res.platform = 'android') {
 						this.phoneDown = r.data.data.apk
 					} else {
@@ -275,7 +277,7 @@ export default {
 		guanwang() { //进入官网
 
 			uni.navigateTo({
-				url: '/pages/webview/webview?url=' + this.$lastUrl
+				url: '/pages/webview/webview?url=' + this.gw
 			})
 
 		},

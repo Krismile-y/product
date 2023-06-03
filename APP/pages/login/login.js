@@ -71,13 +71,13 @@ export default {
 		yanzheng() {
 			
 			uni.request({
-				url:this.$url+'verify',
+				url:getApp().globalData.baseUrl+'verify',
 				data:{},
 				success: (res) => {
 					console.log(res)
 					let times = 0;
 					times = new Date()
-					this.herf = this.$url + 'verify?time=' + times
+					this.herf = getApp().globalData.baseUrl + 'verify?time=' + times
 				}
 			})
 			

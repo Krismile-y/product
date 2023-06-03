@@ -118,7 +118,7 @@
 
 <script>
 	import tabBarBulge from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-bulge";
-	
+	import defaultHeadImg from "../../static/newMy/logo.png"
 	export default {
 		components: {
 			"helang-tab-bar-bulge": tabBarBulge, 
@@ -127,7 +127,7 @@
 			return {
 				show: false,
 				info: {
-          head_img:'',
+          head_img:defaultHeadImg,
         },
 				today: "",
 				out: 0,
@@ -310,7 +310,7 @@
 				"is_whole": "1"
 			}
 			this.$fn.request('income', "GET", data).then(res => {
-				// console.log(res.data, '用户今日收益')
+				console.log(res.data, '用户今日收益')
 				this.today = res.data.data.today
 			})
 
