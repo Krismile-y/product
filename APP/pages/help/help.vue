@@ -42,21 +42,11 @@
 <style lang="less">
 .help-page {
   height: 100vh;
-  border-radius: 50upx 50upx 0 0;
+  border-radius: 0;
   background-color: #fff;
   position: relative;
   display: flex;
   flex-direction: column;
-  .back-img {
-    width: 50upx;
-    height: 50upx;
-    position: absolute;
-    z-index: 999;
-    top: 20upx;
-    left: 20upx;
-    border-radius: 50%;
-    background-color: #fff;
-  }
   .form {
     width: 100%;
     flex: 1;
@@ -76,24 +66,16 @@
     font-weight: 600;
   }
   .help-img {
-    border-radius: 50upx 50upx 0 0;
-  }
-  /deep/ uni-textarea {
-    width: 100%;
-    height: 200px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    margin-top: 20upx;
+    border-radius: 0;
   }
   /deep/ .uni-common-pl {
     width: 638rpx;
     margin: 60rpx auto;
-    font-size: 20px;
+    font-size: 32rpx;
     box-sizing: border-box;
     padding: 0 16upx;
     text-align: justify;
-    line-height: 40px;
+    line-height: 60rpx;
   }
   .bottom {
     width: 686rpx;

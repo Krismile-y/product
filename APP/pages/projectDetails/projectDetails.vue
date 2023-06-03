@@ -57,11 +57,11 @@
 			</view>
 		</view>
 		<view class="bottom-img" @click="previewImage">
-			<image src="./shouyi8000.png" mode="widthFix"></image>
+			<image :src="detail.bottom_img" mode="widthFix"></image>
 
 			<view class="disc" style="display: none;">
 
-				<image src="./shouyi8000.png" mode="" style="width: 730upx;height: 107upx;"></image>
+				<image :src="detail.bottom_img" mode="widthFix" style="width: 730upx;height: 107upx;"></image>
 				<view style="display: none;" class="da">
 					<!-- 第一排 -->
 					<view style="" class="nightBOX ">
