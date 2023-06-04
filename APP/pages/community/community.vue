@@ -10,7 +10,7 @@
 		   <view class="zongshouyi">
 		   	<view class="one disc">
 		   		<view style="color: #fff;">团队可提现金额</view>
-		   		<view style="font-weight: 600;font-size: 42upx;color: #fff;" v-show="nightSHOW">{{zongTiXian() }}</view>
+		   		<view style="font-weight: 600;font-size: 42upx;color: #fff;" v-show="nightSHOW">{{totalmoney }}</view>
 		   	</view>
 		   	<view class="two disc">
 		   		<view class="t" style="width: 100%;height: 60%;display: flex;">
@@ -72,7 +72,7 @@
 			return {
 				nightSHOW:true,
 				getPeopleNumstate:false,
-				
+				totalmoney: 0, //团队总可提现金额
 				currentIndex: 0,
 				tableData: [], //表格数据
 				showPagination: false, //总数据小于单页展示数据，不显示分页条
@@ -159,7 +159,7 @@
 		},
 		onShow() {
 			this.getPeopleNum()
-
+      this.getuserMsg()
       // this.getuserMsg().then(()=> {
         
       // })
@@ -196,15 +196,13 @@
         await this.$fn.request('user', "GET", params).then(res => {
           console.log(res, '个人信息');
           this.info = res.data.data
+          this.zongTiXian()
         })
       },
       // 团队可提现金额保留两位小数
       zongTiXian() {
         let newNum = parseFloat(this.info.money_team)+parseFloat(this.info.money_hire)
-        newNum = newNum.toFixed(2)
-		// newNum = newNum.toFixed(2)
-		console.log(newNum)
-        return newNum
+        this.totalmoney = newNum.toFixed(2)
       },
 			// 下级人数接口
 			getPeopleNum() {

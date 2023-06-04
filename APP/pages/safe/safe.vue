@@ -4,7 +4,8 @@
     <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
     <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
     <view class="safe-box">
-      <view class="item item1" @tap="goImgPage">
+      <view class="item item1">
+        <!-- @tap="goImgPage" -->
       	<image src="../../static/common/icon_avatar.png" mode=""></image>
       	头像<view class="head-tips">点击更换头像</view>
       	<view class="right ">
@@ -17,9 +18,6 @@
       	手机号
       	<view class="right" style="padding-right: 0upx">
       		{{info.phone}}
-          <!-- <text class="right-jiantou"> -->
-            <!-- > -->
-          <!-- </text> -->
       	</view>
       </view>
       

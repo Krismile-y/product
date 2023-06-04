@@ -183,6 +183,9 @@
         deep: true
       }
     },
+    onShow() {
+      this.getuserMsg()
+    },
     onReady() {
       this.getuserMsg().then(() => {
         if (this.info.withdraw_pwd == 1) {
@@ -252,15 +255,21 @@
       addCard(params) {
         // 新增银行卡
         this.$fn.request('bank', "POST", params).then(res => {
-
-          this.$refs.success.showTips({
-            msg: '添加银行卡成功',
-            duration: 2000
-          })
-          this.init()
-          this.$forceUpdate()
-          this.close()
-          this.closeAgain()
+          if(res.data.code == 1) {
+            this.$refs.success.showTips({
+              msg: '添加银行卡成功',
+              duration: 2000
+            })
+            this.init()
+            this.$forceUpdate()
+            this.close()
+            this.closeAgain()
+          }else {
+            this.$refs.error.showTips({
+              msg: res.data.msg,
+              duration: 2000
+            })
+          }
         })
       },
       editCard(params) {
@@ -386,6 +395,14 @@
 
       // 提交申请
       tixian() {
+        // 再次检查提现密码是否存在
+        if (this.info.withdraw_pwd != 1) {
+          this.$refs.error.showTips({
+            msg: '未设置提现密码',
+            duration: 1500
+          })
+          return
+        }
         // 去除输入里面的空格
         this.money = this.noSpace(this.money)
         if (this.money == '' || this.money == 0) {
@@ -397,7 +414,7 @@
 
           return
         }
-        if (this.info.money_approve < this.money) {
+        if (this.info.money_approve < Number(this.money)) {
           this.$refs.error.showTips({
             msg: '可提现余额不足',
             duration: 2000

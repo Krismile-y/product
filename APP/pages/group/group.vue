@@ -72,7 +72,6 @@
     },
     methods: {
       getData() {
-        // 新闻接口
         this.$fn.request('welfare/allowance', "GET", {}).then(res => {
         	if(res.data.code ==1 ) {
             this.dataObj = res.data.data
@@ -81,6 +80,7 @@
               item.btnText = this.linquSet(item)
               item.btnType = this.btnType
             })
+            console.log(this.list);
           }
         })
       },
@@ -107,6 +107,7 @@
       },
       // 点击领取触发
       linquClick(item) {
+        console.log(item);
         let params = {
           iid: item.id
         } 
@@ -207,6 +208,8 @@
     }
   }
 	.btn{
+    min-width: 200rpx;
+    text-align: center;
 		background-color: #07c07e;
 		color: #fff;
 		border-radius: 0 25upx 0 25upx;
@@ -217,6 +220,8 @@
     right: 0;
 	}
   .gray {
+    min-width: 200rpx;
+    text-align: center;
     background-color: #8e8e8e;
     color: #fff;
     border-radius: 0 25upx 0 25upx;
@@ -227,6 +232,8 @@
     right: 0;
   }
   .pink {
+    min-width: 200rpx;
+    text-align: center;
     background-color: #07c07e;
     color: #fff;
     border-radius: 0 25upx 0 25upx;

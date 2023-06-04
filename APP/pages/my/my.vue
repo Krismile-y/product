@@ -333,12 +333,6 @@
 				this.shousuoType = !this.shousuoType
 			},
 			go(name, index) {
-				if (name == 'guanwnag') {
-					uni.navigateTo({
-						url: '/pages/webview/webview?url=http://gw.tzhreefvg.top/'
-					})
-					return
-				}
         if(name == 'revisePassword'){
 					console.log('999')
 				uni.navigateTo({

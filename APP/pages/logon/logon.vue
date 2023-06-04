@@ -107,13 +107,13 @@
 			yanzheng() {
 
 				uni.request({
-					url: this.$url + 'verify',
+					url: getApp().globalData.baseUrl+'verify',
 					data: {},
 					success: (res) => {
 						console.log(res)
 						let times = 0;
 						times = new Date()
-						this.herf = this.$url + 'verify?time=' + times
+						this.herf = getApp().globalData.baseUrl + 'verify?time=' + times
 					}
 				})
 
@@ -217,7 +217,9 @@
 							// 自动填入的邀请码
               // 跳转到下载app页面
               // #ifdef H5
-              top.location.href = this.downHerf
+                  setTimeout(()=> {
+                    top.location.href = this.downHerf
+                  },2000)
               // #endif
               
               // #ifdef APP

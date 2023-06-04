@@ -18,12 +18,15 @@
    			个人信息
    		</view> -->
 					<view class="item disc">
-						<a :href="kefu" style="width: 100%;height: 100%;color: black;" class="disc">
-							<image src="../../static/c/erji.png" mode=""></image>
-							我的客服
-						</a>
+            <a :href="herf()" style="width: 100%;height: 100%;color: black;" class="disc" v-if="info.is_real_name == '2'">
+            	<image src="../../static/c/erji.png"></image>
+              我的客服
+            </a>
+            <view style="width: 100%;height: 100%;color: black;" class="disc" v-else @tap="dianjiTubiao">
+              <image src="../../static/c/erji.png"></image>
+              我的客服
+            </view>
 
-						<!-- <a :href="kefu" style="color: black;">我的客服</a> -->
 					</view>
 					<view class="item disc" @tap="go('help')">
 						<image src="../../static/setting/fankuihebangzhu.png" mode=""></image>
@@ -80,7 +83,8 @@
 		data() {
 			return {
 				version: "",
-				kefu: ""
+        info: uni.getStorageSync('user_info'),
+        
 			};
 		},
 		onBackPress(e) {
@@ -90,7 +94,6 @@
 			}
 		},
 		onShow() {
-			this.kefu = uni.getStorageSync('kefu')
 			// 获取设备信息
 			uni.getSystemInfo({
 				success: (res) => {
@@ -102,6 +105,15 @@
 
 		},
 		methods: {
+      herf(){
+          return uni.getStorageSync('kefu')
+      },
+      dianjiTubiao() {
+        this.$refs.error.showTips({
+          msg: '请完成实名认证',
+          duration: 2000
+        })
+      },
 			check() {
 				//  #ifdef APP
 				this.$refs.down.upgrade() //检查更新

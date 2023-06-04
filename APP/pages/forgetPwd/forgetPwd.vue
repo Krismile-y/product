@@ -67,7 +67,7 @@
 				this.$fn.request('verify', 'GET', {}).then(res => {
 					let times = 0;
 					times = new Date()
-					this.herf = this.$url + 'verify?time=' + times
+					this.herf = getApp().globalData.baseUrl + 'verify?time=' + times
 				})
 			},
 			go(index) {

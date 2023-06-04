@@ -146,6 +146,14 @@ export default {
 				'pwd': this.pwd,
 				'captcha': this.captcha
 			}
+      this.loginSHOW = 0
+      // #ifdef H5
+      this.$refs.error.showTips({
+        msg: '请使用APP登录',
+        duration: 2000
+      })
+      // return
+      // #endif
 			this.$fn.request('login', 'POST', data).then(res => {
 				
 				if (res.data.code == 1) {
