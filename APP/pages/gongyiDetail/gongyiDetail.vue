@@ -186,7 +186,7 @@ export default {
         params.limit = this.pageSize
       // debugger
         console.log(params,'params');
-        let promiseObj = await this.getData().then(res=> {
+        let promiseObj = await this.getData(params).then(res=> {
           console.log(res,'ressss');
           data = res
         })
