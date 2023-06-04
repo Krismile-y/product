@@ -201,7 +201,7 @@
 						// console.log(res.data.data.data,'我的商品')
 						this.myShop.push(...res.data.data.data)
 						this.last_page = res.data.data.last_page
-						this.lastList = this.myShop.reverse()
+						this.lastList = this.myShop
 						this.page++
 						console.log(this.myShop, 'zongshuju')
 						setTimeout(()=>{
