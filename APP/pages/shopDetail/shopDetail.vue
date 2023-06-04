@@ -125,6 +125,12 @@
 									msg: '兑换成功',
 									duration: 2000
 								})
+								//兑换成功跳转到商城首页
+								setTimeout(() => {
+									uni.navigateTo({
+										url: '/pages/shop/shop'
+									})
+								}, 500)
 								// 用户信息
 								let info = {
 									"is_whole": "1"
@@ -168,12 +174,12 @@
 										msg: '兑换成功',
 										duration: 2000
 									})
-									//兑换成功跳转到商城页面
-									setTimeout(()=>{
+									//兑换成功跳转到商城首页
+									setTimeout(() => {
 										uni.navigateTo({
-											url:'/pages/shop/shop'
+											url: '/pages/shop/shop'
 										})
-									},500)
+									}, 500)
 									// 用户信息
 									let info = {
 										"is_whole": "1"
@@ -208,6 +214,8 @@
 									url: '/pages/chooseAddress/chooseAddress'
 								})
 							}, 1500)
+
+
 
 						}
 					}
