@@ -1,7 +1,5 @@
 <template>
 	<view>
-		
-		
 		   <!-- 这个是编辑地址 -->
 		   <view class="item">
 		   	<view> <airel-floatball /></view>
@@ -209,7 +207,6 @@
 							msg: '修改地址成功',
 							duration: 2000
 						})
-
 						// setTimeout(()=>{
 						// 	uni.navigateTo({
 						// 		url:'/pages/address/address'
