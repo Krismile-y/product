@@ -38,6 +38,11 @@
 		<view class="xinBtn dis" v-show="loginSHOW==1?true:false">登录中...</view>
 		
 		<view class="last">
+      <!-- #ifdef H5 -->
+      <view class="download" @tap="downLoad">
+        下载APP
+      </view>
+      <!--  #endif -->
 			<view class="wangjimima dis" @tap="forgetPwd">忘记密码?找回密码</view>
 		</view>
 		

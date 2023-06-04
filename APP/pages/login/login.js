@@ -12,6 +12,7 @@ export default {
 			value: false, //记住密码
 			herf: "", //验证码
 			loginSHOW:0,
+      downHerf: '', //下载地址
 		};
 	},
 	onBackPress(event) {
@@ -40,7 +41,41 @@ export default {
 	},
 	onLoad() {
 		this.yanzheng()
-		 
+		this.downHerf = uni.getStorageSync('lowDown')
+    // #ifdef APP
+    
+    let timerId = setTimeout(()=> {
+      uni.setStorageSync('tType',true)
+      uni.navigateTo({
+        url:'/pages/login/login'
+      })
+    },2000)
+    if(uni.getStorageSync('tType')) {
+      clearTimeout(timerId)
+    }
+    // #endif
+    // #ifdef H5
+    if (window.location.search) {
+      const searchParams = new URLSearchParams(window.location.search);
+    
+      console.log(window.location.origin)
+      const params = {};
+      for (const pair of searchParams.entries()) {
+        params[pair[0]] = pair[1];
+      }
+      let code = params['code']; // 返回 "123"
+      console.log(code)
+      if (parseInt(code) > 0 && code.length > 1) {
+        uni.setStorageSync('code', code)
+        window.location.href = window.location.origin + '/#/pages/logon/logon?=' + code
+        // uni.navigateTo({
+        //   url:
+        // })
+        return;
+      }
+    }
+    // #endif
+    
 	},
 	
 	onShow() {
@@ -101,6 +136,10 @@ export default {
 				url: '/pages/logon/logon'
 			})
 		},
+    // 跳转到下载页，只在h5显示
+    downLoad() {
+      top.location.href = this.downHerf
+    },
 		forgetPwd() { //跳转到忘记密码
 			uni.navigateTo({
 				url: '/pages/forgetPwd/forgetPwd'

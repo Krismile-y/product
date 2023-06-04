@@ -4,10 +4,10 @@
     <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<movable-area class="movable-area">
 			<movable-view class="movable-view" :x="x()" :y="y()" direction="all" :inertia="true">
-				<a :href="herf()" v-if="info.is_real_name == '2'">
-					<image src="../../static/c/erji.png"></image>
-				</a>
-        <image src="../../static/c/erji.png" v-else @tap="dianjiTubiao"></image>
+				<!-- <a :href="herf()" v-if="info.is_real_name == '2'"> -->
+					<image src="../../static/c/erji.png" @tap="jump"></image>
+				<!-- </a> -->
+        <!-- <image src="../../static/c/erji.png" v-else @tap="dianjiTubiao"></image> -->
 			</movable-view>
 		</movable-area>
 	</view>
@@ -30,6 +30,11 @@
         this.$refs.error.showTips({
           msg: '请完成实名认证',
           duration: 2000
+        })
+      },
+      jump() {
+        uni.navigateTo({
+          url:'/pages/kefuPage/kefuPage'
         })
       },
 			x(){
