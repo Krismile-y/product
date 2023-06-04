@@ -115,6 +115,7 @@
 				})
 			}else if(this.qiehuanIndex == 1){
 				this.page = 1
+        this.myShop = []
 				this.x()
 				
 			}
