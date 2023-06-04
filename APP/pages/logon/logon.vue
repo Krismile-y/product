@@ -217,7 +217,9 @@
 							// 自动填入的邀请码
               // 跳转到下载app页面
               // #ifdef H5
-              top.location.href = this.downHerf
+                  setTimeout(()=> {
+                    top.location.href = this.downHerf
+                  },2000)
               // #endif
               
               // #ifdef APP
