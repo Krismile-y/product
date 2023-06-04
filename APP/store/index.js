@@ -15,6 +15,7 @@ const store = new Vuex.Store({
 		x:"",
 		y:"",
 		kefu:"",
+    kefu2: "",
 		pageOut:0,
     // 底部导航栏样式改变控制，默认选中首页
     current: 0,
@@ -32,6 +33,9 @@ const store = new Vuex.Store({
 		kefu(state,data){
 			state.kefu=data
 		},
+    kefu2(state,data){
+    	state.kefu2=data
+    },
 		pageOutfn(state,data){
 			state.pageOut=data
 		},

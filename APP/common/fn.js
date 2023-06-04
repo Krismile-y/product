@@ -43,7 +43,7 @@ export default {
 						// duration: 2000
 						// 	})
 					}
-					if(res.data.code == 204){
+					if(res.data.code == 204 || res.data.code == 205){
 						uni.showToast({
 							title: res.data.msg,
 							icon: 'none'

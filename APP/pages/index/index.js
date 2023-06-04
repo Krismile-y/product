@@ -182,7 +182,7 @@ export default {
 
 			}, 3000)
 		})
-
+    // 客服接口
 		let kefu = {
 			"sid": "1"
 		}
@@ -191,6 +191,15 @@ export default {
 			uni.setStorageSync('kefu', res.data.data[0].url)
 			this.$store.commit('kefu', res.data.data[0].url)
 		})
+    // 登录客服
+    let kefu2 = {
+    	"sid": "2000"
+    }
+    this.$fn.request('customer', "GET", kefu2, ).then(res => {
+    	console.log(res.data.data[0].url, '登录客服')
+    	uni.setStorageSync('kefu2', res.data.data[0].url)
+    	this.$store.commit('kefu2', res.data.data[0].url)
+    })
 	},
 
 	onBackPress(event) {

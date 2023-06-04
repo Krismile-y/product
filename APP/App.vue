@@ -156,18 +156,6 @@
 			
 		},
 		methods: {
-      getURL() {
-        var xhr = new XMLHttpRequest();
-          xhr.open('GET', 'https://asdqq.oss-cn-hongkong.aliyuncs.com/baseUrl.json', false);
-          xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-              var data = JSON.parse(xhr.responseText);
-              console.log(data,'111111111111111111');
-              uni.setStorageSync('BASEURL',data.baseUrl)
-            }
-          }
-          xhr.send();
-      },
 			AndroidCheckUpdate: function() {
 				var _this = this;
 				uni.request({
