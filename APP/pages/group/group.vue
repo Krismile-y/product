@@ -192,9 +192,8 @@
   background-repeat: no-repeat;
   position: relative;
   .item-bottom {
-    width: 100%;
     position: absolute;
-    left: 0%;
+    right: 18rpx;
     bottom: 0%;
     display: flex;
     justify-content: right;

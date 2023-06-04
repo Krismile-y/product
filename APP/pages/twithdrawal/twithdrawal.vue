@@ -29,7 +29,14 @@
 	           <view class="" style="margin-top: 20upx;">
 	             <scroll-list ref="list" :option="option" @load="load" @refresh="refresh">
 	               <uni-card :title="item.msg" :extra="item.money" v-for="(item,index) in tableData" :key="index">
-	                 <text class="uni-body">{{item.create_time}}</text>
+	                 <view class="uni-body item-body">
+                     <view class="createTime">
+                       {{item.create_time}}
+                     </view>
+                     <view class="tijiaoStatus">
+                       {{item.statusText}}
+                     </view>
+                   </view>
 	               </uni-card>
 	             </scroll-list>
 	           </view>
@@ -203,6 +210,16 @@
           data = res
         })
         list = data.data
+        console.log(list);
+        list.forEach((item)=> {
+          if(item.status == 0 || item.status == '') {
+            item.statusText = '正在申请'
+          }else if(item.status == 1) {
+            item.statusText = '打款成功'
+          }else {
+            item.statusText = '提现失败'
+          }
+        })
         this.priceTotal = data.count_money
         this.pageCurrent = data.current_page
         this.total = data.total
@@ -310,6 +327,11 @@
     /deep/ .uni-card__header-extra-text {
       font-size: 18px !important;
       color: #111 !important;
+    }
+    .item-body {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
     }
   }
 </style>

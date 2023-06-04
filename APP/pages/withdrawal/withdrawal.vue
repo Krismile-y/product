@@ -21,7 +21,7 @@
         </view>
       </view>
       <view class="money-num">
-        <u--input placeholder="请输入提现金额" border="bottom" v-model="money">
+        <u--input placeholder="请输入提现金额" border="bottom" type="number" v-model="money">
           <!-- <u--text
 	             text="￥"
 	             slot="prefix"
