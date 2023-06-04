@@ -18,7 +18,6 @@
 
 		<!-- 商品盒子 -->
 		<view class="itemBox">
-
 			<view class="box">
 				<view class="title" style="position: relative;">
 					<!-- <view class="shu"></view> -->
@@ -28,7 +27,7 @@
 						:class="{yanse:qiehuanIndex==1?true:false}">我的商品</view>
 				</view>
 				<!-- 商品列表 -->
-				<view class="boxItem" v-for="(item,index) in list" @tap="shopDetail(item)"
+				<view class="boxItem" v-for="(item,index) in list" :key="index" @tap="shopDetail(item)"
 					v-if="qiehuanIndex==0?true:false">
 					<image :src="item.head_img"></image>
 					<view class="name">{{item.wares_name}} </view>
@@ -39,18 +38,20 @@
 				</view>
 
 				<!-- 我的商品 -->
-				<view style="margin-top: 30upx;width: 100%;" v-if="qiehuanIndex==1?true:false">
+				<view style="margin-top:32rpx;width:100%; background-color:#F4F4F6;" v-if="qiehuanIndex==1?true:false">
 					<view v-for="(item,index) in myShop" :key="index" class=""
-						style="background-color: #fff;margin: 20upx auto;display: flex;width: 640upx;height: 200upx;border-radius: 16upx;padding-top: 10upx;padding-bottom: 10upx;">
+						style="background-color:#fff;margin: 22rpx auto;display:flex;width:686rpx;
+						height: 200rpx;border-radius: 20rpx;
+						padding-top: 20rpx;padding-bottom:20rpx;">
 						<image :src="item.head_img" mode=""
-							style="width: 200upx;height: 200upx;border-radius: 16upx;margin-left: 10upx;"></image>
-						<view style="width: 430upx;height: 100%;position: relative;">
-							<view style="display: flex;position: relative;box-sizing: border-box;">
-								<view style="padding-left: 40upx;">{{item.wares_spec}}</view>
-								<view style="position: absolute;top: 0;right: 20upx;">{{item.wares_money}}积分</view>
+							style="width: 156rpx;height:156rpx;border-radius:20rpx;margin-left:20rpx;"></image>
+						<view style="width:500rpx;position:relative;">
+							<view style="display:flex;position:relative;box-sizing:border-box;">
+								<view style="padding-left:20rpx;font-weight:500;font-size:28rpx; color:#242831;">{{item.wares_spec}}</view>
+								<view style="position:absolute;top:0;right:26rpx; font-weight:500; font-size:28rpx;color:#242831;">{{item.wares_money}}积分</view>
 							</view>
-							<view style="text-align: right;padding-right: 20upx;">x1</view>
-							<view style="position: absolute;bottom: 10upx;right: 20upx;color: #FF5A00;">
+							<view style="text-align:right;padding-right:26rpx;font-size:28rpx; color:#ABABAB;">x1</view>
+							<view style="position:absolute;bottom:16rpx;right:26rpx;color: #FF5A00; font-weight:300; font-size: 36rpx;">
 								{{item.status_text}}</view>
 						</view>
 					</view>

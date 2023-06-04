@@ -187,7 +187,7 @@ export default {
       // debugger
         console.log(params,'params');
         let promiseObj = await this.getData().then(res=> {
-          console.log(res,'ressss111111111');
+          console.log(res,'ressss');
           data = res
         })
         list = data.data
