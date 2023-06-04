@@ -2,8 +2,9 @@
 	<view class="xinhezi">
 		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-		<!-- <view><airel-floatball  /></view> -->
-		
+    <!-- #ifdef APP-->
+		<view><kefu /></view>
+		<!-- #endif -->
 		<!-- 新的 -->
 		<view class="newTop disc">
 			<image src="../../static/login/logo.png" mode=""></image>

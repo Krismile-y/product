@@ -18,10 +18,10 @@
    			个人信息
    		</view> -->
 					<view class="item disc">
-            <a :href="herf()" style="width: 100%;height: 100%;color: black;" class="disc" v-if="info.is_real_name == '2'">
+            <view @tap="jump()" style="width: 100%;height: 100%;color: black;" class="disc" v-if="info.is_real_name == '2'">
             	<image src="../../static/c/erji.png"></image>
               我的客服
-            </a>
+            </view>
             <view style="width: 100%;height: 100%;color: black;" class="disc" v-else @tap="dianjiTubiao">
               <image src="../../static/c/erji.png"></image>
               我的客服
@@ -112,6 +112,12 @@
         this.$refs.error.showTips({
           msg: '请完成实名认证',
           duration: 2000
+        })
+      },
+      // 跳转我的客服
+      jump() {
+        uni.navigateTo({
+          url:'/pages/kefuPage/kefuPage'
         })
       },
 			check() {

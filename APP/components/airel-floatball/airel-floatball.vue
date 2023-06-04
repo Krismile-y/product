@@ -4,10 +4,8 @@
     <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<movable-area class="movable-area">
 			<movable-view class="movable-view" :x="x()" :y="y()" direction="all" :inertia="true">
-				<!-- <a :href="herf()" v-if="info.is_real_name == '2'"> -->
-					<image src="../../static/c/erji.png" @tap="jump"></image>
-				<!-- </a> -->
-        <!-- <image src="../../static/c/erji.png" v-else @tap="dianjiTubiao"></image> -->
+				<image src="../../static/c/erji.png" v-if="info.is_real_name == '2'" @tap="jump"></image>
+        <image src="../../static/c/erji.png" v-else @tap="dianjiTubiao"></image>
 			</movable-view>
 		</movable-area>
 	</view>

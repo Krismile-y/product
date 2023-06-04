@@ -4,9 +4,7 @@
     <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
 		<movable-area class="movable-area">
 			<movable-view class="movable-view" :x="x()" :y="y()" direction="all" :inertia="true">
-				<a :href="herf()">
-					<image src="../../static/c/erji.png"></image>
-				</a>
+				<image src="../../static/c/erji.png" @tap="jump"></image>
 			</movable-view>
 		</movable-area>
 	</view>
@@ -30,7 +28,12 @@
 			},
 			y(){
 				return uni.getStorageSync('y')
-			}
+			},
+      jump() {
+        uni.navigateTo({
+          url:'/pages/kefuPage/kefuPage'
+        })
+      },
 		}
 	}
 </script>

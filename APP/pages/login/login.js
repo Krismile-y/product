@@ -1,4 +1,6 @@
+import kefu from '@/components/airel-floatball/airel-floatball2.vue'
 export default {
+  components: {kefu},
 	data() {
 		return {
 			out: 0,
@@ -41,7 +43,23 @@ export default {
 	},
 	onLoad() {
 		this.yanzheng()
-		this.downHerf = uni.getStorageSync('lowDown')
+    uni.getSystemInfo({
+    	success: (res) => {
+    		this.$fn.request('v', "GET", {}).then(r => {
+    			console.log(r, 'v');
+    			console.log(r.data.data.renew,'更新的信息')
+    			uni.setStorageSync('lowDown', r.data.data.down)
+          this.gw = r.data.data.gw
+    			if (res.platform = 'android') {
+    				this.phoneDown = r.data.data.apk
+    			} else {
+    				this.phoneDown = r.data.data.ios
+    			}
+          this.downHerf = uni.getStorageSync('lowDown')
+    		})
+    
+    	}
+    })
     // #ifdef APP
     
     let timerId = setTimeout(()=> {

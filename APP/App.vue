@@ -155,6 +155,13 @@
 			
 			
 		},
+    
+    onHide() {
+      // 退出app或者app切到后台
+      // #ifdef APP
+      uni.setStorageSync("tType",false)
+      // #endif
+    },
 		methods: {
 			AndroidCheckUpdate: function() {
 				var _this = this;
