@@ -1,6 +1,6 @@
 <template>
   <view>
-    <web-view :src="url" :update-title="false"></web-view>
+    <web-view :src="urlData" :update-title="false"></web-view>
   </view>
 </template>
 
@@ -8,11 +8,12 @@
   export default {
     data() {
       return {
-        url: ''
+        urlData: ''
       };
     },
     onLoad() {
-      this.url = uni.getStorageSync('kefu')
+      this.urlData = uni.getStorageSync('kefu')
+      console.log(this.urlData);
     }
   }
 </script>

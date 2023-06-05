@@ -48,7 +48,7 @@
 		   
 		   		<view class="newInputItem">
 		   			<view class="inputName ">身份证</view>
-		   			<u-input v-model="sfz" type="number" placeholder="请输入身份证号" border="true" />
+		   			<u-input v-model="sfz" type="text" placeholder="请输入身份证号" border="true" />
 		   		</view>
 		   
 		   		<view class="newInputItem">
