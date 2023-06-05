@@ -15,6 +15,7 @@ export default {
 			herf: "", //验证码
 			loginSHOW:0,
       downHerf: '', //下载地址
+      tType: '', //用于首屏加载
 		};
 	},
 	onBackPress(event) {
@@ -43,27 +44,11 @@ export default {
 	},
 	onLoad() {
 		this.yanzheng()
-    uni.getSystemInfo({
-    	success: (res) => {
-    		this.$fn.request('v', "GET", {}).then(r => {
-    			console.log(r, 'v');
-    			console.log(r.data.data.renew,'更新的信息')
-    			uni.setStorageSync('lowDown', r.data.data.down)
-          this.gw = r.data.data.gw
-    			if (res.platform = 'android') {
-    				this.phoneDown = r.data.data.apk
-    			} else {
-    				this.phoneDown = r.data.data.ios
-    			}
-          this.downHerf = uni.getStorageSync('lowDown')
-    		})
     
-    	}
-    })
     // #ifdef APP
     
     let timerId = setTimeout(()=> {
-          uni.setStorageSync('tType',true)
+          this.tType = true
           // 登录客服
           let kefu2 = {
           	"sid": "2000"
@@ -75,9 +60,9 @@ export default {
           })
           this.yanzheng()
         },500)
-        if(uni.getStorageSync('tType')==true) {
+        if(this.tType) {
           clearTimeout(timerId)
-          uni.setStorageSync('tType',false)
+          this.tType = false
         }
     // #endif
     // #ifdef H5
@@ -108,7 +93,8 @@ export default {
 		// let times = 0;
 		// times = new Date()
 		// this.herf = this.$url + 'verify?time=' + times
-		
+    // 下载页地址
+		this.getDownLoad()
         
 		this.value = uni.getStorageSync('remember')//记住密码的本地状态
 		if (uni.getStorageSync('pwd') && uni.getStorageSync('phone')) {
@@ -128,7 +114,18 @@ export default {
 		}
 	},
 	methods: {
-		
+		// 获取下载页地址
+    getDownLoad() {
+      this.$fn.request('v', "GET", {}).then(r => {
+        if(r.data.code == 1) {
+          console.log(r, 'v');
+          console.log(r.data.data,'更新的信息')
+          this.downHerf = r.data.data.down
+          uni.setStorageSync("lowDown",this.downHerf)
+        }
+       
+      })
+    },
 		yanzheng() {
 			
 			uni.request({

@@ -1,25 +1,23 @@
 <template>
 	<view class="headImg">
-		
+		<view><airel-floatball  /></view>
 	
-	   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
-	   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
-	   <view class="headImg-box">
-	     <image :src="imageSrc" mode="" class="img-head"></image>
-	   </view>
-	   	<view class="bottom-btn">
-	   		<view class="bbtn" @tap="chooseImage()">
-	   			从相册选择一张
-	   		</view>
-	   
-	   		<!-- <view class="bbtn">
-	   			拍一张照片
-	   		</view> -->
-	   	</view>
-	   	<view><airel-floatball  /></view>
-	 	
-		
-   
+   <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
+   <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+   <view class="img-items">
+      <view class="item-box" v-for="(item,index) in itemData" :key="index" @tap="clickItem(index)">
+        <image class="headimg-img" :src="item.url" mode="widthFix"></image>
+        <view class="checked-img"  v-show="nowImg==index">
+          <image src="../../static/common/check-square-fill.png" mode="widthFix"></image>
+        </view>
+      </view>
+   </view>
+    <view class="btn-submit" @tap="commit" v-show="btnType">
+      保存图片
+    </view>
+    <view class="btn-submit" v-show="!btnType">
+      正在保存
+    </view>
 	</view>
 </template>
 
@@ -30,114 +28,69 @@
 	export default {
 		data() {
 			return {
-				imageSrc: defaultImg,
-				imgFile: null,
-				imgStyle: {
-					width: 0, //屏幕宽度
-					height: 0,
-				},
+				itemData: [],
+        btnType: true,
+        checked: false,
+        nowImg: -1, //默认不选择图片
 			};
 		},
-		// mounted() {
-		//   this.$nextTick(()=> {
-		//     this.getScreenWidth()
-		//   })
-		// },
+		
 		onLoad() {
-			this.getScreenWidth()
-			let info = uni.getStorageSync('user_info')
-			this.imageSrc = info.head_img
-			// console.log(info, 'user');
+			this.getImgs()
 		},
+
 		methods: {
-
-			getScreenWidth() {
-				uni.getSystemInfo({
-					success: (res) => {
-						this.imgStyle.width = res.windowWidth + 'px'
-						this.imgStyle.height = res.windowWidth + 'px'
-					}
-				})
-			},
-
-
-			chooseImage: function() {
-
-				var _this = this;
-				uni.chooseImage({
-					//允许上传的照片数量
-					count: 1,
-					// sizeType:  original 原图，compressed 压缩图，默认二者都有
-					sizeType: ['compressed'],
-					// sourceType: ['camera','album'], 从相册选择
-					sourceType: ['album'],
-					//图片裁剪
-					crop: {
-						width: this.imgStyle.width,
-						height: this.imgStyle.width
-					},
-					success: (res) => {
-						//因为有一张图片， 输出下标[0]， 直接输出地址
-						_this.imageSrc = res.tempFilePaths[0];
-						// console.log(_this.imageSrc, '本地图片');
-						console.log(res.tempFiles[0], '二进制文件流')
-						let tokens = uni.getStorageSync('token') ? uni.getStorageSync('token') : '';
-						let times = Math.round(new Date().getTime() / 1000).toString();
-						let keys = '2zn7s4m0uctu';
-						let data = {
-							'image': res.tempFiles[0], //二进制文件
-							'type': res.tempFiles[0].type
-						}
-						console.log(res.tempFiles,'data里的type')
-						uni.uploadFile({
-							url: getApp().globalData.baseUrl + 'upload',
-							header: {
-								'token': tokens,
-								'sign': md5(tokens + '&' + keys + '&' + times),
-								'time': times
-							},
-
-							filePath: res.tempFilePaths[0],
-							name: 'file',
-							formData: data,
-							success: (uploadFileRes) => {
-                _this.$refs.success.showTips({
-                	msg: '头像上传成功',
-                	duration: 2000
+      // 获取所有图片
+      getImgs() {
+        this.$fn.request('user/sculpture', 'POST', {}).then((res)=> {
+          if(res.data.code == 1) {
+            this.itemData = res.data.data
+          }
+        })
+      },
+      // 保存图片
+      commit() {
+        this.btnType = false
+        if(this.nowImg == -1) {
+          this.$refs.error.showTips({
+            msg: '请选择头像后保存',
+            duration: 1500
+          })
+          this.btnType = true
+        }else {
+          // 发起请求
+          let params = {
+            head_img: ''
+          }
+          params.head_img = this.itemData[this.nowImg].image
+          this.$fn.request('user/head_edit', 'POST', params).then((res)=> {
+            if(res.data.code == 1) {
+              // this.itemData = res.data.data
+              this.$refs.success.showTips({
+                msg: '更换头像成功！',
+                duration: 1500
+              })
+              setTimeout(()=> {
+                uni.navigateTo({
+                  url:"/pages/safe/safe"
                 })
-								console.log('上传成功返回--', uploadFileRes.data);
-							}
-						});
-
-					
-					},
-					fail: (err) => {
-						// #ifdef MP
-						//getSetting 获取用户的当前设置， 判断是否已授权,
-						uni.getSetting({
-							success: (res) => {
-								//用户授权结果，其中 key 为 scope 值，value 为 Boolean 值，表示用户是否允许授权
-								let authStatus = res.authSetting['scope.album'];
-								if (!authStatus) {
-									uni.showModal({
-										title: '授权失败',
-										content: '系统需要从您的相册和相机的权限，请在设置界面打开相关权限',
-										success: (res) => {
-											//确认按钮框
-											if (res.confirm) {
-												//调起客户端小程序设置界面，返回用户设置的操作结果。
-												uni.openSetting()
-											}
-										}
-									})
-								}
-							}
-						})
-						// #endif
-					}
-				})
-			},
-
+                this.btnType = true
+              },1500)
+            }else {
+              this.$refs.error.showTips({
+                msg: res.data.msg,
+                duration: 1500
+              })
+              this.btnType = true
+            }
+          })
+        }
+      },
+      // 选择图片
+      clickItem(index) {
+        console.log(index);
+        this.nowImg = index
+      }
 		}
 	}
 </script>
@@ -145,42 +98,47 @@
 <style lang="less">
 	.headImg {
 		width: 100%;
-		height: calc(100vh - 88upx);
-		background-color: #ddd;
-		position: relative;
-    box-sizing: border-box;
-    padding-top: 98rpx;
-    .headImg-box {
-      width: 380rpx;
-      height: 380rpx;
-      background: #D8D8D8;
-      border: 1rpx solid #979797;
-      margin: 0 auto 128rpx;
-      border-radius: 50%;
-      image {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
+		.img-items {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      .item-box {
+        width: 22%;
+        margin: 10rpx 0 0;
+        position: relative;
+        .headimg-img {
+          width: 100%;
+        }
+        .checked-img {
+          position: absolute;
+          top: 0%;
+          right: 0%;
+          z-index: 66;
+          width: 50rpx;
+          height: 50rpx;
+          background-color: #fff;
+          image {
+            width: 100%;
+            height: 100%;
+          }
+        }
       }
     }
-
-		.bottom-btn {
-			width: 750rpx;
-			height: 100rpx;
-			background: #FFFFFF;
-			position: fixed;
-			left: 0;
-			bottom: 0;
-      .bbtn {
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        line-height: 100rpx;
-        font-size: 28rpx;
-        font-family: PingFangSC-Regular, PingFang SC;
-        font-weight: 400;
-        color: #272727;
-      }
-		}
+    .btn-submit {
+      width: 686rpx;
+      height: 76rpx;
+      background-color: #02AE71;
+      color: #fff;
+      font-size: 32rpx;
+      font-weight: 500;
+      text-align: center;
+      line-height: 76rpx;
+      border-radius: 58rpx 58rpx 58rpx 58rpx;
+      position: fixed;
+      bottom: 200rpx;
+      left: 50%;
+      transform: translate(-50%,0);
+    }
 	}
 </style>

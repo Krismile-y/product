@@ -4,8 +4,8 @@
     <Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
     <Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
     <view class="safe-box">
-      <view class="item item1">
-        <!-- @tap="goImgPage" -->
+      <view class="item item1" @tap="goImgPage">
+        <!--  -->
       	<image src="../../static/common/icon_avatar.png" mode=""></image>
       	头像<view class="head-tips">点击更换头像</view>
       	<view class="right ">
@@ -63,6 +63,14 @@
         imgSrc: '../../common/user.webp'
 			};
 		},
+    onBackPress() {
+        // 覆盖默认返回操作
+        uni.navigateTo({
+          url:"/pages/my/my"
+        })
+        // 阻止默认行为
+        return true
+      },
     onShow() {
 		let info={
 			"is_whole":"1"
