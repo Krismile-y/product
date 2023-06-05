@@ -63,14 +63,22 @@ export default {
     // #ifdef APP
     
     let timerId = setTimeout(()=> {
-      uni.setStorageSync('tType',true)
-      uni.navigateTo({
-        url:'/pages/login/login'
-      })
-    },2000)
-    if(uni.getStorageSync('tType')) {
-      clearTimeout(timerId)
-    }
+          uni.setStorageSync('tType',true)
+          // 登录客服
+          let kefu2 = {
+          	"sid": "2000"
+          }
+          this.$fn.request('customer', "GET", kefu2, ).then(res => {
+          	console.log(res.data.data[0].url, '登录客服')
+          	uni.setStorageSync('kefu2', res.data.data[0].url)
+          	this.$store.commit('kefu2', res.data.data[0].url)
+          })
+          this.yanzheng()
+        },500)
+        if(uni.getStorageSync('tType')==true) {
+          clearTimeout(timerId)
+          uni.setStorageSync('tType',false)
+        }
     // #endif
     // #ifdef H5
     if (window.location.search) {
