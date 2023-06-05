@@ -30,7 +30,7 @@
 
 			<view class="newInputItem">
 				<view class="inputName ">身份证</view>
-				<u-input v-model="sfz" type="number" placeholder="请输入身份证号" border="true" max-length='' maxlength="18" />
+				<u-input v-model="sfz" type="text" placeholder="请输入身份证号" border="true" max-length='' maxlength="18" />
 			</view>
 
 			<view class="newInputItem">
@@ -43,14 +43,16 @@
 				<view class="inputName ">验证码</view>
 				<u-input type="text" placeholder="请输入验证码" v-model="captcha" style="height: 100%;width: 266upx;"
 					border="true" maxlength="4" />
-				<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng"></image>
+					<!-- 验证码组件 -->
+					<mcaptcha></mcaptcha>
+					
+				<!-- <image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng"></image> -->
+				
 			</view>
 
 			<view class="xinBtn dis" @tap="logon" v-show="logonSHOW==0?true:false">注册</view>
 			<view class="xinBtn dis" v-show="logonSHOW==1?true:false">注册中...</view>
 		</view>
-
-
 
 
 		<!-- input -->
@@ -62,7 +64,12 @@
 </template>
 
 <script>
+	import mcaptcha from '@/components/mcaptcha/mcaptcha.vue'
+	
 	export default {
+		components:{
+			mcaptcha
+		},
 		data() {
 			return {
 				logonSHOW: 0,
