@@ -6,7 +6,7 @@
 	export default {
 		data: function() {
 			return {
-				version: "1.5.3" //版本号
+				version: "2.0.0" //版本号
 			}
 		},
 		onShow() {
@@ -146,9 +146,9 @@
 				success: (res) => {
 					console.log(res.platform);
 					//检测当前平台，如果是安卓则启动安卓更新  
-					// if (res.platform == "android") {
-					// this.AndroidCheckUpdate();
-					// }
+					if (res.platform == "android") {
+            this.AndroidCheckUpdate();
+					}
 				}
 			})
 			// #endif
@@ -167,7 +167,7 @@
 				var _this = this;
 				uni.request({
 					//version.txt中内容为版本号，如果版本号大于客户端的版本号，客户端就自动更新
-					url: this.$url + 'v',
+					url: getApp().globalData.baseUrl + 'v',
 					method: 'GET',
 					data: {},
 					success: res => {
