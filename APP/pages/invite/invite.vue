@@ -1,7 +1,15 @@
 <template>
-	<view class="invite disc">
+	<view class="invite">
 		<Tips ref="success" position="center" backgroundColor="#dbf1e1" color="#07c07e" size="30"></Tips>
 		<Tips ref="error" position="center" backgroundColor="red" color="#fff" size="30"></Tips>
+    <view class="invite-title">
+      <view class="">
+        共同助力
+      </view>
+      <view class="" style="margin-top: 40rpx;">
+        国家绿色发展
+      </view>
+    </view>
 		<view class="newBox disc">
 			<image :src="code"></image>
 			<view class="dis tuijianma">我的推荐码</view>
@@ -122,6 +130,7 @@
 </script>
 
 <style lang="less">
+  @import url("../../static/SIMKAI.css");
 	.two {
 		width: 622rpx;
 		height: 100rpx;
@@ -180,12 +189,24 @@
 
 	.invite {
 		width: 100%;
-		background-image: url('../../static/login/background.png');
-		background-size: 100% 674upx;
-		background-position: 0 100%;
-		height: 100vh;
+    height: 100vh;
+		background-image: url('../../static/common/fenxiangBg.png');
+		background-size: 100% 100%;
 		background-repeat: no-repeat;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .invite-title {
+      margin: 140rpx 0 80rpx;
+      width: 100%;
+      // height: 56rpx;
+      line-height: 66rpx;
+      font-size: 66rpx;
+      font-family: KaiTi;
+      font-weight: 400;
+      text-align: center;
+      color: #04D381;
+    }
 		.id {
 			width: 50%;
 			// color: #fff;

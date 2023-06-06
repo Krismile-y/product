@@ -262,11 +262,14 @@
             // 判断版本号，获取到下载地址并且跳转
             if (res.data.data.v !== this.version) {
             	uni.showToast({
-            		title: '有新的版本发布，请下载最新版本!',
+            		title: '有新的版本发布，即将跳转到下载地址，请下载最新版本!',
             		mask: false,
             		duration: 5000,
             		icon: "none"
             	});
+              setTimeout(()=> {
+                plus.runtime.openURL(res.data.data.down);
+              },4500)
             }
           },
           fail: () => {},

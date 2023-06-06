@@ -196,6 +196,7 @@
         await this.$fn.request('user', "GET", params).then(res => {
           console.log(res, '个人信息');
           this.info = res.data.data
+          uni.setStorageSync('user_info', res.data.data)
           this.zongTiXian()
         })
       },

@@ -22,6 +22,7 @@
 	             v-model="value"
 	             integer
 	             :min="1"
+               :max="maxNum"
 	         ></u-number-box>
 	       </view>
 	       <view class="check-day">
@@ -85,7 +86,8 @@
         head_img: '',
         gid: '',
         mid: '',  //价格的下标
-        chushiJine: 0  //记录金额
+        chushiJine: 0  ,//记录金额
+        maxNum: 99, //最大数量
       };
     },
     onLoad(option) {
@@ -94,6 +96,10 @@
       this.head_img = obj.headImg
       this.gid = obj.gid
       this.mid = obj.mid
+      // 新手体验限购一次
+      if(obj.money == 588) {
+        this.maxNum = 1
+      }
       this.zhifuMoney = this.payMoney(obj.money)
       this.chushiJine = obj.money
       let goods_day={

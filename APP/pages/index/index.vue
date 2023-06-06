@@ -215,13 +215,15 @@
 					<!-- 合作伙伴 -->
 				<view class="hezuo-box">
 				  <view class="hezuo-box1">
-				    <image src="../../static/newIndex/xieban.png" mode="widthFix"></image>
+            <view class="hezuo-text">
+              协办单位
+            </view>
 				  </view>
 				</view>
 				<view class="jianguan-box">
 				  <view class="jianguanbumen">
 				    <view class="jianguanbumen1">
-				      <image src="../../static/newIndex/jianguanbumen.png" mode="widthFix"></image>
+				      监管部门
 				    </view>
 				  </view>
 				  <view class="bumen-name">
