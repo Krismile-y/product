@@ -45,6 +45,11 @@
         下载APP
       </view>
       <!--  #endif -->
+      <!-- #ifdef APP -->
+      <view style="width: 20rpx;">
+        
+      </view>
+      <!--  #endif -->
 			<view class="wangjimima dis" @tap="forgetPwd">忘记密码?找回密码</view>
 		</view>
 		

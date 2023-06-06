@@ -69,8 +69,9 @@
 	text-indent: 60upx;
 	color: #000;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /deep/ img {
+  /deep/p img {
     width: 100%;
+    margin-left: -60upx;
   }
 }
 
