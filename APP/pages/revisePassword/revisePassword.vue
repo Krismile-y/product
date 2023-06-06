@@ -55,7 +55,7 @@
 		   			<view class="inputName ">验证码</view>
 		   			<u-input type="text" placeholder="请输入验证码" v-model="captcha" style="height: 100%;width: 266upx;"
 		   				border="true" maxlength="4" />
-		   			<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng"></image>
+		   			<yanzhengma ref="captcha" :userInput="captcha" @checkCode="yanzheng" />
 		   		</view>
 		   
 		   		<view class="xinBtn dis" @tap="change" style="margin-top: 90upx;" v-show="show==0?true:false">修改密码
@@ -73,7 +73,11 @@
 </template>
 
 <script>
+  import yanzhengma from '@/components/mcaptcha/mcaptcha.vue'
 	export default {
+    components:{
+      yanzhengma
+    },
 		onLoad(options) {
 			this.yanzheng()
 			
@@ -108,26 +112,15 @@
 				sfz: '',
 				shimingText: '',
 				herf: '',
-				captcha: ''
+				captcha: '',
+				captchaType: '', //验证码判断后的状态
 			};
 		},
 		methods: {
-			yanzheng() {
-
-				uni.request({
-					url: getApp().globalData.baseUrl+'verify',
-					data: {},
-					success: (res) => {
-						// console.log(res)
-						let times = 0;
-						times = new Date()
-						this.herf = getApp().globalData.baseUrl + 'verify?time=' + times
-					}
-				})
-
-
+			yanzheng(type) {
+				// type是验证组件返回的值
+			  this.captchaType = type
 			},
-
 			// 保留前四位和后六位，中间用******显示
 			setCardNum(str) {
 				let newStr = ''
@@ -142,6 +135,7 @@
 			change() {
 				this.show = 1
 				// 身份证验证
+        this.$refs.captcha.checkCode()
 				let testsfz = /^[1-9]\d{5}(19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/
 				console.log(testsfz.test(this.sfz))
 
@@ -175,7 +169,23 @@
 						duration: 2000
 					})
 					return
-				}
+				}else if(this.captcha == '') {
+          this.$refs.error.showTips({
+            msg: '请输入验证码',
+            duration: 2000
+          })
+          this.show=0
+          return
+        }else if(!this.captchaType) {
+          this.$refs.error.showTips({
+            msg: '验证码错误',
+            duration: 2000
+          })
+          this.show=0
+          this.$refs.captcha.refreshCode()
+          this.captcha = ''
+          return
+        }
 
 
 				let pwd = {

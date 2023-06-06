@@ -1,6 +1,7 @@
 import kefu from '@/components/airel-floatball/airel-floatball2.vue'
+import yanzhengma from '@/components/mcaptcha/mcaptcha.vue'
 export default {
-  components: {kefu},
+  components: {kefu,yanzhengma},
 	data() {
 		return {
 			out: 0,
@@ -11,6 +12,7 @@ export default {
 			phone: '', //账号
 			pwd: "", //密码
 			captcha: '', //验证码
+      captchaType: '', //验证码判断后的状态
 			value: false, //记住密码
 			herf: "", //验证码
 			loginSHOW:0,
@@ -43,7 +45,7 @@ export default {
 
 	},
 	onLoad() {
-		this.yanzheng()
+		// this.yanzheng()
     
     // #ifdef APP
     
@@ -58,7 +60,7 @@ export default {
           	uni.setStorageSync('kefu2', res.data.data[0].url)
           	this.$store.commit('kefu2', res.data.data[0].url)
           })
-          this.yanzheng()
+          // this.yanzheng()
         },500)
         if(this.tType) {
           clearTimeout(timerId)
@@ -90,6 +92,7 @@ export default {
 	},
 	
 	onShow() {
+    this.captcha = ''
 		// let times = 0;
 		// times = new Date()
 		// this.herf = this.$url + 'verify?time=' + times
@@ -126,21 +129,22 @@ export default {
        
       })
     },
-		yanzheng() {
-			
-			uni.request({
-				url:getApp().globalData.baseUrl+'verify',
-				data:{},
-				success: (res) => {
-					console.log(res)
-					let times = 0;
-					times = new Date()
-					this.herf = getApp().globalData.baseUrl + 'verify?time=' + times
-				}
-			})
-			
-			
+		yanzheng(type) {
+			// type是验证组件返回的值
+      console.log('验证执行。。。。。。。。。。。。。',this.captchaType);
+      this.captchaType = type
 		},
+    // 旧的代码，验证码接口
+    // uni.request({
+    // 	url:getApp().globalData.baseUrl+'verify',
+    // 	data:{},
+    // 	success: (res) => {
+    // 		console.log(res)
+    // 		let times = 0;
+    // 		times = new Date()
+    // 		this.herf = getApp().globalData.baseUrl + 'verify?time=' + times
+    // 	}
+    // })
         // 记住密码
 		change(e) {
 			console.log('change', e);
@@ -174,6 +178,7 @@ export default {
 			// 	'pwd':'12345678',
 			// 	'captcha':'12312'
 			// }
+      this.$refs.captcha.checkCode()
 			this.loginSHOW=1
 			let reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
 			console.log(this.phone.length)
@@ -201,7 +206,25 @@ export default {
 				duration: 2000
 					})
 				return
-			}
+			}else if(this.captcha == '') {
+        this.$refs.error.showTips({
+        msg: '请输入验证码',
+        duration: 2000
+        	})
+          this.$refs.captcha.refreshCode()
+          
+        this.loginSHOW=0
+        return
+      }else if(!this.captchaType) {
+        this.$refs.error.showTips({
+        msg: '验证码错误',
+        duration: 2000
+        	})
+          this.$refs.captcha.refreshCode()
+          this.captcha = ''
+        this.loginSHOW=0
+        return
+      }
 
 			let data = {
 				'phone': this.phone,
@@ -209,6 +232,7 @@ export default {
 				'captcha': this.captcha
 			}
       this.loginSHOW = 0
+      // -------------------------------------关闭h5入口
       // #ifdef H5
       this.$refs.error.showTips({
         msg: '请使用APP登录',
@@ -253,7 +277,6 @@ export default {
 					// this.pwd = ''
 					// this.phone = ''
 					this.captcha=''
-					this.yanzheng()
 					
 				}
 			})

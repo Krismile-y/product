@@ -105,7 +105,7 @@
 				}
 				this.font='支付中...'
 				this.show=1
-				this.dataObj.pid = this.checkedNum
+				this.dataObj.pid = this.checkedNum+1
 				this.$fn.request('/pay/order', 'POST', this.dataObj).then(res => {
 					
 					if (res.data.code == 1) {

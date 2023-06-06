@@ -27,7 +27,7 @@
 	       		<view class="inputName ">验证码</view>
 	       			<u-input type="text" placeholder="请输入验证码" v-model="captcha" 
 	       			style="height: 100%;width: 266upx;"  border="true" maxlength="4"/>
-	       		<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng" ></image>
+            <yanzhengma ref="captcha" :userInput="captcha" @checkCode="yanzheng" />
 	       	</view>	
 	       	<view class="xinBtn dis" @tap="change" style="margin-top: 90upx;" v-show="show==0?true:false">设置密码</view>
 	     	<view class="xinBtn dis"  style="margin-top: 90upx;"v-show="show==1?true:false">设置密码中...</view>
@@ -40,40 +40,36 @@
 </template>
 
 <script>
+  import yanzhengma from '@/components/mcaptcha/mcaptcha.vue'
   export default {
+    components:{
+      yanzhengma
+    },
     data() {
       return {
 		  show:0,
         xin:'', //新密码
         queren:'', //确认密码
         sfz: '', //身份证
-        captcha: '', //验证码
+        captcha: '',
+        captchaType: '', //验证码判断后的状态
         herf: '', //验证码图片
       };
     },
     onLoad() {
-      this.yanzheng()
+      // this.yanzheng()
 	  
     },
     methods: {
       // 验证码
-      yanzheng() {
-      	uni.request({
-      		url:getApp().globalData.baseUrl+'verify',
-      		data:{},
-      		success: (res) => {
-      			console.log(res)
-      			let times = 0;
-      			times = new Date()
-      			this.herf = getApp().globalData.baseUrl + 'verify?time=' + times
-      		}
-      	})
-      	
-      	
+      yanzheng(type) {
+      	// type是验证组件返回的值
+        this.captchaType = type
       },
       change(){
 		  this.show=1
 		  // return
+      this.$refs.captcha.checkCode()
       	// 修改密码接口
         let testsfz = /^(?:[1-9]\d{5})((?:19|20)\d{2})(?:(?:(?:0[1-9])|(?:1[0-2]))(?:(?:0[1-9])|(?:[1-2][0-9])|(?:3[0-1])))(?:\d{3}[0-9Xx])$/
         console.log(this.sfz,'身份证',testsfz.test(this.sfz));
@@ -105,7 +101,23 @@
 					duration: 2000
 						})
 					return
-				}
+				}else if(this.captcha == '') {
+          this.$refs.error.showTips({
+            msg: '请输入验证码',
+            duration: 2000
+          })
+          this.show=0
+          return
+        }else if(!this.captchaType) {
+          this.$refs.error.showTips({
+            msg: '验证码错误',
+            duration: 2000
+          })
+          this.show=0
+          this.$refs.captcha.refreshCode()
+          this.captcha = ''
+          return
+        }
       	
       	
       	let pwd={
@@ -131,7 +143,7 @@
       			duration: 2000
       				})
             // 刷新验证码
-            this.yanzheng()
+            // this.yanzheng()
       		
       		}
       	}) 

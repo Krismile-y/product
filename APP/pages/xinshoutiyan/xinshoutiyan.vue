@@ -11,7 +11,12 @@
           <view class="img-box">
             <image :src="item.head_img" mode="widthFix"></image>
           </view>
-					<view class="tit">{{item.goods_name}}</view>
+					<view style="display: flex;justify-content: space-between;padding-right: 12rpx;">
+            <view class="tit">{{item.goods_name}}</view>
+            <view class="tit" style="color: red;">
+             限购1次
+            </view>
+					</view>
           <view class="touzimin">最低投资：</view>
 					<view class="buy">
             <view class="left">￥{{item.goods_money}}</view>

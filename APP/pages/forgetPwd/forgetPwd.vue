@@ -25,7 +25,7 @@
 		   		<view class="inputName" style="">验证码</view>
 		   		<u-input v-model="captcha" type="number" placeholder="请输入验证码" border="true" maxlength="4"
 		   			style="width: 266upx;padding-left: 20upx;" />
-		   		<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap='change()'></image>
+		   		<yanzhengma ref="captcha" :userInput="captcha" @checkCode="yanzheng" />
 		   	</view>
 		   
 		   	<view class="xinBtn dis" @tap="xiugai()" style="margin-top: 90rpx;" v-show="show==0?true:false">提交</view>
@@ -42,12 +42,14 @@
 
 <script>
   import kefu from '@/components/airel-floatball/airel-floatball2.vue'
+  import yanzhengma from '@/components/mcaptcha/mcaptcha.vue'
 	export default {
-    components: {kefu},
+    components: {kefu,yanzhengma},
 		data() {
 			return {
 				show: 0,
 				captcha: '',
+        captchaType: '', //验证码判断后的状态
 				pwd: '',
 				phone: "",
 				sfz: "",
@@ -59,18 +61,12 @@
 			
 		},
 		onLoad(){
-			this.change()
 			
 		},
 		methods: {
-			change() { //刷新验证码
-				console.log(1)
-
-				this.$fn.request('verify', 'GET', {}).then(res => {
-					let times = 0;
-					times = new Date()
-					this.herf = getApp().globalData.baseUrl + 'verify?time=' + times
-				})
+			yanzheng(type) {
+				// type是验证组件返回的值
+			  this.captchaType = type
 			},
 			go(index) {
 
@@ -116,7 +112,22 @@
 						duration: 2000
 					})
 					return
-				}
+				}else if(this.captcha == '') {
+          this.$refs.error.showTips({
+            msg: '请输入验证码',
+            duration: 2000
+          })
+            this.$refs.captcha.refreshCode()
+          return
+        }else if(!this.captchaType) {
+          this.$refs.error.showTips({
+            msg: '验证码错误',
+            duration: 2000
+          })
+          this.$refs.captcha.refreshCode()
+          this.captcha = ''
+          return
+        }
 
 				// if (this.phone.length !== 11) {
 

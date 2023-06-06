@@ -23,7 +23,8 @@
 			<view class="newInputItem">
 				<view class="inputName ">验证码</view>
 					<u-input type="text" placeholder="请输入验证码"  maxlength="4" v-model="captcha" style="height: 100%;width: 270upx;padding-left: 20upx;"  border="true"/>
-				<image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng"></image>
+				<!-- <image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng"></image> -->
+        <yanzhengma ref="captcha" :userInput="captcha" @checkCode="yanzheng" />
 			</view>
 			<view class="two">
 				<view class=" jizhu">

@@ -44,7 +44,7 @@
 				<u-input type="text" placeholder="请输入验证码" v-model="captcha" style="height: 100%;width: 266upx;"
 					border="true" maxlength="4" />
 					<!-- 验证码组件 -->
-					<mcaptcha></mcaptcha>
+					<yanzhengma ref="captcha" :userInput="captcha" @checkCode="yanzheng" />
 					
 				<!-- <image :src="herf" mode="" style="width: 270upx;height: 100%;" @tap="yanzheng"></image> -->
 				
@@ -64,16 +64,17 @@
 </template>
 
 <script>
-	import mcaptcha from '@/components/mcaptcha/mcaptcha.vue'
+  import yanzhengma from '@/components/mcaptcha/mcaptcha.vue'
 	
 	export default {
 		components:{
-			mcaptcha
+      yanzhengma
 		},
 		data() {
 			return {
 				logonSHOW: 0,
 				captcha: '',
+				captchaType: '', //验证码判断后的状态
 				phone: "",
 				pwd: "",
 				agent_id: "",
@@ -90,6 +91,7 @@
 			};
 		},
 		onLoad() {
+      // this.$refs.captcha.refreshCode()
       // #ifdef H5
 			let code = uni.getStorageSync('code')
 			if (code || code !== null || code !== undefined) {
@@ -97,10 +99,13 @@
 			}
 			this.downHerf = uni.getStorageSync('lowDown')
       // #endif
-			this.yanzheng()
 			
 		},
 		methods: {
+      yanzheng(type) {
+      	// type是验证组件返回的值
+        this.captchaType = type
+      },
 			handleInput() {
 				this.isUserInput = true;
 			},
@@ -111,27 +116,14 @@
 					console.log("这不是手动输入的数据");
 				}
 			},
-			yanzheng() {
-
-				uni.request({
-					url: getApp().globalData.baseUrl+'verify',
-					data: {},
-					success: (res) => {
-						console.log(res)
-						let times = 0;
-						times = new Date()
-						this.herf = getApp().globalData.baseUrl + 'verify?time=' + times
-					}
-				})
-
-
-			},
+			
 			fanhui() {
 				uni.navigateTo({
 					url: '/pages/login/login'
 				})
 			},
 			logon() {
+        this.$refs.captcha.checkCode()
 				this.logonSHOW=1
 				// top.location.href = this.downHerf
 				// this.checkInput()
@@ -190,7 +182,23 @@
 						duration: 2000
 					})
 					return
-				}
+				}else if(this.captcha == '') {
+          this.$refs.error.showTips({
+            msg: '请输入验证码',
+            duration: 2000
+          })
+          this.logonSHOW=0
+          return
+        }else if(!this.captchaType) {
+          this.$refs.error.showTips({
+            msg: '验证码错误',
+            duration: 2000
+          })
+          this.logonSHOW=0
+          this.$refs.captcha.refreshCode()
+          this.captcha = ''
+          return
+        }
 
 				let data = {
 
@@ -247,7 +255,7 @@
 							msg: res.data.msg,
 							duration: 2000
 						})
-						this.yanzheng()
+						// this.yanzheng()
 
 
 						// 刷新验证码
