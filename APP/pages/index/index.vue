@@ -216,14 +216,16 @@
 				<view class="hezuo-box">
 				  <view class="hezuo-box1">
             <view class="hezuo-text">
-              协办单位
+              <!-- 协办单位 -->
+              <image src="../../static/newIndex/xiebantitle.png" mode="widthFix"></image>
             </view>
 				  </view>
 				</view>
 				<view class="jianguan-box">
 				  <view class="jianguanbumen">
 				    <view class="jianguanbumen1">
-				      监管部门
+				      <!-- 监管部门 -->
+              <image src="../../static/newIndex/jianguanbumen.png" mode="widthFix"></image>
 				    </view>
 				  </view>
 				  <view class="bumen-name">

@@ -1,6 +1,6 @@
 <template>
   <view>
-    <web-view :src="urlData" :update-title="false"></web-view>
+    <web-view style="padding-bottom: 20rpx;" :src="urlData" :update-title="false"></web-view>
   </view>
 </template>
 

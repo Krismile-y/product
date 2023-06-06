@@ -22,14 +22,8 @@
 	          </view>
 	        </view>
 	        <view class="money-num">
-	          <u--input placeholder="请输入提现金额" type="number" border="bottom" v-model="money" clearable>
-	            <!-- <u--text
-	              text="￥"
-	              slot="prefix"
-	              margin="0 3px 0 0"
-	              type="tips"
-	            ></u--text> -->
-	          </u--input>
+	          <!-- <u--input placeholder="请输入提现金额" type="number" border="bottom"  clearable></u--input> -->
+            <input class="uni-input" type="number" placeholder-style="color:#ccc;fontSize:36rpx" focus v-model="money" placeholder="请输入提现金额" />
 	        </view>
 	        <!-- <view class="uni-list">
 	          <view class="content-title radioTitle">
@@ -523,18 +517,11 @@
       }
 
       .money-num {
-        /deep/ .u-text__value {
-          font-size: 64rpx !important;
-          font-family: PingFangSC-Medium, PingFang SC;
-          font-weight: 550;
+        /deep/ .uni-input {
+          font-size: 44rpx !important;
+          font-weight: 500;
           color: #272727;
-        }
-
-        /deep/ .uni-input-input {
-          font-size: 54rpx !important;
-          font-family: PingFangSC-Medium, PingFang SC;
-          font-weight: 550;
-          color: #272727;
+          border-bottom: 2rpx solid #ccc;
         }
       }
     }

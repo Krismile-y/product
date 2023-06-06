@@ -28,7 +28,7 @@
 		   </view>
 		   <!-- 领取时间 -->
 		   <view class="linquTime">
-		     领取时间：每月**日 00:00:00
+		     领取时间：每月1日 00:00:00
 		   </view>
 		   <view style="margin-top: 30upx;">
 		   	<view class="item" v-for="(item,index) in list" :key="index">

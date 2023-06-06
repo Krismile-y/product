@@ -3,6 +3,28 @@
 	import uniPopup from "./components/down/updatepage/uni-popup/uni-popup.vue";
 	import uniPopupMessage from "./components/down/updatepage/uni-popup/uni-popup-message.vue";
 	import uniPopupDialog from "./components/down/updatepage/uni-popup/uni-popup-dialog.vue";
+  
+  /**
+   * 比较两个版本号的大小
+   * @param {string} version1 版本号1
+   * @param {string} version2 版本号2
+   * @returns {number} 如果版本号1大于版本号2，返回1；否则如果版本号1小于版本号2，返回-1；否则返回0。
+   */
+  function compareVersion (version1, version2) {
+    const v1 = version1.split('.')
+    const v2 = version2.split('.')
+    const len = Math.max(v1.length, v2.length)
+    for (let i = 0; i < len; i++) {
+      const num1 = parseInt(v1[i]) || 0
+      const num2 = parseInt(v2[i]) || 0
+      if (num1 > num2) {
+        return 1
+      } else if (num1 < num2) {
+        return -1
+      }
+    }
+    return 0
+  }
 	export default {
 		data: function() {
 			return {
@@ -149,7 +171,7 @@
 					if (res.platform == "android") {
             this.AndroidCheckUpdate();
 					}else if(res.platform == "ios") {
-            
+            this.iosUpdata()
           }
 				}
 			})
@@ -254,27 +276,32 @@
 			},
       // ios更新，跳转到下载地址
       iosUpdata() {
+        const currentVersion = uni.getStorageSync('version') || '1.0.0'
+        // 获取 App Store 中该 App 的最新版本号
         uni.request({
           url: getApp().globalData.baseUrl + 'v',
           method: 'GET',
           data: {},
-          success:(res)=> {
-            // 判断版本号，获取到下载地址并且跳转
-            if (res.data.data.v !== this.version) {
-            	uni.showToast({
-            		title: '有新的版本发布，即将跳转到下载地址，请下载最新版本!',
-            		mask: false,
-            		duration: 5000,
-            		icon: "none"
-            	});
-              setTimeout(()=> {
-                plus.runtime.openURL(res.data.data.down);
-              },4500)
+          success: (res) => {
+            const latestVersion = res.data.data.v
+            // 如果最新版本高于当前版本，则询问用户是否需要更新
+            if (compareVersion(latestVersion, currentVersion) === 1) {
+              uni.showModal({
+                title: '更新提示',
+                content: '检测到新版本，是否更新？',
+                success: (res) => {
+                  if (res.confirm) {
+                    // 用户选择更新，跳转至 App Store 中该 App 的下载页面
+                    uni.navigateTo({
+                      url: 'http://fir.yxzdldw.cn/7m1564'
+                    })
+                  }
+                }
+              })
             }
-          },
-          fail: () => {},
-          complete: () => {}
-        });
+          }
+        })
+
       }
 		},
 		onHide: function() {

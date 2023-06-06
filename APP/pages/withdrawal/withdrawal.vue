@@ -21,14 +21,7 @@
         </view>
       </view>
       <view class="money-num">
-        <u--input placeholder="请输入提现金额" border="bottom" type="number" v-model="money">
-          <!-- <u--text
-	             text="￥"
-	             slot="prefix"
-	             margin="0 3px 0 0"
-	             type="tips"
-	           ></u--text> -->
-        </u--input>
+        <input class="uni-input" type="number" placeholder-style="color:#ccc;fontSize:36rpx" focus v-model="money" placeholder="请输入提现金额" />
       </view>
       <view class="cardChange" @tap="open()">
         <view class="left">
@@ -499,22 +492,11 @@
       }
 
       .money-num {
-        /deep/ .u-text__value {
-          font-size: 64rpx !important;
-          font-family: PingFangSC-Medium, PingFang SC;
-          font-weight: 550;
+        /deep/ .uni-input {
+          font-size: 44rpx !important;
+          font-weight: 500;
           color: #272727;
-        }
-
-        /deep/ .u-input {
-          padding: 0 !important;
-        }
-
-        /deep/ .uni-input-input {
-          font-size: 54rpx !important;
-          font-family: PingFangSC-Medium, PingFang SC;
-          font-weight: 550;
-          color: #272727;
+          border-bottom: 2rpx solid #ccc;
         }
       }
     }

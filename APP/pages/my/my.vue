@@ -17,8 +17,8 @@
 		   			<view class="right">
 		   				<view class="user">
 		   					<view class="username">{{info.user_name}}</view>
-		   					<view class="shiming dis">
-		   						<image src="../../static/newMy/icon_people.png" mode=""
+		   					<view class="shiming">
+		   						<image src="../../static/newMy/icon_people.png" mode="widthFix"
 		   							style="width: 20upx;height: 20upx;margin-right: 10upx;"></image>
 		   						{{zhuangtai}}
 		   					</view>
