@@ -148,7 +148,9 @@
 					//检测当前平台，如果是安卓则启动安卓更新  
 					if (res.platform == "android") {
             this.AndroidCheckUpdate();
-					}
+					}else if(res.platform == "ios") {
+            
+          }
 				}
 			})
 			// #endif
@@ -163,6 +165,7 @@
       // #endif
     },
 		methods: {
+      // 安卓更新
 			AndroidCheckUpdate: function() {
 				var _this = this;
 				uni.request({
@@ -249,6 +252,27 @@
 					complete: () => {}
 				});
 			},
+      // ios更新，跳转到下载地址
+      iosUpdata() {
+        uni.request({
+          url: getApp().globalData.baseUrl + 'v',
+          method: 'GET',
+          data: {},
+          success:(res)=> {
+            // 判断版本号，获取到下载地址并且跳转
+            if (res.data.data.v !== this.version) {
+            	uni.showToast({
+            		title: '有新的版本发布，请下载最新版本!',
+            		mask: false,
+            		duration: 5000,
+            		icon: "none"
+            	});
+            }
+          },
+          fail: () => {},
+          complete: () => {}
+        });
+      }
 		},
 		onHide: function() {
 			console.log('App Hide')
